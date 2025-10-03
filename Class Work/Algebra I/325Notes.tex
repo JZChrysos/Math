@@ -106,7 +106,56 @@ $$
 $$
 As a consequence, we see that each $H_d$ is an \textit{irreducible} representation of $\SO_n$; every stable subspace has a fixed point by the Key Lemma, and the fixed-points are one-dimensional, so there can only be one stable subspace. Thus, as an $\SO_n$-representation, $P_d$ decomposes exactly into the sequence $H_{d-2j}$ for $2j\leq d$.\\
 
-\noindent \textbf{Theorem}: If $n\geq 3$, then for each $d\geq 0$, the representation of $\SO_n$ in $H_d$ is irreducible, and moreover the representations are all distinct for different $d$.\footnote{In the case $n=3$ this gives \textit{all} the irreps. In general you miss $\Lambda^2(\C^n)$, but when $n=3$ this is just $\C^3$, which you get from $H_1$.}
+\noindent \textbf{Theorem}: If $n\geq 3$, then for each $d\geq 0$, the representation of $\SO_n$ in $H_d$ is irreducible, and moreover the representations are all distinct for different $d$.\footnote{In the case $n=3$ this gives \textit{all} the irreps. In general you miss $\Lambda^2(\C^n)$, but when $n=3$ this is just $\C^3$, which you get from $H_1$.}\\
+
+Let $W$ be a vector space over $k$ with basis $w_1,\dots,w_n$, and let $x_1,\dots,x_n$ be a dual basis for $W^*$. We let
+$$
+k[W] := \bigoplus_{d\geq 0} k[W]_d
+$$
+be the homogeneous polynomials over $W$, where 
+$$
+k[W]_j := \Sym^j(W^*).
+$$
+We have the directional derivative operator
+$$
+\partial_{\xi} : k[W]_j \to k[W]_{j-1}
+$$
+which acts on $k[W]$ in the expected way (product rule). Thus we have the differential algebra
+$$
+\D(W) = k[\partial_{w_1},\dots,\partial_{w_n}]
+$$
+acting on $k[W]$. There is a natural correspondence between $k[W]$ and $\D(W)$, if one assumes that $k$ is characteristic 0. We have a $k$-bilinear pairing 
+$$
+\D(W) \times k[W] \to k
+$$
+by $\<u,f\>\mapsto u(f)(0)$. This is a \textit{perfect pairing}. And in general we can do the same thing with 
+$$
+\Sym^j(W)\times \Sym^j(W^*)\to k.
+$$
+
+\noindent \textbf{Lemma}: Let $\xi\in W$ and $f\in k[W]$. Then
+$$\<\xi^m,f\> = m!f(\xi).$$
+In particular, if $f=\ph\in W^*$, $\<\xi^m,\ph^m\>=m!\ph^m(\xi)$.
+\begin{proof}
+	We will show this for homogeneous $f$ first, and the general result will follow from expressing $f$ as a sum of homogeneous polynomials. Let the degree of $f$ be $d$. Then by Taylor expansion,
+	$$f(\xi) = \sum_{k\geq 0} \frac{1}{k!}(\partial_{\xi}^kf)(0).$$
+	But note that only the $d$th term of this is nonzero, since $\partial^j_{\xi}f= 0$ unless $j=d$ (since we are evaluating at $0$). Thus,
+	$$
+	f(\xi) = \frac{(\partial^d_{\xi}f)(0)}{d!}
+	$$
+	and for other $j$ both sides are 0.
+\end{proof}\\
+
+We can use this pairing to get another inner product on polynomials in $k[W]$ given by
+$$
+\<p,q\> := p(\partial)(q)(0)
+$$
+where $p(\partial)$ is the corresponding element to $p$ in $\D(W)$.\footnote{In the homework, we establish that on $H_d$, this is actually \textit{equivalent} to the inner product from integrating over $S^{n-1}$!} For this inner product, we have that multiplication by $p$ is \textit{adjoint} to $p(\partial)$. 
+
+With this fact, we can finally show why $P_d = H_d \oplus R P_{d-2}$:
+$$
+W = \ker(\Delta) \oplus \im(\mu_R) = H_d \oplus R P_{d-2}.
+$$
 
 
 \end{document}
