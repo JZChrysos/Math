@@ -1,0 +1,257 @@
+%\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{asymptote}
+\usepackage{mathtools}
+\usepackage{hhline}
+\usepackage{graphicx,enumerate}
+\usepackage{hyperref}
+\usepackage[a4paper, margin=1.2in]{geometry}
+%\usepackage{tcolorbox}
+\usepackage{tikz-cd}
+\usepackage{ytableau}
+%\tcbuselibrary{skins,breakable,xparse}
+\allowdisplaybreaks
+\newcounter{count}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=teal,
+	filecolor=magenta,      
+	urlcolor=olive,
+	citecolor=teal,
+	pdfpagemode=FullScreen,
+}
+
+%\definecolor{defcolor}{HTML}{478EFF}
+%\definecolor{thmcolor}{HTML}{CC0058}
+%\definecolor{excolor}{HTML}{F5B400}
+%\definecolor{probcolor}{HTML}{DD4803}
+%\definecolor{lemcolor}{HTML}{741FEA}
+%\definecolor{scarlet}{HTML}{A81111}
+%
+%\newtheoremstyle{definitionStyle}% Custom style for definitions
+%{0.5em}% Space above
+%{0.5em}% Space below
+%{}% Body font
+%{}% Indent amount
+%{\bfseries\color{defcolor}}% Theorem head font: bold and red
+%{.\\}% Punctuation after theorem head
+%{0.5em}% Space after theorem head
+%{\thmname{#1}\thmnumber{ #2 (#3)}}% Theorem head spec
+%
+%\theoremstyle{definitionStyle}
+%\newtheorem{df}{Definition}[section]
+%
+%\newtheoremstyle{theoremStyle}% Custom style for definitions
+%{0.5em}% Space above
+%{0.5em}% Space below
+%{}% Body font
+%{}% Indent amount
+%{\bfseries\color{thmcolor}}% Theorem head font: bold and red
+%{.\\}% Punctuation after theorem head
+%{0.5em}% Space after theorem head
+%{\thmname{#1}\thmnumber{ #2 (#3)}}% Theorem head spec
+%
+%\theoremstyle{theoremStyle}
+%\newtheorem{thm}{Theorem}[section]
+%
+%\newtheoremstyle{lemmaStyle}% Custom style for definitions
+%{0.5em}% Space above
+%{0.5em}% Space below
+%{}% Body font
+%{}% Indent amount
+%{\bfseries\color{lemcolor}}% Theorem head font: bold and red
+%{.\\}% Punctuation after theorem head
+%{0.5em}% Space after theorem head
+%{\thmname{#1}\thmnumber{ #2 (#3)}}% Theorem head spec
+%
+%\theoremstyle{lemmaStyle}
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{cor}{Corollary}[section]
+%
+%\newtheoremstyle{exampleStyle}% Custom style for definitions
+%{0.5em}% Space above
+%{0.5em}% Space below
+%{}% Body font
+%{}% Indent amount
+%{\bfseries\color{excolor}}% Theorem head font: bold and red
+%{.\\}% Punctuation after theorem head
+%{0.5em}% Space after theorem head
+%{\thmname{#1}\thmnumber{ #2 (#3)}}% Theorem head spec
+%
+%\theoremstyle{exampleStyle}
+%\newtheorem{ex}{Example}[section]
+%
+%\newtheoremstyle{problemStyle}% Custom style for definitions
+%{0.5em}% Space above
+%{0.5em}% Space below
+%{}% Body font
+%{}% Indent amount
+%{\bfseries\color{probcolor}}% Theorem head font: bold and red
+%{.\\}% Punctuation after theorem head
+%{0.5em}% Space after theorem head
+%{\thmname{#1}\thmnumber{ #2#3}}% Theorem head spec
+%
+%\theoremstyle{problemStyle}
+%\newtheorem{prob}{Problem}[section]
+
+% For Fun
+\newcommand{\club}{\color{teal} \clubsuit}
+\newcommand{\heart}{\color{red} \heartsuit}
+\renewcommand{\star}{\color{scarlet} \bigstar}
+\newcommand{\spade}{\color{violet} \spadesuit}
+
+% Symbols
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\G}{\mathcal{G}}
+% \renewcommand{\H}{\mathcal{H}} Erdos o
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\K}{\mathcal{K}}
+% \renewcommand{\L}{\mathcal{L}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Y}{\mathcal{Y}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\renewcommand{\AA}{\mathcal{A}}
+\newcommand{\BB}{\mathcal{B}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\DD}{\mathcal{D}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\GG}{\mathbb{G}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\II}{\mathcal{I}}
+\newcommand{\JJ}{\mathcal{J}}
+\newcommand{\KK}{\mathcal{K}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\NN}{\mathcal{N}}
+\newcommand{\OO}{\mathrm{O}}
+\newcommand{\PP}{\mathcal{P}}
+\newcommand{\QQ}{\mathcal{Q}}
+\newcommand{\RR}{\mathcal{R}}
+\renewcommand{\SS}{\mathcal{S}}
+\newcommand{\TT}{\mathcal{T}}
+\newcommand{\UU}{\mathcal{U}}
+\newcommand{\VV}{\mathcal{V}}
+\newcommand{\WW}{\mathcal{W}}
+\newcommand{\XX}{\mathcal{X}}
+\newcommand{\YY}{\mathcal{Y}}
+\newcommand{\ZZ}{\mathcal{Z}}
+\renewcommand{\d}{\textrm{d}}
+% Greek letters
+\newcommand{\ep}{\varepsilon}
+\newcommand{\ph}{\varphi}
+\newcommand{\de}{\delta}
+\renewcommand{\a}{\alpha}
+\renewcommand{\b}{\beta}
+% Fraktur
+\newcommand{\mm}{\mathfrak{m}}
+\renewcommand{\aa}{\mathfrak{a}}
+\newcommand{\bb}{\mathfrak{b}}
+\newcommand{\pp}{\mathfrak{p}}
+\newcommand{\qq}{\mathfrak{q}}
+% Operators
+\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\vol}{Vol}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\mesh}{mesh}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\width}{width}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\maps}{Maps}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Spec}{Spec}
+
+\newcommand{\nor}{\unlhd}
+\DeclareMathOperator{\aut}{Aut}
+\DeclareMathOperator{\orb}{Orb}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\stab}{Stab}
+\DeclareMathOperator{\fix}{Fix}
+\DeclareMathOperator{\Th}{Th}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\len}{len}
+\DeclareMathOperator{\ord}{ord}
+
+% \DeclareMathOperator{\arg}{arg}
+
+%% misc
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\renewcommand{\^}{\wedge}
+\renewcommand{\v}{\vee}
+\def\Xint#1{\mathchoice
+	{\XXint\displaystyle\textstyle{#1}}%
+	{\XXint\textstyle\scriptstyle{#1}}%
+	{\XXint\scriptstyle\scriptscriptstyle{#1}}%
+	{\XXint\scriptscriptstyle\scriptscriptstyle{#1}}%
+	\!\int}
+\def\XXint#1#2#3{{\setbox0=\hbox{$#1{#2#3}{\int}$ }
+		\vcenter{\hbox{$#2#3$ }}\kern-.6\wd0}}
+\def\ddashint{\Xint=}
+\def\dashint{\Xint-}
+%% arrows
+\newcommand{\xhra}{\xhookrightarrow}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\rra}{\rightrightarrows}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\lRa}{\Longrightarrow}
+\newcommand{\lrsa}{\leftrightsquiqarrow}
+\newcommand{\ba}{\leftrightarrow}
+%% lists
+\newcommand{\be}{\begin{enumerate}[(i)]}
+	\newcommand{\ee}{\end{enumerate}}
+%% integration stuff
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\rint}{\calR\!\int}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\lowerint}{\mbox{\b{$\int$}}}
+\newcommand{\upperint}{{\textstyle\bar{\int}}}
+%% end of proof
+\def\endproof{{\hfill $\Box$}}
+%% matrix shorthand

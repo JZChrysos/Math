@@ -1,0 +1,150 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Topology Notes}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+	\maketitle
+	\begin{abstract}
+		These are my notes for Topology I-II-III (Math 317-319) at UChicago, 2025-2026.
+	\end{abstract}
+	
+	\tableofcontents
+	
+	\newpage
+	
+	\section*{Topology I with Danny Calegari}
+	
+	This is an Algebraic Topology course.\\
+	
+	Housekeeping:
+	\begin{itemize}
+		\item HW due Thursday midnight.
+		\item Take-home midterm and final will replace HW.
+		\item Textbook: \href{https://pi.math.cornell.edu/~hatcher/AT/AT.pdf}{Hatcher}.
+		\item Collaboration is encouraged on homework (but give credit where it is due).
+		\item Grades will be roughly 50\% homework 50\% exams, with some generous weighting.
+		\item Office Hours: Thursday 5-6 p.m. in Eckhart E7 (basement).
+	\end{itemize}
+	
+	
+	\subsection{Homotopy}
+	
+	Rather than equivalence by homeomorphism, which is ``too fine to be useful,'' we'll use the coarser equivalence of homotopy.
+	
+	We'll also be looking at a lot of computable information about topological spaces. \\
+	
+	Suppose $f_0,f_1:X\to Y$ are two (continuous) maps between topological spaces $X$ and $Y$. We say $f_0,f_1$ are \textit{homotopic} if one can be continuously turned into the other, i.e. if there is a continuous map
+	$$
+	F:[0,1]\to \Hom(X,Y)
+	$$
+	for which $F(0)=f_0,F(1)=f_1$. Such an $F$ is a homotopy. We write $f_0\simeq f_1$.
+	
+	Two spaces $X$ and $Y$ are \textit{homotopy-equivalent} if there is a map $f:X\to Y$ that is an isomorphism ``up to homotopy,'' i.e. there is a map $g:Y\to X$ for which $f\circ g \simeq 1_Y$ and $g\circ f \simeq 1_X$. 
+	
+	Homotopy equivalence is indeed an equivalence relation (not too hard to show). Equivalence of maps is also stable under composition, which makes homotopy classes of spaces and maps a category.
+	
+	If $f_0,f_1:X\to Y$ and $A\subseteq X$ is a subset on which $f_0$ and $f_1$ agree, and additionally there is a homotopy $F$ which transforms $f_0$ into $f_1$ while remaining constant on $A$, then we say $f_0\simeq f_1$ relative to $A$. \\
+	
+	We say that a space $X$ is \textit{contractible} if it is homotopy-equivalent to a single point. For example, $\R^n$ is contractible, as constant maps on $\R^n$ are homotopic with the identity map by straight-line contraction. 
+	
+	Another example: given $f:X\to Y$, there is a \textit{mapping cylinder} $M_f$ which is $X\times [0,1] \coprod Y$ under the gluing equivalence $(x,1)\sim f(x)$. Then $M_f\simeq Y$ via the maps
+	$$
+	h_0: (x,t) \mapsto f(x), \;\;\; h_1 : y \mapsto y
+	$$
+	The thing that must be checked is that $h_1\circ h_0:M_f\to M_f$ is homotopy-equivalent to the identity on $M_f$. This is an example of \textit{deformation retraction}, which means that it is a homotopy relative to $Y$.\\
+	
+	\subsection{CW Complexes}
+	
+	General topology is difficult to say much about because of all the pathological cases. So we'll focus mainly on \textit{nice} topological spaces, and in particular \textit{CW-complexes}.\\
+	
+	A \textit{CW-complex} is built from cells of different dimensions and attaching maps. Each cell is a pair $(D^n,S^{n-1})$ consisting of a ball and its surface. We build up the complex by a ``skeleton'' $X_0\subseteq X_1\subseteq \dots$ where $X_n$ consists of all the cells of dimension at most $n$ and their gluing instructions. The attaching map $\ph$ for a cell maps its boundary $S^{n-1}$ into $X^{n-1}$. 
+	
+	The topology on a CW-complex is the \textit{weak topology} (no relation to functional analysis) which says that $A$ is open iff $A\cap X^n$ is open for all $n$.
+	
+	Examples:
+	\begin{itemize}
+		\item A 0-dimensional CW-complex is just a collection of discrete points.
+		\item A 1-dimensional CW-complex is essentially a graph (with possibly loops and multiple edges).
+		\item Klein bottle, torus, two-holed torus etc. all have presentations as 2-dim CW complexes.
+		\item One can write $\C\P^n$ as the union of a 0-cell, a 2-cell, a 4-cell, $\dots$, and a $2n$-cell, where gluing takes the boundary of each to the infinite line of the previous.
+	\end{itemize}
+	
+	Some operations on CW complexes:
+	\begin{itemize}
+		\item \textit{Product}: $X\times Y$ is given by the union of all products of a cell in $X$ and a cell in $Y$. Its topology as a CW-complex (i.e. the weak topology) is the same as the product topology in cases where there are only a \textit{countable} number of cells in each or if one is locally compact, but in general the topology is actually finer.
+		\item \textit{Quotient}: $X/A$, where $A$ is a \textit{subcomplex} of $X$ (i.e. a closed union of cells in $X$) that is also \textit{contractible}, is given by the union of cells in $X-A$ plus an additional 0-cell representing the image of all cells in $A$. Such a pair $(X,A)$ is called a CW pair.
+		\item \textit{Suspension}: $SX$ is $X\times [0,1]$ where $(X,0)$ is identified and $(X,1)$ is identified.
+		\item \textit{Cone}: $CX$ is $X\times [0,1]$ where $(X,1)$ is identified.
+		\item \textit{Join}: $X\ast Y$ is the space $X\times I \times Y$ quotiented such that all $(x,0,Y)$ are identified and all $(X,1,y)$ are identified. In the case $X=Y=[0,1]$, the resulting $X\ast Y$ looks like a tetrahedron. One can think of the points of $X\ast Y$ as pairs $(x,y)\in X\times Y$ along with a weight $t\in [0,1]$, such that $(x,y,0)=x$ and $(x,y,1)=y$.
+		\item \textit{Wedge}: $X\vee Y$ is $X\coprod Y$ with two specific points $x$ and $y$ identified.
+		\item \textit{Smash}: $X\wedge Y$ is $X\times Y$ with $X\vee Y$ all identified.
+	\end{itemize}
+	
+	An important example of a CW complex obtained this way is the $n$-simplex, which is the join of $n$ discrete points. \\
+	
+	One thing to note about the quotient is that $X/A \simeq X$.
+	
+	A CW-complex $X$ is connected (and path-connected) iff $X^1$ is a connected graph. Thus, if $X$ is connected then we can give a spanning tree $T$ of its 1-skeleton $X^1$. Every tree is contractible, thus one can take the quotient $X/T \simeq X$.
+	
+	 Moreover, the quotient has a very simple structure in its low-dimension cells: $Y:= X/T$ has $Y^0$ a single point and $Y^1$ a wedge of some circles. So we've shown that one can always put a connected CW-complex into this nice form while preserving its homotopy class.\\
+	 
+	 If $(X,A)$ is a CW pair and $f:A\to Y$ is some map into another CW complex (or any topological space), then one can form the space
+	 $$
+	 X\cup_f Y := X\times Y / (a \sim f(a)).
+	 $$
+	 And if $f,g:A\to Y$ are two homotopy-equivalent maps, then $X\cup_fY \simeq X\cup_g Y$. This shows in particular that in the construction of CW complexes, the homotopy-type of the complex only depends on the homotopy-classes of the attaching maps.\\
+	 
+	 Both of these facts can be deduced from the \textit{Homotopy Extension Property} for CW-pairs (try this!). $(X,A)$ has the HEP if for all spaces $Y$, every map $f:X\times 0 \cup A\times I\to Y$ factors through the inclusion into $X\times I$:
+	 $$
+	 \begin{tikzcd}
+	 	{X\times I} \\
+	 	\\
+	 	{X\times 0 \cup A\times I} && Y
+	 	\arrow["{\exists g}", dashed, from=1-1, to=3-3]
+	 	\arrow[hook', from=3-1, to=1-1]
+	 	\arrow["f"', from=3-1, to=3-3]
+	 \end{tikzcd}
+	 $$
+	 That is, a partial homotopy $f:A\to Y$ can always be extended to a homotopy $g:X\to Y$, hence the name. The HEP is equivalent to the specific case for $f$ the identity map on $X\times 0 \cup A\times I$. Thus, to prove the HEP, it suffices to show the following: \\
+	 
+	 \textbf{Proposition}: If $(X,A)$ is a CW pair then there is a retraction from $X\times I$ to $X\times 0 \cup A\times I$.
+	 \begin{proof}
+	 	If $X$ has dimension $n$, then $X=X^n$. We will produce by a series of retractions:
+	 	$$
+	 	X\times I  = X^n\times I \cup A \times I \to (X\cup 0)\times (X^{n-1}\times I \cup A \times I) \to (X\cup 0)\times (X^{n-2}\times I \cup A \times I) \to \dots
+	 	$$
+	 	In each step we only need to retract every $j$-cell onto its boundary. We can do this because it has an \textit{open side}. (check Hatcher to get the details straight later).
+	 \end{proof}\\
+	 
+	 \subsection{The Fundamental Group} Let $X$ be a space. A path $f$ in $X$ is a map $I\to X$. A homotopy between paths $f,g$ is a homotopy (in the sense defined before) which fixes the endpoints of the paths (so it must be that $f(0)=g(0)$ and $f(1)=g(1)$ for this to be possible). We say that $f,g$ are homotopy-equivalent if one exists.
+	 
+	 Two paths can be composed (concatenated) if the end point of one is the start point of the other. This is denoted $f\ast g$, and corresponds to a path which does $f$ from $[0,\tfrac12]$ and then does $g$ from $[\tfrac12,1]$. If $f$ and $g$ are both \textit{loops} with $f\simeq f'$ and $g\simeq g'$, then 
+	 $$
+	 f\ast g \simeq f'\ast g'.
+	 $$
+	 This can be proven by drawing a picture. Basically the homotopies $f\to f'$ and $g\to g'$ can be concatenated.\\
+	 
+	 The \textit{fundamental group} of $X$, denoted $\pi(X,x)$, is made up of homotopy-classes of loops beginning and ending at $x\in X$. The operation is concatenation. The identity is given by the constant map and the inverse is given by $f^{-1}(t) := f(1-t)$. We can check that this is a genuine inverse by drawing a picture.
+	 
+	 We also have to check that $\ast$ is associative, i.e. $f\ast (g\ast h) \simeq (f\ast g)\ast h$. This can also be shown by a simple picture (we're essentially just changing the rate of movement along the image of the path in different segments).
+	 
+	 If $\pi(X,x)$ is trivial, we say $X$ is \textit{simply connected} (note that this does not depend on $x$). In general, the fundamental group only depends on the path-connected component of $X$ in which $x$ lies. If there is a path $\b:x\to y$ in $X$ then $\pi(X,x)$ is just $\b^{-1} \pi(X,y) \b$. This gives a group isomorphism between $\pi(X,x)$ and $\pi(X,y)$.\\
+	 
+	 Any map $f:X\to Y$ induces a group homomorphism between the fundamental groups:
+	 $$
+	 f_{*}:\pi(X,x)\mapsto \pi(Y,f(x))
+	 $$
+	 given by $f_{*}:\a \mapsto f\circ \a$. If $f\simeq g:X\to Y$, then $f_*$ and $g_*$ differ by an inner automorphism. Suppose $f,g$ are homotopic via $F:X\times I \to Y$, and let $\b(t) = F(x,t)$. Then $f_* = \b^{-1}g_*\b$. And in particular, if $f(x)=g(x)$, $\b$ is the constant path at $x$, so $f_* = g_*$. 
+	 
+	 If $X,Y$ are homotopy-equivalent and path-connected, then their fundamental groups are isomorphic: the composition
+	 $$
+	 (X,x)\xrightarrow{f} (Y,f(x))\xrightarrow{g} (X,g\circ f(x))
+	 $$
+	 is an isomorphism up to homotopy equivalence, therefore $(X,x)$ and $(Y,f(x))$ have isomorphic fundamental group.\\
+	 
+	 An example: let $T^n := (S^1)^n$. Or equivalently, $T^n = \R^n/\Z^n$. $\R^n$ is a covering space of $T^n$. The fundamental group of $T^n$ is $\Z^n$. $\GL_n(\Z)$ acts on $T^n$ in a natural way (these are outer automorphisms).
+
+\end{document}

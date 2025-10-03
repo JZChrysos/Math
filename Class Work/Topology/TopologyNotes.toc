@@ -1,0 +1,4 @@
+\contentsline {section}{\tocsection {}{}{Topology I with Danny Calegari}}{2}{section*.2}%
+\contentsline {subsection}{\tocsubsection {}{0.1}{Homotopy}}{2}{subsection.0.1}%
+\contentsline {subsection}{\tocsubsection {}{0.2}{CW Complexes}}{2}{subsection.0.2}%
+\contentsline {subsection}{\tocsubsection {}{0.3}{The Fundamental Group}}{4}{subsection.0.3}%

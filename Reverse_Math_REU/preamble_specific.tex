@@ -1,0 +1,52 @@
+\DeclareMathOperator{\ACA}{\sf{ACA_0}}
+\DeclareMathOperator{\RCA}{\sf{RCA_0}}
+\DeclareMathOperator{\WKL}{\sf{WKL_0}}
+\DeclareMathOperator{\KL}{\sf{KL}}
+\DeclareMathOperator{\TJ}{\sf{TJ}}
+\DeclareMathOperator{\IPP}{\sf{IPP}}
+\DeclareMathOperator{\RT}{\sf{RT}}
+\DeclareMathOperator{\SRT}{\sf{SRT}}
+\DeclareMathOperator{\COH}{\sf{COH}}
+\DeclareMathOperator{\CRT}{\sf{CRT}}
+\DeclareMathOperator{\ADS}{\sf{ADS}}
+\DeclareMathOperator{\EM}{\sf{EM}}
+\DeclareMathOperator{\SADS}{\sf{SADS}}
+\DeclareMathOperator{\ZFC}{\sf{ZFC}}
+\newcommand{\imp}{\Rightarrow}
+\DeclareMathOperator{\1}{{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {1}}}}}
+\DeclareMathOperator{\2}{{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {2}}}}}
+\DeclareMathOperator{\3}{{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {3}}}}}
+\DeclareMathOperator{\4}{{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {4}}}}}
+\DeclareMathOperator{\5}{{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {5}}}}}
+\DeclareMathOperator{\6}{{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {6}}}}}
+\DeclareMathOperator{\7}{{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {7}}}}}
+\DeclareMathOperator{\8}{{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {8}}}}}
+\DeclareMathOperator{\9}{{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {9}}}}}
+\setlength{\arrayrulewidth}{0.3mm}
+\setlength{\tabcolsep}{12pt}
+\renewcommand{\arraystretch}{1.5}
+% \setcounter{section}{-1}
+\usepackage{centernot}
+\usepackage{quiver}
+%\usepackage{makecell}
+%\usepackage{xhfill}
+\usepackage{algpseudocode}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage[backend=biber]{biblatex}
+%\addbibresource{main.bib}
+
+% https://tex.stackexchange.com/a/233857
+\UndeclareTextCommand{\textasteriskcentered}{TS1}
+\DeclareTextSymbolDefault{\textasteriskcentered}{OT1}
+\DeclareTextCommand{\textasteriskcentered}{OT1}{\raisebox{-.7ex}[1ex][0pt]{*}}
+
+\newcommand{\dinkus}[1][1]{%
+	\par\vskip0.5\baselineskip%
+	\noindent%
+	\hbox to \dimexpr 0.5\linewidth - #1\linewidth / 2\relax{}%
+	\xrfill[0.5ex]{0.4pt}%
+	\;\textasteriskcentered\,\textasteriskcentered\,\textasteriskcentered\;%
+	\xrfill[0.5ex]{0.4pt}%
+	\hbox to \dimexpr 0.5\linewidth - #1\linewidth / 2\relax{}%
+	\vskip0.5\baselineskip\par}

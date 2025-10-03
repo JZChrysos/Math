@@ -1,0 +1,112 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Algebra I Notes}
+\author{Jalen Chrysos}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+	These are my notes from Victor Ginzburg's Representation Theory (Math 325) class at UChicago, Autumn 2025.
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+%Representations arise from actions. Suppose a group $G$ acts on a set $X$. Then $G$ also acts linearly on $\Hom(X,\C)$ (the space of maps $X\to\C$) via 
+%$$
+%g : f \mapsto g\circ f,
+%$$
+%hence it is in isomorphism with $\GL(\Hom(X,\C))$. \\
+
+In this class we'll be interested in the representations of matrix groups. Something like $\GL(V)$ or $\SO(V)$ clearly acts on $V$, but it can also act on other interesting spaces. One relevant case of this for us will be when $G$ acts on polynomials in $x_1,\dots,x_n$. Let 
+$$
+P_d \subseteq \C[x_1,\dots,x_n]
+$$
+be the subspace of homogeneous degree-$d$ polynomials in $n$ variables. This space has a basis given by the monomials
+$$
+\big\{x_1^{d_1}x_2^{d_2}\cdots x_n^{d_n} \; | \; \sum_i d_i = d\big\}
+$$
+and hence is finite-dimensional. $P_d$ is stable under action by $\GL_n$. This is because linear transformation does not affect the degree of monomials (every $x_j$ is sent to a linear combination of $x_1,x_2,\dots,x_n$).\\
+
+Consider the case of $G=\OO_n$, the orthogonal group. This group fixes the polynomial 
+$$R:=x_1^2+\dots+x_n^2$$
+so as a result, multiplication by $R$ is an intertwining map $P_d\to P_{d+2}$, meaning $R\circ g^*f = g^*(R\circ f)$.
+
+Likewise, let
+$$
+\Delta := \sum_j \frac{\partial^2}{\partial x_j^2}
+$$
+be the Laplacian. This $\Delta$ is an $\OO_n$-intertwining operator.
+
+We call a function $f$ \textit{harmonic} if it has $\Delta(f)=0$. The space of harmonic polynomials in $n$ variables of degree $d$ is denoted $H_d\subseteq P_d$. For $d\in \{0,1\}$, $H_d=P_d$, but for $d\geq 2$ $H_d$ is strictly smaller. Note that $H_d$ is stable under orthogonal transformations.\\
+
+We will now work toward showing that $H_d$ is an irreducible $\SO_n$-representation for $n\geq 3$.\\
+
+A representation $\rho:G\mapsto \GL(V)$ is \textit{unitary} if $G$ always acts as a unitary operator (i.e. preserves Hermitian inner product) on $V$. We can give an inner product between polynomials (or any functions) by
+$$
+\<f_1,f_2\> := \int_{\R^n} f_1(x)\overline{f_2(x)} e^{-|x|^2} \; \d x
+$$
+where $\d x$ is the Lebesgue measure. Action of $\SO_n$ on $P_d$ preserves this inner product.
+
+Alternatively, we could put an inner product on $P_d$ (or on all functions) from integration over $S^{n-1}$ (the sphere). And polynomials in $P_d$ are determined by their behavior on $S^{n-1}$.\\
+
+\noindent \textbf{Proposition}: If $V$ is a finite-dimensional vector space with an inner product, then any \textit{unitary} action of $G$ on $V$ is completely reducible. Specifically, if $W\subseteq V$ is a $G$-stable subspace, then one can decompose the action into $V=W\oplus W^{\bot}$.
+\begin{proof}
+	The thing that we need to prove is that if $W$ is $G$-stable then $W^{\bot}$ is as well. Let $x\in W^{\bot}$ and $w\in W$. Because $g$ acts as a \textit{unitary} operator, we have
+	$$
+	\<g\cdot x,w\> = \<x,g^{-1}\cdot w\> = 0
+	$$
+	since $g^{-1}\cdot w \in W$ by $G$-stability of $W$.
+\end{proof}\\
+
+\noindent \textbf{Key Lemma}: If $F\subseteq C(S^{n-1})$ is any subspace stable under $\SO_n$, then it has an element fixed by $\SO_{n-1}$.
+\begin{proof}
+	Let $N:=(0,0,\dots,0,1)\in S^{n-1}$. We have the evaluation map $\a:C(S^{n-1})\to \C$ given by evaluating functions at $N$. We have an inner product on $F$ given by 
+	$$
+	\<f,g\> := \int_{S^{n-1}} f\overline{g}
+	$$
+	which is clearly fixed by $\SO_n$, thus $F$ is a unitary representation of $\SO_n$. By Riesz representation theorem, $\a(f)\equiv \<f,\ph\>$ for some $\ph\in F$. For any $g\in \SO_{n-1}$, $g$ fixes $N$, thus
+	$$
+	\<f,\ph\> = f(N) = f(gN) = (g^{-1}f)(N) = \<g^{-1}(f),\ph\> = \<f,g\ph\>
+	$$ 
+	and because this is true for arbitrary $f\in F$ and $g\in SO_{n-1}$, $\ph$ is fixed by $\SO_n$. Now it remains to show that $\ph\neq 0$. We can get this by assuming that some function in $F$ takes a nonzero value on $N$ (we can move $N$ to some point where this is true, since $F$ contains a nonzero function).
+\end{proof}\\
+
+We can apply this key lemma to $P_d$ or $H_d$ as $F$.\\
+
+Consider $P_d^{\SO_{n-1}}$, the homogeneous polynomials fixed by $\SO_{n-1}$. On homework we showed that this is a subspace of $\C\<x_n,R\>$ (where $R:=x_1^2+\dots+x_n^2$). One basis of this space is
+$$
+P_d^{\SO_{n-1}} := \C\<x_n^d,x_n^{d-2}R,x_n^{d-4}R^2,\dots\>
+$$
+thus $\dim(P_d^{\SO_{n-1}})=\lfloor \tfrac{d}{2} \rfloor + 1$. 
+
+A very important fact about $P_d$ is that it decomposes into the subspaces
+\begin{align*}
+P_d &= H_d \oplus R\cdot P_{d-2}\\
+&= H_d \oplus R H_{d-2} \oplus R^2 H_{d-4} \oplus R^3H_{d-6} \oplus \cdots 
+\end{align*}
+(why? $\spade$). This allows us to deduce the dimension of $H_d$ from $P_d$:
+$$
+\dim(H_d) = \dim(P_d) - \dim(P_{d-2}) = {d+2 \choose 2} - {d \choose 2} = 2d+1.
+$$
+Likewise, we can decompose $P_d^{\SO_{n-1}}$ the same way:
+\begin{align*}
+P_d^{\SO_{n-1}} &= H_d^{\SO_{n-1}} \oplus R P_{d-2}^{\SO_{n-1}} \\
+&= H_d^{\SO_{n-1}} \oplus R H_{d-2}^{\SO_{n-1}} \oplus R^2 H_{d-4}^{\SO_{n-1}} \oplus R^3H_{d-6}^{\SO_{n-1}} \oplus \cdots 
+\end{align*}
+%Because we already know the dimension of $P_d^{\SO_{n-1}}$, we can use this decomposition to see that $\dim(H_{d-2j}^{\SO_{n-1}})=1$ for all $j$; the dimension of each of these spaces is at least one by the Key Lemma, since $H_{d-2j}$ is stable under action of $\SO_n$, and this already hits the total of $\lfloor d/2\rfloor + 1$, so the dimension must be exactly one.
+which gives us the dimension of $H_d^{\SO_{n-1}}$ as
+$$
+\dim(H_d^{\SO_{n-1}}) = \dim(P_d^{\SO_{n-1}}) - \dim(P_{d-2}^{\SO_{n-1}}) = (\lfloor d/2\rfloor + 1) - (\lfloor (d-2)/2\rfloor + 1) = 1.
+$$
+As a consequence, we see that each $H_d$ is an \textit{irreducible} representation of $\SO_n$; every stable subspace has a fixed point by the Key Lemma, and the fixed-points are one-dimensional, so there can only be one stable subspace. Thus, as an $\SO_n$-representation, $P_d$ decomposes exactly into the sequence $H_{d-2j}$ for $2j\leq d$.\\
+
+\noindent \textbf{Theorem}: If $n\geq 3$, then for each $d\geq 0$, the representation of $\SO_n$ in $H_d$ is irreducible, and moreover the representations are all distinct for different $d$.\footnote{In the case $n=3$ this gives \textit{all} the irreps. In general you miss $\Lambda^2(\C^n)$, but when $n=3$ this is just $\C^3$, which you get from $H_1$.}
+
+
+\end{document}
