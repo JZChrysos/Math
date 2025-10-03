@@ -90,7 +90,7 @@ A very important fact about $P_d$ is that it decomposes into the subspaces
 P_d &= H_d \oplus R\cdot P_{d-2}\\
 &= H_d \oplus R H_{d-2} \oplus R^2 H_{d-4} \oplus R^3H_{d-6} \oplus \cdots 
 \end{align*}
-(why? $\spade$). This allows us to deduce the dimension of $H_d$ from $P_d$:
+(we will show this later). This allows us to deduce the dimension of $H_d$ from $P_d$:
 $$
 \dim(H_d) = \dim(P_d) - \dim(P_{d-2}) = {d+2 \choose 2} - {d \choose 2} = 2d+1.
 $$
@@ -107,6 +107,8 @@ $$
 As a consequence, we see that each $H_d$ is an \textit{irreducible} representation of $\SO_n$; every stable subspace has a fixed point by the Key Lemma, and the fixed-points are one-dimensional, so there can only be one stable subspace. Thus, as an $\SO_n$-representation, $P_d$ decomposes exactly into the sequence $H_{d-2j}$ for $2j\leq d$.\\
 
 \noindent \textbf{Theorem}: If $n\geq 3$, then for each $d\geq 0$, the representation of $\SO_n$ in $H_d$ is irreducible, and moreover the representations are all distinct for different $d$.\footnote{In the case $n=3$ this gives \textit{all} the irreps. In general you miss $\Lambda^2(\C^n)$, but when $n=3$ this is just $\C^3$, which you get from $H_1$.}\\
+
+\subsection{Differential Algebra}
 
 Let $W$ be a vector space over $k$ with basis $w_1,\dots,w_n$, and let $x_1,\dots,x_n$ be a dual basis for $W^*$. We let
 $$
@@ -150,11 +152,13 @@ We can use this pairing to get another inner product on polynomials in $k[W]$ gi
 $$
 \<p,q\> := p(\partial)(q)(0)
 $$
-where $p(\partial)$ is the corresponding element to $p$ in $\D(W)$.\footnote{In the homework, we establish that on $H_d$, this is actually \textit{equivalent} to the inner product from integrating over $S^{n-1}$!} For this inner product, we have that multiplication by $p$ is \textit{adjoint} to $p(\partial)$. 
-
+where $p(\partial)$ is the corresponding element to $p$ in $\D(W)$.\footnote{In the homework, we establish that on $H_d$, this is actually \textit{equivalent} to the inner product from integrating over $S^{n-1}$!} For this inner product, we have that multiplication by $p$ is \textit{adjoint} to $p(\partial)$, i.e.
+$$
+\<r,p(\partial)q\> = \<pr,q\>.
+$$
 With this fact, we can finally show why $P_d = H_d \oplus R P_{d-2}$:
 $$
-W = \ker(\Delta) \oplus \im(\mu_R) = H_d \oplus R P_{d-2}.
+W = \ker(\Delta) \oplus \im(\Delta^*) = \ker(\Delta) \oplus \im(R) = H_d \oplus R P_{d-2}.
 $$
 
 
