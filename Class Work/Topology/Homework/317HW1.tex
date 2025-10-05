@@ -1,0 +1,89 @@
+\documentclass{amsart}
+
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Math 317 HW 1}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+	\maketitle
+
+\noindent \textbf{Problem 1 (Hatcher 0.4)}: A deformation retraction ``in the weak sense'' of $X\to A$ is a homotopy $f_t:X\to X$ such that $f_0$ is the identity map on $X$, $f_1$ is a map $X\to A$, and $f_t(A)\subseteq A$ for all $t\in [0,1]$ (this is weaker because it does not require $f_t$ be \textit{constant} on $A$). Show that if such a map exists, then the inclusion $\iota:A\to X$ is a homotopy equivalence.
+
+\begin{proof}
+	To show that $\iota$ is a homotopy equivalence it is sufficient and necessary to produce an inverse up to homotopy. This inverse will be $f_1$. The composition $\iota \circ f_1:X\to X$ is homotopic to $\id_X$ via $f_t$. $f_1\circ \iota:A\to A$ is also not necessarily $\id_A$, but is homotopic to $\id_A$ via $f_t$ (here we need the fact that $f_t$ is always a map $A\to A$).
+\end{proof}
+
+\newpage 
+
+
+\noindent \textbf{Problem 2 (Hatcher 0.6)}: 
+\begin{enumerate}[(a)]
+	\item Let $X$ be the subspace of $\R^2$ consisting defined by
+	$$
+	X := \Big([0,1]\times \{0\} \Big) \cup \bigcup_{q\in \Q[0,1]} \{q\}\times [0,1-q].
+	$$
+	Show that $X$ deformation retracts to any point in $[0,1]\times \{0\}$, but not to other points in $X$.
+	\item Let $Y$ be the union of an infinite number of copies of $X$ arranged as in the figure below. Show that $Y$ is contractible but does not deformation retract onto any point.
+	\item Let $Z$ be the zigzag subspace of $Y$ homeomorphic to $\R$ indicated by the heavier line. Show that there is a deformation retraction $Y\to Z$ in the weak sense, but not in the regular sense.
+\end{enumerate}
+
+\includegraphics[width=\textwidth]{C:/Users/jzchr/MathDocuments/Class Work/Topology/Homework/Fig_0.6(b)_Hatcher.png}
+
+\begin{proof}
+	(a): For any point $r\in [0,1]$, we can construct a deformation retraction from $X$ to $\{r\}\times \{0\}$ as follows: let $d_t:X\to X$ be given by
+	$$
+	d_t(q,h) = \begin{cases}
+		(q,h(1 - 2t)) & t\in [0,\tfrac12]\\
+		((2t-1)r+(2-2t)q,0) & t\in [\tfrac12,1]
+	\end{cases}
+	$$
+	It is easy to check that $d_t$ is continuous and that $d_t((r,0)) = (r,0)$ for all $t\in[0,1]$.
+	
+	On the other hand, if there were a deformation retraction to a point $(q,h)$ where $h\neq 0$, then in every neighborhood of $(q,h)$ there are points which must travel down to $[0,1]\times \{0\}$ at some $t$, a nonzero distance of $h$ from $d_t(q,h)$. But if $d_t$ is continuous in $q,h$ and $t$, then there must be \textbf{i'm confused}\\
+	
+	(b): The difference between being contractible to a point $x$ and being \textit{deformation retractable} to $x$ is that in the former case, the homotopy need not keep $x$ fixed. 
+\end{proof}
+
+\newpage 
+
+
+\noindent \textbf{Problem 3 (Hatcher 0.16)}: Show that $S^{\infty}$ is contractible.
+
+\begin{proof}
+	
+\end{proof}
+\newpage 
+
+
+\noindent \textbf{Problem 4 (Hatcher 0.20)}: Show that the space $X\subset \R^3$ formed by a Klein bottle intersecting itself in a circle is homotopy equivalent to $S^1\vee S^1 \vee S^2$.
+\begin{proof}
+	We can think of this Klein bottle embedded in $\R^3$ as a square with the usual Klein bottle edge-gluing and an additional identification of two disjoint circles.
+\end{proof}
+\newpage 
+
+
+\noindent \textbf{Problem 5 (Hatcher 0.23)}: Show that a CW complex is contractible if it is the union of two contractible subcomplexes whose intersection is also contractible.
+
+\begin{proof}
+	Let $X,Y$ be two contractible CW-complexes with intersection $Z$, and let $h_X,h_Y,h_Z$ be the corresponding homotopies. We'll give a contraction of $X\cup Y$.
+\end{proof}
+
+\newpage 
+
+
+\noindent \textbf{Problem 6 (Hatcher 1.1.6)}: 
+
+\newpage 
+
+
+\noindent \textbf{Problem 7 (Hatcher 1.1.13)}:
+
+\newpage 
+
+
+\noindent \textbf{Problem 8 (Hatcher 1.1.20)}:
+
+
+\end{document}
