@@ -27,7 +27,7 @@
 		
 		(b): The trace of $\Sym^d(a)$ is the sum of all degree-$d$ monomials in $\lambda_1,\dots,\lambda_n$. Again we can assume that $a$ is in Jordan normal form wrt some basis. Then $\Sym^d(a)$ acts by
 		$$
-		e_1^{d_1}\cdot e_2^{d_2}\cdots e_n^{d_n} \mapsto \lambda_1^{d_1}\lambda_2^{d_2}\cdots \lambda_n^{d_n} (e_1^{d_1}\cdot e_2^{d_2}\cdots e_n^{d_n}) + \text{off-diagonal terms}
+		e_1^{d_1}e_2^{d_2}\cdots e_n^{d_n} \mapsto \lambda_1^{d_1}\lambda_2^{d_2}\cdots \lambda_n^{d_n} (e_1^{d_1}e_2^{d_2}\cdots e_n^{d_n}) + \text{off-diagonal terms}
 		$$
 		giving the trace as desired. From there, the generating function is
 		$$
@@ -205,7 +205,38 @@
 	\noindent \textbf{Problem 6}: Let $\res:\C[x_1,\dots,x_n]\to C(S^{n-1})$ be the restriction map to $S^{n-1}$. If $\overline{P_d}:=\res(P_d)$, let $M_d$ be the orthogonal complement of $\overline{P_{d-2}}$ in $\overline{P_{d}}$. Show that $\res$ induces an isomorphism $H_d\to M_d$ of $\SO_n$-representations.
 	
 	\begin{proof}
+		First, we'll show that $\res(H_d)\subseteq M_d$ by showing that for $h\in H_d,p\in P_{d-2}$, 
+		$$
+		\int_{S^{n-1}} h\overline{p} = 0.
+		$$
+		Because of the decomposition of $P_{d-2}$, and since $R=1$ on $S^{n-1}$, it suffices to show this for $p\in H_{d-2j}$ for all $j\geq 1$. We will prove this be induction on $d$. For $d=1,2$ the result is clear. For the inductive step, assume that this holds for $d-1$, and we'll show that it does for $d$ as well.
 		
+		To do this we will use the divergence theorem
+		$$
+		\int_{S^{n-1}} \nabla f \cdot \vec{x} = \int_{B^{n}} \Delta f,
+		$$
+		Euler's identity for homogeneous functions,
+		$$
+		\nabla f \cdot \vec{x} = \deg(f) \cdot f,
+		$$
+		and the Laplacian identity
+		$$
+		\Delta(ab) = a\Delta(b) + b\Delta(a) + 2\nabla a \cdot \nabla b.
+		$$
+		Using these, we get
+		\begin{align*}
+		\int_{S^{n-1}} h\overline{p} &= \frac{1}{2d-2} \int_{S^{n-1}} \nabla (h\overline{p}) \cdot \vec{x}\\
+		&= \frac{1}{2d-2} \int_{B^{n}} \Delta (h\overline{p})\\
+		&= \frac{1}{2d-2} \int_{B^{n}} \overline{p}\Delta (h) + h \Delta(\overline{p}) + 2\nabla(h)\cdot \nabla (\overline{p})\\
+		&= \frac{1}{d-1}\int_{B^{n}} \nabla(h)\cdot \nabla (\overline{p}).
+		\end{align*}
+		Now, since $h,\overline{p}$ are harmonic, $\partial_j h$ and $\partial_j \overline{p}$ are also harmonic for each $j\in [n]$, thus $\nabla(h)\cdot \nabla(\overline{p})$ is the sum of products in $H_{d-1}\cdot H_{d-3}$. By the inductive hypothesis, we know these integrate to $0$ over $S^{n-1}$ and thus over $B^n$ as well. So $\<h,\overline{p}\>=0$, as desired.\\
+		
+		Conversely, if $q\in P_d$, and $\<q,p\>=0$ for all $p\in P_{d-2}$, then $q$ must be harmonic: otherwise, $q=Rq_{d-2}$ where $q_{d-2}\in P_{d-2}$, so setting $p=q_{d-2}$ yields
+		$$
+		\<q,p\> = \<Rq_{d-2},q_{d-2}\> = \int_{S^{n-1}} |q_{d-2}|^2 > 0.
+		$$
+		So we see that $\res$ induces an isomorphism on the vector spaces $H_d$ and $M_d$. And noting that $\res$ clearly commutes with the action of $\SO_n$ on $H_d$ and $M_d$, this map is also an isomorphism of representations.
 	\end{proof}
 	
 	\newpage 
@@ -217,7 +248,32 @@
  \; \d x.$$
  
  \begin{proof}
+ 	We will show this by induction on $d$. In the case $d=1$, $p$ and $q$ are each linear combinations of $x_1,\dots,x_n$, so 
+ 	$$
+ 	p = p_1x_1 + p_2x_2+\dots +p_n x_n, \;\;\; 	q = q_1x_1 + q_2x_2+\dots +q_n x_n.
+ 	$$
+ 	The LHS is equal to $p\cdot q:= \sum_j p_j\overline{q_j}$, naturally. On the RHS, we integrate a quadratic over $S^{n-1}$, and the cross-terms cancel because they are odd, yielding
+ 	\begin{align*}
+ 		\int_{S^{n-1}} p\overline{q} &= \sum_{i,j=1}^n \int_{S^{n-1}} p_i\overline{q_j} x_ix_j\\
+ 		&= \sum_j \int_{S^{n-1}} p_j\overline{q_j} x_j^2\\
+ 		&= \bigg(\int_{S^{n-1}} x_1^2 \bigg) \cdot (p \cdot q).
+ 	\end{align*}
+ 	Indeed, the RHS and LHS differ by a constant factor, as desired. Now, for the inductive step, assume that there is such a $c_{d-1}$, and we will show that there is a $c_d$.\\
  	
+ 	As explained in the solution to Problem 6, we can express $\<\res(p),\res(q)\>$ as 
+ 	\begin{align*}
+ 		\<\res(p),\res(q)\> &= \int_{S^{n-1}} p\overline{q} \\
+ 		&= \frac{1}{d}\int_{B^n} \nabla(p) \cdot \nabla(\overline{q}).
+ 	\end{align*}
+ 	Now, $\nabla(p)$ and $\nabla(\overline{q})$ are both sums of polynomials in $H_{d-1}$, so by the inductive hypothesis,
+ 	\begin{align*}
+ 		\<\res(p),\res(q)\> &= \frac{1}{d}\int_{B^n} \nabla(p) \cdot \nabla(\overline{q})\\
+ 		&= \frac{1}{d} \int_{0}^1 \int_{S^{n-1}} \nabla(p(r\vec{x})) \cdot \nabla(\overline{q}(r\vec{x})) \;\d \vec{x} \d r\\
+ 		&= \frac{1}{d} \int_{0}^1 r^{2d-2} \int_{S^{n-1}} \nabla(p(\vec{x})) \cdot \nabla(\overline{q}(\vec{x})) \;\d \vec{x} \d r\\
+ 		&= \frac{1}{d} \int_{0}^1 r^{2d-2} c_{d-1} (\nabla p,\nabla\overline{q})\;\d r\\
+ 		&= \frac{c_{d-1}}{d(2d-1)} (\nabla p, \nabla \overline{q}).
+ 	\end{align*}
+ 	Thus, $c_d$ exists and is equal to $c_{d-1}/(d(2d-1))$.
  \end{proof}
  
  \newpage
