@@ -76,7 +76,7 @@
 		\begin{align*}
 			0 &= \Delta(A)\\
 		 &= \sum_{k=0}^d a_k \cdot (k)(k-1) x^{k-2}y^{d-k} + a_k\cdot (d-k)(d-k-1) x^ky^{d-k-2}\\
-		&= \sum_{k=0}^{d-2} \Big(a_{k}(d-k)(d-k-1) + a_{k+2}(k+2)(k+1)\Big) x^kx^{d-k-2}
+		&= \sum_{k=0}^{d-2} \Big(a_{k}(d-k)(d-k-1) + a_{k+2}(k+2)(k+1)\Big) x^ky^{d-k-2}
 		\end{align*}
 		and thus 
 		$$
@@ -140,7 +140,7 @@
 		
 		To give a nonzero element of $H_2$ fixed by $\SO_2$, take $x^2+y^2-2z^2$. Clearly $x^2+y^2$ and $z^2$ are each fixed by $\SO_2$, so $x^2+y^2-2z^2$ is also fixed, and it is harmonic.\\
 		
-		(b): $g_{\theta}$ can be represented by the matrix
+		(b): The eigenvalues of $g_{\theta}$ are $e^{i\theta},e^{-i\theta},1$, so $g_{\theta}$ can be represented by the matrix
 		$$
 		g_{\theta} = \begin{pmatrix}
 			e^{i\theta} & 0 & 0 \\
@@ -161,9 +161,9 @@
 		\tr_{H_d}(g_{\theta}) &= \tr_{P_d}(g_{\theta}) - \tr_{P_{d-2}}(g_{\theta}) \\
 		&= \sum_{a+b \in \{d-1,d\}} e^{i\theta(a-b)}\\
 		&= \sum_{k=-d}^{d} e^{ki\theta}\\
-		&= 1 + 2\Big(\sum_{k=1}^{d} \cos(k\theta)\Big).\\
+		&= \frac{e^{(d+1)i\theta} - e^{-di\theta}}{e^{i\theta} - 1}.
 		\end{align*}
-		In the case $\theta = 0$, this yields $\tr_{H_d}(\id)=\dim(H_d)=2d+1$ as expected.
+		The last line only follows if $e^{i\theta}\neq 1$, of course. In the case $\theta = 0$, the geometric sum yields $\tr_{H_d}(\id)=\dim(H_d)=2d+1$ as expected.
 		
 	\end{proof}
 	
@@ -197,7 +197,7 @@
 		$$
 		which can be proven by the generalized binomial theorem:
 		$$
-		(1-t)^{-m} = \sum_{d\geq 0}{-m\choose d} (-t)^d = \sum_{d\geq 0} {m+d \choose d} t^d = \sum_{d\geq 0} {m+d \choose m} t^d.
+		(1-t)^{-m} = \sum_{d\geq 0}{-m\choose d} (-t)^d = \sum_{d\geq 0} {m+d \choose d} t^d = \sum_{d\geq 0} {d+m \choose m} t^d.
 		$$
 	\end{proof}
 	
