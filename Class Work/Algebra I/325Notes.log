@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  3 OCT 2025 13:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  6 OCT 2025 12:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -830,35 +830,50 @@ Underfull \hbox (badness 10000) in paragraph at lines 106--108
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--110
+Underfull \hbox (badness 10000) in paragraph at lines 112--114
 
  []
+
+
+Overfull \vbox (2.65118pt too high) has occurred while \output is active []
 
 
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 147--150
+Underfull \hbox (badness 10000) in paragraph at lines 151--154
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 174--178
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 189--190
 
  []
 
 
 
-[4] (./325Notes.aux)
+[4]
+
+[5] (./325Notes.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
 Package rerunfilecheck Info: File `325Notes.out' has not changed.
-(rerunfilecheck)             Checksum: 3845B931020FEA0BD118A1B877769DB8;309.
+(rerunfilecheck)             Checksum: 8056D05E7115574FC71FA8FEBAABBF19;540.
  ) 
 Here is how much of TeX's memory you used:
- 23187 strings out of 467748
- 433205 string characters out of 5431138
- 832397 words of memory out of 5000000
- 51321 multiletter control sequences out of 15000+600000
+ 23192 strings out of 467748
+ 433246 string characters out of 5431138
+ 833410 words of memory out of 5000000
+ 51324 multiletter control sequences out of 15000+600000
  634128 words of font info for 65 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 103i,9n,108p,597b,522s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,11n,108p,597b,522s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/202
 5/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-d
@@ -879,10 +894,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb><c:/texlive/2025/texmf-dist
 /fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2025/texmf-dist/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2025/texmf-dist/fonts/t
 ype1/public/amsfonts/symbols/msbm7.pfb>
-Output written on 325Notes.pdf (4 pages, 243421 bytes).
+Output written on 325Notes.pdf (5 pages, 252403 bytes).
 PDF statistics:
- 157 PDF objects out of 1000 (max. 8388607)
- 105 compressed objects within 2 object streams
- 10 named destinations out of 1000 (max. 500000)
- 29 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 166 PDF objects out of 1000 (max. 8388607)
+ 113 compressed objects within 2 object streams
+ 12 named destinations out of 1000 (max. 500000)
+ 37 words of extra memory for PDF output out of 10000 (max. 10000000)
 

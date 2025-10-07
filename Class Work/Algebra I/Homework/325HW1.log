@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  6 OCT 2025 08:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  6 OCT 2025 17:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -809,21 +809,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 141--142
 [4]
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 232--234
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--236
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 240--242
 
  []
 
 
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 260--262
+Underfull \hbox (badness 10000) in paragraph at lines 264--266
 
  []
 
 
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 292--293
+Underfull \hbox (badness 10000) in paragraph at lines 296--297
 
  []
 
@@ -859,7 +869,7 @@ fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/
 amsfonts/symbols/msam10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsf
 onts/symbols/msbm10.pfb>
-Output written on 325HW1.pdf (8 pages, 188681 bytes).
+Output written on 325HW1.pdf (8 pages, 190153 bytes).
 PDF statistics:
  133 PDF objects out of 1000 (max. 8388607)
  92 compressed objects within 1 object stream

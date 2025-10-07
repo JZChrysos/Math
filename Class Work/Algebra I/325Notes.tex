@@ -106,7 +106,11 @@ $$
 $$
 As a consequence, we see that each $H_d$ is an \textit{irreducible} representation of $\SO_n$; every stable subspace has a fixed point by the Key Lemma, and the fixed-points are one-dimensional, so there can only be one stable subspace. Thus, as an $\SO_n$-representation, $P_d$ decomposes exactly into the sequence $H_{d-2j}$ for $2j\leq d$.\\
 
-\noindent \textbf{Theorem}: If $n\geq 3$, then for each $d\geq 0$, the representation of $\SO_n$ in $H_d$ is irreducible, and moreover the representations are all distinct for different $d$.\footnote{In the case $n=3$ this gives \textit{all} the irreps. In general you miss $\Lambda^2(\C^n)$, but when $n=3$ this is just $\C^3$, which you get from $H_1$.}\\
+\noindent \textbf{Theorem}: If $n\geq 3$, then for each $d\geq 0$, the representation of $\SO_n$ in $H_d$ is irreducible, and moreover the representations are all distinct for different $d$.\footnote{In the case $n=3$ this gives \textit{all} the irreps. In general you miss $\Lambda^2(\C^n)$, but when $n=3$ this is just $\C^3$, which you get from $H_1$.}
+
+\begin{proof}
+	To show that the representations are distinct, we can use a homework problem which shows that the dimension of $H_d$ is always increasing in $d$ for any $n\geq 3$.
+\end{proof}\\
 
 \subsection{Differential Algebra}
 
@@ -161,5 +165,51 @@ $$
 W = \ker(\Delta) \oplus \im(\Delta^*) = \ker(\Delta) \oplus \im(R) = H_d \oplus R P_{d-2}.
 $$
 
+Another application of this pairing:
+Let $V$ be a finite dimensional vector space and $A\subseteq V$ a subset of $V$ (not necessarily subspace).
+Let $\Span^d(A)\subseteq \Sym^d(V)$ be generated over $\C$ by $a^d$ for $a\in A$.
+If $A$ is dense in $V$ then $\Span^d(A) = \Sym^d(A)$. 
+We will show this by using the pairing.
+
+Assume for contradiction that $\Span^d(A)\neq \Sym^d(V)$. 
+Then there is some nonzero linear functional $F:\Sym^d(V)\to \C$ which vanishes on $\Span^d(A)$. 
+Then $F$ corresponds to some differential polynomial $f$, and $\partial^d_a f(0) = 0$ for all $a\in A$.
+But $\partial^d_af(0) = d!f(a)$, so $f(a)=0$. But then $A$ is dense, so $f=0$.\\
+
+\subsection{Representation Theory Basics}
+ 
+If $G$ acts on sets $X$ and $Y$, then $G$ can also act on the space of maps $X\to Y$ via conjugation:
+$$
+g: f \mapsto g\circ f \circ g^{-1}.
+$$
+We can ask about the space of maps which commute with this $G$-action. Or, equivalently, the maps which are fixed by the $G$-action. 
+We call these \textit{intertwining operators}. 
+The set of such operators is denoted $\Hom_G(X,Y)$. 
+
+We are usually interested in the case where $X,Y$ are vector spaces and $\Hom(X,Y)$ is the space of linear maps.\\
+
+\noindent \textbf{Schur-Weyl Duality}: 
+Let $W$ be a finite-dimensional vector space over $\C$.
+$\GL(W)$ can act on $W^{\otimes d}$ with $g$ acting as $g^{\otimes d}$.
+$S_d$ also acts on $W^{\otimes d}$ by permutation.
+It is not too hard to see that these two actions commute.
+But moreover, action by $\GL(W)$ \textit{spans} the space of $S_d$-intertwiners on $W^{\otimes d}$.
+
+\begin{proof}
+	Let $\Phi:(\End(W))^{\otimes d}\to \End(W^{\otimes d})$ be given by
+	$$
+	\Phi: a_1\otimes \cdots \otimes a_d \mapsto \big(w_1\otimes \cdots \otimes w_d \mapsto a_1(w_1)\otimes \cdots \otimes a_d(w_d)\big).
+	$$
+	$\Phi$ is an invertible linear map with inverse
+	$$
+	\Phi^{-1} f \mapsto f|_{W_1}\otimes \cdots \otimes f|_{W_d}
+	$$ 
+	where $W_j$ is $0 \otimes \cdots \otimes W \otimes \cdots \otimes 0$ with the $W$ in the $j$th spot.
+	Note also that $\Phi$ commutes with the action of $S_d$. By using $\Phi$, we see that 
+	$$
+	\Sym^d(\End W) = ((\End W)^{\otimes d})^{S_d} \xrightarrow{\Phi^{-1}} \End_{S_d}(W^{\otimes d}).
+	$$
+	So we only need to understand $\Sym^d(\End W)$. But $\GL(W)$ is dense in $\End(W)$, so by a previous lemma, we see that $\Span^d(\GL(W))=\Sym^d(\End W)$.
+\end{proof}
 
 \end{document}

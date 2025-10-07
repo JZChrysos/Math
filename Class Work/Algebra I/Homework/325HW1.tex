@@ -205,6 +205,8 @@
 	\noindent \textbf{Problem 6}: Let $\res:\C[x_1,\dots,x_n]\to C(S^{n-1})$ be the restriction map to $S^{n-1}$. If $\overline{P_d}:=\res(P_d)$, let $M_d$ be the orthogonal complement of $\overline{P_{d-2}}$ in $\overline{P_{d}}$. Show that $\res$ induces an isomorphism $H_d\to M_d$ of $\SO_n$-representations.
 	
 	\begin{proof}
+		I'll first give a very analytic proof, and then a short algebraic one:\\
+		
 		First, we'll show that $\res(H_d)\subseteq M_d$ by showing that for $h\in H_d,p\in P_{d-2}$, 
 		$$
 		\int_{S^{n-1}} h\overline{p} = 0.
@@ -236,7 +238,9 @@
 		$$
 		\<q,p\> = \<Rq_{d-2},q_{d-2}\> = \int_{S^{n-1}} |q_{d-2}|^2 > 0.
 		$$
-		So we see that $\res$ induces an isomorphism on the vector spaces $H_d$ and $M_d$. And noting that $\res$ clearly commutes with the action of $\SO_n$ on $H_d$ and $M_d$, this map is also an isomorphism of representations.
+		So we see that $\res$ induces an isomorphism on the vector spaces $H_d$ and $M_d$. And noting that $\res$ clearly commutes with the action of $\SO_n$ on $H_d$ and $M_d$, this map is also an isomorphism of representations.\\
+		
+		\textbf{Algebraic proof}: To show that $H_d$ is orthogonal to $H_{d'}$ for $d'\neq d$, we first note that the projection map $\pi: H_d\to H_{d'}$ is an $\SO_n$-intertwining operator. Then by Schur's Lemma, because $H_d$ and $H_{d'}$ are both irreducible representations of different dimensions (hence non-isomorphic), the map $\pi$ must be trivial, and thus $H_d\bot H_{d'}$.
 	\end{proof}
 	
 	\newpage 

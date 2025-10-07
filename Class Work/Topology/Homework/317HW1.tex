@@ -41,18 +41,21 @@
 	$$
 	It is easy to check that $d_t$ is continuous and that $d_t((r,0)) = (r,0)$ for all $t\in[0,1]$.
 	
-	On the other hand, if there were a deformation retraction to a point $(q,h)$ where $h\neq 0$, then in every neighborhood of $(q,h)$ there are points which must travel down to $[0,1]\times \{0\}$ at some $t$, a nonzero distance of $h$ from $d_t(q,h)$. But if $d_t$ is continuous in $q,h$ and $t$, then there must be \textbf{i'm confused}\\
+	On the other hand, every point $x:=(q,h)$ with $h\neq 0$ has the property that there is an $\ep$ (namely $\ep=h/2$) such that within every neighborhood of $x$ there are points $y$ such that there are no paths between $y$ and $x$ within $B_{x}(\ep)$. Any point with this property cannot be the target of a deformation retraction:
 	
-	(b): The difference between being contractible to a point $x$ and being \textit{deformation retractable} to $x$ is that in the former case, the homotopy need not keep $x$ fixed. 
+	If there was such a deformation retraction, then for every point $y$ there is a closed time interval $T_y$ for which $d_t(y)\not\in B_{x}(\ep)$ for $t\in T_y$. Let $y_1,y_2,\dots$ be a sequence in $X$ approaching $x$. By compactness of $[0,1]$, there is a time $t$ such that $t\in T_{y_j}$ for infinitely many $y_j$. This shows $d_t$ is not continuous in $t$ at $x$, since $|d_t(x)-d_t(y)|>\ep$ for arbitrarily small $|x-y|$. Thus such a deformation retraction cannot exist.\\
+	
+	(b): The difference between being contractible to a point $x$ and being \textit{deformation retractable} to $x$ is that in the former case, the homotopy need not keep $x$ fixed. $Y$ is contractible because it is a 1-dimensional CW complex with no cycles (i.e. a tree). Yet it is not deformation retractable to any point because every point of $Y$ has the property described in the second part of (a).\\
+	
+	(c): Here is a somewhat vague description of a weak deformation retraction to $Z$: every point $y\in Y$ has a single always-rightward path which extends to infinity through $Y$, so we let every point simultaneously walk along this path at the same constant rate. As a result, the ``bristles'' move together with the parallel section of $Z$, making the map continuous. At time $t=1$, the bristles will have all rejoined $Z$, making this a weak deformation retraction. But all points in $Z$ also moved, so it is not a true deformation retraction.
 \end{proof}
 
 \newpage 
 
 
 \noindent \textbf{Problem 3 (Hatcher 0.16)}: Show that $S^{\infty}$ is contractible.
-
 \begin{proof}
-	
+	Let $x$ be the single point in the $0$-skeleton of $S^{\infty}$. Let $A_k^+,A_k^-$ be the upper and lower open half-$k$-sphere, so that $A_k^+\cap A_k^-=S^{k-1}$ and all $A_k^{\pm}$ contain $x$. Every loop at $x$ in $S^{\infty}$ is entirely contained in $A_k^+$ or $A_k^-$ for some finite $k$, and thus contractible to $x$. Thus $S^{\infty}$ is also contractible.
 \end{proof}
 \newpage 
 
@@ -67,7 +70,7 @@
 \noindent \textbf{Problem 5 (Hatcher 0.23)}: Show that a CW complex is contractible if it is the union of two contractible subcomplexes whose intersection is also contractible.
 
 \begin{proof}
-	Let $X,Y$ be two contractible CW-complexes with intersection $Z$, and let $h_X,h_Y,h_Z$ be the corresponding homotopies. We'll give a contraction of $X\cup Y$.
+	Let $X,Y$ be two contractible CW-complexes with intersection $Z$, and let $x\in Z$. If $\ell$ is a loop at $x$ in $X\cup Y$, then 
 \end{proof}
 
 \newpage 
