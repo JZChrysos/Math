@@ -1,0 +1,58 @@
+\documentclass{amsart}
+
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Math 325 HW 2}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+\noindent\textbf{Problem 1}: Let $G$ be a subgroup of $\GL_n(k)$ and 
+	$$
+	I := \bigoplus_{d>0} P_d^G, \;\;\;\; I_D := \bigoplus_{d>0} (D_d(\R^n))^G
+	$$
+	(note that we exclude constants). A polynomial $f\in \C[x_1,\dots,x_n]$ is called $G$-\textit{harmonic} if $u(f)=0$ for all $u\in I_D$.
+	\begin{enumerate}[(a)]
+		\item Show that $f$ is $G$-harmonic iff $\<u_1u_2,f\>=0$ for all $u_1\in D(\R^n)$ and $u_2\in I_D$.
+		\item (optional) Let $H$ be the vector space of $G$-harmonic polynomials. Prove that if $G$ is a subgroup of $\OO_n$, then 
+		$$
+		\C[x_1,\dots,x_n] = H\oplus \C[x_1,\dots,x_n]I.
+		$$
+		\item Show that $f$ is $\SO_n$-harmonic iff $\Delta(f)=0$ and interpret the statement of (ii) in this case.
+	\end{enumerate}
+	
+	\begin{proof}
+		(a): If $\<u_1u_2,f\>=0$ for all $u_1\in D(\R^n)$ then in particular for $u_1=1$, $\<u_2,f\>=0$.
+		
+		Conversely, suppose $u(f)=0$ for $u\in I_D$. $f$ can be split into $f_0+f_1+\dots+f_d$ where $f_k\in P_k$. \textit{to do}\\
+		
+		(c):  
+	\end{proof}
+	
+\newpage 
+
+\noindent\textbf{Problem 2}: Let $A$ be a $k$-algebra and $a$ be algebraic over $A$ with minimal polynomial $p_a$. Show that $\Spec(a)$ is the set of roots of $p_a$ in $k$. 
+
+\begin{proof}
+	$\Spec(a)$ is defined as the set of $\lambda \in k$ for which $(a-\lambda)$ is invertible. We use the fact that 
+	$$
+	p_a(t) - p_a(\lambda) = (t-\lambda)q(t)
+	$$
+	for some polynomial $q(t)$ with degree $\deg(p_a)-1$. In the case $t=a$, this gives
+	\begin{align*}
+	p_a(a) - p_a(\lambda) &= (a-\lambda)q(a) \\
+	 -p_a(\lambda) &= (a-\lambda)q(a)\\
+	 (a-\lambda)^{-1} &= -p_a(\lambda)^{-1}q(a)
+	\end{align*}
+	(note that $q(a)\neq 0$ since $p_a$ is minimal and $\deg(q)<\deg(p_a)$). So as long as $p_a(\lambda)\neq 0$, $\lambda \not\in \Spec(a)$. However, if $p_a(\lambda)=0$, then $(a-\lambda)$ is not invertible because it divides $p_a(\lambda)$ i.e. it is a zero-divisor.
+\end{proof}
+
+\newpage
+\noindent \textbf{Problem 3}: Let $A$ be a $k$-algebra and $M$ a \textit{simple} $A$-module. Prove that 
+$$\dim_k(\End_A M) \leq \dim_k M \leq \dim_k A.$$
+(here $\leq$ is the order on cardinals).
+
+\begin{proof}
+	Pick some $m\in M$ and let $f:\End M \to M$ be defined by $f:\ph\mapsto \ph(m)$. Since $M$ is simple, 
+\end{proof}
+\end{document}

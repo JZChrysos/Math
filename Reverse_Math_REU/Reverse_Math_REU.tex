@@ -1146,83 +1146,11 @@
 		$$
 		\U := \{(a_{\sigma},b_{\sigma})\}_{\sigma\in U}.
 		$$
-%		\begin{figure}[h]
-%			\asyinclude{cantorset.asy}
-%		\end{figure}
-		
-%		\begin{figure}[h]
-%			\begin{asy}
-%			size(8cm);
-%			
-%			pen T = deepgreen;
-%			
-%			void closedint(real L, real R, real y,  pen c=black, bool d = true){
-%			real w = abs(L-R);
-%			real h = 0.01;
-%			draw((L,y)--(R,y),c+0.6);
-%			draw((L,y-h)--(L,y+h),c+0.6);
-%			draw((R,y-h)--(R,y+h),c+0.6);
-%			if (d){
-%			dot(" ", ((L+R)/2,y), T);
-%			}
-%			}
-%			
-%			void openint(real L, real R, real y, pen c){
-%			real w = abs(L-R);
-%			real h = 0.015;
-%			real x = 0.008;
-%			pair A,B,C,D,E,F;
-%			A = (L-w/3,y);
-%			B = (L-w/3 + x,y+h);
-%			C = (R+w/3 - x,y+h);
-%			D = (R+w/3,y);
-%			E = (R+w/3 - x,y-h);
-%			F = (L-w/3 + x,y-h);
-%			path p = F{left}..{up}A{up}..{right}B;
-%			path q = C{right}..{down}D{down}..{left}E;
-%			draw(p,c+0.8);
-%			draw(q,c+0.8);
-%			}
-%			
-%			closedint(0,1,0);
-%			closedint(0,1/3,-0.1);
-%			closedint(2/3,1,-0.1);
-%			closedint(2/3,7/9,-0.2);
-%			closedint(8/9,1,-0.2);
-%			closedint(0,1/9,-0.2);
-%			closedint(2/9,1/3,-0.2,false);
-%			
-%			closedint(0,1/27,-0.3,false);
-%			closedint(2/27,3/27,-0.3,true);
-%			closedint(6/27,7/27,-0.3,false);
-%			closedint(8/27,1/3,-0.3,false);
-%			closedint(18/27,19/27,-0.3,true);
-%			closedint(20/27,21/27,-0.3,true);
-%			closedint(24/27,25/27,-0.3,false);
-%			closedint(26/27,1,-0.3,true);
-%			
-%			openint(2/9,1/3,-0.2,blue);
-%			openint(0,1/27,-0.3,blue);
-%			openint(24/27,25/27,-0.3,blue);
-%			
-%			draw((0.5,0)--(0.5/3,-0.1)--(0.5/9,-0.2),T+1.0);
-%			draw((0.5,0)--(0.5/3+2/3,-0.1)--(0.5/9+8/9,-0.2),T+1.0);
-%			draw((0.5/3+2/3,-0.1)--(0.5/9+6/9,-0.2),T+1.0);
-%			draw((5/54,-0.3)--(0.5/9,-0.2),T+1.0);
-%			draw((37/54,-0.3)--(0.5/9+6/9,-0.2),T+1.0);
-%			draw((41/54,-0.3)--(0.5/9+6/9,-0.2),T+1.0);
-%			draw((53/54,-0.3)--(0.5/9+8/9,-0.2),T+1.0);
-%			
-%			label("$\vdots$",(5/54,-0.33),T);
-%			label("$\vdots$",(37/54,-0.33),T);
-%			label("$\vdots$",(41/54,-0.33),T);
-%			label("$\vdots$",(53/54,-0.33),T);
-%			
-%			\end{asy}
-%			
-%			\caption{$T$ embedded into the Cantor set. The blue intervals are $\U$.}
-%		\end{figure}
-		
+		\begin{figure}[h]
+			\includegraphics{Figures/CantorSet.pdf}
+			\caption{$T$ embedded into the Cantor set. The blue intervals are $\U$.}
+		\end{figure}
+	
 		Because there are no infinite paths in $T$, every infinite binary sequence $\ell$ has a smallest initial segment $\sigma$ where it first exits $T$, for which the real number $f(\ell)$ is in $(a_{\sigma},b_{\sigma})$. This shows that $\U$ covers all of $f(2^{\N})$, i.e. the Cantor set.\\
 		
 		Now, Heine-Borel implies that $[0,1]$ is compact, and the Cantor set is closed in $[0,1]$ hence it is compact as well. Thus there must be a finite subcover of the Cantor set among $\U$, represented by some $\sigma_1,\sigma_2,\dots,\sigma_j\in U$. Every $\tau\in T$ must be an initial segment of one of these $\sigma_i$, so $T$ is bounded in depth by $\max\{|\sigma_1|,|\sigma_2|,\dots,|\sigma|_j\}$, and hence finite.
@@ -1310,45 +1238,10 @@
 	
 	If $\QQ$ is upward-closed under $\leq_T$ and $\sf{B}$ preserves $\overline{\QQ}$, then we say $\sf{B}$ \textit{avoids} $\QQ$.\\
 	
-	
-	% Let $\K$ be a map between classes of sets,
-	% $$
-	% \K : 2^{\N} \to \PP(2^{\N}).
-	% $$
-	% We can measure the complexity of $\sf{B}$ against such a $\K$:
-	% \begin{itemize}
-		%     \item $\sf{B}$ \textit{admits solutions in $\K$} if for every set $X\subset \N$, the class $\K(X)$ contains a solution to every $X$-computable $\sf{B}$-instance.
-		%     \item $\sf{B}$ \textit{omits solutions in $\K$} if for every $X\subset \N$, the class $\K(X)$ \textit{does not} contain any solution to at least one $X$-computable $\sf{B}$-instance.
-		% \end{itemize}
-	% If $\sf{B}$ admits solutions in $\K$, then we may build the model by choosing $L(X)\in \K(X)$ for all $X$. This is useful when repeated application of $\K$ is ``bounded'' inside some complexity-level, in the sense that 
-	% $$
-	% \K^{\N}(\Delta_1) :=\bigcup_{n\in \N} \K^n(\Delta_1)
-	% $$
-	% is not too big. In the $\WKL$ case, for example, we would seek a $\K$ for which $\emptyset'\not\in \K^{\N}(\Delta_1)$.\\
-%	\begin{figure}[h]
-%		\begin{asy}
-%		size(8cm);
-%		path p = (0,0)--(-50,100){dir(110)}..{right}(-40,130){right}..{dir(-60)}(-30,120)..(10,150)..(30,130)..{dir(-110)}(50,100)--cycle;
-%		filldraw(p,palegreen);
-%		pair Z = (5,110);
-%		pair X = (10,85);
-%		pair W = Z+(1,2)*8;
-%		pair Y = W+(1,-2)*17;
-%		real d = 20;
-%		draw((Z+(1,-2)*d)--Z--(Z+(-1,-2)*d),dashed);
-%		dot("$\mathbf{Z}$",Z,dir(130));
-%		dot("$\mathbf{X}$",X,S);
-%		dot("$\mathbf{Y}$",Y,E);
-%		dot("$\mathbf{Z\oplus Y}$",W,N);
-%		dot("$\mathbf{\emptyset}$",(0,0),N*3);
-%		draw(Z--W--(Y+(1,-2)*3),dotted);
-%		label("$\mathcal{Q}$",(40,130),heavygreen);
-%		draw(X--Y,Arrow(Relative(0.92)));
-%		draw((-70,140)--(0,0)--(70,140),black+0.5);
-%		dot("$\mathbf{\emptyset'}$",(0,145),N);
-%		\end{asy}
-%		\caption{$\QQ$-preservation inside the order $\leq_T$. Here, $\QQ$ separates $\emptyset$ from $\emptyset'$.}
-%	\end{figure}
+	\begin{figure}[h]
+		\includegraphics{Figures/Preservation.pdf}
+		\caption{$\QQ$-preservation inside the order $\leq_T$. Here, $\QQ$ separates $\emptyset$ from $\emptyset'$.}
+	\end{figure}
 	
 	Clearly, if we find a suitable $\QQ$ and prove that $\sf{B}$ preserves $\QQ$, then a model can be constructed as above while keeping $Z_0,Z_1,Z_2,\dots \in \QQ$, and hence $\SS\subset \QQ$, since by construction every set in $\SS$ is computable from some $Z_j$. 
 	
@@ -1421,146 +1314,10 @@
 		\item $(E,R)$ is interpreted as $E\subseteq  \mathtt{G}\subseteq E\cup R$.
 	\end{itemize} 
 	
-%	\begin{figure}[h]
-%		\begin{asy}
-%		size(12cm);
-%		
-%		void branch(int[] b, pen c = cmyk(red)+linewidth(2)+opacity(0.15), pair start = (0,0), int neck = 3){
-%		int L = b.length;
-%		real x = 25;
-%		real y = 32;
-%		real ycurrent = 0;
-%		path p = nullpath;
-%		for(int i = 0; i < L-1; ++i){
-%		real step = 10;
-%		if(i>neck-1){
-%		step = 100/(2**i);
-%		}
-%		real ynext = ycurrent + (b[i]*2-1)*step;
-%		pair A = start + (x*i,ycurrent);
-%		pair B = start + (x*(i+1),ynext);
-%		path q = A--B;
-%		p = p&q;
-%		ycurrent = ynext;
-%		}
-%		draw(p,c);
-%		}
-%		
-%		branch(new int[]{0,1,0,1,1,1,1,0});
-%		branch(new int[]{0,1,0,1,1,1,0,0});
-%		branch(new int[]{0,1,0,1,1,0,1,0});
-%		branch(new int[]{0,1,0,1,1,0,0,0});
-%		branch(new int[]{0,1,0,1,0,1,1,0});
-%		branch(new int[]{0,1,0,1,0,1,0,0});
-%		branch(new int[]{0,1,0,1,0,0,1,0});
-%		branch(new int[]{0,1,0,1,0,0,0,0});
-%		branch(new int[]{0,1,0,0,1,1,1,0});
-%		branch(new int[]{0,1,0,0,1,1,0,0});
-%		branch(new int[]{0,1,0,0,1,0,1,0});
-%		branch(new int[]{0,1,0,0,1,0,0,0});
-%		branch(new int[]{0,1,0,0,0,1,1,0});
-%		branch(new int[]{0,1,0,0,0,1,0,0});
-%		branch(new int[]{0,1,0,0,0,0,1,0});
-%		branch(new int[]{0,1,0,0,0,0,0,0});
-%		branch(new int[]{0,1,0,1,1,1,1,1});
-%		branch(new int[]{0,1,0,1,1,1,0,1});
-%		branch(new int[]{0,1,0,1,1,0,1,1});
-%		branch(new int[]{0,1,0,1,1,0,0,1});
-%		branch(new int[]{0,1,0,1,0,1,1,1});
-%		branch(new int[]{0,1,0,1,0,1,0,1});
-%		branch(new int[]{0,1,0,1,0,0,1,1});
-%		branch(new int[]{0,1,0,1,0,0,0,1});
-%		branch(new int[]{0,1,0,0,1,1,1,1});
-%		branch(new int[]{0,1,0,0,1,1,0,1});
-%		branch(new int[]{0,1,0,0,1,0,1,1});
-%		branch(new int[]{0,1,0,0,1,0,0,1});
-%		branch(new int[]{0,1,0,0,0,1,1,1});
-%		branch(new int[]{0,1,0,0,0,1,0,1});
-%		branch(new int[]{0,1,0,0,0,0,1,1});
-%		branch(new int[]{0,1,0,0,0,0,0,1});
-%		
-%		pen c = heavygray+linewidth(3.8);
-%		
-%		branch(new int[]{0,1,0,1,1,1,1,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,1,1,0,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,0,1,0,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,0,0,1,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,1,1,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,1,0,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,0,0,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,1,1,1,1},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,1,1,0,1},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,0,1,1,1},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,1,1,1},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,1,0,1},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,0,0,1},c,start=(0,-60));
-%		
-%		branch(new int[]{0,1,0,0,1,1,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,1,0,0},c,start=(0,-60));
-%		branch(new int[]{0,0,1},c,start=(0,-60));
-%		
-%		pen c = white+linewidth(2.4);
-%		
-%		branch(new int[]{0,1,0,1,1,1,1,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,1,1,0,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,0,1,0,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,0,0,1,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,1,1,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,1,0,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,0,0,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,1,1,1,1},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,1,1,0,1},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,0,1,1,1},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,1,1,1},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,1,0,1},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,0,0,1},c,start=(0,-60));
-%		
-%		branch(new int[]{0,1,0,0,1,1,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,1,0,0},c,start=(0,-60));
-%		branch(new int[]{0,0,1},c,start=(0,-60));
-%		
-%		pen c = cmyk(red)+linewidth(2.0)+opacity(0.15);
-%		
-%		branch(new int[]{0,1,0,1,1,1,1,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,1,1,0,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,0,1,0,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,0,0,1,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,1,1,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,1,0,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,0,0,0},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,1,1,1,1},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,1,1,0,1},c,start=(0,-60));
-%		branch(new int[]{0,1,0,1,0,1,1,1},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,1,1,1},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,1,0,1},c,start=(0,-60));
-%		branch(new int[]{0,1,0,0,0,0,0,1},c,start=(0,-60));
-%		
-%		branch(new int[]{0,1,0,1,1,0,1,0},start=(0,-120));
-%		branch(new int[]{0,1,0,1,1,0,0,0},start=(0,-120));
-%		branch(new int[]{0,1,0,1,0,0,1,0},start=(0,-120));
-%		branch(new int[]{0,1,0,1,0,0,0,0},start=(0,-120));
-%		branch(new int[]{0,1,0,0,1,0,1,0},start=(0,-120));
-%		branch(new int[]{0,1,0,0,1,0,0,0},start=(0,-120));
-%		branch(new int[]{0,1,0,0,0,0,1,0},start=(0,-120));
-%		branch(new int[]{0,1,0,0,0,0,0,0},start=(0,-120));
-%		branch(new int[]{0,1,0,1,1,0,1,1},start=(0,-120));
-%		branch(new int[]{0,1,0,1,1,0,0,1},start=(0,-120));
-%		branch(new int[]{0,1,0,1,0,0,1,1},start=(0,-120));
-%		branch(new int[]{0,1,0,1,0,0,0,1},start=(0,-120));
-%		branch(new int[]{0,1,0,0,1,0,1,1},start=(0,-120));
-%		branch(new int[]{0,1,0,0,1,0,0,1},start=(0,-120));
-%		branch(new int[]{0,1,0,0,0,0,1,1},start=(0,-120));
-%		branch(new int[]{0,1,0,0,0,0,0,1},start=(0,-120));
-%		
-%		draw((175.9,15)--(175.9,-160),white+linewidth(2.4));
-%		
-%		label("Cohen forcing with $p=(0,1,0)$:", (0,10),align=right,fontsize(10pt));
-%		label(minipage("Jockusch-Soare forcing with $p=$ the black-outlined tree:",width=130pt), (0,-50),align=right,fontsize(10pt));
-%		label("Mathias forcing with $E=\{1\},R=\{3,4,6,\dots\}$:", (0,-110),align=right,fontsize(10pt));
-%		
-%		\end{asy}
-%		\caption{The space of sets (visualized as paths in $2^{\N}$) obeying each of three conditions.}
-%	\end{figure}
+	\begin{figure}[h]
+		\includegraphics{Figures/ForcingComparison.pdf}
+		\caption{The space of sets (visualized as paths in $2^{\N}$) obeying each of three conditions.}
+	\end{figure}
 	
 	Notice that each of these three forcing notions has a different range of formulas that its conditions can articulate. For example, consider the two statements 
 	\begin{center}``$\tt{G}$ is infinite'' and ``$\overline{\tt{G}}$ is infinite."\end{center}
@@ -2099,14 +1856,6 @@
 		% (E_0\cup X,E_1,R^*), \; (E_0\cup Y,E_1,R^*)\in P.
 		% $$
 		The goal now is to leverage the invalidity of the $0$-forks to produce a valid $1$-fork within $(z_j)$. We'll first show that such a sequence $z_j$ of sufficient depth $d$ will eventually include a 1-fork. Then, we'll find a reservoir $R^*$ with respect to which all $z\in \{X_j\cup Y_j\}_{j\leq d}$ have edges of only one color. This $R^*$ will serve as reservoir to the 1-fork included in $(z_j)$, hence the 1-fork will be valid.\\
-		% , which implies that if $R^*$ is any valid reservoir, $N_1(z_j)\cap R^*$ is infinite for at least one $z_j\in X_j\cup Y_j$ (otherwise $R\cap_{z\in X_j\cup Y_j}N_0(z)$ would be infinite).\\
-		
-		% \begin{figure}[h]
-			% \begin{asy}
-			%     size(7cm);
-			
-			% \end{asy}
-			% \end{figure}
 		
 		Construct a computable tree $T\subseteq \N^{\N}$ from all sequences $\sigma$ with
 		$$
@@ -2114,94 +1863,10 @@
 		$$
 		such that the immediate parent of $\sigma$ does not contain any 1-forks. $T$ is computably bounded (since $X_e\cup Y_e$ is finite), so if $T$ is infinite then it contains a $C$-cone avoiding path by $\sf{WKL}$ cone avoidance. But by ($\ast$), any infinite non-$C$-computing set necessarily contains 1-forks, so \textit{there can be no such path}, and thus $T$ must be finite. Let its depth be $d$.
 		
-%		\begin{figure}[h]
-%			\begin{asy}
-%			size(7cm);
-%			void oval(real x, real w, real h, pen c = black){
-%			pair a,b,c,d,e,f;
-%			a = (x-w,h);
-%			b = (x,h+w);
-%			c = (x+w,h);
-%			d = (x+w,-h);
-%			e = (x,-h-w);
-%			f = (x-w,-h);
-%			path p = a{up}..{right}b{right}..{down}c--d{down}..{left}e{left}..{up}f--a;
-%			draw(p,c);
-%			}
-%			oval(0,1,10);
-%			dot(" ",(0,9),cmyk(blue)+5);
-%			dot(" ",(0,7),cmyk(blue)+5);
-%			dot(" ",(0,5),cmyk(blue)+5);
-%			dot("$z_0$",(0,3),W,cmyk(red)+5);
-%			dot(" ",(0,1),cmyk(blue)+5);
-%			dot(" ",(0,-1),cmyk(blue)+5);
-%			dot(" ",(0,-3),cmyk(blue)+5);
-%			dot(" ",(0,-5),cmyk(red)+5);
-%			dot(" ",(0,-7),cmyk(blue)+5);
-%			dot(" ",(0,-9),cmyk(blue)+5);
-%			oval(5,1,10);
-%			dot(" ",(5,9),cmyk(blue)+5);
-%			dot(" ",(5,6),cmyk(red)+5);
-%			dot(" ",(5,3),cmyk(blue)+5);
-%			dot(" ",(5,0),cmyk(blue)+5);
-%			dot(" ",(5,-3),cmyk(blue)+5);
-%			dot(" ",(5,-6),cmyk(blue)+5);
-%			dot(" ",(5,-9),cmyk(blue)+5);
-%			oval(10,1,10);
-%			dot(" ",(10,9),cmyk(blue)+5);
-%			dot(" ",(10,7),cmyk(blue)+5);
-%			dot(" ",(10,5),cmyk(blue)+5);
-%			dot(" ",(10,3),cmyk(blue)+5);
-%			dot(" ",(10,1),cmyk(red)+5);
-%			dot(" ",(10,-1),cmyk(red)+5);
-%			dot(" ",(10,-3),cmyk(red)+5);
-%			dot(" ",(10,-5),cmyk(blue)+5);
-%			dot(" ",(10,-7),cmyk(blue)+5);
-%			dot(" ",(10,-9),cmyk(blue)+5);
-%			oval(15,1,10);
-%			dot(" ",(15,9),cmyk(blue)+5);
-%			dot(" ",(15,9-18/7),cmyk(blue)+5);
-%			dot(" ",(15,9-2*18/7),cmyk(blue)+5);
-%			dot(" ",(15,9-3*18/7),cmyk(blue)+5);
-%			dot(" ",(15,9-4*18/7),cmyk(blue)+5);
-%			dot(" ",(15,9-5*18/7),cmyk(blue)+5);
-%			dot(" ",(15,9-6*18/7),cmyk(blue)+5);
-%			dot(" ",(15,-9),cmyk(red)+5);
-%			oval(20,1,10);
-%			dot(" ",(20,9),cmyk(blue)+5);
-%			dot(" ",(20,9-18/8),cmyk(red)+5);
-%			dot(" ",(20,9-2*18/8),cmyk(blue)+5);
-%			dot(" ",(20,9-3*18/8),cmyk(blue)+5);
-%			dot(" ",(20,9-4*18/8),cmyk(blue)+5);
-%			dot(" ",(20,9-5*18/8),cmyk(blue)+5);
-%			dot(" ",(20,9-6*18/8),cmyk(red)+5);
-%			dot(" ",(20,9-7*18/8),cmyk(blue)+5);
-%			dot(" ",(20,-9),cmyk(blue)+5);
-%			oval(25,1,10);
-%			dot(" ",(25,9),cmyk(blue)+5);
-%			dot(" ",(25,9-18/5),cmyk(blue)+5);
-%			dot(" ",(25,9-2*18/5),cmyk(red)+5);
-%			dot(" ",(25,9-3*18/5),cmyk(blue)+5);
-%			dot(" ",(25,9-4*18/5),cmyk(blue)+5);
-%			dot(" ",(25,9-5*18/5),cmyk(blue)+5);
-%			oval(30,1,10);
-%			dot(" ",(30,9),cmyk(red)+5);
-%			dot(" ",(30,9-18/7),cmyk(blue)+5);
-%			dot(" ",(30,9-2*18/7),cmyk(blue)+5);
-%			dot(" ",(30,9-3*18/7),cmyk(blue)+5);
-%			dot(" ",(30,9-4*18/7),cmyk(blue)+5);
-%			dot(" ",(30,9-5*18/7),cmyk(blue)+5);
-%			dot("$z_d$",(30,9-6*18/7),E,cmyk(red)+5);
-%			dot(" ",(30,9-7*18/7),cmyk(blue)+5);
-%			draw((0,3)--(5,6)--(10,-3)--(15,-9)--(20,9-6*18/8)--(25,9-2*18/5)--(30,9-6*18/7),cmyk(red)+linewidth(2));
-%			label("$X_0\cup Y_0$",(-1.5,-16.3),fontsize(10pt));
-%			draw((-1,-15)--(-0.3,-12),Arrow(Relative(1.00)));
-%			label("$\cdots$",(15,-16.3),fontsize(10pt));
-%			label("$X_d\cup Y_d$",(31.5,-16.3),fontsize(10pt));
-%			draw((31,-15)--(30.3,-12),Arrow(Relative(1.00)));
-%			\end{asy}
-%			\caption{The elements of $X_j\cup Y_j$ for $j\leq d$ colored by $\tau$ (blue = 0, red = 1). The sequence $(z_j)$ must contain a valid 1-fork with reservoir $R^*$.}
-%		\end{figure}
+		\begin{figure}[h]
+			\includegraphics{Figures/SeetapunTree.pdf}
+			\caption{The elements of $X_j\cup Y_j$ for $j\leq d$ colored by $\tau$ (blue = 0, red = 1). The sequence $(z_j)$ must contain a valid 1-fork with reservoir $R^*$.}
+		\end{figure}
 		
 		Finally, for each function
 		$$

@@ -108,7 +108,7 @@
 	 	\arrow["f"', from=3-1, to=3-3]
 	 \end{tikzcd}
 	 $$
-	 That is, a partial homotopy $f:A\to Y$ can always be extended to a homotopy $g:X\to Y$, hence the name. The HEP is equivalent to the specific case for $f$ the identity map on $X\times 0 \cup A\times I$. Thus, to prove the HEP, it suffices to show the following: \\
+	 That is, a partial homotopy $f:A\to Y$ can always be extended to a homotopy $g:X\to Y$, hence the name. The HEP is equivalent to the specific case for $f$ the identity map on $X\times 0 \cup A\times I$. Thus, to prove the HEP for CW-pairs, it suffices to show the following: \\
 	 
 	 \textbf{Proposition}: If $(X,A)$ is a CW pair then there is a retraction from $X\times I$ to $X\times 0 \cup A\times I$.
 	 \begin{proof}
@@ -145,6 +145,64 @@
 	 $$
 	 is an isomorphism up to homotopy equivalence, therefore $(X,x)$ and $(Y,f(x))$ have isomorphic fundamental group.\\
 	 
-	 An example: let $T^n := (S^1)^n$. Or equivalently, $T^n = \R^n/\Z^n$. $\R^n$ is a covering space of $T^n$. The fundamental group of $T^n$ is $\Z^n$. $\GL_n(\Z)$ acts on $T^n$ in a natural way (these are outer automorphisms).
-
+	 An example: let $T^n := (S^1)^n$. Or equivalently, $T^n = \R^n/\Z^n$. $\R^n$ is a covering space of $T^n$. The fundamental group of $T^n$ is $\Z^n$. $\GL_n(\Z)$ acts on $T^n$ in a natural way (these are outer automorphisms).\\
+	 
+	 \subsection{Covering Spaces} $\hat{X}$ is a \textit{covering space} of $X$ when there is a map $p: \hat{X}\to X$ such that for every $x\in X$ there is a neighborhood $U\subset X$ such that $p^{-1}(U)$ is homeomorphic to a union of disjoint copies of $U$ in $\hat{X}$. We say that such a $U$ is \textit{evenly covered} by $\hat{X}$.\\
+	 
+	 Examples:
+	 \begin{itemize}
+	 \item The classic example is that the infinite helix covers $S^1$ by projection. 
+	 \item One could also cover $S^1$ by $S^1$ with a map $z\mapsto z^n$. The order of the covering is $n$.
+	 \item $\R^n/\Z^n$ (the $n$-torus) is covered by $\R^n$ in the natural way.
+	 \item Graphs can be covered by other graphs. The only thing that must be obeyed by the covering space is the local behavior near vertices.
+	 \end{itemize}
+	 
+	 \noindent \textbf{Homotopy Lifting Property}: Let $p:\hat{X}\to X$ be a covering of $X$. If $f_t$ is a homotopy from $Y$ to $X$, then there is a lifting of $f_t$ to a homotopy $\hat{f_t}$ from $Y$ to $\hat{X}$, and $\hat{f_t}$ is \textit{uniquely determined} by $\hat{f_0}$.
+	 
+	 \begin{proof}
+	 	Let $y\in Y$. $f_t(y)$ for $t\in [0,1]$ is a path in $X$. This path is covered by finitely many neighborhoods which are evenly covered by $\hat{X}$. Given $\hat{f_0}$, we have a single preimage set that we must choose for $\hat{f_0}(y)$. Now, to choose $\hat{f_t}(y)$ for the next $t\in [0,1]$, we choose the preimage set which intersects with the previous, etc. The fact that $p:\hat{X}\to X$ is continuous guarantees that we can do this and result in a continuous path in $\hat{X}$.
+	 \end{proof}\\
+	 
+	 In the case that $Y$ is a single point, this shows that individual paths can always be lifted through coverings. It is important to note that loops may not remain loops when they are lifted, since the first and last points may both map to $x$ while not being the same.
+	 
+	 In the case $Y=[0,1]$, this is saying that entire homotopies of paths can be lifted. In contrast to the case of paths in general, two paths that are \textit{homotopic} will maintain their homotopy (and as a result their endpoints will stay together) when lifted. This implies that loops that are the identity element in $\pi(X,x)$ stay as the identity element in $\pi(\hat{X},p^{-1}(x))$.\\
+	 
+	 As the previous example implies, we have a correspondence between the fundamental groups
+	 $$
+	 p_*: \pi_1(\hat{X},\hat{x}) \to \pi_1(X,x).
+	 $$	 
+	 The important property to know here is that $p_*$ is \textit{injective}. That is, we can think of $\pi_1(\hat{X},\hat{x})$ as a \textit{subgroup} of $\pi_1(X,x)$.
+	 
+	 To show this, we'll first show that if $p_*(\a)=1$ then $\a=1$. This follows from the preceding discussion about homotopy lifting: the homotopy $p(\a)\simeq 1_X$ lifts to a homotopy between $\a$ and $1_{\hat{X}}$.\\
+	 
+	 \textbf{Lifting Criterion}: Let $Y$ be path connected and locally-path connected (CW complex suffices). Given $f:(Y,y)\to (X,x)$ with a covering $p:(\hat{X},\hat{x})\to (X,x)$, when is there a lift $\hat{f}:(Y,y)\to (\hat{X},\hat{x})$? The answer is that it exists iff the image of 
+	 $$f_*:\pi_1(Y,y)\to \pi_1(X,x)$$
+	 lands inside the subgroup $\pi_1(\hat{X},\hat{x})$. It is clearly necessary, but the interesting thing is that it's sufficient.
+	 
+	 \begin{proof}
+	 	We construct $\hat{f}(z)$ by lifting $f(z)$ through $p$. The thing that needs to be checked is that it preserves homotopy classes of paths. \textbf{fill in later} 
+	 \end{proof}\\
+	 
+	 \textbf{Classification of Covering Spaces:} If $X$ satisfies some basic properties (which CW complexes satisfy) then covering spaces $\hat{X}$ correspond exactly with subgroups of $\pi_1(X,x)$.\\
+	 
+	 To show this we will construct a \textit{Universal Cover} of $X$, which we denote $\tilde{X}$, whose fundamental group is trivial. All other coverings will appear as quotients of this universal cover.
+	 
+	 \begin{proof}
+	 	We define $\tilde{X}$ as the set of homotopy classes of paths starting at $x$. The covering map comes from
+	 	$$
+	 	p: \gamma \mapsto \gamma(1).
+	 	$$
+	 	The topology of $\tilde{X}$ will have open sets 
+	 	$$
+	 	U_{[\gamma]} := \{[\gamma \cdot \eta] : \eta \text{ is a path in $U$ extending $\gamma$}\}.
+	 	$$
+	 	for all \textit{simply-connected} open sets $U\subset X$.
+	 	
+	 	$\tilde{X}$ is path-connected because every $\gamma$ (i.e. every point in $\tilde{X}$) can be contracted to the identity.
+	 	
+	 	Now to show $\tilde{X}$ is simply-connected. If $\a$ is a loop in $X$ that lifts to a loop $\tilde{\a}$ in $\tilde{X}$ then \textit{fill in later}
+	 \end{proof}\\
+	 
+	 A \textit{Deck transformation} is a specific case of lifting in which the space $Y$ is \textit{also} $\hat{X}$, but with a different basepoint. The Deck transformations form a group under composition.
+	 
 \end{document}

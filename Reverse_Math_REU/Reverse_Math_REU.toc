@@ -9,10 +9,11 @@
 \contentsline {subsection}{\tocsubsection {}{2.3}{K\"onig's Lemma and Weak K\"onig's Lemma}}{16}{subsection.2.3}%
 \contentsline {section}{\tocsection {}{3}{Separation of Problems}}{20}{section.3}%
 \contentsline {subsection}{\tocsubsection {}{3.1}{Methods of Model-building}}{20}{subsection.3.1}%
-\contentsline {subsection}{\tocsubsection {}{3.2}{Forcing and its Uses}}{21}{subsection.3.2}%
-\contentsline {subsection}{\tocsubsection {}{3.3}{The Weakness of $\sf {WKL}$}}{23}{subsection.3.3}%
-\contentsline {section}{\tocsection {}{4}{Ramsey Theory}}{27}{section.4}%
-\contentsline {subsection}{\tocsubsection {}{4.1}{$\RT $ over $\RCA $}}{27}{subsection.4.1}%
-\contentsline {subsection}{\tocsubsection {}{4.2}{$\RT $ over $\ACA $}}{28}{subsection.4.2}%
-\contentsline {subsection}{\tocsubsection {}{4.3}{Study of $\RT ^2_2$}}{32}{subsection.4.3}%
-\contentsline {section}{\tocsection {}{}{Acknowledgments}}{35}{section*.3}%
+\contentsline {subsection}{\tocsubsection {}{3.2}{Forcing and its Uses}}{22}{subsection.3.2}%
+\contentsline {subsection}{\tocsubsection {}{3.3}{The Weakness of $\sf {WKL}$}}{24}{subsection.3.3}%
+\contentsline {section}{\tocsection {}{4}{Ramsey Theory}}{28}{section.4}%
+\contentsline {subsection}{\tocsubsection {}{4.1}{$\RT $ over $\RCA $}}{28}{subsection.4.1}%
+\contentsline {subsection}{\tocsubsection {}{4.2}{$\RT $ over $\ACA $}}{29}{subsection.4.2}%
+\contentsline {subsection}{\tocsubsection {}{4.3}{Study of $\RT ^2_2$}}{33}{subsection.4.3}%
+\contentsline {section}{\tocsection {}{}{Acknowledgments}}{36}{section*.3}%
+\contentsline {section}{\tocsection {}{}{References}}{36}{section*.4}%

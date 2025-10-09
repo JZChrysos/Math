@@ -47,7 +47,9 @@
 	
 	(b): The difference between being contractible to a point $x$ and being \textit{deformation retractable} to $x$ is that in the former case, the homotopy need not keep $x$ fixed. $Y$ is contractible because it is a 1-dimensional CW complex with no cycles (i.e. a tree). Yet it is not deformation retractable to any point because every point of $Y$ has the property described in the second part of (a).\\
 	
-	(c): Here is a somewhat vague description of a weak deformation retraction to $Z$: every point $y\in Y$ has a single always-rightward path which extends to infinity through $Y$, so we let every point simultaneously walk along this path at the same constant rate. As a result, the ``bristles'' move together with the parallel section of $Z$, making the map continuous. At time $t=1$, the bristles will have all rejoined $Z$, making this a weak deformation retraction. But all points in $Z$ also moved, so it is not a true deformation retraction.
+	(c): Here is a somewhat vague description of a weak deformation retraction to $Z$: for every point $y\in Y$, there is a unique always-rightward path in $Y$ beginning at $y$. We can let every point simultaneously walk along its path at the same constant rate. As a result, the ``bristles'' move together with the parallel section of $Z$, making the map continuous. At time $t=1$, the bristles will have all rejoined $Z$, making this a weak deformation retraction. But all points in $Z$ also moved, so it is not a true deformation retraction.
+	
+	And moreover, we know that there can be no true deformation retraction because if there was, then we could compose it with a deformation retraction of $Z$ to a point, and get that $Y$ deformation retracts to a point, which we showed was impossible.
 \end{proof}
 
 \newpage 
@@ -55,14 +57,14 @@
 
 \noindent \textbf{Problem 3 (Hatcher 0.16)}: Show that $S^{\infty}$ is contractible.
 \begin{proof}
-	Let $x$ be the single point in the $0$-skeleton of $S^{\infty}$. Let $A_k^+,A_k^-$ be the upper and lower open half-$k$-sphere, so that $A_k^+\cap A_k^-=S^{k-1}$ and all $A_k^{\pm}$ contain $x$. Every loop at $x$ in $S^{\infty}$ is entirely contained in $A_k^+$ or $A_k^-$ for some finite $k$, and thus contractible to $x$. Thus $S^{\infty}$ is also contractible.
+	Let $x$ be the single point in the $0$-skeleton of $S^{\infty}$. Let $A_k^+,A_k^-$ be the upper and lower open half-$k$-sphere, so that $A_k^+\cap A_k^-=S^{k-1}$ and all $A_k^{\pm}$ contain $x$. Every loop at $x$ in $S^{\infty}$ is a product of loops entirely contained in $A_k^+$ or $A_k^-$ for some finite $k$, and thus contractible to $x$. Thus $S^{\infty}$ is also contractible.
 \end{proof}
 \newpage 
 
 
 \noindent \textbf{Problem 4 (Hatcher 0.20)}: Show that the space $X\subset \R^3$ formed by a Klein bottle intersecting itself in a circle is homotopy equivalent to $S^1\vee S^1 \vee S^2$.
 \begin{proof}
-	We can think of this Klein bottle embedded in $\R^3$ as a square with the usual Klein bottle edge-gluing and an additional identification of two disjoint circles.
+	The disk-shaped piece where the Klein-bottle intersects itself is contractible, thus we can collapse it to a point $p$ without changing the homotopy type of $X$. We now have a 2-cell with three points identified (those at $p$), which is homotopy-equivalent to a sphere with a three-pronged fork sticking into it. By collapsing the two paths connecting the three points of this fork, the fork becomes two loops. Thus we are left with $S^2\vee S^1\vee S^1$ as desired.
 \end{proof}
 \newpage 
 
@@ -70,23 +72,39 @@
 \noindent \textbf{Problem 5 (Hatcher 0.23)}: Show that a CW complex is contractible if it is the union of two contractible subcomplexes whose intersection is also contractible.
 
 \begin{proof}
-	Let $X,Y$ be two contractible CW-complexes with intersection $Z$, and let $x\in Z$. If $\ell$ is a loop at $x$ in $X\cup Y$, then 
+	Let $X,Y$ be two contractible CW-complexes with intersection $Z$. Since $Z$ is contractible and a subcomplex of both $X$ and $Y$, we can take the quotients $X'=X/Z$ and $Y'=Y/Z$. Note that $X'\simeq X$ and $Y'\simeq Y$, so both are contractible. Now 
+	$$X\cup Y \simeq (X\cup Y)/ Z \simeq X'\vee Y' \simeq \{\ast\}\vee \{\ast\} \simeq \{\ast\}$$ 
+	so $X\cup Y$ is contractible as well.
 \end{proof}
 
 \newpage 
 
 
-\noindent \textbf{Problem 6 (Hatcher 1.1.6)}: 
+\noindent \textbf{Problem 6 (Hatcher 1.1.6)}: Let $[S^1,X]$ be the set of homotopy classes of maps $S^1\to X$ \textit{without} specifying a basepoint. 
+There is a natural inclusion $\Phi:\pi_1(X,x)\to [S^1,X]$. Assuming $X$ is path-connected, show that $\Phi$ is surjective and that $\Phi([f])=\Phi([g])$ iff $[f]$ and $[g]$ are conjugate in $\pi_1(X,x)$. 
+
+\begin{proof}
+	Given any loop $\a$ in $X$, let $a=\a(0)=\a(1)$. Because $X$ is path-connected, we have a path $\gamma$ connecting $x$ with $a$. Then the path $\gamma \cdot \a \cdot \gamma^{-1}$ is a loop at $x$. And $\Phi(\gamma \a\gamma^{-1})=[\a]$ because the $\gamma$ part of the path can be smoothly contracted to the constant loop at $a$, leaving $\a$. Thus $\Phi$ is surjective.\\
+	
+	If $[f]$ and $[g]$ are conjugate in $\pi_1(X,x)$, i.e. if there is some loop $\gamma\in \pi_1(X,x)$ such that $\gamma f \gamma^{-1}\simeq g$, then $\Phi([f]) = \Phi([\gamma f \gamma^{-1}]) = \Phi([g])$. Conversely, if $\Phi([f])=\Phi([g])$, then there is a homotopy taking $f$ to $g$ so $[f]=[g]$.
+\end{proof}
 
 \newpage 
 
 
-\noindent \textbf{Problem 7 (Hatcher 1.1.13)}:
+\noindent \textbf{Problem 7 (Hatcher 1.1.13)}: Given a space $X$ and a path-connected subspace $A$ containing the basepoint $x$, show that the map $\pi_1(A,x)\to \pi_1(X,x)$ induced by the inclusion is surjective iff every path in $X$ with endpoints in $A$ is homotopic to a path entirely in $A$.
+\begin{proof}
+	Suppose that every path in $X$ with endpoints in $A$ is homotopic to one in $A$. Let $\a\in \pi_1(X,x)$. Then by the hypothesis, $\a$ is homotopic to a loop in $A$ (but not necessarily based at $x$) so let this loop be $\b$ with basepoint $b$. Then because $A$ is path-connected, we have a path $\gamma$ connecting $x$ to $b$, and $\gamma\cdot \b \cdot \gamma^{-1}$ is a path in $\pi_1(A,x)$ homotopic to $\a$.\\
+	
+	Conversely, suppose that the inclusion is surjective and let $\gamma$ be a path in $X$ with endpoints $p,q\in A$. Because $A$ is path-connected, there are paths $\a_1$ from $x$ to $p$ and $\a_2$ from $x$ to $q$. Thus we have a loop $\a_1 \cdot \gamma \cdot \a_2^{-1}\in \pi_1(X,x)$. By hypothesis, there is a loop $\b\in \pi_1(A,x)$ homotopic to this loop. The section of $\b$ corresponding to $\gamma$ in this homotopy is a path in $A$ homotopic to $\gamma$.  
+\end{proof}
 
 \newpage 
 
 
-\noindent \textbf{Problem 8 (Hatcher 1.1.20)}:
-
+\noindent \textbf{Problem 8 (Hatcher 1.1.20)}: Suppose $f_t:X\to X$ is a homotopy such that $f_0$ and $f_1$ are each the identity map. Use Lemma 1.19 to show that for $x\in X$, the loop $f_t(x)$ is in the center of $\pi_1(X,x)$.
+\begin{proof}
+	Let $\b$ be the loop $f_t(x)$. Lemma 1.19 says that for any loop $\a$ at $x$, $\b f_1(\a) \b^{-1} \simeq f_0(\a)$. In this case, since $f_1(\a)=f_0(\a)=1$, this implies that $\b \a \b^{-1}=\a$, i.e. $\b$ commutes with $\a$. Since $\a$ was arbitrary, this shows that $\b$ commutes with all of $\pi_1(X,x)$, and thus it is in the center. 
+\end{proof}
 
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  2 OCT 2025 12:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  9 OCT 2025 10:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -851,20 +851,62 @@ Underfull \hbox (badness 10000) in paragraph at lines 145--147
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 148--149
 
-[4] (./TopologyNotes.aux)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
+
+ []
+
+
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 163--165
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--177
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 183--185
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 203--205
+
+ []
+
+
+
+[5] (./TopologyNotes.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
 Package rerunfilecheck Info: File `TopologyNotes.out' has not changed.
-(rerunfilecheck)             Checksum: 33D12247EA8FCE51C6A09F2B2D16D8BF;678.
+(rerunfilecheck)             Checksum: 2DF15B22D5A5701E278D15251C28646A;842.
  ) 
 Here is how much of TeX's memory you used:
- 23320 strings out of 467748
- 436800 string characters out of 5431138
- 836441 words of memory out of 5000000
- 51455 multiletter control sequences out of 15000+600000
+ 23327 strings out of 467748
+ 436846 string characters out of 5431138
+ 836467 words of memory out of 5000000
+ 51460 multiletter control sequences out of 15000+600000
  633776 words of font info for 64 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  103i,15n,108p,602b,959s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -880,10 +922,10 @@ exlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/202
 5/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2025/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2025/texmf-dist/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on TopologyNotes.pdf (4 pages, 172696 bytes).
+Output written on TopologyNotes.pdf (5 pages, 183608 bytes).
 PDF statistics:
- 118 PDF objects out of 1000 (max. 8388607)
- 85 compressed objects within 1 object stream
- 10 named destinations out of 1000 (max. 500000)
- 45 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 127 PDF objects out of 1000 (max. 8388607)
+ 93 compressed objects within 1 object stream
+ 12 named destinations out of 1000 (max. 500000)
+ 53 words of extra memory for PDF output out of 10000 (max. 10000000)
 
