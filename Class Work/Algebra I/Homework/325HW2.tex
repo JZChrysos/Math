@@ -53,6 +53,78 @@ $$\dim_k(\End_A M) \leq \dim_k M \leq \dim_k A.$$
 (here $\leq$ is the order on cardinals).
 
 \begin{proof}
-	Pick some $m\in M$ and let $f:\End M \to M$ be defined by $f:\ph\mapsto \ph(m)$. Since $M$ is simple, 
+	Pick some nonzero $m\in M$ and let $f:\End_A M \to M$ be defined by $f:\ph\mapsto \ph(m)$. $f$ is injective as follows: suppose $\ph,\psi\in \End_A M$ and $\ph(m)=\psi(m)$. Then define $M'\subseteq M$ by
+	$$
+	M' := \{m'\in M: \ph(m')=\psi(m')\}.
+	$$
+	Because $\ph$ and $\psi$ are linear, $M'$ is a submodule of $M$. But $M$ is simple, so $M'$ is either $0$ or $M$. If it is $0$ then no such $\ph,\psi$ exist, thus $f$ is injective. If $M'=M$, then $\End_A M$ is trivial. In either case, $\dim_k(\End_AM) \leq \dim_k M$.\\
+	
+	For the other inequality, let $g:A\to M$ be the map $g:a\mapsto a\cdot m$. The image of $g$ is a submodule of $M$, but $M$ is simple so $\im(g)$ must be $0$ or $M$ and it is clearly not $0$ because $g(1)=m\neq 0$. Thus $g$ is surjective, establishing that $\dim_kM \leq \dim_k A$.
+\end{proof}\\
+
+\newpage
+\noindent \textbf{Problem 4}: Let $A$ be a ring with nonzero idempotent $e=e^2$. Note that the set $eAe$ forms a ring with unit $e$. Prove the following:
+\begin{enumerate}[(a)]
+	\item For any left $A$-module $M$, there is a natural $eAe$-module structure on $eM$. Furthermore, for any $A$-modules $M,N$, there is a natural morphism of additive groups $f:\Hom_A(M,N)\to \Hom_{eAe}(eM,eN)$.
+	\item Multiplication on the right gives an algebra isomorphism $(eAe)^{\rm{op}} \to \Hom_A(Ae,Ae)$.
+	\item Assuming that $AeA=A$, the map $f$ in (a) is a bijection.
+	\item Assuming $AeA=A$, an $A$-module $M$ is simple iff the $eAe$-module $eM$ is simple (and similarly for direct sums of simple modules).
+	\item (optional) Assuming $AeA=A$, there is an algebra isomorphism $A^{\rm{op}}\to \Hom_{eAe}(eA,eA)$.
+\end{enumerate}
+
+\begin{proof}
+	(a): To give a module structure we have to specify how scaling and addition work. They are as follows:
+	$$
+	eae \cdot em = e(aem) \in eM, \;\;\; em_1 + em_2 = e(m_1+m_2)\in eM.
+	$$
+	For the morphism $f:\Hom_A(M,N)\to \Hom_{eAe}(eM,eN)$, take
+	$$
+	f: \ph \mapsto \big(em \mapsto e \ph(m) \in eN\big).
+	$$
+	To verify that $f(\ph)$ is indeed $eAe$-linear, 
+	$$
+	f(\ph)(eae \cdot em) = e \ph(aem) = eae \ph(m) = eae\cdot  f(\ph)(em)
+	$$
+	$$
+	f(\ph)(em_1 + em_2) = e\ph(m_1+m_2) = e\ph(m_1) + e\ph(m_2)=f(\ph)(em_1) + f(\ph)(em_2).
+	$$\\
+	
+	(b): For $ebe\in eAe$, we have the associated linear map $Ae\to Ae$ given by
+	$$
+	\Phi(ebe) = ae \mapsto ae \cdot ebe = (aeb)e \in Ae.
+	$$
+	This map $\Phi:(eAe)^{\rm{op}}\to \Hom_A(Ae,Ae)$ is an algebra homomorphism; it is clearly linear, and to show that it is multiplicative,
+	$$
+	\Phi(ebe) \circ \Phi(ece) = \big(ae \mapsto ae\cdot ece \cdot ebe = aecebe\big) = \Phi(ece \cdot ebe)
+	$$
+	(note that the order is switched, reflecting the oppositeness of $(eAe)^{\rm{op}}$).
+	To show that it is an isomorphism, we have the inverse 
+	$$
+	\Phi^{-1}: \ph \mapsto e\ph(e)
+	$$ 
+	and one can check that $\Phi,\Phi^{-1}$ are indeed inverses:
+	$$
+	(\Phi^{-1}\circ \Phi)(ebe) = \Phi^{-1}\big(ae \mapsto (aeb)e\big) = eeebe = ebe
+	$$
+	and 
+	$$
+	(\Phi\circ \Phi^{-1})(\ph) = \Phi(e\ph(e)) = \big(ae \mapsto ae e\ph(e) = \ph(ae)\big) = \ph.
+	$$\\
+	
+	(c): With the assumption that $AeA=A$, there is some linear combination $\sum_{i=1}^n a_ieb_i = 1$ where $a_i,b_i\in A$. Thus, any $m$ can be expressed as a $A$-linear combination of elements in $eM$:
+	$$
+	m = \sum_{i=1}^n a_i\cdot e(b_im).
+	$$
+	Using this idea, we can define the inverse of $f$ as
+	$$
+	f^{-1}: \ph \mapsto \big(m \mapsto \sum_{i=1}^na_i \cdot \ph(eb_im)\big).
+	$$
+	It is simple to check that these are inverses.\\
+	
+	(d): By (c), homomorphisms $M\to N$ are in bijection with those $eM\to eN$, thus $M$ is a nontrivial submodule of $N$ iff $eM$ is of $eN$, and hence $M$ is simple iff $N$ is simple.\\
+	
+	
+	
 \end{proof}
+	
 \end{document}

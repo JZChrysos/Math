@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  8 OCT 2025 19:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  9 OCT 2025 19:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -781,7 +781,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 27--28
 
 [1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-[2] (./325HW2.aux)
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 59--61
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 62--64
+
+ []
+
+
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 90--91
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 112--113
+
+ []
+
+
+
+[4] (./325HW2.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
@@ -790,9 +814,9 @@ Package rerunfilecheck Info: File `325HW2.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 23162 strings out of 467748
- 432801 string characters out of 5431138
- 824368 words of memory out of 5000000
+ 23169 strings out of 467748
+ 432843 string characters out of 5431138
+ 828368 words of memory out of 5000000
  51305 multiletter control sequences out of 15000+600000
  633174 words of font info for 62 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
@@ -807,10 +831,10 @@ cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.
 pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/t
 exlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texli
 ve/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on 325HW2.pdf (2 pages, 112663 bytes).
+Output written on 325HW2.pdf (4 pages, 127088 bytes).
 PDF statistics:
- 78 PDF objects out of 1000 (max. 8388607)
- 51 compressed objects within 1 object stream
- 6 named destinations out of 1000 (max. 500000)
+ 94 PDF objects out of 1000 (max. 8388607)
+ 65 compressed objects within 1 object stream
+ 13 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

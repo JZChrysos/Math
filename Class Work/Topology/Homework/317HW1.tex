@@ -12,7 +12,7 @@
 \noindent \textbf{Problem 1 (Hatcher 0.4)}: A deformation retraction ``in the weak sense'' of $X\to A$ is a homotopy $f_t:X\to X$ such that $f_0$ is the identity map on $X$, $f_1$ is a map $X\to A$, and $f_t(A)\subseteq A$ for all $t\in [0,1]$ (this is weaker because it does not require $f_t$ be \textit{constant} on $A$). Show that if such a map exists, then the inclusion $\iota:A\to X$ is a homotopy equivalence.
 
 \begin{proof}
-	To show that $\iota$ is a homotopy equivalence it is sufficient and necessary to produce an inverse up to homotopy. This inverse will be $f_1$. The composition $\iota \circ f_1:X\to X$ is homotopic to $\id_X$ via $f_t$. $f_1\circ \iota:A\to A$ is also not necessarily $\id_A$, but is homotopic to $\id_A$ via $f_t$ (here we need the fact that $f_t$ is always a map $A\to A$).
+	To show that $\iota$ is a homotopy equivalence it is sufficient and necessary to produce an inverse up to homotopy. This inverse will be $f_1$. The composition $\iota \circ f_1:X\to X$ is homotopic to $\id_X$ via $f_t$. $f_1\circ \iota:A\to A$ is also not necessarily $\id_A$ (as it would be if $f_t$ were a deformation retraction), but is homotopic to $\id_A$ via $f_t|_A$ (here we need the fact that $f_t$ is a weak deformation retraction, which makes $f_t|_A$ a map $A\to A$).
 \end{proof}
 
 \newpage 
@@ -57,7 +57,7 @@
 
 \noindent \textbf{Problem 3 (Hatcher 0.16)}: Show that $S^{\infty}$ is contractible.
 \begin{proof}
-	Let $x$ be the single point in the $0$-skeleton of $S^{\infty}$. Let $A_k^+,A_k^-$ be the upper and lower open half-$k$-sphere, so that $A_k^+\cap A_k^-=S^{k-1}$ and all $A_k^{\pm}$ contain $x$. Every loop at $x$ in $S^{\infty}$ is a product of loops entirely contained in $A_k^+$ or $A_k^-$ for some finite $k$, and thus contractible to $x$. Thus $S^{\infty}$ is also contractible.
+	Let $x$ be the single point in the $0$-skeleton of $S^{\infty}$. Let $S^n$ be the $n$-skeleton of $S^{\infty}$, i.e. the $n$-sphere. For $n\geq 2$, $S^n$ is contractible, as we've seen. Now, every loop $\a$ at $x$ in $S^{\infty}$ lies entirely in $S^n$ for some $n$. This follows because the open sets $\a^{-1}(S^n)$ cover $[0,1]$, hence by compactness there is a finite subcover which has some maximum $n$. For this $n$, $\a$ is contained entirely in $S^n$, thus it is contractible. This shows that all loops at $x$ in $S^{\infty}$ are contractible, thus $S^{\infty}$ is contractible.
 \end{proof}
 \newpage 
 
