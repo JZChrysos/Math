@@ -1,0 +1,12 @@
+# Fdb version 4
+["pdflatex"] 1760136108.11749 "preamble_general.tex" "preamble_general.pdf" "preamble_general" 1760136169.09233 2
+  "c:/texlive/2025/texmf-dist/web2c/texmf.cnf" 1759065004 42213 4e2ca030e8e2640502016e9e45868dcb ""
+  "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1759120897 3629003 76f0091aed9c9448add1a79aea0ca90b ""
+  "c:/texlive/2025/texmf.cnf" 1759119733 713 614551405fc44b98efbf516466e3c909 ""
+  "preamble_general.aux" 1760136100 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "preamble_general.tex" 1759941182 7788 24e6111dc0660bd033e767291a79e90b ""
+  (generated)
+  "preamble_general.aux"
+  "preamble_general.log"
+  "preamble_general.pdf"
+  (rewritten before read)

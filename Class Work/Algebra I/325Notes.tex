@@ -255,9 +255,147 @@ Then,
 	
 	If $a$ is not algebraic, then by the Lemma, there is no linear relation between any finitely-many $(a-\lambda)^{-1}$ for $\lambda\not\in \Spec(a)$. We assumed that $\dim(A)$ is at most countable, and it has an independent set of size $|k\setminus \Spec(a)|$, so $\Spec(a)$ must be uncountable (because $k$ is).\\
 	
+	(ii): If $a^n=0$, then $0\in \Spec(a)$ because $a$ is not invertible, but all other $(a-\lambda)$ are invertible:
+	$$
+	(a-\lambda)(a^{n-1}+a^{n-2}\lambda + a^{n-3}\lambda^2 + \dots + \lambda^{n-1}) = a^n-\lambda^n = -\lambda^n.
+	$$
+	so
+	$$
+	(a-\lambda)^{-1} = -\lambda^{-n}(a^{n-1}+a^{n-2}\lambda + a^{n-3}\lambda^2 + \dots + \lambda^{n-1}).
+	$$
+	Conversely, suppose that $\Spec(a)=\{0\}$. $\{0\}$ is a finite set, so by part (i), $a$ is algebraic, but its minimal polynomial only has root $a=0$, so $a^n=0$ for some $n$.
+	\\
+	
 	(iii): Assume for contradiction that $A$ is a division algebra yet $\exists a\in A\setminus k$. Then $(a-\lambda)$ is invertible for all $\lambda \in k$, but then $\Spec(a)$ would be empty, contradicting (i).
-\end{proof}
+\end{proof}\\
 
+\subsection{Modules}
 
+A module $M$ over ring $A$ is called \textit{simple} if it is nonzero and has no proper nontrivial submodules (i.e. its only submodules are $0$ and $M$).\\
+
+\noindent \textbf{Schur's Lemma}: If $f:M\to N$ is an $A$-linear map between \textit{simple} $A$-modules $M$ and $N$, then $f$ is either $0$ or an isomorphism.
+\begin{proof}
+	$\ker(f)$ is a submodule of $M$ and $\im(f)$ is a submodule of $N$. By simplicity, both must be either trivial or the full module. This implies that $f$ is either injective or 0, and either surjective or 0.
+\end{proof}\\
+
+As a corollary, we see that $\End_AM$ is a division ring.\\
+
+\noindent \textbf{Schur's Lemma for Algebras}: If $A$ is a $k$-algebra and $M$ a simple $A$-module either 
+\begin{itemize}
+	\item $k$ is algebraically closed and either $A$ or $M$ is finite-dimensional over $k$.
+	\item $k=\C$ and either $A$ or $M$ is countable-dimension over $k$.
+\end{itemize}
+Then, $\End_AM = k \id_M$.
+\begin{proof}
+	On HW we showed that $\dim(\End_AM) \leq \dim_A M$. The lemma can be proven by applying the spectral theorem to the algebra $\End_AM$.
+\end{proof} \\
+
+If $A$ satisfies the hypotheses of the Spectral Theorem and $M$ is a simple $A$-module, then the center $Z$ of $A$ acts in $M$ by scalars, as $z\cdot am = az\cdot m$ for $z\in Z, a\in A, m\in M$. And in particular if $A$ is commutative then $\dim_k M=1$ because every subspace of $M$ is $A$-stable.\\
+
+\noindent \textbf{Schur's Lemma for Group Representations}: If $V,W$ are representations of a group $G$ over a field $k$,
+\begin{enumerate}[(i)]
+	\item If $V,W$ are irreducible then all intertwiners are either 0 or isomorphisms.
+	\item If $\dim_k(V)$ is finite and $k$ is algebraically closed or $k=\C$ and $|G|=\aleph_0$, then 
+	$$
+	\End_GV= k\cdot \id_V.
+	$$
+\end{enumerate}
+\begin{proof}
+	This follows from applying Schur's Lemma for Algebras. A representation of $G$ corresponds to a module over the group algebra $A:= kG$. Note that $\dim_k(A) = |G|$.
+\end{proof}\\
+
+\subsection{Representations of $S_n$} $S_n$ acts on $\R^n$ by permuting the coordinates. We have the sign representation given by taking the determinant.\\
+
+$S_n$ also acts on $P_d$ by permuting the variables:
+$$
+\sigma(f)(x_1,\dots,x_n) := f(x_{\sigma^{-1}(1)},x_{\sigma^{-1}(2)},\dots,x_{\sigma^{-1}(n)}).
+$$
+Motivated by this action, we can consider the symmetric polynomials $P^{S_n}$.\\
+
+A \textit{partition} of $n$ is a finite non-increasing sequence of positive integers $\lambda_1\geq \dots \geq \lambda_k$ whose sum is $n$. Let the set of partitions of $n$ be $\PP_n$. Corresponding to a partition, we have a decomposition of $[1,n]$ into $I_1,I_2,\dots,I_k$ of length $|I_j|=\lambda_j$.\\
+
+The \textit{Vandermonde Determinant} is the polynomial
+$$
+\Delta_n := \prod_{1\leq i < j \leq n} (x_j-x_i)
+$$
+which can also be written as the determinant 
+$$
+\det \begin{pmatrix}
+	1 & 1 & \dots & 1\\
+	x_1 & x_2 & \dots & x_n \\
+	x_1^2 & x_2^2 & \dots & x_n^2\\
+	\vdots & \vdots & \ddots & \vdots \\
+	x_1^{n-1} & x_2^{n-1} & \dots & x_n^{n-1}
+\end{pmatrix}
+$$
+Corresponding to a given partition $\lambda$, define
+$$
+\Delta(I_m) := \prod_{i<j \in I_m} (x_j-x_i)
+$$
+and 
+$$
+\Delta_{\lambda} := \prod_m \Delta(I_m).
+$$
+$\Delta_{\lambda}$ is a homogeneous polynomial, and its degree is 
+$$
+d := \sum_{m} \frac{\lambda_m(\lambda_m-1)}{2}
+$$
+so $\Delta_{\lambda}\in P_d$.\\ 
+
+The \textit{Specht Module} associated with $\lambda$, denoted $V(\lambda)$ is the $k$-span of $\Delta_{\lambda}$ under the action of $S_n$. It is clearly stable under the action of $S_n$.\footnote{This is not the most common way to construct the Specht module of $\lambda$.}\\
+
+Examples:
+\begin{itemize}
+	\item Let $\lambda = (1,1,1,\dots,1)$. Then $\Delta_{\lambda} = 1$,  and $V(\lambda) = P_0$, the constant polynomials. The action of $S_n$ on $V(\lambda)$ is trivial. Thus, this $\lambda$ represents the trivial representation.
+	\item Let $\lambda = (n)$. Then $\Delta_{\lambda} = \Delta_n$, the entire Vandermonde determinant. Since this is just a determinant whose columns are permuted by the action of $S_n$, the action scales by the sign of the permutation. This makes $V(\lambda) = k\Delta_n$, which is one-dimensional. It is the sign representation of $S_n$.
+\end{itemize}
+Note that in all of these cases $V(\lambda)$ is irreducible. This is actually true in general:\\
+
+\textbf{Theorem}: Assuming that the underlying field $k$ is characteristic 0, the Specht module is always an irreducible representation. Moreover, all irreps of $S_n$ can be expressed as $V(\lambda)$ for some partition $\lambda$.\footnote{It is also true that $V(\lambda)$ is a subspace of the $S_n$-harmonic polynomials (as defined on HW) and the index is $\dim(V(\lambda))$.}
+
+\begin{proof}
+	The proof has three steps. The first step will be to show that $V(\lambda)$ is irreducible, which we do on homework. Step 2 is that the number of irreducible representations of $S_n$ is equal to the number of partitions of $n$. Step 3 will show that the modules $V(\lambda)$ are pairwise non-isomorphic for different $\lambda$, and hence we have a bijection.\\
+	
+	Step 3: In homework (it is fairly clear I think) we showed that if $d_{\mu}\neq d_{\lambda}$ then $V(\mu)\not\cong V(\lambda)$, so it remains to show this for $\mu,\lambda$ that have equal degree.
+	
+	Notation: for $\nu \in \Z_{\geq 0}^n$ (note: may have repeats!), $S_n$ acts on $\nu$ in the natural way. Let $m_j(\nu)$ denote the number of elements of $\nu$ that are equal to $j$ (this is invariant under $S_n$). Let $\nu(\lambda)$ be 
+	$$
+	\nu(\lambda) := (1,2,\dots,\lambda_1,1,2,\dots,\lambda_2,\dots ,1,2,\dots,\lambda_n).
+	$$
+	Then $m_j(\nu(\lambda))$ is the length of the $j$th column in the Young diagram of $\lambda$, $D(\lambda)$. Or equivalently, the $m_j$ form another partition corresponding to the transposed Young diagram $D^T(\lambda)$.
+	
+	Similarly, we can apply all this to polynomials in $n$ variables. The monomial $x^{\nu}$ is
+	$$
+	x^{\nu} := \prod_{j=1}^nx_j^{\nu_j}
+	$$
+	so that for a partition $\lambda$,
+	$$
+	x^{\nu(\lambda)} := \prod_{i=1}^k \prod_{j=1}^{\lambda_i} x_{\lambda_i + j}^{j}.
+	$$
+	Recall that $\Delta_{\lambda}$ is defined in terms of Vandermonde determinants, which are expressed as
+	$$
+	\Delta_n = \sum_{\sigma \in S_n} \sgn(\sigma) x_1^{\sigma(1)-1}\cdots x_n^{\sigma(n)-1}.
+	$$
+	And for $\Delta_{\lambda}$, we have a similar thing but with Young subgroups:
+	$$
+	\Delta_{\lambda} = \sum_{\sigma \in S_{\lambda}} \sgn(\sigma) x_1^{\sigma(1)-1} \cdots x_n^{\sigma(n)-1} =  \frac{1}{x_1x_2\cdots x_n} \sum_{\sigma \in S_{\lambda}} \sgn(\sigma) x^{s(\nu(\lambda))}. 
+	$$
+	Now, if $V(\mu)=V(\lambda)$, then $\Delta_{\mu}\in V(\lambda)$, i.e. it is a linear combination of permutations of $\Delta_{\lambda}$. So for example, the monomial $x^{\nu(\mu)}$ appears as $x^{\sigma(\nu(\lambda))}$ for some $\sigma$. But we can show that this fails (\textit{fill in later}).
+\end{proof}\\
+
+The \textit{Young Subgroup} of $S_n$ corresponding to $\lambda$ consists of all permutations which preserve all the pieces $I_m$. It is denoted $S_{\lambda}$ and is isomorphic to $S_{\lambda_1}\times S_{\lambda_2} \times \dots \times S_{\lambda_k}$.
+
+Define $P^{S_{\lambda}}$ to be the polynomials fixed by $S_{\lambda}$, and $P^{\sgn(\lambda)}$ the polynomials on which $S_{\lambda}$ acts in an anti-symmetric way. We can see that $P^{\sgn(\lambda)}$ is stable under scaling by $P^{S_{\lambda}}$, i.e. it is a $P^{S_{\lambda}}$-submodule.\\
+
+\textbf{Lemma}: Let $F:V(\lambda)\to P_d$ be an $S_n$-intertwiner. Then
+\begin{enumerate}
+	\item If $d=d_{\lambda}$, then $F$ acts by scaling.
+	\item If $d<d_{\lambda}$, then $F$ is trivial.
+\end{enumerate}
+\begin{proof}
+	For $s\in S_{\lambda}$, $s(F(\Delta_{\lambda})) = F(s(\Delta_{\lambda}))$, and $s(\Delta_{\lambda}) = \sgn_{\lambda}(s)\cdot \Delta_{\lambda}$, so $F$ acts by scaling. \textit{fill in later}
+\end{proof}\\
+
+In general, we can see that $V(\lambda^t) = V(\lambda)\otimes \sgn$.
 
 \end{document}
