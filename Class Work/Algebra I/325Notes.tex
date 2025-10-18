@@ -396,6 +396,25 @@ Define $P^{S_{\lambda}}$ to be the polynomials fixed by $S_{\lambda}$, and $P^{\
 	For $s\in S_{\lambda}$, $s(F(\Delta_{\lambda})) = F(s(\Delta_{\lambda}))$, and $s(\Delta_{\lambda}) = \sgn_{\lambda}(s)\cdot \Delta_{\lambda}$, so $F$ acts by scaling. \textit{fill in later}
 \end{proof}\\
 
-In general, we can see that $V(\lambda^t) = V(\lambda)\otimes \sgn$.
+In general, we can see that $V(\lambda^t) = V(\lambda)\otimes \sgn$.\\
+
+\subsection{Hilbert's Nullstellensatz} 
+Let $k$ be an algebraically closed field and let $P=k[x_1,\dots,x_n]$. An \textit{algebraic} subset of $k^n$ is the vanishing set of an ideal $I\subset P$, denoted $V(I)$. In the other direction, we have an ideal $I_V$ corresponding to polynomials vanishing on a given algebraic set $V$.\\
+
+For any ideal $I\subset P$, there is a \textit{radical} of $I$, denoted $\sqrt{I}$, which consists of all elements of $P$ for which some power lies in $I$. Note that $V(I)=V(\sqrt{I})$. Moreover, ideals of the form $I_V$ are already radical. The interesting thing is that the correspondence goes both ways:\\
+
+\textbf{Nullstellensatz}: Algebraic sets are in bijection with \textit{radical} ideals of $P$, via $V \mapsto I_V$ and $V(I) \mapsfrom I$. This bijection restricts to one between single points of $k^n$ and maximal ideals of $P$.
+\begin{proof}
+	We will show that $I_{V(I)}=\sqrt{I}$, the content of which is that every polynomial $f$ vanishing on $V(I)$ has $f^n\in I$ for some $n$.\\
+	
+	Lemma: for $z\in k^n$, let $\ev_z:P\to k$ be the algebra homomorphism given by evaluation at $z$, i.e. $\ev_z: f\mapsto f(z)$. In fact, \textit{every} algebra homomorphism $\chi: P\to k$ is $\ev_z$ for some $z$. In particular, take $z=(\chi(x_1),\chi(x_2),\dots,\chi(x_n))$ and note that $\chi(f) = \ev_z(f).$\\
+	
+	Now, let $A$ be a commutative $k$-algebra as in the setting of the Spectral theorem (i.e. finite-dimensional or countable dimension with uncountable $k$). We claim that all maximal ideals of $A$ have the form $\ker(\chi)$ for some algebra homomorphism $\chi: A \to k$, and moreover $\Spec(a)$ is exactly $\{\chi(a) : \chi\in \Hom(A,k)\}$.
+	
+	To prove the first statement: let $I\subset A$ be a maximal ideal. This implies that $A/I$ is a field, and in particular a division algebra, so the spectral theorem implies that $A/I=k$. Thus the projection onto $I$ gives a character $A\to A/I=k$.
+	
+	
+\end{proof}
+
 
 \end{document}

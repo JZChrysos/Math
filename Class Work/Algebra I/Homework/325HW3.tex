@@ -1,0 +1,124 @@
+\documentclass{amsart}
+
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Math 325 HW 3}
+\author{Jalen Chrysos}
+
+\begin{document}
+	\maketitle	
+	
+	
+	\textbf{Problem 1}: Prove that $P^{\sign_{\lambda}}$ is a rank 1 free $P^{S_{\lambda}}$-module with generator $\Delta_{\lambda}$.
+	\begin{proof}
+		$\Delta_{\lambda}\in P^{\sign_{\lambda}}$ because each $\sigma \in S_{\lambda}$ is the product of permutations $\sigma_m$ on each index set $I_m$, each of which acts on $\Delta(I_m)$ as multiplication by $\sign(\sigma_m)$ (because the determinant is alternating), so their product also acts on $\Delta_{\lambda}$ as multiplication by $\sign(\sigma_1)\cdot \sign(\sigma_2)\cdots \sign(\sigma_k) = \sign(\sigma)$.\\
+		
+		Moreover, I claim that \textit{every} polynomial in $P^{\sign_{\lambda}}$ is a multiple of $\Delta_{\lambda}$. For any $p\in P^{\sign_{\lambda}}$, $(x_j-x_i)|p$ for all pairs $i<j \in I_m$, as swapping $x_i,x_j$ inverts $p$. To show this, express $p$ as a polynomial in $x_i,x_j$ with coefficients in $k[x_1,\dots,\hat{x_{i}},\dots, \hat{x_j},\dots,x_n]$, and note that the coefficients of terms $x_i^{e_1}x_j^{e_2}$ and $x_i^{e_2}x_j^{e_1}$ must add to 0 (since swapping $x_i,x_j$ inverts $p$). Thus, $p$ is a linear combination of terms $(x_i^{e_1}x_j^{e_2}-x_i^{e_2}x_j^{e_1})$, each of which is a multiple of $(x_i-x_j)$. Now, since $p$ must be a multiple of $(x_i-x_j)$ for all such $i,j$, and these polynomials are all irreducible, their product $\Delta_{\lambda}$ must also divide $p$, which was the desired result.
+	\end{proof}
+	
+	\newpage 
+	
+	\textbf{Problem 2}: 
+	\begin{enumerate}[(a)]
+		\item Prove that all polynomials $f\in V(\lambda)$ are $S_n$-harmonic.
+		\item (Optional) Show that there is no nonzero homogeneous $S_n$-harmonic polynomial $f$ of degree greater than $\deg(\Delta_n)$ (which is ${n \choose 2}$).
+	\end{enumerate}
+	\begin{proof}
+		(a): To be $S_n$-harmonic means that for any \textit{symmetric} polynomial $p$, $\<p(\partial),f\>=0$.
+		
+%		To show this for $f\in V(\lambda)$, it suffices to check only $\Delta_{\lambda}$, since every basis element of $V(\lambda)$ is $\sigma(\Delta_{\lambda})$ for some $\sigma\in S_n$ and 
+%		$$
+%		\<p(\partial),f\> = \<\sigma(p)(\partial),\sigma(f)\> = \<p(\partial),\sigma(f)\> 
+%		$$
+%		for symmetric $p$.\\
+		
+		For $p\in P_d^{S_n}$, $p$ induces a linear map $p(\partial): V(\lambda)\to P_{d_{\lambda}-d}$ which is an $S_n$-intertwining map because $p$ is symmetric. Thus, by Lemma 4.2.7, this map must be the constant zero map.
+	\end{proof}
+	
+	\newpage
+	\textbf{Problem 3}: Using Lemmas 4.2.7 and 4.2.9, deduce Corollary 4.2.11:
+	\begin{enumerate}[(a)]
+		\item The representation $V(\lambda)$ is irreducible.
+		\item If $d_{\lambda} = d_{\mu}$ and $V(\lambda) \cong V(\mu)$ then $V(\lambda) = V(\mu)$ as subspaces of $P_{d_{\lambda}}=P_{d{\mu}}$.
+		\item If $d_{\lambda} \neq d_{\mu}$ then $V(\lambda)\not\cong V(\mu)$.
+	\end{enumerate}
+	\begin{proof}
+		(a): Every permutation is a unitary operator, so every $S_n$-representation is unitary and hence completely reducible. Thus $V(\lambda)$ is completely reducible. So we can use Lemma 4.2.9 to say that $V(\lambda)$ is irreducible iff $\dim_k(\End_{S_n}V(\lambda)) = 1$. And Lemma 4.2.7 showed that the only $S_n$-intertwining maps $V(\lambda)\to P_{d_{\lambda}}$ are scaling by some constant in $\C$, which implies in particular that maps in $\End_{S_n}V(\lambda)$ are also scaling by constants, and hence it is dimension 1. Thus, $V(\lambda)$ is irreducible. \\
+		
+		(b): By Lemma 4.2.7, if $d_{\mu}=d_{\lambda}$, any $S_n$-intertwiner $V(\lambda)\to V(\mu)$ must be scaling by a constant. Thus, if $V(\mu)\cong V(\lambda)$ then the intertwiner between them is a constant, so the subspaces $V(\mu)$ and $V(\lambda)$ are actually the same.\\
+		
+		(c): Likewise, if $d_{\mu}\neq d_{\lambda}$ then any $S_n$-intertwiner $V(\lambda)\to P_{d_{\mu}}$ must be trivial, so in particular there can be nonzero map $V(\lambda)\to V(\mu)$.
+	\end{proof}
+	
+	\newpage
+	\textbf{Problem 4}: Prove the generating function identity
+	$$
+	\sum_{d\geq 0} \dim(P_d^{S_n}) t^d = \frac{1}{(1-t)(1-t^2)\cdots(1-t^n)}.
+	$$
+	\begin{proof}
+		$P_d^{S_n}$ has a basis consisting of the $S_n$-orbits of monomials in $P_d$, and these correspond to partitions of $d$ with at most $n$ parts (for the degrees of the $n$ variables $x_1,\dots,x_n$). To express the number of such partitions as a generating function, it is easier to count the transposed partitions, i.e. those which have parts of size no larger than $n$ (the count will be the same, naturally). To do this, take the infinite power series  
+		$$
+		Q(t) := (1+t+t^2+\cdots)(1+t^2+t^4+\cdots)\cdots (1+t^n+t^{2n}+\cdots).
+		$$
+		One can see by expanding the products that the $t^d$ term of $Q(t)$ is equal to the number of ways to partition $d$ into parts of size no larger than $n$. And $Q$ can be expressed using the geometric series identity as
+		$$
+		Q(t) = \bigg(\frac{1}{1-t}\bigg)\bigg(\frac{1}{1-t^2}\bigg)\cdots \bigg(\frac{1}{1-t^n}\bigg)
+		$$
+		as desired.
+	\end{proof}
+	
+	\newpage 
+	\textbf{Problem 5}: (Optional) Show that $P$ is a free $P^{S_n}$ module with basis 
+	$$
+	\{x_2^{m_2}x_3^{m_3}\cdots x_n^{m_n} | m_j \in [0,j-1] \forall j\}.
+	$$
+	
+	\newpage 
+	\textbf{Problem 6}: Let $g\in \GL_n(\C)$ be a diagonal matrix with diagonal entries $z_1,\dots,z_n$, and $\sigma\in S_d$ a permutation. Consider the linear operator $(\C^n)^{\otimes d}\to(\C^n)^{\otimes d}$ given by composing the action of $\sigma$ with that of $g$, i.e.
+	$$
+	v_1\otimes \cdots \otimes v_d \mapsto g(v_{\sigma^{-1}(1)})\otimes \cdots \otimes g(v_{\sigma^{-1}(d)}).
+	$$
+	Show that its trace is
+	$$
+	\prod_{j\geq 1} ((z_1)^j + \cdots + (z_n)^j)^{m_j}
+	$$
+	where $m_j$ is the number of cycles of length $j$ in the cycle type of $\sigma$.
+	\begin{proof}
+		For any basis element $e_{i_1}\otimes e_{i_2}\otimes \cdots \otimes e_{i_d}$, this operator $\Phi$ acts as
+		$$
+		e_{i_1}\otimes \cdots \otimes e_{i_d} \mapsto g(e_{i_{\sigma^{-1}(1)}}) \otimes \cdots \otimes g(e_{i_{\sigma^{-1}(d)}}) = (z_{i_{\sigma^{-1}(1)}}\cdots z_{i_{\sigma^{-1}(d)}}) (e_{i_{\sigma^{-1}(1)}}\otimes \cdots \otimes e_{i_{\sigma^{-1}(d)}}).
+		$$
+		To get the trace, we only need to consider these products for basis elements which are scaled by $\Phi$, i.e. those for which $i_t = i_{\sigma^{-1}(t)}$ for all $1\leq t \leq d$. That is, for each cycle $(t_1 \; t_2 \; t_3 \; \dots \; t_j)$ in $\sigma$, $$i_{t_1}=i_{t_2}=\dots=i_{t_j} \in \{1,\dots,n\}.$$
+		In choosing such a basis element, then, there is one choice to be made for each cycle in $\sigma$. If $i$ is chosen as the index of a cycle, that contributes a multiplication by $z_i^j$ to the corresponding diagonal element (where $j$ is the length of the cycle). Let $\rm{cyc}(\sigma)$ denote the set of disjoint cycles whose product is $\sigma$. The sum of all possible diagonal elements, i.e. the trace, is the sum over all choice functions $f:\rm{cyc}(\sigma)\to \{1,\dots,n\}$ of
+		$$
+		\prod_{c\in \rm{cyc}(\sigma)} z_{f(c)}^{|c|}
+		$$
+		which is the expanded form of the product
+		$$\prod_{c\in \rm{cyc}(\sigma)} (z_1^{|c|} + z_2^{|c|} + \dots + z_n^{|c|}) =
+		\prod_{j\geq 1} ((z_1)^j + \cdots + (z_n)^j)^{m_j}
+		$$
+		as desired.
+	\end{proof}
+	
+	\newpage 
+	\textbf{Problem 7}: (Optional)
+	
+	\newpage 
+	\textbf{Problem 8}: Let $A$ be an algebra over an ACF $k$. Let $V_1,\dots,V_r$ be pairwise non-isomorphic simple finite-dimensional $A$-modules, and 
+	$$
+	N := (V_1)^{\ell_1}\oplus \cdots \oplus (V_r)^{\ell_r}
+	$$ 
+	for some positive integers $\ell_j$. Use Schur's Lemma to prove:
+	\begin{enumerate}[(a)]
+		\item Any simple $A$-submodule $V\subseteq N$ is isomorphic to $V_i$ for some $i$, and in this case $V$ is contained in $(V_i)^{\ell_i}$.
+		\item The algebra $\End_A(N)$ is isomorphic to $M_{\ell_1}(k)\oplus \cdots \oplus M_{\ell_r}$ (where $M_n$ is the matrix algebra).
+	\end{enumerate}
+	
+	\begin{proof}
+		(a): Let $V\subseteq N$ be a simple $A$-module. Then $V$ has a projection map onto each copy of $V_j$ for $1\leq j \leq r$, and by Schur's Lemma each of these maps must be either trivial or an isomorphism. They cannot all be trivial because they span the entire space of $N$, and each $V_j$ is pairwise non-isomorphic to the others, so $V$ is isomorphic with exactly one of them.\\
+		
+		(b): Every $A$-algebra homomorphism $(V_j)^{\ell_j}\to (V_i)^{\ell_i}$ where $i\neq j$ is trivial by Schur's Lemma, so any such endomorphism on $N$ preserves $(V_j)^{\ell_j}$, i.e. is a direct sum of matrices in $M_{\ell_j}(k)$ for each $j$. 
+		
+		And conversely, any linear map $V_j^{\ell_j}\to V_j^{\ell_j}$ is an $A$-algebra endomorphism, since the action of $A$ is scaling in $V_j$ (again by Schur's Lemma). Thus, these direct sums of matrices are \textit{exactly} the endomorphisms on $N$.
+	\end{proof}
+\end{document}
