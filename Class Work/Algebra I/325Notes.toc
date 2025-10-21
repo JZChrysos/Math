@@ -5,3 +5,4 @@
 \contentsline {subsection}{\tocsubsection {}{1.4}{Modules}}{6}{subsection.1.4}%
 \contentsline {subsection}{\tocsubsection {}{1.5}{Representations of $S_n$}}{6}{subsection.1.5}%
 \contentsline {subsection}{\tocsubsection {}{1.6}{Hilbert's Nullstellensatz}}{8}{subsection.1.6}%
+\contentsline {subsection}{\tocsubsection {}{1.7}{Invariant Theory}}{9}{subsection.1.7}%

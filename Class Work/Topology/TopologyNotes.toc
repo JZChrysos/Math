@@ -4,3 +4,4 @@
 \contentsline {subsection}{\tocsubsection {}{0.3}{The Fundamental Group}}{4}{subsection.0.3}%
 \contentsline {subsection}{\tocsubsection {}{0.4}{Covering Spaces}}{4}{subsection.0.4}%
 \contentsline {subsection}{\tocsubsection {}{0.5}{Homology}}{7}{subsection.0.5}%
+\contentsline {subsection}{\tocsubsection {}{0.6}{Relative Homology}}{9}{subsection.0.6}%

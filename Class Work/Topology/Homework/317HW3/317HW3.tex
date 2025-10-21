@@ -1,0 +1,51 @@
+\documentclass{amsart}
+
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Math 317 HW 3}
+\author{Jalen Chrysos}
+
+\begin{document}
+	\maketitle
+
+\textbf{Problem 1 (Hatcher 1.2:9)}: In the surface $M_g$ of genus $g$, let $C$ be a circle that separates $M_g$ into two compact surfaces $M_h'$ and $M_k'$ obtained from the closed surfaces $M_h$ and $M_k$ by deleting an open disk from each. Show that $M_h'$ does not retract onto $C$, and hence $M_g$ does not retract onto $C$. But show that $M_g$ does retract onto the non-separating circle $C'$ in the figure.
+
+\begin{center}
+\includegraphics[height=3cm]{"C:/Users/jzchr/MathDocuments/Class Work/Topology/Homework/317HW3/Fig_1.9_Hatcher.png"}
+\end{center}
+
+\newpage
+\textbf{Problem 2 (Hatcher 1.2:11)}: The mapping torus $T_f$ of a map $f:X\to X$ is the quotient of $X\times I$ obtained by identifying each point $(x,0)$ with $(f(x),1)$. In the case $X=S^1\vee S^1$ with $f$ preserving basepoints, compute a presentation for $\pi_1(T_f)$ in terms of the induced map $f_*:\pi_1(X)\to\pi_1(X)$. Do the same when $X=S^1\times S^1$.
+
+\newpage
+\textbf{Problem 3 (Hatcher 1.2:14)}: Consider the quotient space $X$ of a cube $I^3$ obtained by identifying each square face with the opposite square face via a clockwise quarter-rotation and translation by one unit. Show that $X$ is a cell complex with two $0$-cells, four $1$-cells, three $2$-cells, and one $3$-cell. Using this structure, show that $\pi_1(X)$ is the quaternion group.
+\begin{proof}
+	
+\end{proof}
+
+\newpage 
+\textbf{Problem 4 (Hatcher 1.2:16)}: Show that the fundamental group of the surface of infinite genus is free on an infinite number of generators.
+
+\newpage
+\textbf{Problem 5 (Hatcher 1.2:22)}: In this exercise, we describe an algorithm for computing the \textit{Wirtinger presentation} of the fundamental group of the complement of a knot in $\R^3$. We begin with the knot lying almost flat on a table $T$ so that $K$ consists of finitely-many disjoint arcs $\a_i$ contained within $T$ and finitely-many $\b_{\ell}$ which leave $T$ to cross over another part of $K$. We build a 2-dimensional complex $X$ that is a deformation retract of $\R^3-K$ in the following steps:\\
+
+For each $\a_i$, let $R_i$ be a curved rectangle so that its long edges are on $T$ and it has $\a_i$ underneath it, and let and $\b_{\ell}$ crossing over $\a_i$ lie along the curve of $R_i$. For each $\b_{\ell}$, let $S_{\ell}$ be the square-shaped piece which covers the crossing. Let $X$ be the union of $T$, $R_i$, and $S_{\ell}$ for all $i,\ell$. Lift $K$ off the table slightly so that it does not intersect $X$. Then we can retract $R^3-K$ to $X$.\\
+
+\begin{enumerate}[(a)]
+	\item Assuming that this retraction is possible, show that $\pi_1(\R^3-K)$ has a presentation with one generator $x_i$ for each $R_i$ and one relation $x_ix_jx_i^{-1}=x_k$ whenever $\a_j,\a_k$ are two pieces which cross over $\a_i$ via some $\b_{\ell}$.
+	\item Use this presentation to show that the Abelianization of $\pi_1(\R^3-K)$ is $\Z$.
+\end{enumerate}
+
+\newpage
+\textbf{Problem 6 (Hatcher 1.B:5)}: Consider the graph of groups $\Gamma$ having one vertex $\Z$ and one edge $n\mapsto 2n$. Show that $\pi_1(K\Gamma)$ has presentation $\<a,b|bab^{-1}a^{-2}\>$ and describe the universal cover of $K\Gamma$ explicitly as a product $T\times \R$ with $T$ a tree.
+
+\newpage
+\textbf{Problem 7 (Hatcher 2.1:5)}: Compute the simplicial homology groups of the Klein bottle using the $\Delta$-complex structure.
+
+\newpage
+\textbf{Problem 8 (Hatcher 2.1:8)}: Construct a 3-dimensional $\Delta$-complex $X$ from $n$ tetrahedra $T_1,\dots,T_n$, with all sharing a common edge and each sharing a face with its two neighbors. Show that the simplicial homology groups of $X$ in dimensions 0,1,2,3 are $\Z,\Z_n,0,\Z$ respectively.
+
+\newpage 
+\textbf{Problem 9 (Hatcher 2.1:11)}: Show that if $X$ is a retract of $X$ then the map $H_n(A)\to H_n(X)$ induced by the inclusion $A\subset X$ is injective.
+
+\end{document}

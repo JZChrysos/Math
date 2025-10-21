@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  20 OCT 2025 20:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  20 OCT 2025 20:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**325HW3.tex
-(./325HW3.tex
+**317HW3.tex
+(./317HW3.tex
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
 (c:/texlive/2025/texmf-dist/tex/latex/amscls/amsart.cls
@@ -128,7 +128,7 @@ Package: amssymb 2013/01/14 v3.01 AMS font symbols
 )
 (c:/texlive/2025/texmf-dist/tex/latex/asymptote/asymptote.sty
 Package: asymptote 2024/02/26 v1.38 Asymptote style file for LaTeX
- (./325HW3.pre)
+ (./317HW3.pre)
 \ASYbox=\box56
 \ASYdimen=\dimen160
 \c@asy=\count295
@@ -183,7 +183,7 @@ Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 (c:/texlive/2025/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 ))
-\openout4 = `325HW3.pre'.
+\openout4 = `317HW3.pre'.
 
 )
 (c:/texlive/2025/texmf-dist/tex/latex/mathtools/mathtools.sty
@@ -685,8 +685,8 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 27.
 File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count338
 )
-(./325HW3.aux)
-\openout1 = `325HW3.aux'.
+(./317HW3.aux)
+\openout1 = `317HW3.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
 LaTeX Font Info:    ... okay on input line 8.
@@ -743,9 +743,9 @@ e
 ))
 Package hyperref Info: Link coloring ON on input line 8.
 
-(./325HW3.out) (./325HW3.out)
+(./317HW3.out) (./317HW3.out)
 \@outlinefile=\write6
-\openout6 = `325HW3.out'.
+\openout6 = `317HW3.out'.
 
 
 *geometry* driver: auto-detecting
@@ -782,80 +782,74 @@ Package hyperref Info: Link coloring ON on input line 8.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 14--15
-
- []
-
-
-
-[1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-
-Package amsmath Warning: Foreign command \atopwithdelims;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 24.
+<C:/Users/jzchr/MathDocuments/Class Work/Topology/Homework/317HW3/Fig_1.9_Hatch
+er.png, id=7, 358.33875pt x 109.1578pt>
+File: C:/Users/jzchr/MathDocuments/Class Work/Topology/Homework/317HW3/Fig_1.9_
+Hatcher.png Graphic file (type png)
+<use C:/Users/jzchr/MathDocuments/Class Work/Topology/Homework/317HW3/Fig_1.9_H
+atcher.png>
+Package pdftex.def Info: C:/Users/jzchr/MathDocuments/Class Work/Topology/Homew
+ork/317HW3/Fig_1.9_Hatcher.png  used on input line 14.
+(pdftex.def)             Requested size: 280.20845pt x 85.35826pt.
 
 
+[1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <c:/Users/jzch
+r/MathDocuments/Class Work/Topology/Homework/317HW3/Fig_1.9_Hatcher.png>]
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 46--47
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 48--49
-
- []
-
-
 
 [3]
 
 [4]
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
 
-[5]
+ []
 
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 118--119
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--33
 
  []
 
 
 
-[7] (./325HW3.aux)
+[5]
+
+[6]
+
+[7]
+
+[8]
+
+[9] (./317HW3.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
-Package rerunfilecheck Info: File `325HW3.out' has not changed.
+Package rerunfilecheck Info: File `317HW3.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 23443 strings out of 467748
- 436164 string characters out of 5431138
- 826684 words of memory out of 5000000
- 51564 multiletter control sequences out of 15000+600000
+ 23448 strings out of 467748
+ 436880 string characters out of 5431138
+ 821684 words of memory out of 5000000
+ 51572 multiletter control sequences out of 15000+600000
  634194 words of font info for 67 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 103i,8n,108p,856b,464s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,6n,108p,595b,464s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
-live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pf
-b><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texli
-ve/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2025/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/
-amsfonts/symbols/msam10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsf
-onts/symbols/msbm10.pfb>
-Output written on 325HW3.pdf (7 pages, 178199 bytes).
+live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pf
+b><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/tex
+live/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive
+/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on 317HW3.pdf (9 pages, 138693 bytes).
 PDF statistics:
- 127 PDF objects out of 1000 (max. 8388607)
- 87 compressed objects within 1 object stream
- 15 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 112 PDF objects out of 1000 (max. 8388607)
+ 76 compressed objects within 1 object stream
+ 12 named destinations out of 1000 (max. 500000)
+ 18 words of extra memory for PDF output out of 10000 (max. 10000000)
 
