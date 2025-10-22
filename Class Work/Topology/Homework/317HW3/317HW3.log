@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  20 OCT 2025 20:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  22 OCT 2025 18:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -792,6 +792,11 @@ Package pdftex.def Info: C:/Users/jzchr/MathDocuments/Class Work/Topology/Homew
 ork/317HW3/Fig_1.9_Hatcher.png  used on input line 14.
 (pdftex.def)             Requested size: 280.20845pt x 85.35826pt.
 
+Underfull \hbox (badness 10000) in paragraph at lines 21--23
+
+ []
+
+
 
 [1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <c:/Users/jzch
 r/MathDocuments/Class Work/Topology/Homework/317HW3/Fig_1.9_Hatcher.png>]
@@ -799,14 +804,19 @@ r/MathDocuments/Class Work/Topology/Homework/317HW3/Fig_1.9_Hatcher.png>]
 [2]
 
 [3]
-
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 30--31
+Underfull \hbox (badness 10000) in paragraph at lines 80--82
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 32--33
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 90--91
 
  []
 
@@ -829,13 +839,13 @@ Package rerunfilecheck Info: File `317HW3.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 23448 strings out of 467748
- 436880 string characters out of 5431138
- 821684 words of memory out of 5000000
- 51572 multiletter control sequences out of 15000+600000
- 634194 words of font info for 67 fonts, out of 8000000 for 9000
+ 23454 strings out of 467748
+ 436974 string characters out of 5431138
+ 823684 words of memory out of 5000000
+ 51576 multiletter control sequences out of 15000+600000
+ 634813 words of font info for 69 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 103i,6n,108p,595b,464s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,8n,108p,595b,464s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dis
@@ -846,7 +856,7 @@ amsfonts/cm/cmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm
 b><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive
 /2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on 317HW3.pdf (9 pages, 138693 bytes).
+Output written on 317HW3.pdf (9 pages, 146485 bytes).
 PDF statistics:
  112 PDF objects out of 1000 (max. 8388607)
  76 compressed objects within 1 object stream

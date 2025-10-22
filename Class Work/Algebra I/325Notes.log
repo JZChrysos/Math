@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  20 OCT 2025 12:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  22 OCT 2025 12:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1057,8 +1057,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 435--436
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 442--444
 
-[9] (./325Notes.aux)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--457
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 458--459
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 462--463
+
+ []
+
+
+
+[9]
+
+[10] (./325Notes.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
@@ -1067,10 +1089,10 @@ Package rerunfilecheck Info: File `325Notes.out' has not changed.
 (rerunfilecheck)             Checksum: 6E4DF5957E3168E571D6C4AF4877E19A;1405.
  ) 
 Here is how much of TeX's memory you used:
- 23496 strings out of 467748
- 436987 string characters out of 5431138
- 833740 words of memory out of 5000000
- 51596 multiletter control sequences out of 15000+600000
+ 23499 strings out of 467748
+ 437052 string characters out of 5431138
+ 833742 words of memory out of 5000000
+ 51598 multiletter control sequences out of 15000+600000
  635148 words of font info for 70 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  103i,11n,108p,597b,526s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1095,10 +1117,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb><c:/texlive/2025/texmf-dist
 ts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2025/texmf-dist/fonts/t
 ype1/public/amsfonts/symbols/msbm7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/
 public/stmaryrd/stmary10.pfb>
-Output written on 325Notes.pdf (9 pages, 294456 bytes).
+Output written on 325Notes.pdf (10 pages, 298576 bytes).
 PDF statistics:
- 231 PDF objects out of 1000 (max. 8388607)
- 172 compressed objects within 2 object streams
- 31 named destinations out of 1000 (max. 500000)
+ 235 PDF objects out of 1000 (max. 8388607)
+ 175 compressed objects within 2 object streams
+ 32 named destinations out of 1000 (max. 500000)
  77 words of extra memory for PDF output out of 10000 (max. 10000000)
 
