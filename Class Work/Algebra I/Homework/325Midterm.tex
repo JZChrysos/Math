@@ -1,0 +1,111 @@
+\documentclass{amsart}
+
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Math 325 Midterm}
+\author{Jalen Chrysos}
+
+\begin{document}
+	\maketitle
+	
+	\textbf{Problem 1}:
+	
+	\begin{proof}
+		(i): Suppose for the sake of contradiction that there is some $W\subsetneq V$ stable under $\SL_6(\C)$. Then I claim that it is also stable under the action of $\GL_6(\C)$, contradicting the irreducibility of $V$. Indeed, every $g\in \GL_6(\C)$ is of the form $a g'$ where $g'\in \SL_6(\C)$ and $a=\det(g)^{1/6}\cdot \id \in \GL_6(\C)$. So 
+		$$
+		g(W) = ag'(W) = aW = W.
+		$$
+	\end{proof}
+	
+	\newpage 
+	
+	\textbf{Problem 2}:
+	
+	\begin{proof}
+		A conjugacy class of $\GL_n(\C)$ is determined by its eigenspaces and eigenvalues. In this set $x^2=I$ so all eigenvalues must be $\pm 1$. The eigenspaces themselves are indistinguishable, as they can be permuted by change of basis. Thus, the conjugacy class is determined uniquely by the number $N(d,\lambda)$ of eigenspaces of dimension $d$ and eigenvalue $\lambda$ for each $d\in \{1,2,\dots,n\}$ and $\lambda \in \{-1,1\}$. The dimensions must all add to $n$.\\
+		
+		To calculate this, we can go by partitions of $n$. For each partition of $n$, let $m_j$ be the number of pieces of size $j$. Then choosing a conjugacy class of $\GL_n(\C)$ is equivalent to choosing, for each $j$, the number of the $m_j$ that have eigenvalue 1 and the number that have $-1$ (of which there are $m_j+1$ ways). Thus, we get
+		$$
+		\sum_{\lambda \in P_n} \prod_{j=1}^n m_j+1.
+		$$
+		The first couple of values are $2,5,10,20,36$ for $n=1,2,3,4,5$. I'm sure there's a generating function for this as well.
+	\end{proof}
+	\newpage 
+	
+	\textbf{Problem 3}:
+	\begin{proof}
+		If $(x,y)\in (\C^2)^G$ then
+		$$
+		(x,y) = (x+ay,by)
+		$$
+		for all $a,b$ with $b\neq 0$, which in the case $a\neq 0$ implies $y=0$. Thus, this subspace is 1-dimensional and spanned by $(1,0)$.\\
+		
+		To show that there is no $G$-stable complement, note that the $G$-orbit of $(0,1)$ is $(a,b)$ for all $b\neq 0$, i.e. the entire space except for the $G$-fixed subspace. Thus, the smallest $G$-stable subspace outside of $(\C^2)^G$ must include all of $\C^2$.\\
+		
+		If $\ph:\C^2\to \C^2$ is a $G$-intertwiner, then we can use the fact that it commutes with the action of $g$ in particular on the input $(0,1)$ to get
+		$$
+		\ph_1(a,b) = \ph_1(0,1) + a\ph_2(0,1), \;\;\; \ph_2(a,b) = b\ph_2(0,1)
+		$$ 
+		for all $a,b\in \C$ with $b\neq 0$. The second of these equations shows that $\ph_2(a,b)$ depends only on $b$ and scales it by $c:=\ph_2(0,1)$. Then the first equation shows that $\ph_1(a,b)$ depends only on $a$. In the case $(a,b)=(0,1)$, it gives
+		$$
+		\ph_1(0,1) = \ph_1(0,1) + ac
+		$$
+		so $\ph_1(0,1)=0$, and thus in general $\ph_1(a,b)=ac$, so $\ph$ scales both coefficients by $c$. It remains to show that this is also true when $b=0$, but this follows from linearity of $\ph$, as
+		$$
+		\ph(a,0) = \ph(a/2,b) + \ph(a/2,-b) = (ac/2,bc) + (ac/2,-bc) = (ac,0). 
+		$$
+	\end{proof}
+	\newpage 
+	
+	\textbf{Problem 4}:
+	\begin{proof}
+		Recalling the definition of Specht modules, we have
+		$$V(\lambda) = \C\<x_1-x_2,x_2-x_3,\dots,x_{n-1}-x_n\>, \;\;\; V(\lambda^t) = \C\<\Delta_{\hat{1}},\Delta_{\hat{2}},\dots,\Delta_{\hat{n}}\>$$
+		where by $\Delta_{\hat{m}}$ I mean
+		$$
+		\Delta_{\hat{m}} := \prod_{i<j \in [n]\setminus \{m\}} (x_j-x_i) = \Delta_n \cdot \prod_{i\neq m} (x_m-x_i)^{-1} \cdot (-1)^{n-m}.
+		$$
+		The map $F:V(\lambda)\to V(\lambda^t)$ can be defined on the basis of $V(\lambda)$ by
+		$$
+		F: (x_{m}-x_{m+1}) \mapsto \Delta_{\hat{m}} - \Delta_{\hat{m+1}}
+		$$
+		Now, if $s\in S_n$ acts on $V(\lambda^t)$, consider how $s$ affects the sign of $\Delta_{\hat{m}}$. It will flip the sign for each two indices (neither of which is $m$) whose order is inverted by $s$. The sign of $s$ is the number of \textit{all} pairs of indices whose order is inverted by $s$. Thus, $s(\Delta_{\hat{m}}) = \sign(s)\cdot \Delta_{\hat{m}} \cdot (-1)^{R_m}$, where $R_m$ is the number of pairs which include $m$ that are inverted by $s$.
+		$$
+		s(\Delta_{\hat{m}} - \Delta_{\hat{m+1}}) = \sign(s) \cdot ((-1)^{R_m}\Delta_{\hat{s(m)}} - (-1)^{R_{m+1}}\Delta_{\hat{s(m+1)}})
+		$$
+		and 
+		$$
+		F(x_{s(m)} - x_{s(m+1)}) = \Delta_{\hat{s(m)}}-\Delta_{\hat{s(m+1)}}.
+		$$
+		Some combinatorics about $R_m$ has to be done to show that this works.
+	\end{proof}
+	\newpage 
+	
+	\textbf{Problem 5}:
+	\begin{proof}
+		For $\lambda$ to be an eigenvalue of $M_I$ means that $$fg \equiv \lambda g \pmod I \;\; \iff \;\; (f-\lambda)g \in I $$ for some $g\not\in I$, and similarly for $\lambda$ to be an eigenvalue of $M_{\sqrt{I}}$ it is equivalent that $(f-\lambda)h \in \sqrt{I}$ for some $h\not\in \sqrt{I}$.\\
+		
+%		We can reduce to the case where $I$ is a prime ideal, since eigenvalues of $M_{IJ}$ are the eigenvalues of $M_I$ or $M_J$ and similarly for $\sqrt{I}\sqrt{J}$.\\
+%		
+		If $f-\lambda \in \sqrt{I}$ then immediately $\lambda$ must be an eigenvalue in both $\sqrt{I}$ and $I$ (if $(f-\lambda)^n\in I$, take $h=(f-\lambda)^{n-1}$). And likewise if $f-\lambda \in I$ then $\lambda$ is an eigenvalue of $M_{\sqrt{I}}$ and $M_I$, taking $h=1$. So assume neither of these is the case.\\
+		
+		Assume $\lambda$ is not an eigenvalue of $M_{\sqrt{I}}$. Since $\C[x,y]/I$ is finite-dimensional, this implies that there are $\C$-linear relations between $1,x,x^2,x^3,\dots$, so $I$ contains a polynomial $p(x)$ and similarly $I$ contains a polynomial $q(y)$. $V(I)$ is thus finite; for any $(a,b)\in V(I)$, $a$ is among the finitely-many roots of $p$ and $b$ is a root of $q$, so there are only finitely-many such pairs. Now by the Nullstellensatz, $(f-\lambda)h\in \sqrt{I}$ for some $h\not\in \sqrt{I}$ is equivalent to $V(f-\lambda)\cup V(h)\supseteq V(I)$ and $V(h)\not\supset V(I)$. So if such an $h$ exists then $f=\lambda$ at some point in $V(I)$, and conversely because $V(I)$ is finite such an $h$ always exists if $f=\lambda$ somewhere in $V(I)$, since it is possible to construct a polynomial passing through any finite collection of points and avoiding a given point (it is easy to do this with a product of lines). Assuming $\lambda$ is not an eigenvalue of $M_{\sqrt{I}}$, then $f-\lambda \neq 0$ on $V(I)$, so for any $r\in I$, one can take a linear combination $$a(f-\lambda)+br=1$$
+		with $a,b\in \C[x,y]$, by the Nullstellensatz. But now if $\lambda$ is an eigenvalue of $M_I$, so $(f-\lambda)g\in I$ for $g\not\in I$, then take $r=(f-\lambda)g$ to get
+		$$
+		a(f-\lambda) + b(f-\lambda)g = (a+bg)(f-\lambda) = 1
+		$$
+		which implies $f-\lambda$ and $a+bg$ are nonzero constant polynomials, and thus that either $g=0$, contradicting that $g\not\in I$, or $(f-\lambda)g$ is a nonzero constant in $I$, so $I=\C[x,y]$, a contradiction. That is, if $\lambda$ is not an eigenvalue of $M_{\sqrt{I}}$ then $\lambda$ cannot be an eigenvalue of $M_I$.
+		\\
+
+		Conversely, if $\lambda$ is an eigenvalue of $M_{\sqrt{I}}$, then let $(f-\lambda)h\in \sqrt{I}$ with $h\not\in \sqrt{I}$. Then $(f-\lambda)^nh^n\in I$ for some $n$, so 
+		$$
+		(f-\lambda) \cdot (f-\lambda)^{n-1}h^n \in I
+		$$
+		which shows that $(f-\lambda)^{n-1}h^n$ is an eigenvector for $M_I$ with eigenvalue $\lambda$ unless it is in $I$. If it is in $I$, then $(f-\lambda)^{n-2}h^n$ is an eigenvector unless \textit{it} is in $I$, and so on. If they all fail then $h^n\in I$ but we assumed $h\not\in \sqrt{I}$, so $(f-\lambda)^{n-j}h^n$ must be a nontrivial eigenvector with eigenvalue $\lambda$ for some $j$.
+%	Let $A=V(I)=V(\sqrt{I})$. By the Nullstellensatz, $(f-\lambda)g\in \sqrt{I}$ is equivalent to $$V(f-\lambda)\cup V(g)\supseteq A.$$
+%	That is, $g$ vanishes on $A - \{f=\lambda\}$. 
+	\end{proof}
+	
+	
+
+\end{document}

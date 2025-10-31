@@ -5,3 +5,7 @@
 \contentsline {subsection}{\tocsubsection {}{0.4}{Covering Spaces}}{4}{subsection.0.4}%
 \contentsline {subsection}{\tocsubsection {}{0.5}{Homology}}{7}{subsection.0.5}%
 \contentsline {subsection}{\tocsubsection {}{0.6}{Relative Homology}}{9}{subsection.0.6}%
+\contentsline {subsection}{\tocsubsection {}{0.7}{Cellular Homology}}{11}{subsection.0.7}%
+\contentsline {subsection}{\tocsubsection {}{0.8}{Mayer-Vietoris}}{11}{subsection.0.8}%
+\contentsline {subsection}{\tocsubsection {}{0.9}{Euler Characteristic and Lefschetz Trace}}{11}{subsection.0.9}%
+\contentsline {subsection}{\tocsubsection {}{0.10}{Cohomology}}{13}{subsection.0.10}%

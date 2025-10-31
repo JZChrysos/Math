@@ -6,3 +6,5 @@
 \contentsline {subsection}{\tocsubsection {}{1.5}{Representations of $S_n$}}{6}{subsection.1.5}%
 \contentsline {subsection}{\tocsubsection {}{1.6}{Hilbert's Nullstellensatz}}{8}{subsection.1.6}%
 \contentsline {subsection}{\tocsubsection {}{1.7}{Invariant Theory}}{9}{subsection.1.7}%
+\contentsline {subsection}{\tocsubsection {}{1.8}{Invariant Part}}{10}{subsection.1.8}%
+\contentsline {subsection}{\tocsubsection {}{1.9}{Topological Groups and Integration}}{11}{subsection.1.9}%
