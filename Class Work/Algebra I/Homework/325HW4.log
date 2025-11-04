@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  31 OCT 2025 12:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  3 NOV 2025 21:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -837,16 +837,71 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--19
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 21--22
+
+ []
+
+
 
 [1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 43--45
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--47
+
+ []
+
+
 
 [2]
+Underfull \hbox (badness 10000) in paragraph at lines 62--64
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 65--66
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--68
+
+ []
+
+
 
 [3]
+Underfull \hbox (badness 10000) in paragraph at lines 87--89
+
+ []
+
+
 
 [4]
+Underfull \hbox (badness 10000) in paragraph at lines 129--131
+
+ []
+
+
 
 [5]
+Underfull \hbox (badness 10000) in paragraph at lines 161--162
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 163--164
+
+ []
+
+
 
 [6] (./325HW4.aux)
  ***********
@@ -859,11 +914,11 @@ Package rerunfilecheck Info: File `325HW4.out' has not changed.
 Here is how much of TeX's memory you used:
  25608 strings out of 467748
  499032 string characters out of 5431138
- 866250 words of memory out of 5000000
+ 874250 words of memory out of 5000000
  53693 multiletter control sequences out of 15000+600000
  634194 words of font info for 67 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 103i,6n,108p,595b,464s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,8n,108p,595b,464s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-di
@@ -876,7 +931,7 @@ live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2025/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2025/texmf-dis
 t/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2025/texmf-dist/fo
 nts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on 325HW4.pdf (6 pages, 139416 bytes).
+Output written on 325HW4.pdf (6 pages, 155990 bytes).
 PDF statistics:
  115 PDF objects out of 1000 (max. 8388607)
  80 compressed objects within 1 object stream

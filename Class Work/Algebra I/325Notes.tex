@@ -595,4 +595,20 @@ Examples:
 	\item For $S^1$, we have $\mu= \d \theta$. 
 \end{itemize}
 
+
+\subsection{Continuous Representations} A representation $\rho: G \to \GL_N(k)$ of a topological group $G$ is \textit{continuous} if each entry of the matrix $\rho(g)$ is continuous wrt $g$.\\
+
+\textbf{Theorem}: Continuous irreps of $\GL_N^+$ (the matrices with positive determinant) are in bijection with descending $n$-tuples in $\Z$, which we call 		``collections."
+\begin{proof}
+	Let $H$ be the group of diagonal matrices in $\GL_N^+$, $B$ be the group of upper triangular matrices in $\GL_N^+$, and $U$ be the group of upper triangular matrices with 1s on the diagonal.\\
+	
+	Let $\rho$ be a continuous irrep of $\GL_N^+$. Then we claim that there is a nonzero eigenvector $v\in k^N$ with eigenvalue 1 for all matrices in $\rho(U)$, and eigenvalue 
+	$$
+	h_1^{\lambda_1}h_2^{\lambda_2}\cdots h_N^{\lambda_N}
+	$$
+	for $\rho(h)$, where $h$ is the diagonal matrix with entries $h_1,\dots,h_N$.\\
+	
+	It follows by Borel fixed point theorem applied to $\P^{N-1}$. (?)
+\end{proof}
+
 \end{document}
