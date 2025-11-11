@@ -481,7 +481,7 @@
 	 
 	 \medspace
 	 
-	 Given a map $f:S^n\to S^n$, we have a an induced map on homology groups. The $n$th homology group of $S^n$ is the only nonzero one, as we showed, so we look at the map $f_*: H_n(S^n) \to H_n(S^n)$ i.e. $f_*:\Z\to \Z$. So $f_*$ must be a multiplication by some element, and we call this factor $\deg(f)$. Recall that homotopic maps induce the same maps on homology, so $\deg(f)$ only depends on the homotopy class of $f$.\\
+	 Given a map $f:S^n\to S^n$, we have an induced map on homology groups. The $n$th homology group of $S^n$ is the only nonzero one, as we showed, so we look at the map $f_*: H_n(S^n) \to H_n(S^n)$ i.e. $f_*:\Z\to \Z$. So $f_*$ must be a multiplication by some element, and we call this factor $\deg(f)$. Recall that homotopic maps induce the same maps on homology, so $\deg(f)$ only depends on the homotopy class of $f$.\\
 	 
 	 Some basic facts about degree:
 	 \begin{itemize}
@@ -489,6 +489,7 @@
 	 \item $\deg(\text{reflection})=-1$.
 	 \item $\deg(f\circ g)=\deg(f)\cdot \deg(g)$.
 	 \item $\deg(-1)$ (antipodal map) is $(-1)^{n+1}$ (it is a composition of $n+1$ reflections).
+	 \item If $f$ has no fixed points it is homotopic to the antipodal map and thus has degree $(-1)^{n+1}$.
 	 \item If $f$ is not surjective, then $\deg(f)=0$, as $f$ factors through a punctured $S^n$, and this space has trivial homology groups (it is contractible).
 	 \end{itemize}
 	 
@@ -623,7 +624,7 @@
 	$$
 	This is what we call the \textit{cohomology} relative to $G$.
 	
-	$\ph\in \ker(C_n^*\to C^*{n+1})$ means $\ph|_{B_n}=0$; \textit{cocycles vanish on boundaries}. Because of this, cocycles induce maps $H_n\to G$. And $\ph\in \im(C_{n-1}^*\to C_n^*)$ means $\ph$ factors through $\partial$, i.e. $\ph|{Z_n}=0$; \textit{coboundaries vanish on cycles}. So we can see the cohomology groups as the groups of homomorphisms $H^n(C_*)\to G$. Let
+	$\ph\in \ker(C_n^*\to C^*_{n+1})$ means $\ph|_{B_n}=0$; \textit{cocycles vanish on boundaries}. Because of this, cocycles induce maps $H_n\to G$. And $\ph\in \im(C_{n-1}^*\to C_n^*)$ means $\ph$ factors through $\partial$, i.e. $\ph|{Z_n}=0$; \textit{coboundaries vanish on cycles}. So we can see the cohomology groups as the groups of homomorphisms $H^n(C_*)\to G$. Let
 	$$
 	h:H^n(C;G)\to \Hom(H_n(C);G).
 	$$ 
@@ -737,6 +738,105 @@
 	
 	We can apply this fact to homology. Namely, we can dualize the lemma to see that cohomology is uniquely determined by the last group in the chain (?).\\
 	
-	To compute Ext relative to a group, we only have to consider the torsion part.
+	To compute Ext relative to a group, we only have to consider the torsion part.\\
+	
+	One can also define relative cohomology by dualizing relative homology, in the expected way. Excision holds the same way; that is,
+	$$
+	H^*(X,A;G) = H^*(X-Z,A-Z;G)
+	$$
+	for $Z$ whose closure is contained in the interior of $A$. Similarly, the Mayer-Vietoris sequence also exists for cohomology.\\
+	
+	\subsection{Cup Product} What's new in cohomology that we didn't have in homology? The first thing is the cup product. Suppose that we take our coefficient group to actually be some commutative ring $R$. Then we have an operation $\smile$ which takes a $k$-cochain and $\ell$-cochain and returns a $(k+\ell)$-cochain:
+	$$
+	\ph \in C^k(X;R), \;\; \psi \in C^{\ell}(X;R), \;\;\; \ph \smile \psi \in C^{k+\ell}(X;R).
+	$$
+	We define $\ph\smile \psi$ by saying that it acts on $k+\ell$ simplex $\sigma = [v_0,\dots,v_{k+\ell}]$ by
+	$$
+	\ph\smile \phi(\sigma) := \phi(\sigma | [v_0,\dots,v_k])\cdot \psi(\sigma | [v_k,\dots,v_{k+\ell}])
+	$$
+	Of course, we still have to show that this is well-defined so that the indexing of $\sigma$ doesn't matter.\\
+	
+	How does the cup product interact with the coboundary operator $\delta$? The rule is 
+	$$
+	\de(\ph \smile \psi) = (\de \ph)\smile \psi + (-1)^k \ph\smile(\de \psi).
+	$$
+	To establish this, we can calculate directly by looking at simplices. For each $\sigma:\Delta^{k+\ell+1}\to X$,
+	\begin{align*}
+		\de(\ph \smile \psi) \sigma &= (\ph \smile \psi)(\de \sigma)\\
+		&= \sum_i (-1)^i (\ph\smile \psi)(\sigma | [v_0,\dots,\hat{v_i},\dots,v_{k+\ell+1}])\\
+		&= 
+	\end{align*}
+	calculation omitted because it's annoying but trust me it works out.\\
+	
+	As a corollary, we see that the cup product of two cocycles is a cocycle as well, as 
+	$$
+	\de(\a\smile \b) = \de\a \smile \b \pm \a\smile \de \b = 0 \pm 0 = 0
+	$$
+	and similarly the cup product of a cocycle and coboundary is a coboundary! This is because if $\a$ is a cocycle and $\b$ a coboundary, then
+	$$
+	\de(\a \smile \b) = \de \a \smile \b \pm \a\smile \de \b = \pm \a\smile \de \b
+	$$
+	so $\a\smile \de \b$ is the coboundary of $\pm \a\smile \b$. Thus, \textit{the cup product is defined on cohomology classes}. That is, we have a map
+	$$
+	H^k(X;R) \times H^{\ell}(X;R) \to H^{k+\ell}(X;R)
+	$$
+	given by the cup product. This makes $H^*(X;R)$ a graded ring with product $\smile$. Wow!\\
+	
+	\textbf{Theorem}: Given $[\a]\in H^k$ and $[\b]\in H^{\ell}$, we have
+	$$
+	[\a]\smile [\b] = (-1)^{k\ell} [\b]\smile [\a].
+	$$
+	\begin{proof}
+		For each $\sigma:\Delta^n\to X$, define $\overline{\sigma}:\Delta^n\to X$ to be $\sigma$ composed with the reversal of all indices. Let $\rho:C_n(X)\to C_n(X)$ be the map taking $\sigma$ to $\overline{\sigma}$. The claim is that $\rho$ is chain-homotopic to the identity. Knowing this, 
+		$$(\rho^*\ph \smile \rho^*\psi)(\sigma) = \rho^*\ph (\sigma)\cdot \rho^*\psi(\sigma) = \ph(\overline{\sigma}) \cdot \psi(\overline{\sigma}) = (-1)^{k\ell} \rho^*(\psi\smile \ph)(\sigma)$$
+		(there are $k\ell$ swaps).
+	\end{proof}
+	\medspace
+	
+	So we have constructed cohomology from an algebraic perspective. But now, what is this thing we've made? Let's see some examples.
+	\begin{itemize}
+		\item Let $M$ be a closed smooth oriented $n$-dimensional manifold. Let $\Sigma$ be a nice $k$-dimensional submanifold. We can assign to $\Sigma$ a cohomology class $[\phi_{\Sigma}]\in H^{n-k}$ given by sending $\sigma$ to the sum of intersections (with orientation) of $\sigma$ and $\Sigma$ (we assume general position so nothing too weird can happen).\\
+		
+		To show that this is actually a cocycle, we can check that if the boundary operator is applied then we get 0. This is because $\Sigma$ is itself a loop and therefore ``enters'' $\sigma$ the same number of times it ``leaves,'' so if $\sigma$ is a cycle (i.e. oriented the same all over) then the sum is 0. 
+		
+		\item In the setting of manifolds, the cup product is dual to the intersection. This is because the top homology class of a manifold is $\Z$, generated by the boundary itself.
+		
+		\item Consider the torus with two loops $\a,\b$ that intersect in one place. Then $\phi_{\a},\phi_{\b}$ are 1-cochains. If we take a triangle $\sigma$ around their intersection, we get
+		$$
+		\phi_{\a}\smile \ph_{\b}(\sigma) = 1\cdot 1 = 1
+		$$
+		and in every simplex away from this intersection the cup product is 0.
+		
+		\item Let $M=\Sigma_g$, with loops $\a_1,\a_2,\dots,\a_g,\b_1,\b_2,\dots,\b_g$. $\a_i,\b_i$ intersect with positive orientation, $\b_i,\a_i$ with negative orientation, and any other pair does not intersect. We have the matrix
+		$$
+		J=
+		\begin{bmatrix}
+			\mathbf{0}_n & I_n \\
+			-I_n & \mathbf{0}_n
+		\end{bmatrix}
+		$$
+		and note that $J^2=-I_{2n}$, so $J$ is an isomorphism on $H_1$ (the first homology group). This represents the bilinear pairing that is the cup product on $H^1\times H^1$.
+		
+		\item Let $M=\C P^n$, so that the homology groups are $H_j=\Z$ for $j\in \{0,2,4,\dots,2n\}$ and similarly for the cohomology. Let $\a_j\in H^j$ for each even $j$. We have $\a_i\smile \a_j\in H^{i+j}$, so it must be a multiple of $\a_{i+j}$. And in fact, it is exactly $\a_{i+j}$. 
+		
+		To see this, we can take $\C P^i\cap \C P^j$. Since the homology is homotopy invariant, we can take ``maximally complementary'' embeddings of $\C P^i$ and $\C P^j$ in $\C P^n$, in which their intersection is $\C P^{i+j-n}$. So $\a_i\smile \a_j$ acts on homology by intersection with $\C P^{i+j-n}$.
+		
+		\item Now consider the simple case where $M=\C P^2$ and $A,B\subset \C P^2$ are smooth projective curves. They intersect in $\deg(A)\deg(B)$ places (with multiplicity) by Bezout's theorem. But this also follows by doing cohomology stuff.
+	\end{itemize}
+	
+	\medspace
+	
+	In relative cohomology, we can take cup products 
+	$$
+	H^k(X)\times H^{\ell}(X,A) \to H^{k+\ell}(X,A)
+	$$
+	or if both the inputs are relative to $A$. Moreover, the cup product can be defined to combine the relative subspaces
+	$$
+	H^k(X,A)\times H^{\ell}(X,B)\to H^{k+\ell}(X,A\cup B).
+	$$
+	
+	
+	
+
 	
 \end{document}

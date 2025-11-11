@@ -9,3 +9,4 @@
 \contentsline {subsection}{\tocsubsection {}{0.8}{Mayer-Vietoris}}{11}{subsection.0.8}%
 \contentsline {subsection}{\tocsubsection {}{0.9}{Euler Characteristic and Lefschetz Trace}}{11}{subsection.0.9}%
 \contentsline {subsection}{\tocsubsection {}{0.10}{Cohomology}}{13}{subsection.0.10}%
+\contentsline {subsection}{\tocsubsection {}{0.11}{Cup Product}}{15}{subsection.0.11}%

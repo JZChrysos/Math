@@ -1,0 +1,226 @@
+\documentclass{amsart}
+
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Math 325 HW 5}
+\author{Jalen Chrysos}
+
+\begin{document}
+	\textbf{Problem 1}:
+	\begin{enumerate}[(a)]
+		\item Let $A$ be a finite-dimensional $\C$-algebra such that the rank 1 free $A$-module $A_{mod}$ is completely reducible. For an irreducible $V$, write $[A_{mod}:V]$ for the multiplicity of $V$ in $A_{mod}$ and let $Z(A)$ be the center of $A$. Prove that $[A_{mod}:V]=\dim(V)$ for all irreducible $V$, and
+		$$
+		|\Irr(A)| = \dim Z(A), \;\;\; \dim(A) = \sum_{V\in \Irr(A)} \dim(V)^2.
+		$$
+		\item Let $G$ be a finite group. Prove that $[(\C G)_{mod}:V]=\dim(V)$ for all $V\in \Irr(G)$, and 
+		$$
+		|\Irr(G)| = |\text{Conjugacy classes of } G|, \;\;\; |G| = \sum_{V\in \Irr(G)} \dim(V)^2.
+		$$
+	\end{enumerate}
+	\begin{proof}
+		(a): If $A$ decomposes as
+		$$
+		A \cong V_1^{\ell_1} \oplus\cdots \oplus V_r^{\ell_r}
+		$$
+		where $V_1,\dots,V_r$ are the simple submodules of $A_{mod}$, then by Wedderburn's Theorem $A$ can also be written as a direct sum of matrix rings
+		$$
+		M_{\ell_1}(\C)\oplus\cdots \oplus M_{\ell_r}(\C).
+		$$
+		The dimension of each isotypic component is thus expressed in two ways, $\dim(V_j^{\ell_j}) = \dim(V_j)\cdot \ell_j$ and $\dim(M_{\ell_j}(\C))=\ell_j^2$. Since these must be equal and $\ell_j\neq 0$, we get $\ell_j=\dim(V_j)$. 
+		
+		Using the matrix decomposition, the center of $A$ is
+		$$
+		Z(A) = Z(M_{\ell_1})\oplus \cdots \oplus Z(M_{\ell_r}) = (\C I_{\ell_1})\oplus \cdots \oplus (\C I_{\ell_r}) \cong \C^r 
+		$$
+		thus $\dim Z(A)=r$, the number of simple submodules. Furthermore, 
+		$$
+		\dim(A) = \sum_{j=1}^r \dim(M_{\ell_j}) = \sum_{j=1}^r \ell_j^2 = \sum_{j=1}^r \dim(V_j)^2.
+		$$ 
+		
+		(b): By Maschke's Theorem, $\C G$ is semisimple, so we can apply (a) in the case $A=\C G$. This yields $[(\C G)_{mod}:V]=\dim(V)$, and
+		$$
+		|\Irr(\C G)| = \dim Z(\C G), \;\;\; \dim(\C G) = \sum_{V\in \Irr(\C G)} \dim(V)^2.
+		$$
+		Now, $\Irr(\C G) = \Irr(G)$ by the usual correspondence, and $\dim(\C G) = |G|$ as $\C G$ is spanned by the elements of $G$. Moreover, the center of $\C G$ can be spanned by the sums of each conjugacy class; conjugation by $h$ transitively permutes elements within a conjugacy class, so anything in $Z(\C G)$ must have the same coefficient on all elements of a conjugacy class. Thus, $Z(\C G)$ is exactly spanned by sums of each conjugacy class, and its dimension is the number of conjugacy classes.
+		
+		With these facts, the equations become
+		$$
+		|\Irr(G)| = |\text{Conjugacy classes of } G|, \;\;\; |G| = \sum_{V\in \Irr(G)} \dim(V)^2
+		$$
+		as desired.
+		
+	\end{proof}
+	\newpage 
+	
+	\textbf{Problem 2}: 
+	\begin{enumerate}[(a)]
+		\item Show that $\UU_n$, $\SO_n(\R)$ are compact and path-connected, and the group $\OO_n(\R)$ is not connected.
+		\item Show that there is no compact subgroup $K\subset \GL_n(\C)$ such that $\UU_n\subsetneq K$. 
+	\end{enumerate}
+	\begin{proof}
+		(a): In $\SO_n(\R)$, it suffices to show that every $M\in \SO_n(\R)$ has a path within $\SO_n(\R)$ to $I_n$. Let $\gamma:[0,1]\to \SO_n(\R)$ be the path
+		$$
+		\gamma(t) = M^t = e^{\log(M)\cdot tI_n}
+		$$
+		(note that $\log(M)$ and $tI_n$ commute) so that $\gamma(1)=M,\gamma(0)=I_n$. $\gamma$ is clearly continuous in $t$, so it remains to show that $M^t$ is actually in $\SO_n(\R)$. This follows from two identities about matrix exponentiation:
+		$$
+		(M^t)^{\top}  = (M^{\top})^t, \;\;\; (AB)^t = A^tB^t \; \text{if $A,B$ commute}.
+		$$
+		From these we can show
+		$$
+		M^t(M^t)^{\top} = M^t(M^{\top})^t = M^t(M^{-1})^t = (MM^{-1})^t = I_n
+		$$
+		Noting that $M^{-1}=M^{\top}$ because $M\in \SO_n(\R)$. Thus $M^t\in \SO_n(\R)$ as well.
+		
+		Showing that $U_n$ is path-connected is similar, as 
+		$$
+		\gamma(t) = M^{t}
+		$$
+		for unitary $M$ is a path between $M$ and $I_n$ for the same reasoning.
+		
+		To show compactness, because we are in an ambient Euclidean space it suffices to show that both $U_n,\SO_n(\R)$ are closed, since they are bounded (each column has norm 1 so any matrix in either group has norm at most $n$). And the property of being in $U_n$ or $\SO_n(\R)$ is the finite intersection of polynomial conditions saying ``columns are orthogonal" and ``determinant is 1." These are closed sets because they are continuous preimages of $\{0\}$ and $\{1\}$, which are closed. Thus their finite intersection is closed.
+		\\
+		
+		The reason $\OO_n(\R)$ is not connected is that the pieces with determinant 1 and -1 are disconnected. Note that $\det(\OO_n(\R))= \{-1,1\}$, a disconnected set, but $\det$ is continuous so it preserves the property of connectedness. 
+	\end{proof}
+	
+	\newpage
+	
+	\textbf{Problem 3}: Show that $\SL_n(\R)$ is path-connected and not compact.
+	\begin{proof}
+		To show $\SL_n(\R)$ is path-connected, it suffices to exhibit a path between any $M\in \SL_n(\R)$ and some element of $\SO_n(\R)$, which we already know is path-connected from Problem 2. Let $M$ be composed of columns $m_1,m_2,\dots,m_n\in \R^n$. Fixing all but the first column, we have the linear $\R^n\to \R$ function
+		$$
+		v\mapsto \det(v,m_1,\dots,m_n).
+		$$ 
+		Since this mapping is linear and nontrivial (as $m_1$ produces the output 1) it must be equivalent to an inner product with some fixed nonzero vector $w$ (in fact this is the cross product of $m_1,\dots,m_n$). Thus $m_1$ can vary freely within the hyperplane $\{v:\<v,w\>=1\}$ without leaving $\SL_n(\R)$. 
+		
+		Now, we'd like to continuously move $m_1$ to some scaled basis vector $\lambda e_j$ while staying inside $\SL_n(\R)$. There is such a path within $\{v:\<v,w\>=1\}$ unless $w\bot e_j$, and $w$ cannot be orthogonal to the entire basis, so it is possible for some $j$. Repeating for each $m_j$, we get a matrix in $\SL_n(\R)$ each of whose columns is a basis vector. None of the columns can be repeated as the determinant remains 1, so the result is a permutation matrix, and hence in $\SO_n(\R)$ as desired.\\
+		
+		Within $\SL_n(\R)$ we have the sequence
+		$$
+		M_k = \begin{bmatrix}
+			k & 0 & 0 & \cdots & 0\\
+			0 & k^{-1} & 0 & \cdots & 0\\
+			0 & 0 & 1 & \cdots & 0\\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & 0 & \cdots & 1
+			\end{bmatrix}
+		$$
+		for $k\in \N_+$. This sequence has no convergent subsequence. That shows that $\SL_n(\R)$ cannot be compact.
+	\end{proof}
+	\newpage
+	
+	\textbf{Problem 4}: Let $\Aff(\R)$ be the group of affine linear transformations of the form $g_{a,b}:x\mapsto ax+b$ with $a\neq 0$. Find a pair $\phi,\psi$ of continuous functions 
+	$$
+	\phi,\psi: \{(a,b)\in \R^2 | a\neq 0\} \to \R_{>0}
+	$$
+	such that $\phi(a,b) \d a \d b$ is a left-invariant measure on $\Aff(\R)$ and $\psi(a,b) \d a \d b$ is a right-invariant measure on $\Aff(\R)$.
+	\begin{proof}
+		For this to be left-invariant means that for all functions $f:\Aff(\R)\to \R$, and all affine transformations $g_{c,d}\in \Aff(\R)$,
+		$$
+		\int_{\Aff(\R)} f(g_{a,b}) \phi(a,b)\; \d a \d b = \int_{\Aff(\R)} f(g_{c,d}\cdot g_{a,b}) \phi(a,b) \; \d a \d b = \int_{\Aff(\R)} f(g_{ac,bc+d}) \phi(a,b) \; \d a \d b.
+		$$
+		I claim $\phi(a,b)=a^{-2}$ works. To see this, it is equivalent to show that the measure of rectangles is unaffected by left action. That is, if $[a_0,a_1]\times [b_0,b_1]$ is a rectangle in $\Aff(\R)$, 
+		$$
+		\int_{a_0}^{a_1} \int_{b_0}^{b_1} a^{-2}\; \d a \d b = -2(b_1-b_0) \Big(\frac{1}{a_1}-\frac{1}{a_0}\Big)
+		$$
+		and 
+		$$
+		\int_{ca_0}^{ca_1}\int_{cb_0+d}^{cb_1+d} a^{-2}\;\d a\d b = -2c(b_1-b_0)\Big(\frac{1}{ca_1}-\frac{1}{ca_0}\Big) = -2(b_1-b_0) \Big(\frac{1}{a_1}-\frac{1}{a_0}\Big)
+		$$
+		thus $a^{-2}\; \d a \d b$ is left-invariant.\\
+		
+		Right action is $g_{a,b}\cdot g_{c,d} = g_{ca,da+b}$. For this, $\psi(a,b)=a^{-1}$ works. Again we can show that the measure is right-invariant on rectangles, which implies it generally:
+		$$
+		\int_{a_0}^{a_1}\int_{b_0}^{b_1} a^{-1} \; \d a \d b = (b_1-b_0)(\log(a_1)-\log(a_0))
+		$$
+		and 
+		$$
+		\int_{ca_0}^{ca_1}\int_{da+b_0}^{da+b_1} a^{-1} \; \d a \d b = (b_1-b_0)(\log(ca_1)-\log(ca_0)) =  (b_1-b_0)(\log(a_1)-\log(a_0))
+		$$
+		thus $a^{-1}\;\d a \d b$ is right-invariant.
+	\end{proof}
+	\newpage
+	
+	\textbf{Problem 5}: Let $\d x$ be the standard Lebesgue measure on $M_n(\R)$, and view $\GL_n(\R)$ as an open subset of $M_n(\R)$. Find a function $f:\GL_n(\R)\to \R_{>0}$ such that $f(x)\d x$ is a bi-invariant measure on $\GL_n(\R)$.
+	\begin{proof}
+		Let $f(x)=|\det(x)|^{-n}$. This is bi-invariant, and it follows as a special case of the Jacobian change-of-variables formula, which says in general that for a region $S$ and a linear transformation $M$,
+		$$
+		\int_{M(S)} g(x) = \int_S |\det(M)| \cdot g(M(x)).
+		$$
+		In this case, $M$ is actually acting on the space of matrices. If $e_{ij}$ is a basis for this space (where $e_{ij}$ is the matrix with 1 in the $ij$th entry and 0 elsewhere), then $M$ left-acts on the basis by sending $e_{ij}$ to $\sum_{i=1}^n m_{ji}e_{ij}$. Thus, as a matrix acting on $\GL_n(\R)$, $M$ looks like $n$ copies of $M$ (as a matrix acting on $\R^n$) along the diagonal, so its determinant is $\det(M)^{n}$. Similarly for right-action. Hence, by the change-of-variables formula, $|\det(x)|^{-n}$ is bi-invariant.
+	\end{proof}
+	
+	\newpage
+	\textbf{Problem 6}: (Optional) Give an example of a discrete subgroup $H$ of the additive group $(\R^2,+)$ such that the image of $H$ under the first projection $\R^2\to \R$ is not a discrete subgroup of $(\R,+)$.
+	\begin{proof}
+		Take $H=\<(1,\pi),(-\pi,1)\>$. The elements of $H$ are of the form
+		$$
+		(a-b\pi,a\pi+b) \;\; a,b\in \Z.
+		$$
+		This is a square lattice within $\R^2$, hence discrete. But in the projection, $\{a-b\pi : a,b\in \Z\}$ is dense in $\R$, so it is not a discrete subgroup.
+	\end{proof}
+	
+	\newpage
+	
+	\textbf{Problem 7}: View a finite-dimensional $\R$-vector space $V$ as a topological group wrt addition and let $H$ be a discrete (wrt to the topology) subgroup of $V$. Prove that one can find an $\R$-basis of $V$, $e_1,\dots,e_n$ (with $n=\dim(V)$) such that 
+	$$
+	H = \Z e_1 + \Z e_2 + \cdots + \Z e_d
+	$$
+	for some $d\leq n$. To prove this, choose a Euclidean inner product on $V$ and use the following strategy:
+	\begin{enumerate}[(1)]
+		\item Let $e_1$ be a nonzero element $H$ of minimal length (why does one exist?). Check that in the case $\dim(V)=1$ and $H\neq \{0\}$, $H=\Z e_1$.
+		\item Let $V':= e_1^{\bot}$, and let $p:V\to V'$ be an orthogonal projection along the line $\R e_1$. Prove that $p(H)$ is a discrete subgroup of $V'$.
+		\item Complete the proof by induction on $\dim(V)$.
+	\end{enumerate}
+	\begin{proof}
+		(1): Within $H$, there must be a nonzero element of minimal length; otherwise, 0 is not an isolated point and $H$ is not discrete. Let this minimal element be $e_1$. If $\dim(V)=1$, then $V=\R e_1$ and so any other $h\in H$ is a real multiple of $e_1$. If $h$ is a non-integer multiple of $e_1$, i.e. $h=(k+\a)e_1 $ for some $\a\in (0,1)$, then $\a e_1\in H$, but this contradicts the minimality of $e_1$. Thus $H=\Z e_1$ in this case.\\
+		
+		(2): Otherwise suppose $V$ has higher dimension. Let $V'=e_1^{\bot}$, and project $H$ orthographically onto $V'$. The projection is still discrete in $V'$; if not, then let $w\in V'$ be some non-isolated point, and let $w_j+\a_je_1$ be a sequence in $H$ where $w_j\in V'$ and $w_j\to w$. We can choose $\a_j\in (0,1)$ because $e_1\in H$ so it can be added in integer amounts. But now this sequence of elements in $H$ is entirely contained in the compact set $B_r(w)\times [0,|e_1|]$ so by Bolzano-Weierstrass there is a subsequence which does converge to a limit in $H$, which violates $H$ being discrete.\\
+		
+		(3): Induct on the dimension of $V$. Step (1) showed the base case $\dim(V)=1$. For the inductive step, take the projection onto $V'$ as in step (2), which is also a discrete subgroup but $\dim(V')$ is smaller by one. Thus by the inductive hypothesis the projection is of the form $\Z e_2+\cdots + \Z e_d$ for some basis of $V'$. Now adding in $e_1$, we see that 
+		$$
+		H = \Z e_1 + \Z e_2 + \cdots + \Z e_d
+		$$
+		as follows: suppose $h\in H$ is decomposed as $h = r_1e_1 + a_2e_2+\cdots + a_de_d$ where $r_1\in \R$ and $a_j\in \Z$. If $r_1\not\in \Z$, then it has a nearest integer $r'$. Let $h'=r'e_1+\cdots + a_de_d$. Clearly $h'\in H$, so $h-h'\in H$, but this is strictly smaller than $e_1$ which is a contradiction of minimality.
+	\end{proof}
+	\newpage
+	
+	\textbf{Problem 8}: Let $G$ be a topological group $U\subseteq G$ an open neighborhood of the identity $e\in G$. For $n\geq 1$, define
+	$$
+	U^n := \{g\in G | \exists g_1,\dots,g_n \in U \; \text{such that } g=g_1\cdots g_n\}.
+	$$
+	Prove that if $G$ is connected then we have $G=\cup_{n\geq 1} U^n$.
+	\begin{proof}
+		First, note that $U^n$ is open for all $n$. This is because action by both $g$ and $g^{-1}$ is continuous for all $g\in G$, so $g^{-1}U$ and $gU$ are both open. Thus we can write $U^n$ as
+		$$
+		U^n = \bigcup_{g\in U} gU^{n-1},
+		$$
+		a union of open sets (by induction on $n$). Thus,
+		$$
+		G' := \bigcup_{n\geq 1} U^n
+		$$
+		is open.\\
+		
+		$G$ being connected means that it cannot be written as the union of two disjoint open sets. Let $H\subset G$ be the complement of $G'$. Assuming $H$ is nonempty, we can show that $H$ is open, as 
+		$$
+		H = \bigcup_{h\in H} hU^{-1}
+		$$
+		a union of open sets. To see that this is actually an equality, note that if $g\in hU^{-1}$ and $g\in U^n$ then $h\in U^{n+1}$, a contradiction. But now $G=H\cup G'$, a union of disjoint open sets, thus $G$ cannot be connected.
+		
+	\end{proof}
+	
+	\newpage
+	
+	\textbf{Problem 9}: Prove that any continuous group homomorphism $\R\to \R^r$ has the form $t\mapsto tv$ for some $v\in \R^r$.
+	\begin{proof}
+		Suppose $\rho:\R \to \R^r$ is a continuous group homomorphism. Let $\rho(1)= v\in \R^r$. Since this is a homomorphism, we automatically get that $\rho(n)= n v$ for $n\in \Z$. Moreover, $n\rho(1/n)=\rho(1)=v$ implies that $\rho(1/n)=v/n$. Thus, for general $p,q\in \Z$ with $q\neq 0$, we have
+		$$
+		\rho\bigg(\frac{p}{q}\bigg) = p\rho\bigg(\frac{1}{q}\bigg) = \frac{p}{q} v
+		$$  
+		so we get that $\rho(t)=tv$ for $t\in \Q$. Without the hypothesis of continuity we could not extend this fact to all of $\R$, and in fact one could construct a Hamel basis of $\R$ over $\Q$ and give a discontinuous solution. But due to continuity, the behavior of $\rho$ on all of $\R$ can be determined from its behavior on $\Q$; if $\rho(r)\neq rv$ for some $r\in \R$, then $\rho' : t\mapsto \rho(t) - tv$ is a continuous function that is 0 on $\Q$ but nonzero on $r$, which is impossible.
+	\end{proof}
+	
+	
+	
+\end{document}

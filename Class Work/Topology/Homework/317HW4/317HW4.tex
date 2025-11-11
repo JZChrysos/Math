@@ -1,0 +1,237 @@
+\documentclass{amsart}
+
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Math 317 HW 4}
+\author{Jalen Chrysos}
+
+\begin{document}
+	\maketitle
+\textbf{Problem 1 (Hatcher 2.2:1)}: Prove the Brouwer fixed point theorem for maps $f:D^n\to D^n$ by applying degree theory to the map $S^n\to S^n$ that sends both the northern and southern hemispheres of $S^n$ to the southern hemisphere via $f$.
+\begin{proof}
+	Given some $f:D^n\to D^n$, construct the sphere $S^n$ with hemispheres $D^n$ and $f(D^n)$ attached via $\partial D^n \sim f(\partial D^n)$. Let $g:S^n\to S^n$ be the map which sends both hemispheres to the southern hemisphere. This is not surjective so $\deg(g)=0$. But this implies $g$ has a fixed point; otherwise $\deg(g)=(-1)^{n+1}$. Any fixed point must be in the southern hemisphere (the interior of the northern is entirely mapped down to the southern so there can be no fixed point) so in fact it is a fixed point of $f$.
+\end{proof}
+\newpage 
+
+\textbf{Problem 2 (Hatcher 2.2:2)}: Given a map $f:S^{2n}\to S^{2n}$, show that there is some point $x\in S^{2n}$ with either $f(x)=x$ or $f(x)=-x$. Deduce that every map $\RP^{2n}\to \RP^{2n}$ has a fixed point. Construct maps $\RP^{2n-1}\to \RP^{2n-1}$ without fixed points from linear transformations $\R^{2n}\to \R^{2n}$ without eigenvectors.
+\begin{proof}
+Let $a:S^{2n}\to S^{2n}$ be the antipodal map. $\deg(a)=(-1)^{2n+1}=-1$. In proving the desired result, it suffices to show that either $f$ or $a\circ f$ has a fixed point. If $f$ has no fixed points then $\deg(f)=-1$ as we showed in class (it is homotopic to the antipodal map) thus 
+$$\deg(a\circ f) = \deg(a)\deg(f)=(-1)^2=1$$
+so $a\circ f$ \textit{does} have a fixed point, i.e. a point $x$ for which $f(x)=-x$. $\RP^{2n}$ is $S^{2n}$ with antipodes identified, so we see that points $f(x)=-x$ are fixed points for maps on $\RP^{2n}$. Thus fixed points always exist in these maps.\\
+
+To get a map $g:\RP^{2n-1}\to \RP^{2n-1}$ without fixed points, first take an invertible linear transformation $T:\R^{2n}\to \R^{2n}$ with no eigenvectors. This is only possible in the case $\R^{2n}$ because the characteristic polynomial has even degree and thus may have no real solution. We can for example take $T$ given by a matrix
+$$
+T = \begin{bmatrix}
+	\mathbf{0}_n & I_n\\
+	-I_n &\mathbf{0}_n
+\end{bmatrix}
+$$
+whose characteristic polynomial is $\lambda^{2n}+ 1$, which has no real solution. Now, take $g$ to be
+$$
+g([\vec{x}]) = \big[T(\vec{x})\big]
+$$
+where $[\bullet]$ denotes equivalence classes mod scaling. A fixed point of this map would be an eigenvector of $T$, but $T$ has none.
+\end{proof}
+\newpage 
+
+\textbf{Problem 3 (Hatcher 2.2:8)}: A polynomial $f(z)$ with complex coefficients, viewed as a map $\C\to \C$, can always be extended to a continuous map of one-point compactifications $\hat{f}:S^2\to S^2$. Show that the degree of $\hat{f}$ equals the degree of $f$ as a polynomial. Show also that the local degree of $\hat{f}$ at a root of $f$ is the multiplicity of the root.
+\begin{proof}
+	Factor $f$ as 
+	$$
+	f(z)= c(z-\a_1)^{e_1}(z-\a_2)^{e_2}\cdots (z-\a_n)^{e_n}
+	$$
+	such that $\a_1,\dots,\a_n$ are distinct. The points $\a_1,\dots,\a_n$ are the fiber of $0$ under $f$, so the degree of $f$ can be counted by summing the local degrees of $f$ at each root. Near $\a_j$, $f$ is locally homotopy-equivalent to $(z-a_j)^{e_j}$. The local degree of $(z-\a_j)^{e_j}$ is the same as the local degree of $z^{e_j}$ near $0$, which is $e_j$; the fiber of 1 is $e_j$ separate roots of unity, factors into linear factors which each have degree 1. Thus, $\deg(f)$ is the sum of the local degrees at each $\a_j$, i.e.
+	$$
+	\deg(f) = e_1+e_2+\cdots + e_n
+	$$
+	which is the same as the degree of $f$ as a polynomial.
+\end{proof}
+\newpage 
+
+\textbf{Problem 4 (Hatcher 2.B:4)}: In the unit sphere $S^{p+q-1}\subset \R^{p+q}$, let $S^{p-1}$ and $S^{q-1}$ be the subspheres consisting of points whose last $q$ and first $p$ coordinates are zero, respectively.
+\begin{enumerate}[(a)]
+	\item Show that $S^{p+q-1}-S^{p-1}$ deformation retracts onto $S^{q-1}$, and is homeomorphic to $S^{q-1}\times \R^p$.
+	\item Show that $S^{p-1}$ and $S^{q-1}$ are not the boundaries of any pair of disjointly embedded disks $D^p$ and $D^q$ in $D^{p+q}$.
+\end{enumerate}
+\begin{proof}
+	(a): We can give a deformation retraction of $S^{p+q-1}-S^{p-1}$ onto $S^{q-1}$ as follows: given a point $(\vec{a},\vec{b})$ (where $a\in \R^p$ and $b\in \R^q$) with $\vec{b}\neq 0$, at time $t\in [0,1]$, send it to 
+	$$
+	\gamma_y(\vec{a},\vec{b}) = \frac{(1-t)\vec{a} + \vec{b}}{|(1-t)\vec{a} + \vec{b}|}
+	$$ 
+	(note that this requires $\vec{b}\neq 0$ to be defined at $t=1$). This is continuous and stays inside $S^{p+q-1}$, and $\gamma_1(\vec{a},\vec{b}) \in S^{q-1}$. For a homeomorphism to $S^{q-1}\times \R$, just take the projection
+	$$
+	(\vec{a},\vec{b}) \mapsto \frac{(\vec{a},\vec{b})}{|\vec{b}|}.
+	$$
+	
+	(b): Suppose for contradiction that there are such disks. We can show that $$H_*(S^{p+q-1}-S^{p-1}) = H_*(D^{p+q}-D^p),$$
+	hence by part (a),
+	$$
+	H_*(S^{q-1}) = H_*(D^{p+q}-D^p).
+	$$
+	If $D^q$ is disjoint from $D^p$, then $(D^{p+q}-D^p) \cup (D^{p+q}-D^q)= D^{p+q}$, so Mayer Vietoris gives the exact sequence
+	$$
+	H_{n+1}(D^{p+q})\to H_n(D^{p+q}-D^p-D^q) \to H_n(D^{p+q}-D^p)\oplus H_n(D^{p+q}-D^q) \to H_n(D^{p+q}) 
+	$$
+	which, because $D^{p+q}$ is contractible, and using part (a), becomes
+	$$
+	0 \to H_n(D^{p+q}-D^p-D^q) \to H_n(S^{q-1})\oplus H_n(S^{p-1}) \to 0 
+	$$
+	(for $n\geq 1$) yielding an isomorphism. Not sure what to do from here :(
+\end{proof}
+\newpage 
+
+\textbf{Problem 5 (Hatcher 2.C:4)}: If $X$ is a finite simplicial complex and $f:X\to X$ is a simplicial homeomorphism, show that the Lefschetz number $\tau(f)$ equals the Euler characteristic of the set of fixed points of $f$. In particular, $\tau(f)$ is the number of fixed points if the fixed points are isolated.
+\begin{proof}
+	Let $A\subset X$ be the subset of $f$-fixed points. I claim that the trace of the map $f_*:H_d(X)\to H_d(X)$ is equal to the number of $d$-simplices in $A$. Since $f$ is a simplicial map, it must permute the $d$-simplices of $X$, thus in the basis given by these $d$-simplices, the diagonal entries of $f$ are exactly the $d$-simplices of $A$. This proves the claim.
+\end{proof}
+\newpage 
+
+\textbf{Problem 6 (Hatcher 3.1:1)}: Show that $\Ext(H,G)$ is a contravariant functor in $H$ and a covariant functor in $G$.
+\begin{proof}
+	A map $H\to H'$ induces a chain map between the free resolutions of each. Dualizing gives the following diagram:
+	$$
+	\begin{tikzcd}
+		0 & {\Ext(H,G)} & {\Hom(F_1,G)} & {\Hom(F_0,G)} & {\Hom(H,G)} \\
+		\\
+		0 & {\Ext(H',G)} & {\Hom(F_1,G)} & {\Hom(F_0',G)} & {\Hom(H',G)}
+		\arrow[from=1-2, to=1-1]
+		\arrow[from=1-3, to=1-2]
+		\arrow[from=1-4, to=1-3]
+		\arrow[from=1-5, to=1-4]
+		\arrow[from=3-2, to=1-2]
+		\arrow[from=3-2, to=3-1]
+		\arrow[from=3-3, to=1-3]
+		\arrow[from=3-3, to=3-2]
+		\arrow[from=3-4, to=1-4]
+		\arrow[from=3-4, to=3-3]
+		\arrow[from=3-5, to=1-5]
+		\arrow[from=3-5, to=3-4]
+	\end{tikzcd}
+	$$
+	Composing this with the already contravariant Hom functor from $H$ to $\Hom(H,G)$, we see that $\Ext(\bullet,G)$ is contravariant as well:
+	$$
+	\begin{tikzcd}
+		0 & {\Ext(H,G)} && {\Hom(H,G)} & H \\
+		\\
+		0 & {\Ext(H',G)} && {\Hom(H',G)} & {H'}
+		\arrow[from=1-2, to=1-1]
+		\arrow["\dots"', from=1-4, to=1-2]
+		\arrow[from=1-5, to=1-4]
+		\arrow["f", from=1-5, to=3-5]
+		\arrow["{\Ext(f)}"', from=3-2, to=1-2]
+		\arrow[from=3-2, to=3-1]
+		\arrow[from=3-4, to=1-4]
+		\arrow["\dots"', from=3-4, to=3-2]
+		\arrow[from=3-5, to=3-4]
+	\end{tikzcd}
+	$$
+	But in $G$, $\Hom(H,\bullet)$ is covariant, so in this case $\Ext(H,\bullet)$ is covariant:
+	$$
+	\begin{tikzcd}
+		0 & {\Ext(H,G)} && {\Hom(H,G)} & G \\
+		\\
+		0 & {\Ext(H',G)} && {\Hom(H',G)} & {G'}
+		\arrow[from=1-2, to=1-1]
+		\arrow["\dots"', from=1-4, to=1-2]
+		\arrow[from=1-5, to=1-4]
+		\arrow["f", tail reversed, no head, from=1-5, to=3-5]
+		\arrow["{\Ext(f)}"', from=3-2, to=1-2]
+		\arrow[from=3-2, to=3-1]
+		\arrow[from=3-4, to=1-4]
+		\arrow["\dots"', from=3-4, to=3-2]
+		\arrow[from=3-5, to=3-4]
+	\end{tikzcd}
+	$$
+\end{proof}
+\newpage 
+
+\textbf{Problem 7 (Hatcher 3.1:2)}: Show that the maps $G\to G$ and $H\to H$ multiplying by $n\in \Z$ induce multiplication by $n$ in $\Ext(H,G)$.
+\begin{proof}
+	Multiplication by $n$ in $H$ induces a chain map of the free resolutions:
+	$$
+	\begin{tikzcd}
+		0 & {\Ext(H,G)} & {\Hom(F_1,G)} & {\Hom(F_0,G)} & {\Hom(H,G)} \\
+		\\
+		0 & {A} & {\Hom(nF_1,G)} & {\Hom(nF_0,G)} & {\Hom(nH,G)}
+		\arrow[from=1-2, to=1-1]
+		\arrow[from=1-3, to=1-2]
+		\arrow[from=1-4, to=1-3]
+		\arrow[from=1-5, to=1-4]
+		\arrow["{\cdot \,n}"', from=3-2, to=1-2]
+		\arrow[from=3-2, to=3-1]
+		\arrow["{\cdot\,n}"', from=3-3, to=1-3]
+		\arrow[from=3-3, to=3-2]
+		\arrow["{\cdot\,n}"', from=3-4, to=1-4]
+		\arrow[from=3-4, to=3-3]
+		\arrow["{\cdot\,n}"', from=3-5, to=1-5]
+		\arrow[from=3-5, to=3-4]
+	\end{tikzcd}
+	$$
+	As the horizontal maps are all linear, this diagram commutes and the bottom sequence is exact. This makes the image of $\Ext(H,G)$ under multiplication by $n$, denoted $A$ in the diagram, also the Ext of the bottom sequence, i.e. $A=\Ext(nH,G)$.\\
+	
+	Similarly, multiplication by $n$ in $G$ induces a chain map
+	$$
+	\begin{tikzcd}
+		0 & {\Ext(H,G)} & {\Hom(F_1,G)} & {\Hom(F_0,G)} & {\Hom(H,G)} \\
+		\\
+		0 & B & {\Hom(F_1,nG)} & {\Hom(F_0,nG)} & {\Hom(H,nG)}
+		\arrow[from=1-2, to=1-1]
+		\arrow[from=1-3, to=1-2]
+		\arrow[from=1-4, to=1-3]
+		\arrow[from=1-5, to=1-4]
+		\arrow["{\cdot \,n}"', tail reversed, no head, from=3-2, to=1-2]
+		\arrow[from=3-2, to=3-1]
+		\arrow["{\cdot\,n}"', tail reversed, no head, from=3-3, to=1-3]
+		\arrow[from=3-3, to=3-2]
+		\arrow["{\cdot\,n}"', tail reversed, no head, from=3-4, to=1-4]
+		\arrow[from=3-4, to=3-3]
+		\arrow["{\cdot\,n}"', tail reversed, no head, from=3-5, to=1-5]
+		\arrow[from=3-5, to=3-4]
+	\end{tikzcd}
+	$$
+	and again the diagram commutes so $B=\Ext(H,nG)$.
+	
+	
+\end{proof} 
+\newpage 
+
+\textbf{Problem 8 (Hatcher 3.1:5)}: Regarding a cochain $\ph\in C^1(X;G)$ as a function from paths in $X$ to $G$, show that if $\ph$ is a cocycle then
+\begin{enumerate}[(a)]
+	\item $\ph(f\cdot g) = \ph(f)+\ph(g)$,
+	\item $\ph$ takes the value 0 on constant paths,
+	\item $\ph(f)=\ph(g)$ if $f\simeq g$,
+	\item $\ph$ is a coboundary iff $\ph(f)$ depends only on the endpoints of $f$.
+\end{enumerate}
+\begin{proof}
+	(a): Intersections of $f\cdot g$ with any given simplex are either intersections with $f$ or intersections with $g$, and their orientations are the same. Thus $\ph(f\cdot g) = \ph(f)+\ph(g)$.\\
+	
+	(b): Cocycles vanish on boundaries, and any constant path is the boundary of a 2-simplex mapped into that point.\\
+	
+	(c): Suppose $f\simeq g$ via $h(s,t)$, so that $h(0,t)=f(t)$ and $h(1,t)=g(t)$, and $f(0)=g(0)=a,\; f(1)=g(1)=b$. $f\cdot g^{-1}$ is a loop and it is the boundary of the region swept out by the homotopy, i.e. $h(I\times I)$.\\
+	
+	(d): If $\ph$ is a coboundary then it vanishes on all cycles, so for any two paths $f,g$ with the same endpoints, $\ph$ vanishes on the cycle $f\cdot g^{-1}$; that is, 
+	$$
+	\ph(f\cdot g^{-1}) = \ph(f) - \ph(g) = 0 \implies \ph(f) = \ph(g)
+	$$
+	so $\ph$ depends only on endpoints.
+	
+	Conversely, if $\ph$ depends only on endpoints, then for any cycle $\a$, one can split $\a$ into two parts $f\cdot g$ and then see that 
+	$$\ph(\a) = \ph(f\cdot g) = \ph(f)-\ph(g^{-1})=0$$
+	because $f,g^{-1}$ have the same endpoints. So $\ph$ vanishes on all cycles, and is thus a coboundary.
+\end{proof}
+\newpage 
+
+\textbf{Problem 9 (Hatcher 3.1:13)}: Let $\<X,Y\>$ denote the set of homotopy classes of based maps $X\to Y$. Using proposition 1B.9, show that if $X$ is a connected CW complex and $G$ is an abelian group, then the map $$\Phi:\<X,K(G,1)\>\to H^1(X;G)$$ which sends $f:X\to K(G,1)$ to the induced homomorphism $f_*:H_1(X)\to H_1(K(G,1))\cong G$ is a bijection. We identify $H^1(X;G)$ and $\Hom(H_1(X),G)$ via the universal coefficient theorem. 
+\begin{proof}
+	First, the universal coefficient theorem says that 
+	$$
+	H^1(X;G) = \Hom(H_1(X),G) \oplus \Ext(H_{0}(X),G) = \Hom(H_1(X),G)
+	$$
+	because $X$ is connected and hence $H_0(X)=0$.\\
+	
+	Proposition 1B.9 says that homomorphisms from $\pi_1(X)$ to $G$ are always induced uniquely (up to homotopy) by underlying maps $X\to K(G,1)$. This immediately says that $\<X,K(G,1)\>$ and $\Hom(\pi_1(X),G)$ are in bijection. And $\Hom(H_1(X),G)$ maps injectively into $\Hom(\pi_1(X),G)$ by abelianization. It remains to show that this abelianization map is surjective. This follows because $G$ is Abelian, so every map $\pi_1(X)\to G$ factors through $H_1(X)$. Thus $\Hom(H_1(X),G)$, $\Hom(\pi_1(X),G)$, and $\<X,K(G,1)\>$ are all in bijection.
+\end{proof}
+\newpage 
+
+	
+\end{document}

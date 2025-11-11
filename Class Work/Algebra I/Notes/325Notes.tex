@@ -2,6 +2,7 @@
 \input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
 
 \DeclareMathOperator{\Inv}{Inv}
+\DeclareMathOperator{\Av}{Av}
 
 \title{Algebra I Notes}
 \author{Jalen Chrysos}
@@ -609,6 +610,176 @@ Examples:
 	for $\rho(h)$, where $h$ is the diagonal matrix with entries $h_1,\dots,h_N$.\\
 	
 	It follows by Borel fixed point theorem applied to $\P^{N-1}$. (?)
+\end{proof}\\
+
+Let $G$ be a compact topological group acting continuously on a topological space $X$. For $f\in C(X)$, we can define 
+$$
+\Av(f) : X\to \C
+$$
+by 
+$$
+\Av(f)(x) = \int_G f(g^{-1}x) \; \d g.
+$$
+Note that $\Av(f)$ is continuous and $G$-invariant:
+$$
+h^*\Av(f) = \Av(h^{-1}f) = \int_G f(g^{-1}h^{-1}x) \; \d g = \int_G f((gh)^{-1}x) \d g = \Av(f)
+$$
+using the fact that $Gh=G$.\\
+
+\textbf{Theorem}: Any finite-dimensional continuous representation $V$ of $G$ (a compact topological group) can be made unitary.
+\begin{proof}
+	Since $V$ is finite-dimensional assume wlog that $V=\C^n$ for some $n$. We have a hermitian inner product $V\times V\to \C$. Let $G$ act on $V\times V$ by 
+	$$
+	g:(v,w) \mapsto (g\cdot v, g\cdot w).
+	$$
+	We can now define a $G$-invariant inner product on $V\times V$ given by 
+	$$
+	\<v,w\> = \Av((v,w)) = \int_G (g^{-1}\cdot v,g^{-1}\cdot w) \; \d g.
+	$$
+	To show that it is an inner product we must check that it is linear, which follows because $(\bullet,\bullet)$ is linear and the integral is linear and $G$ acts linearly on $V$. We also check that it is positive definite, which follows from $(\bullet,\bullet)$ being positive definite.
+\end{proof}\\
+
+As a corollary, we see that any finite-dimensional continuous representation of a compact topological group is completely reducible. In particular, this is true of finite-dimensional representations of finite topological groups, which are always compact under the discrete topology, and all of their representations are continuous. This is essentially Maschke's Theorem.\\
+
+Fix a partition $\lambda$ of $n$. Let $O_{\lambda}$ be the conjugacy class of all nilpotent matrices in $M_n(\C)$ whose Jordan blocks are the partition $\lambda$. The closure $\overline{O_\lambda}$ is an algebraic subset of $M_n(\C)$.
+
+Let $i$ be the inclusion of diagonal matrices into $M_n(\C)$ and $i^*:\C[M_n(\C)]\to \C[x_1,\dots,x_n]$ be the corresponding restriction map of algebras. Take the ideal
+$$
+J_\lambda = i^*(I_{\overline{O_{\lambda}}})
+$$
+and note that $V(J_{\lambda})=0$ because $O_{\lambda}$ is entirely nilpotent. Thus by the nullstellensatz, we have
+$$
+\sqrt{J_{\lambda}} = (x_1,\dots,x_n)
+$$
+so $A := \C[x_1,\dots,x_n]/J_{\lambda}$ is a finite-dimensional $\C$-algebra, since for each $j$, $x_j^k\in J_{\lambda}$ for some $k$. Thus we can apply Maschke's Theorem to see that this algebra is completely reducible, so it can be written as
+$$
+A = \bigoplus something
+$$
+a graded algebra. Note also that $S_n$ acts on $A$ by graded algebra automorphisms. Let $d_{\lambda}$ be the maximum $d$ such that $A_d\neq 0$ (the grade of $A$). Then the amazing thing\footnote{Ginzburg: ``there is no explanation.''} is
+$$
+(P/J_{\lambda})_{d_{\lambda}} \cong V(\lambda).
+$$
+This is pretty new stuff. It's a special case of the Hikita conjecture.\\
+
+\subsection{Calculus on Banach Algebras} A \textit{Banach Algebra} is an algebra over $\R$ or $\C$ equipped with a complete multiplicative norm. So essentially it is a Banach space that is also an algebra. A key example is any matrix algebra.
+
+Let $D_r(A)$ be the open disk of radius $r$ in $A$, i.e.
+$$
+D_r(A) := \{x\in A : |x| < r\}.
+$$
+If $a_0,a_1,\dots$ is any infinite sequence in $A$, and $f(x)$ is the power series
+$$
+f(x) = \sum_{k=0}^{\infty} a_kx^k
+$$
+then $f$ converges within the radius
+$$
+r(f) := \limsup_{k\to\infty} |a_n|^{-1/n}
+$$
+which is known as the Cauchy-Hadamar radius of convergence. It is important to note that this $r(f)$ is the same for equivalent norms, as any constant factor goes to 1 in the long tail of $|a_n|^{-1/n}$.\\
+
+\textbf{Proposition}: For all $r<r(f)$, $f(x)$ converges within $D_r(A)$ to a continuous function. Moreover, the map $D_r(\R)\to A$ given by $t\mapsto f(t \cdot 1_A)$ is smooth.
+\begin{proof}
+	Mostly identical to the normal calculus version.
+\end{proof} \\
+
+Examples:
+\begin{itemize}
+	\item For $f(x)=e^x=\sum_{k\geq 0} x^k/k!$, we have $\infty = \limsup_k |1/k!|^{-1/k}$ so $e^x$ is defined everywhere.
+	\item For $f(x)=\log(1+x)$, $\sum_{i=1}^{\infty} (-1)^{i-1} x^i/i$, then $r(f)=1$.
+	\item For $f(x)=1+x+x^2+\dots = (1-x)^{-1}$, $r(f)=1$. This gives that inversion is defined and continuous on the open disk of radius $1-\ep$ around $1_A$.
+	\item If we conjugate $f(x)$ by $g$, yielding $f(gxg^{-1})$, then the radius of convergence becomes 
+	$$
+	\min\bigg\{r(f),\frac{r(f)}{|g|\cdot |g^{-1}|}\bigg\}
+	$$
+	note that we do not necessarily have $|g^{-1}|= |g|^{-1}$.
+\end{itemize}
+
+\medspace
+
+Properties of the exponential map:
+\begin{itemize}
+	\item If $a,b$ commute (they may not in the matrix case!) then $e^{a+b}=e^{a}\cdot e^b$. The proof is the same as it would be in a field.
+	\item $e^a$ is always invertible, and its inverse is $e^{-a}$ (note that $a,-a$ commute).
+	\item $t\mapsto e^{ta}$ is a continuous group homomorphism from $\R$ to $A^{\times}$.
+	\item For sufficiently small $r>0$, $\exp(D_r(A))$ is an open neighborhood of $1_A$, and there are mutually inverse homeomorphisms $\exp$ and $\log$ between $D_r(A)$ and $\exp(D_r(A))$.   
+\end{itemize}
+
+\medspace
+
+\subsection{Lie Groups} Let $V,W$ be normed vector spaces and let $U$ be an open subset of $V$. For maps $f:U\to W$, we say that $f$ is \textit{differentiable} at $x\in U$ if there is a linear map $d_x f:V\to W$ such that 
+$$
+f(x+v) = f(x) + (d_xf)(v) + o(v)
+$$ 
+within a sufficiently small neighborhood of $x$.\\
+
+For example, taking the function $\exp:M_n(\R)\to M_n(\R)$, we have $d_0\exp = \id$.\\
+
+\textbf{Lemma}: Let $M_n=V_1\oplus V_2$ be a decomposition of $M_n(\R)$. Define the map $\Phi:M_n\to M_n$ by 
+$$
+\Phi: (v_1,v_2) \mapsto e^{v_1}e^{v_2}. 
+$$
+Then there exist sufficiently small disks $D_1\subset V_1$ and $D_2\subset V_2$ centered at 0 such that $\Phi(D_1\times D_2)$ is an open neighborhood of $\id\in \GL_n(\R)$, and $\Phi$ is a diffeomorphism on $D_1\times D_2$.
+\begin{proof}
+	It suffices to show that $d_0\Phi$ exists and is invertible. In fact, it is equal to the identity. By linearity,
+	$$
+	d_0\Phi(v_1,v_2) = d_0\Phi(v_1) + d_0\Phi(v_2) = \id_{V_1} + \id_{V_2} = \id.
+	$$
+\end{proof}\\
+
+\textbf{Lemma}: For matrices $x,y\in M_n$, we have the approximation
+$$
+e^{x/N}e^{y/N} = e^{(x+y+\a_N)/N}
+$$
+where $\a_N\in M_n$ such that $\lim_N \a_N = 0$.\\
+
+The significance of this is that while $e^{x+y}\neq e^xe^y$ in general, they are close for small-norm matrices.\\
+
+\textbf{Limit Lemma}: Let $G\subset \GL_n$ be a closed subgroup. If $x_i\in M_n$ is a sequence such that 
+\begin{enumerate}[(1)]
+	\item $e^{x_i}\in G$
+	\item $|x_i|\to 0$ but $x_i\neq 0$
+	\item $x_i/|x_i|\to x$ where $|x|=1$
+\end{enumerate} 
+then $e^{tx}\in G$ for all $t\in \R$.
+\begin{proof}
+	Fix $t$. Choose integers $m_i$ so that $m_i|x_i|$ is as close as possible to $t$. Since $|x_i|\to 0$, $m_i|x_i|\to t$, and $m_ix_i\to tx$. But now since $m_i$ is an integer we can say
+	$$
+	e^{m_ix_i} = (e^{x_i})^{m_i} \in G 
+	$$
+	and $e^{m_ix_i}\to e^{tx}$ so because $G$ is closed, $e^{tx}\in G$.
+\end{proof}\\
+
+A \textit{Lie Group} is a closed subgroup $G\subseteq \GL_n(\R)$. Corresponding to a Lie group we have a Lie algebra of $G$,
+$$
+\Lie(G) = \{x\in M_n : e^{tx}\in G \; \forall t\in \R\}
+$$
+To show that this is actually an algebra requires some work. Note that $\Lie(G)$ is automatically closed under scaling and multiplication. To show that it is also closed under addition, we use the lemmas: if $a,b\in \Lie(G)$, then 
+$$
+e^{a/N} e^{b/N} \in G \implies e^{(a+b+\a_n)/N} \in G
+$$
+where $\a_N\to 0$. Take $x_N = (a+b+\a_N)/N$. Now by the limit lemma, $x_N$ satisfies all the conditions and $a+b=x$, so indeed $e^{x}=e^{a+b} \in G$ as desired.
+\\
+
+Examples:
+\begin{itemize}
+	\item For $G=\GL_n(\R)$, $\Lie(G)=G$.
+	\item For $G=\SL_n(\R)$, 
+	$$
+	\Lie(G) = \{x\in M_n : \det(e^{tx}) =1 \forall t\} = \{x\in M_n : e^{t\tr(x)} = 1\} = \{x\in M_n : \tr(x)=0\}.
+	$$
+	\item 
+\end{itemize}
+
+\medspace
+
+\textbf{Cartan's Theorem}: Let $G\subseteq \GL_n(\R)$ be a Lie group with unit $e$. Then there is an open neighborhood of $\mathbf{0}_n\in M_n(\R)$ such that
+$$
+\exp(U\cap \Lie(G)) = \exp(U)\cap G.
+$$
+\begin{proof}
+	
 \end{proof}
+
+
 
 \end{document}
