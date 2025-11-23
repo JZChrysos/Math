@@ -767,7 +767,6 @@ Examples:
 	$$
 	\Lie(G) = \{x\in M_n : \det(e^{tx}) =1 \forall t\} = \{x\in M_n : e^{t\tr(x)} = 1\} = \{x\in M_n : \tr(x)=0\}.
 	$$
-	\item 
 \end{itemize}
 
 \medspace
@@ -777,9 +776,210 @@ $$
 \exp(U\cap \Lie(G)) = \exp(U)\cap G.
 $$
 \begin{proof}
+	It is clear that 
+	$$\exp(U\cap \Lie(G))\subset \exp(U)\cap \exp(\Lie(G)) \subset \exp(U)\cap G.$$
+	The other direction is the interesting one. How can we choose $U$ so that if $g=e^u$ then $u$ must be in $\Lie(G)$?\\
 	
-\end{proof}
+	Pick a complementary subspace $V\subset M_n$ of $\Lie(G)$, so that 
+	$$
+	\Lie(G)\oplus V = M_n.
+	$$
+	Recall the map
+	$$
+	\Phi:(u,v)\mapsto e^ue^v.
+	$$
+	Let $U_m$ be the disk of radius $\tfrac{1}{m}$ in $\Lie(G)$, and similarly $V_m$ in $V$. We claim that for all sufficiently large $m$, 
+	$$
+	G\cap \Phi(U_m\times V_m)\subset \Phi(U_m\times \{0\}).
+	$$
+	If this is not true, then there is a sequence $m_i\to \infty$ and $g_i=e^{u_i}e^{v_i}\in G$ for some $|u_i|,|v_i|<\tfrac{1}{m_1}$ with $v_i\neq 0$. By compactness, we can take a subsequence where $v_i/|v_i|$ converges to some limit $|v|=1$, since the sphere is compact. Now by the Limit Lemma, $v\in \Lie(G)$. But $V\cap \Lie(G)=\{0\}$ so $v=0$, and this contradicts $|v|=1$. Thus we have this claim.\\
+	
+	Let $m$ be sufficiently large so that the claim holds. Since $\exp$ is a local diffeomorphism, we can find an open neighborhood of $0$ in $U\subset U_{m}\times V_{m}$ so that $\exp$ is invertible on $U$. For this $U$, we claim that $\exp(U\cap \Lie(G))=\exp(U)\cap G$.
+	
+	Suppose that $g\in \exp(U)\cap G\subseteq \Phi(U_m\times V_m)\cap G$. Then because $\exp$ is a bijection, there is a \textit{unique} way to write $g$ as $e^u$, so (revisit!)
+	
+\end{proof}\\
 
+We can also think of the Lie algebra $\Lie(G)$ as the tangent space at 1 to $G$. For example the Lie algebra of $S^1\subset \C$ is the complex numbers $x$ so that $e^{tx}\in S^1$ for all $t\in \R$, i.e. $x\in i\R$. Note that this is the tangent space to $S^1$ at 1. \\
 
+It is an important fact that $\Lie(G)$ is closed under conjugation by elements in $G$.\\
 
+The \textit{Lie Bracket} is $[x,y]:=xy-yx$. The Lie bracket of two elements in $\Lie(G)$ is in $\Lie(G)$.
+\begin{proof}
+	If $x,y\in \Lie(G)$, then $e^{tx}$ and $e^{ty}$ are both in $G$ for all $t\in \R$. Thus, $e^{tx}ye^{-tx}\in \Lie(G)$ as well. And when we expand this, we get
+	$$
+	(1+tx+\tfrac{t^2}{2}x^2 + \cdots ) y (1-tx+\tfrac{t^2}{2}x^2 - \cdots ) = y + t(xy-yx) + \cdots
+	$$
+	and in particular the derivative in $t$ at $t=0$ is $xy-yx$. So $xy-yx$ is in the tangent space, i.e. it is in $\Lie(G)$.
+\end{proof}\\
+
+A morphism of Lie groups is a continuous group homomorphism. A morphism of Lie algebras is a linear map $\ph:\Lie(G)\to \Lie(H)$ which preserves the Lie bracket.\\
+
+\textbf{Proposition}: If $f:G\to H$ is a morphism of Lie groups, then there is a unique algebra morphism $\d f:\Lie(G)\to \Lie(H)$ such that $f(e^x)=e^{\d f(x)}$ for all $x\in \Lie(G)$. Moreover, $\Lie(\ker(f))=\ker(\d f)$. 
+\begin{proof}
+	Fixing $x\in \Lie(G)$, we have the following sequence of maps:
+	$$
+	(\R,+) \xrightarrow{e^{\bullet x}} G \xrightarrow{f} H \xhookrightarrow{} \GL_n
+	$$
+	We showed on homework that any continuous group homomorphism $\R\to M_n^{\times}$ must be of the form $t\mapsto e^{t\cdot v}$ for some $v\in M_n^{\times}$. Call this $v$ $\d f(x)$. Thus we have $f(e^{tx})=e^{t\cdot \d f(x)}$. This satisfies the desired property that $f(e^x)=e^{\d f(x)}$ (take $t=1$). If $f$ were differentiable then we could say
+	$$
+	\d f(x) = \frac{\d}{\d t}\Big|_{t=0}f(e^{tx})
+	$$
+	but we do not know this.\\
+	
+	Now we will show that this constructed map $\d f$ is actually a Lie algebra morphism. First, it is linear (I didn't get what he did to show this, maybe revisit later).\\
+	
+	Next, we show that $\d f$ preserves the Lie bracket. Let $g\in G$ and $y\in \Lie(G)$. Then
+	$$
+	e^{t\d f(gyg^{-1})}=f(e^{t(gyg^{-1})})= f(ge^{ty}g^{-1}) = f(g)f(e^{ty})f(g)^{-1} = f(g)e^{t \d f (y)}f(g)^{-1} = e^{t(f(g)\d f(y) f(g)^{-1})}
+	$$
+	for all $t\in \R$, which implies
+	$$
+	\d f(gyg^{-1}) = f(g)\d f(y) f(g)^{-1}.
+	$$
+	Let $g=e^{tx}$. Expanding the LHS gives $\d f([x,y])$ and expanding the RHS gives $[\d f (x),\d f(y)]$.
+\end{proof}\\
+
+\subsection{Representations of Lie Groups and Lie Algebras} Let $V$ be a finite-dimensional complex vector space $V\cong \C^n\cong \R^{2n}$ and consider $\GL(V)\subset \GL_{2n}(\R)$ as a Lie group.  \\
+
+Let $G$ be a Lie group in $\GL(V)$. A \textit{continuous} representation of $G$ in $V$ is a morphism of Lie groups $\rho: G\to \GL(V)$ (so it must be continuous). For each representation $\rho$ there is a corresponding $\d \rho:\Lie(G)\to \End(V)$.\\
+
+\textbf{Proposition}: Let $\rho:G\to \GL(V)$ be a continuous representation. Then
+\begin{enumerate}[(i)]
+	\item If $W\subseteq V$ is $G$-stable then $W$ is $\Lie(G)$-stable as well.
+	\item If $f:V\to V$ is a $G$-intertwiner, then $f$ is a $\Lie(G)$-intertwiner as well.
+\end{enumerate}
+Moreover, if $G$ is connected, then the converses of (i) and (ii) hold.
+\begin{proof}
+	(i): Suppose $W$ is $G$-stable. We want to show that if $x\in \Lie(G)$ then $\d \rho(x)(w)\in W$ for $w\in W$. $x\in \Lie(G)$ implies $e^{tx}\in G$, so we know that 
+	$$
+	e^{t\d \rho(x)}(w) = \rho(e^{tx})(w) \in W
+	$$
+	and taking the derivative of this at $t=0$, we get $\d\rho(x)(w)\in W$.\\
+	
+	(ii): Let $f:V\to V'$ be a $G$-intertwiner. Then for $x\in \Lie(G)$ we have
+	$$
+	f \circ e^{t\d \rho(x)} = f\circ \rho(e^{tx}) = \rho(f(e^{tx}))= e^{t\d\rho'(x)} \circ f.
+	$$
+	so again taking the derivative in $t$ we see that $f \circ \d\rho(w) = \d \rho'(x)\circ f$.\\
+	
+	To show the converses, we use the following fact: if $G$ is connected then every element of $G$ can be written as a product $g=e^{x_1}e^{x_2}\cdots e^{x_n}$ for some $x_1,\dots,x_n\in \Lie(G)$. On homework we showed that for connected $G$, every element can be expressed as a product of elements in $U$, if $U$ is any open neighborhood of 1. And we know that there is some $\exp(U)$ that is an open neighborhood of $1$ in $G$ by Cartan's Theorem, so this claim follows.
+	
+	Now, suppose $W\subseteq V$ is $\Lie(G)$-stable. Then for any $x\in \Lie(G)$, $x$ preserves $W$, but this also implies that $e^{x}$ preserves $W$ (since it is a sum of powers of $x$). Now, every $g\in G$ can be written as a product of exponentials $e^{x}$, each of which preserves $W$, so $g$ also preserves $W$.
+	
+	For the converse of (ii), suppose $\rho,\rho'$ are representations and $f:V\to V'$ is a $\Lie(G)$-intertwining operator. For any $g\in G$, we will show that $f(\rho(g)\cdot v))= \rho(g)\cdot f(v)$. Again, this follows because $g$ can be written as a product of $e^x$, which we know can be commuted with $f$. Commute each of them one-by-one and the result follows.
+\end{proof}\\
+
+The significance of this proposition is that we can now study the representation theory of connected Lie groups through their (much simpler) Lie algebras. The irreps of $G$ correspond to irreps of $\Lie(G)$, and if $G$ is \textit{simply connected} then the correspondence is bijective\\
+
+\textbf{Puzzle}: What is the complexification of $S_n$? (informal question)\\
+
+\subsection{Complex Lie Groups} A $\C$-vector space is the same thing as an $\R$-vector space $M$ along with an $\R$-linear operator $I:M\to M$ such that $I^2=-\id$ (which corresponds to multiplication by $i$). In this way, we can say that a map $a:V\to V$ is $\C$-linear if it commutes with addition, scaling by $\R$, \textit{and} the operator $I$.\\
+
+If $V$ is a $\C$-vector space, we define $V_{\R}$ to be the $\R$-vector space given by forgetting the operator $I$. We say that 
+$$
+\GL(V) := \{g \in \GL(V_\R) \; |\; gI = Ig\}.
+$$
+We can compute the Lie algebra of this $\GL(V)$ as 
+$$
+\Lie(\GL(V)) = \{x\in \End_{\R}(V_{\R})\; |\; e^{tx}\in \GL(V) \; \forall t\in \R\} = \Lie(\GL(V_{\R})) \cap \{e^{tx}Ie^{-tx} = 1\} = \End_{\C}(V).
+$$
+%
+%Let $e_1,\dots,e_n$ be a basis of $V=\C^n$, with $e_1,ie_1,\cdots,e_n,ie_n$ the corresponding basis of $V_{\R}$. If $f:V_{\R}\to V_{\R}$ is an $\R$-linear map, then $f$ is $\C$-linear iff \\
+
+If $V$ is a $\C$ vector space, a closed subgroup $G\subset \GL(V)$ is called a \textit{complex Lie group} if $\Lie(G)$ is a complex vector space. For example if $G=S^1\subset \GL_1(\C)$ then $\Lie(G)=i\R$, but this is \textit{not} a complex vector space so $G$ is not a complex Lie group.\\
+
+A representation $\rho:G\to \GL(V)$ of a complex Lie group $G$ is called \textit{holomorphic} if $\d \rho:\Lie(G)\to \End(V)$ is $\C$-linear. For example, the representation $\det: \GL_n(\C)\to \C^*$ has $\d(\det)=\tr$, which is $\C$-linear hence $\det$ is a holomorphic representation. But $\overline{\det}$ and $|\det|$ are not holomorphic.\\
+
+A complex Lie group $G$ is \textit{reductive} if it has a compact subgroup $K\subset G$ such that $\Lie(G)=\Lie(K)+i\Lie(K)$. For example, $G=\OO_n(\C)$ has $\Lie(G)$ as the complex skew-symmetric matrices. These can be decomposed into real and imaginary skew-symmetric parts, so $G$ is reductive.\\
+
+\textbf{Unitary Trick}: Any holomorphic representation of a reductive, connected group $G$ is completely reducible.
+\begin{proof}
+	Let $\rho:G\to \GL(V)$ be a holomorphic representation. Let $W\subseteq V$ be a $G$-stable subspace. Because $G$ is reductive it has such a compact subgroup $K$. Representations of $K$ are completely reducible because $K$ is compact. Thus if $W'$ is a complement of $W$ in $V$, then $V=W\oplus W'$, so $W'$ is $K$-stable as well.\\
+	
+	Now, $\d\rho(x)$ preserves $W'$ for $x\in \Lie(K)$. For general $a=x+iy$ where $x,y\in \Lie(K)$, 
+	$$
+	\d\rho(a)(W') = \d\rho(x)(W') + i\d\rho(y)(W') \subset W'
+	$$
+	(note that we use the fact that $\rho$ is holomorphic to take $i$ out of $\d\rho(iy)$) so $W'$ is $\Lie(G)$-stable as well. Since $G$ is connected it follows that $W'$ is $G$-stable, thus $\rho$ is completely reducible.
+\end{proof}\\
+
+Consider the $\C$-bilinear form $M_n(\C)\times M_n(\C)\to \C$ given by $(a,b)\mapsto \tr(ab)$. If $a,b$ are skew-hermitian (i.e. in $\Lie(U_n)$), then
+\begin{align*}
+\tr(ab) &= \sum_i a_{ii}b_{ii} + \sum_{i<j} a_{ij}b_{ji} + \sum_{i>j} a_{ij}b_{ij} \\
+&= \sum_i a_{ii}b_{ii} + 2 \Re\bigg(\sum_{i<j} a_{ij}b_{ji}\bigg)
+\end{align*}
+Noting that $a_{ii},b_{ii}\in i\R$, we see that $\tr(ab)\in \R$ in this case. Moreover $\tr(a^2)\leq 0$. Thus $-\tr(a,b)$ is a positive-definite inner product.\\
+
+\textbf{Proposition}: $\GL_n(\C)$ is reductive.
+\begin{proof}
+	In the case $n=1$, $\GL_n(\C)=\C^{\times}$. $S^1$ is a compact subgroup with Lie algebra $i\R$, so 
+	$$
+	\Lie(\GL_n(\C)) = \C= i\R \oplus \R = \Lie(S^1) + i\Lie(S^1)
+	$$
+	thus $\GL_n(\C)$ is reductive.\\
+	
+	For general $n$, $\Lie(\GL_n(\C))=M_n(\C)$. We want to split this into a real and imaginary part. If we take $U_n$, this is compact and as we showed on homework $\Lie(U_n)$ is the set of skew-hermitian matrices. So
+	$$
+	\Lie(\GL_n(\C)) = M_n(\C) = \Lie(U_n) \oplus i\Lie(U_n) 
+	$$
+	because for any $a\in M_n(\C)$,
+	$$
+	a = \bigg(\frac{a-a^*}{2}\bigg) + i\bigg(-i\frac{a+a^*}{2}\bigg).
+	$$
+\end{proof}\\
+
+Now back to polynomials. Let $P_d\subset \C[x_1,\dots,x_n]$ be the space of degree $d$ homogeneous polynomials over $\C$. $\GL_n(\C)$ acts on $P_d$, thus giving a representation $\rho_d$ of $\GL_n(\C)$. We will show that this representation is holomorphic.
+\begin{proof}
+	We need to check that $\d \rho_d: \M_n(\C)\to \End_{\C}(P_d)$ is $\C$-linear.\\
+	
+	First consider $n=2$. $P_d$ has basis $x^d,x^{d-1}y,\dots,y^d$, so let $f(x,y)=x^iy^j$. For $u\in M_2(\C)$ with entries
+	$$
+	u = \begin{bmatrix}
+		a & b \\
+		c & d
+	\end{bmatrix}
+	$$
+	we can calculate
+	\begin{align*}
+	(\d \rho (u))(f) &= \frac{\d}{\d t} \rho(e^{tu})f\big|_{t=0} \\
+	&= \frac{\d}{\d t} f\bigg(e^{-tu}\begin{pmatrix}
+		x\\ y
+	\end{pmatrix}\bigg)\big|_{t=0}\\
+	&= \frac{\d}{\d t} f\bigg(\begin{pmatrix}
+		x\\ y
+	\end{pmatrix} - t\begin{pmatrix}
+	ax+by\\ cx+dy
+	\end{pmatrix} + o(t)\bigg)\big|_{t=0}\\
+	&= \frac{\d}{\d t} (x-t(ax+by)+o(t))^i(y-t(cx_dy)+o(t))^j\big|_{t=0}\\
+	&= (x-t(ax+by)+o(t))^i(y-t(cx+dy)+o(t))^j\big|_{t=0}\\
+	&= 
+	\end{align*}
+	and we can see that this is linear in $a,b,c,d$ and thus linear in $u$ as desired.
+\end{proof}\\
+
+As a corollary, for any reductive subgroup of $\GL_n(\C)$, the representation by $P_d$ is holomorphic and hence completely reducible by the unitary trick.\\
+
+\subsection{Holomorphic Irreps of $\GL_n(\C)$} Because we have the unitary trick, we know that holomorphic representations of $\GL_n(\C)$ are completely reducible. But what are these representations?\\
+
+Let $T$ be the torus $(\C^*)^n$.\\
+
+\textbf{Lemma}: Any holomorphic homomorphism $T\to \C^*$ has the form $\chi:t\mapsto t^{\lambda}$ for $\lambda\in \Z^n$.
+\begin{proof}
+	Holomorphic means that $\d \chi: \C^n\to \C$ is linear, thus $\d\chi$ is an inner product with some $(\lambda_1,\dots,\lambda_n)$. $\chi$ is thus an exponential of this, but it doesn't work unless $\lambda_j$ are integers (details omitted).
+\end{proof}\\
+
+Let $\rho:\GL_n(\C)\to \GL(M)$ be a holomorphic representation. Let $T$ be the matrices in $\GL_n$ with diagonal $t_1,\dots,t_n$. We can restrict $\rho$ to $T$ to give a representation of $T$. We decompose $M$ into pieces
+$$
+M = \bigoplus_{\lambda\in \Z^n} M_{\lambda}
+$$
+where 
+$$
+M_{\lambda} = \{m\in M : \rho(t)m = t^{\lambda m}\}.
+$$
+We say $\lambda$ is a ``weight'' of $M$ if $M_{\lambda}\neq 0$. This decomposition is called the \textit{weight space} of $M$.\\
+
+Let $N$ be the set of upper triangular matrices with 1 on the diagonal. We say that $\lambda$ is a ``highest weight'' of $M$ if $\rho(g)$ fixes some $m\in M_{\lambda}$ for all $g\in N$. We say that $\lambda$ is ``dominant'' if it is ordered, i.e. $\lambda_1\geq \cdots \geq \lambda_n$.\\
+
+\textbf{Classification Theorem}: For every dominant $\lambda$, there is a unique irreducible representation $M(\lambda)$ with highest weight $\lambda$. Moreover, $\lambda$ is the only highest weight of $M(\lambda)$, and $\dim(M(\lambda))=1$.
 \end{document}

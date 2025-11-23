@@ -1,0 +1,232 @@
+\documentclass{amsart}
+
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Math 317 HW 6}
+\author{Jalen Chrysos}
+
+\begin{document}
+	\maketitle
+	\textbf{Problem 1 (Hatcher 3.3:6)}: Given two disjoint connected $n$-manifolds $M_1$ and $M_2$, their \textit{connected sum} $M_1\# M_2$ is a connected $n$-manifold formed by deleting the interiors of closed $n$-balls $B_1\subset M_1$ and $B_2\subset M_2$ and identifying the resulting boundary spheres $\partial B_1$ and $\partial B_2$ via some homeomorphism.
+	\begin{enumerate}[(a)]
+		\item Show that if $M_1,M_2$ are closed, then there are isomorphisms 
+		$$
+		H_i(M_1\# M_2) \cong H_i(M_1)\oplus H_i(M_2)
+		$$
+		for $0<i<n$, with one exception: if $M_1,M_2$ are both non-orientable, then $H_{n-1}(M_1\# M_2)$ is obtained from $H_{n-1}(M_1)\oplus H_{n-1}(M_2)$ by replacing one of the two $\Z_2$ summands by a $\Z$.
+		\item Show that $\chi(M_1\# M_2)=\chi(M_1) + \chi(M_2) - \chi(S^n)$ if $M_1$ and $M_2$ are closed.
+	\end{enumerate}
+	\begin{proof}
+		(a): Consider the pair $(M_1\# M_2,S^{n-1})$, where the $S^{n-1}$ is the place where $M_1$ and $M_2$ have been glued together. The quotient by $S^{n-1}$ brings this to $M_1\vee M_2$. Corresponding to this quotient, we have the long exact sequence 
+		$$
+		\cdots \to H_{i}(S^{n-1})\to H_i(M_1\# M_2) \to H_i(M_1\# M_2, S^{n-1}) \to H_{i-1}(S^{n-1})\to \cdots 
+		$$
+		and note that $H_i(M_1\# M_2,S^{n-1})\cong \tilde{H}_i(M_1\vee M_2) \cong \tilde{H}_i(M_1)\oplus \tilde{H}_i(M_2)$, which results in the sequence  
+		\begin{equation}
+		\tilde{H}_i(S^{n-1})\to \tilde{H}_i(M_1\# M_2) \to  \tilde{H}_i(M_1)\oplus \tilde{H}_i(M_2) \to \tilde{H}_{i-1}(S^{n-1}).\tag{1}
+		\end{equation}
+		For $0<i<n-1$, $\tilde{H_i}(S^{n-1})=\tilde{H}_{i-1}(S^{n-1})=0$, so ($1$) immediately yields the desired isomorphism $H_i(M_1)\oplus H_i(M_2)\cong H_i(M_1\# M_2)$.
+		
+		For $i=n-1$, the sequence is
+		$$
+		0\to \tilde{H}_n(M_1\# M_2) \to  \tilde{H}_n(M_1)\oplus \tilde{H}_n(M_2)\to \Z \to \tilde{H}_{n-1}(M_1\# M_2) \to  \tilde{H}_{n-1}(M_1)\oplus \tilde{H}_{n-1}(M_2) \to 0
+		$$
+		Now we do casework based on the orientability of $M_1$ and $M_2$. First, note that if both are orientable then $M_1\# M_2$ must be as well, otherwise the sequence would begin $0\to 0 \to \Z^2\to \Z$ which is impossible because there is no injective map $\Z^2\to \Z$. Conversely, if $M_1\# M_2$ is orientable then both $M_1$ and $M_2$ are orientable, otherwise the sequence would begin either $0\to \Z\to 0$ or $0\to \Z \to \Z\to \Z$ which are both impossible. So $M_1\# M_2$ is orientable iff $M_1$ and $M_2$ both are.
+		
+		In the case where $M_1,M_2$ are both orientable, the sequence becomes
+		$$
+		0 \to \Z\to \Z^2 \to \Z\to H_{n-1}(M_1\# M_2) \to H_{n-1}(M_1)\oplus H_{n-1}(M_2) \to 0
+		$$
+		Taking alternating sums of the ranks, we see that $\rk(H_{n-1}(M_1\# M_2)) = \rk(H_{n-1}(M_1)\oplus H_{n-1}(M_2))$. Moreover, $H_{n-1}(M_1),H_{n-1}(M_2),H_{n-1}(M_1\# M_2)$ are all torsion-free, so having the same rank implies that they're isomorphic. 
+		
+		In the case where just $M_1$ is orientable, the sequence becomes
+		$$
+		0 \to 0 \to \Z \to \Z\to H_{n-1}(M_1\# M_2) \to H_{n-1}(M_1)\oplus H_{n-1}(M_2)\to 0
+		$$
+		which similarly yields that the two $H_{n-1}$ groups have the same rank. Moreover, the torsion part of $H_{n-1}(M_1\# M_2)$ and of $H_{n-1}(M_2)$ are both $\Z_2$, and the torsion part of $H_{n-1}(M_1)$ is 0, so both groups have the same rank and torsion and are thus identical.
+		
+		Finally, if neither are orientable, we get the sequence
+		$$
+		0 \to 0 \to 0 \to \Z\to H_{n-1}(M_1\# M_2) \to H_{n-1}(M_1)\oplus H_{n-1}(M_2)\to 0
+		$$
+		which yields that $H_{n-1}(M_1\# M_2)$ has rank one greater than that of $H_{n-1}(M_1)\oplus H_{n-1}(M_2)$, but all three of $H_{n-1}(M_1\# M_2)$, $H_{n-1}(M_1)$ and $H_{n-1}(M_2)$ have torsion subgroup $\Z_2$. Thus, as expected, $H_{n-1}(M_1\# M_2)$ has one more $\Z$ and one fewer $\Z_2$ than $H_{n-1}(M_1)\oplus H_{n-1}(M_2)$.\\
+		
+		(b): For $0< i < n-1$, as part (a) showed,
+		\begin{equation}
+		\rk(H_i(M_1\# M_2)) = \rk (H_i(M_1)) + \rk(H_i(M_2)) = \rk (H_i(M_1)) + \rk(H_i(M_2)) - \rk(H_i(S^n)). \tag{$\ast$}
+		\end{equation}
+		For $i=0$, $H_0(M_1)=H_0(M_2)=H_0(M_1\# M_2)=\Z$, since all are connected, so in this case
+		$$
+		\rk(H_0(M_1 \# M_2)) = \rk (H_0(M_1)) + \rk(H_0(M_2)) - 1 = \rk (H_0(M_1)) + \rk(H_0(M_2)) - \rk(H_0(S^n)).
+		$$
+		For $i=n-1$ and $i=n$ we must take into account whether $M_1,M_2$ are orientable or not.\\
+		
+		In the case that they are both orientable, $(\ast)$ holds for $i=n-1$ as well by part (a), and 
+		$$
+		\rk(\underbrace{H_n(M_1\# M_2)}_{\Z}) = \rk(\underbrace{H_n(M_1)}_{\Z}) + \rk(\underbrace{H_n(M_2)}_{\Z}) - 1 =  \rk(H_n(M_1)) + \rk(H_n(M_2)) - \rk(H_n(S^n)).
+		$$
+		Similarly if one of $M_1,M_2$ is orientable and the other is not, then both sides of the above equation decrease by 1 but it is still true.\\
+		
+		In the case where neither $M_2$ nor $M_2$ is orientable, then $M_1\# M_2$ is not either, so
+		$$
+		\rk(H_n(M_1\# M_2)) = \rk(H_n(M_1)) + \rk(H_n(M_2))
+		$$ 
+		as both sides are 0. And for $i=n-1$, part (a) gives
+		$$
+		\rk(H_{n-1}(M_1\# M_2)) = \rk(H_{n-1}(M_1)) + \rk(H_{n-1}(M_2)) + 1
+		$$
+		from turning one of the $\Z_2$ into $\Z$. Between these dimensions $n$ and $n-1$, we've added $(-1)^{n-1}$ to $\chi(M_1\# M_2) -\chi(M_1) - \chi(M_2)$ rather than subtracting $(-1)^n$, but those are the same thing so the result still holds.
+	\end{proof}
+	
+	\newpage
+	\textbf{Problem 2 (Hatcher 3.3:7)}: For a map $f:M\to N$ between connected closed orientable $n$-manifolds with fundamental classes $[M]$ and $[N]$, the \textit{degree} of $f$ is defined to be the integer $d$ such that $f_*([M])=d[N]$ (so the sign of the degree depends on the choice of fundamental classes). Show that for any connected closed orientable $n$-manifold $M$, there is a degree-1 map $M\to S^n$.
+	\begin{proof}
+		Let $U$ be an open region of $M$ homeomorphic to $D^n$, and pick some point $x\in S^n$. Consider the map $f:M\to S^n$ given by $M\setminus U\to x$ and sending $U$ to $S^n - \{x\}$ via a degree-1 attaching map that collapses $\partial U$ to $x$ (can be given by stereographic projection from $x$).\\
+		
+		To calculate the degree of $f$, note that $\overline{U}\cap (M\setminus U)=\partial U$ is homeomorphic to $S^{n-1}$. The Mayer-Vietoris sequence
+		$$
+		\underbrace{H_{n+1}(S^{n-1})}_{0}\to H_n(M\setminus U)\oplus H_n(U)\to H_n(M) \to \underbrace{H_{n}(S^{n-1})}_{0}
+		$$
+		so we have
+		$$
+		H_n(M) = H_n(M\setminus U) \oplus H_n(U).
+		$$
+		Thus, $[M]$ can be expressed as a sum $[M\setminus U] + [U]$, on which $f$ acts by sending $[M\setminus U]\mapsto 0$ and $[U]\mapsto 1\in H_n(S^n)=\Z$, the latter because we defined $f$ to be degree-1 on $U$. Thus, $f$ is degree-1 on $M$.
+	\end{proof}
+	
+	\newpage
+	\textbf{Problem 3 (Hatcher 3.3:10)}: Show that for a degree-1 map $f:M\to N$ of connected closed orientable manifolds, the induced map $f_*:\pi_1M\to \pi_1N$ is surjective.
+	\begin{proof}
+		Let $\tilde{N}$ be a covering space of $N$ for which $\pi_1(\tilde{N})=f_*(\pi_1(M))\subset \pi_1(N)$. By the homotopy lifting property, we can lift $f$ to a map $\tilde{f}:M\to \tilde{N}$, for which the induced map $$\tilde{f}_*:\pi_1(M)\to\pi_1(\tilde{N})=\pi_1(f_*(\pi_1(M)))$$
+		is surjective. Now using the fact that $\deg(f)=1$, we can show that the covering map is surjective on fundamental groups: If the covering is $p$-sheeted, then it has degree $p$, but then 
+		$$
+		1 = \deg(f) = \deg(\tilde{f})\cdot p \implies p=\pm 1
+		$$
+		so in fact $\tilde{N}\cong N$. If the covering is infinite-sheeted, then $\tilde{N}$ must be non-compact (the preimages of a small open neighborhood will have no finite subcover), so $H_n(\tilde{N})=0$ by Poincar\'e duality, since $H_c^0(\tilde{N})=0$. But then $f_*$ cannot be degree 1, since it factors through 0:
+		$$
+		f_*:H_n(M)\to H_n(\tilde{N})\to H_n(N)
+		$$
+		so this case is impossible if $f$ is degree 1. In either case, the cover corresponding to the image of $f_*$, $\tilde{N}$, must be actually isomorphic to $N$, so $f_*$ is surjective on $\pi_1$.
+	\end{proof}
+	
+	\newpage
+	\textbf{Problem 4 (Hatcher 3.3:11)}: If $M_g$ denotes the closed orientable surface of genus $g$, show that degree 1 maps $M_g\to M_h$ exist iff $g\geq h$.
+	\begin{proof}
+		By the previous problem, a degree-1 map $f: M_g\to M_h$ implies that $f_*:H_1(M_g)\to H_1(M_h)$ is surjective. And $H_1(M_g)=\Z^{2g}$, so this immediately implies $2g\geq 2h$.\\
+		
+		Conversely, if $g\geq h$, then such a map does exist. One can just contract a circle in $M_g$ to $M_g=M_h\vee M_{g-h}$ and then collapse the $M_{g-h}$ part to the attaching point, leaving $M_h$.
+	\end{proof}
+	
+	\newpage
+	\textbf{Problem 5 (Hatcher 3.3:12)}: Show that in a free group $F$ with basis $x_1,\dots,x_{2k}$, the product of commutators $[x_1,x_2]\cdots [x_{2k-1},x_{2k}]$ is not equal to the product of fewer than $k$ commutators of any elements in $F$.
+	\begin{proof}
+		Suppose 
+		$$
+		p:= [x_1,x_2]\cdots [x_{2k-1},x_{2k}] = [y_1,y_2]\cdots [y_{2g-1},y_{2g}]
+		$$
+		for some $y_1,\dots,y_{2g}\in F$ with $g<k$. Then there is an inclusion $\pi_1(M_g)\to \pi_1(M_k)$ given by sending the generators of $\pi_1(M_g)$ to $y_1,\dots,y_{2g}\in \pi_1(M_k)$. Since $M_g$ is a $K(\pi,1)$, this map on homotopy groups is induced by a map of the underlying spaces $f:M_g\to M_k$. This map is degree-1 because the map on homotopy is an inclusion. This is a contradiction of the previous problem, so such $y_j$ cannot exist. 
+	\end{proof}
+	
+	\newpage
+	\textbf{Problem 6 (Hatcher 3.3:15)}: For an $n$-manifold $M$ and a compact subspace $A\subset M$, show that $H_n(M,M-A;R)$ is isomorphic to the group $\Gamma_R(A)$ of sections of the covering space $M_R\to M$ over $A$; that is, maps $A\to M_R$ whose composition with $M_R\to M$ is the identity. 
+	\begin{proof}
+		By Lemma 3.27 in Hatcher, for every section $x \mapsto \a_x$ in $\Gamma_R(A)$ there is a \textit{unique} element $\a_A\in H_n(M,M-A;R)$ whose image in $H_n(M,M-x;R)$ is $\a_x$ for all $x\in A$. And this $\a_A$ clearly corresponds to a section over $A$ by restricting to $H_n(M,M-x;R)$. Now it remains to show that this correspondence is an isomorphism.\\
+		
+		This follows by checking that $(-\a)_A = -\a_A$ and for $\a,\b\in \Gamma_R(A)$, $\a_A+\b_A = (\a+\b)_A$. Moreover, $\a\mapsto \a_A$ is injective: if $\a_A=\b_A$ then $(\a-\b)_A=0$, so it suffices to check injectivity at 0. If $h\in H_n(M,M-A;R)$ is nonzero, then there is some point $x\in A$ which witnesses this by being ``inside'' a cycle of the class $h$. Thus if $\a_A=0$ it follows that $\a=0$, so this is indeed an isomorphism.
+	\end{proof}
+	
+	\newpage
+	\textbf{Problem 7 (Hatcher 3.3:24)}: Let $M$ be a closed connected 3-manifold, and write $H_1(M;\Z)$ as $\Z^r\oplus F$, where $F$ is finite. Show that $H_2(M)$ is $\Z^r$ if $M$ is orientable and $\Z^{r-1}\oplus \Z_2$ if $M$ is non-orientable. In particular, $r\geq 1$ when $M$ is non-orientable. Using Problem 1 (3.3:6), construct examples showing that there are no other restrictions on the homology groups of closed 3-manifolds.
+	\begin{proof}
+		Let $H_2(M)=G$. If $M$ is orientable, then by Poincar\'e Duality, $H^1(M)=G$ as well. So by the universal coefficient theorem,
+		$$
+		H^1(M) := \Hom(\Z^r \oplus F,\Z) \oplus \Ext(\Z,\Z) = \Z^r.
+		$$
+		noting $H_0(M)=\Z$ because $M$ is connected.
+		
+		On the other hand, if $M$ fails to be orientable, then we can use the fact that the torsion subgroup of $H_{n-1}(M)$ is $\Z_2$, and as $M$ is odd-dimensional it must have Euler characteristic 0, which forces the rank of $H_2(M)$ to be $r-1$. Together, this shows $H_2(M)=\Z^{r-1}\oplus \Z_2$.\\
+		
+		Now we'll construct examples, for any $r\geq 1$ and $F$, of 3-manifolds $M$ for which $H_1(M)=\Z^r\oplus F$. Begin with a closed 3-manifold $M_0$ of genus $r$. This will have $H_1(M_0)=\Z^r$. Then for every cyclic subgroup $\Z_p$ of $F$, let $L_p$ be a 3-dimensional lens space with $H_1(L_p)=\Z_p$. We will take the connected sum of all of these. By problem 1, 
+		$$
+		H_1(M_0\# L_p) = H_1(M_0)\oplus H_1(L_p)= \Z^r\oplus \Z_p 
+		$$
+		and similarly we can continue adding on cyclic subgroups for every component of $F$ to get $M$, for which $H_1(M)=\Z^r\oplus F$.
+	\end{proof}
+	
+	\newpage
+	\textbf{Problem 8 (Hatcher 3.3:26)}: Compute the cup product structure in 
+	$$H^*((S^2\times S^8)\# (S^4\times S^6);\Z)$$
+	and in particular show that the only nontrivial cup products are those dictated by Poincar\'e Duality.
+	\begin{proof}
+		First, we can calculate the homology groups of this space. First, note that for $a\neq b$,
+		$$
+		H_i(S^a\times S^b) = \begin{cases}
+			\Z & i\in \{0,a,b,a+b\}\\
+			0 & \text{otherwise}
+		\end{cases}
+		$$
+		Now by problem 1,
+		$$
+		H_i((S^2\times S^8)\#(S^4\times S^6);\Z) = H_i(S^2\times S^8) \oplus H_i(S^4\times S^6) 
+		$$
+		for $0<i<n$, noting that both parts $S^2\times S^8$ and $S^4\times S^6$ are orientable. For $H_0$, the space is connected so we get $\Z$, and for $H_n$ it is orientable hence $\Z$. So the homology groups are
+		$$
+		H_*((S^2\times S^8)\#(S^4\times S^6);\Z) = (\Z,0,\Z,0,\Z,0,\Z,0,\Z,0,\Z)
+		$$
+		and likewise for the cohomology groups over $\Z$, noting that all homology groups are free.\\
+		
+		For the cup product structure, because this is an orientable manifold, Poincar\'e duality guarantees that the cup product of terms whose total degree is 10 are surjective. 
+		
+		The others are all trivial: if $|\a|=2$, then $\a^2 \in H_*(S^2\times S^8)$ but it's of degree 4 and $H_4(S^2\times S^8)=0$, so $\a^2=0$, and similarly all of the other squares must be trivial. Also, if $|\a|=2$ and $|\b|=4$, then the product must be 0 because they are in different parts: $(\a,0)\cdot (0,\b)=(0,0)$. Similarly for other pairs. So the only nonzero cup products occur when the group elements are in the same part and their degrees sum to 10.
+	\end{proof}
+	
+	\newpage
+	\textbf{Problem 9 (Hatcher 3.3:27)}: Show that after a suitable change of basis, a skew-symmetric nonsingular bilinear form over $\Z$ can be represented by a matrix consisting of $2\times 2$ blocks 
+	$$
+	\begin{pmatrix}
+		0 & -1 \\ 
+		1  & 0
+	\end{pmatrix}
+	$$
+	along the diagonal and 0 elsewhere.
+	\begin{proof}
+		Row operations can be realized as changes of basis, so we may use them. I'll show an example with a $4\times 4$ matrix that can easily be generalized:
+		$$
+		\begin{bmatrix}
+			0 & a & b & c\\
+			-a & 0  & d & e\\
+			-b & -d & 0 & f\\
+			-c & -e & -f & 0
+		\end{bmatrix}
+		$$
+		First scale all the rows and columns to remove any common factors (note that the scaling doesn't affect the diagonal), so we can assume that the gcd of any row or column is 1. Because the matrix is non-singular, none of the rows or columns can be all 0. So there is a linear combination of two rows that has 1 in the second entry. Replace the first row by that linear combination, so that the first row becomes $[x,1,\ast,\ast]$. Next, do the exact same operation on the columns, subtracting $x$ from the first entry of the first column, resulting in 
+		$$
+		\begin{bmatrix}
+			0 & 1 & \ast & \ast\\
+			-1 & 0  & d & e\\
+			\ast & -d & 0 & f\\
+			\ast & -e & -f & 0
+		\end{bmatrix}
+		$$
+		These were invertible operations, so the matrix should still be nonsingular. Moreover, they were symmetric across the diagonal, so the matrix is still skew-symmetric. Now we can subtract copies of the second row from the other two rows and do the symmetric operations on the columns to clear out the first row and column:
+		$$
+		\begin{bmatrix}
+			0 & 1 & 0 & 0\\
+			-1 & 0  & \ast & \ast\\
+			0 & \ast & 0 & \ast\\
+			0 & \ast & \ast & 0
+		\end{bmatrix}
+		$$
+		and now we can add copies of the first row and column to the second row and column without any interference with the third and fourth:
+			$$
+		\begin{bmatrix}
+			0 & 1 & 0 & 0\\
+			-1 & 0  & 0 & 0\\
+			0 & 0 & 0 & \ast\\
+			0 & 0 & \ast & 0
+		\end{bmatrix}
+		$$
+		Now we can leave the first two columns and first two rows alone and repeat the same operation with the rest of the matrix. Again, every operation was invertible and came in pairs that preserved skew-symmetry, so the matrix remains nonsingular and skew-symmetric.
+	\end{proof}
+\end{document}
+

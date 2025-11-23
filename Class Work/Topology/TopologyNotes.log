@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  6 NOV 2025 16:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  20 NOV 2025 12:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1103,107 +1103,272 @@ Underfull \hbox (badness 10000) in paragraph at lines 599--600
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 605--606
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 607--608
+Underfull \hbox (badness 10000) in paragraph at lines 608--609
 
  []
 
 
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 609--610
-
- []
-
-
-Underfull \vbox (badness 2970) has occurred while \output is active []
+Underfull \vbox (badness 6016) has occurred while \output is active []
 
 
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 721--723
+Underfull \hbox (badness 10000) in paragraph at lines 720--722
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 727--729
+Underfull \hbox (badness 10000) in paragraph at lines 726--728
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 732--733
+Underfull \hbox (badness 10000) in paragraph at lines 731--732
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 734--735
+Underfull \hbox (badness 10000) in paragraph at lines 733--734
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 736--738
+Underfull \hbox (badness 10000) in paragraph at lines 735--737
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 739--740
+Underfull \hbox (badness 10000) in paragraph at lines 738--739
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 741--742
+Underfull \hbox (badness 10000) in paragraph at lines 740--741
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 746--748
+Underfull \hbox (badness 10000) in paragraph at lines 745--747
 
  []
 
 
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 756--758
+Underfull \hbox (badness 10000) in paragraph at lines 755--757
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 768--770
+Underfull \hbox (badness 10000) in paragraph at lines 767--769
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 782--784
+Underfull \hbox (badness 10000) in paragraph at lines 781--783
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 798--799
+Underfull \hbox (badness 10000) in paragraph at lines 797--798
 
  []
 
 
 
 [15]
+Underfull \hbox (badness 10000) in paragraph at lines 839--840
 
-[16] (./TopologyNotes.aux)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 851--854
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 855--856
+
+ []
+
+
+
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 904--905
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 910--912
+
+ []
+
+
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 916--918
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 919--920
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 946--948
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 953--955
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 959--961
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 968--969
+
+ []
+
+
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 976--978
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 979--980
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 984--986
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1002--1004
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1005--1006
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1007--1008
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1019--1021
+
+ []
+
+
+
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 1027--1029
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1030--1032
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1033--1034
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1035--1036
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1039--1041
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1044--1046
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1053--1054
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1058--1060
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1061--1063
+
+ []
+
+
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 1071--1073
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1101--1102
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1106--1109
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1110--1111
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1114--1115
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1116--1118
+
+ []
+
+
+
+[21] (./TopologyNotes.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
 Package rerunfilecheck Info: File `TopologyNotes.out' has not changed.
-(rerunfilecheck)             Checksum: A9D606FD85DB47A73C0611CC593C7BA2;2065.
+(rerunfilecheck)             Checksum: 0E928CC675316A38FBB4C5DF3C5AD380;2983.
  ) 
 Here is how much of TeX's memory you used:
- 27130 strings out of 467748
- 537447 string characters out of 5431138
- 923960 words of memory out of 5000000
- 55195 multiletter control sequences out of 15000+600000
- 635415 words of font info for 71 fonts, out of 8000000 for 9000
+ 27219 strings out of 467748
+ 539246 string characters out of 5431138
+ 924036 words of memory out of 5000000
+ 55271 multiletter control sequences out of 15000+600000
+ 636036 words of font info for 73 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  103i,16n,108p,682b,1023s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
@@ -1211,20 +1376,23 @@ live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/202
 5/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5
-.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/te
-xlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2025/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2025/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmti10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts
-/symbols/msam10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/sym
-bols/msbm10.pfb>
-Output written on TopologyNotes.pdf (16 pages, 281450 bytes).
+lic/amsfonts/cm/cmmi6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/
+texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/202
+5/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2025/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pf
+b><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/tex
+live/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive
+/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/202
+5/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on TopologyNotes.pdf (21 pages, 341835 bytes).
 PDF statistics:
- 233 PDF objects out of 1000 (max. 8388607)
- 181 compressed objects within 2 object streams
- 32 named destinations out of 1000 (max. 500000)
- 109 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 306 PDF objects out of 1000 (max. 8388607)
+ 240 compressed objects within 3 object streams
+ 43 named destinations out of 1000 (max. 500000)
+ 149 words of extra memory for PDF output out of 10000 (max. 10000000)
 

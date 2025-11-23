@@ -1,0 +1,52 @@
+\documentclass{amsart}
+
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Math 317 HW 7}
+\author{Jalen Chrysos}
+4.1.5 8 15 17 4.2.1 4.2.5 4.2.10 4.2.13
+
+\begin{document}
+	\textbf{Problem 1 (Hatcher 4.1.5)}: For a pair $(X,A)$ of path-connected spaces, show that $\pi_1(X,A,x_0)$ can be identified in a natural way with the set of cosets $\a H$ of the subgroup $H\subset \pi_1(X,x_0)$ represented by loops in $A$ at $x_0$.
+	
+	\newpage
+	
+	\textbf{Problem 2 (Hatcher 4.1.8)}: Show that the sequence 
+	$$
+	\pi_1(X,x_0) \to \pi_1(X,A,x_0) \xrightarrow{\partial} \pi_0(A,x_0) \to \pi_0(X,x_0)
+	$$
+	is exact.
+	
+	\newpage 
+	\textbf{Problem 3 (Hatcher 4.1.15)}: Show that every map $f:S^n\to S^n$ is homotopic to a multiple of the identity map by the following steps:
+	\begin{enumerate}[(a)]
+		\item Use Lemma 4.10 to reduce to the case that there is a point $q\in S^n$ with $f^{-1}(q)=\{p_1,\dots,p_k\}$ and $f$ is an invertible linear map near each $p_i$.
+		\item For $f$ as in (a), consider the composition $gf$ where $g:S^n\to S^n$ collapses the complement of a small ball about $q$ to the basepoint. Use this to reduce (a) further to the case $k=1$.
+		\item Finish the argument by showing that an invertible $n\times n$ matrix can be joined by a path of such matrices to either the identity matrix or the matrix of a reflection. 
+	\end{enumerate}
+	
+	\newpage
+	\textbf{Problem 4 (Hatcher 4.1.17)}: Show that if $X$ and $Y$ are CW complexes with $X$ $m$-connected and $Y$ $n$-connected, then $(X\times Y, X\vee Y)$ is $(m+n+1)$-connected, as is the smash product $X\wedge Y$.
+	
+	\newpage
+	\textbf{Problem 5 (Hatcher 4.2.1)}: Use homotopy groups to show that there is no retraction $\RP^n\to \RP^k$ for $n>k>0$.
+	
+	\newpage
+	\textbf{Problem 6 (Hatcher 4.2.5)}: Let $f:S^2_{\a}\vee S^2_{\b} \to S^2_{\a}\to S^2_{\b}$ be the map which is the identity on $S^2_{\a}$, and the sum of the identity and a map $S^2_{\b}\to S^2_{\a}$ on $S^2_{\b}$. Let $X$ be the mapping torus of $f$, i.e.
+	$$
+	X := \frac{(S^2_{\a} \vee S^2_{\b} )\times I}{(x,0)\sim (f(x),1)}
+	$$	
+	The mapping torus of the restriction of $f$ to $S^2_{\a}$ forms a subspace $A=S^1\times S^2_{\a}\subset X$. Show that the maps $\pi_2(A)\to \pi_2(X)\to \pi_2(X,A)$ form a short exact sequence 
+	$$
+	0 \to \underbrace{\pi_2(A)}_{\Z}\to \underbrace{\pi_2(X)}_{\Z^2}\to \underbrace{\pi_2(X,A)}_{\Z}\to 0
+	$$
+	and compute the action of $\pi_1(A)$ on these three groups. In particular show that the action is trivial on $\pi_2(A)$ and $\pi_2(X,A)$ but nontrivial on $\pi_2(X)$.
+	\newpage
+	\textbf{Problem 7 (Hatcher 4.2.10)}: Let $X$ be the CW complex obtained from $S^2\vee S^n$ (where $n\geq 2$) by attaching $e^{n+1}$ by a map representing the polynomial $p(t)=\Z[t,t^{-1}]\cong \pi_n(S^1\vee S^n)$, so that $\pi_n(X)\cong \Z[t,t^{-1}]/(p(t))$. Show that $\pi_n'(X)$ is cyclic and compute its order in terms of $p(t)$. Give examples showing that the group $\pi_n(X)$ can be finitely-generated or not, independently of whether $\pi_n'(X)$ is finite or infinite.
+	
+	\newpage
+	\textbf{Problem 8 (Hatcher 4.2.13)}: Show that a map between connected $n$-dimensional CW complexes is a homotopy equivalence if it induces an isomorphism on $\pi_i$ for $i\leq n$.
+	
+	
+	
+\end{document}

@@ -291,7 +291,7 @@
 	 	$G$ acts on $EG$ by acting on the vertices. Let $BG=EG/G$. This $BG$ is a $K(G,1)$.
 	 \end{proof}\\
 	 
-	 \subsection{Homology} Homology groups are somewhat like fundamental groups (they are invariant properties of a topological space) but they are always Abelian. There are two equivalent definitions \textit{on CW complexes}: one will be easy to compute but non-trivially invariant (simplicial/cellular homology), and one will be clearly invariant but difficult to compute (singular homology).\\
+	 \section{Homology} Homology groups are somewhat like fundamental groups (they are invariant properties of a topological space) but they are always Abelian. There are two equivalent definitions \textit{on CW complexes}: one will be easy to compute but non-trivially invariant (simplicial/cellular homology), and one will be clearly invariant but difficult to compute (singular homology).\\
 	 
 	 Let $\Delta^n$ be the canonical $n$-simplex, defined as the set of points in $\R^{n+1}$ whose coordinates are all non-negative and sum to $1$. We say that the $j$th face of $\Delta^n$, denoted $\Delta^n_j$, is the $(n-1)$-simplex obtained by taking all the vertices except for $j$. The orientation (i.e. the ordering on vertices) is preserved if $j$ is even and reversed if $j$ is odd. There may be other $n$-simplices in space which are images of $\Delta^n$ under some continuous map. A $\Delta$-complex is basically a CW complex but with simplices instead of balls and the attaching maps additionally have to obey some orientation stuff.\\
 	 
@@ -602,11 +602,10 @@
 		
 		Let $\St(\sigma)$ (pronounced ``Star of $\sigma$'') be the union of all simplices containing $\sigma$. We also have the \textit{open} star $\st(\sigma)$ which is the union of the \textit{interiors} of all simplices containing $\sigma$. $\overline{\st(\sigma)}=\St(\sigma)$ (this is not so obvious as it seems). Also the intersection of $\st(v_i)$ for vertices $v_i$ is $\st(\tau)$ if they are exactly the vertices of a simplex $\tau$, and empty otherwise.
 		
-		We just need to choose $g$ so that $g(v) \in \St(f(v))$ for every vertex $v\in X$, and there will be a homotopy equivalence between $f$ and $g$ (many details omitted). This is a case of a more general tool called \textit{simplicial approximation}.\\
-		
-	\end{proof}\\
+		We just need to choose $g$ so that $g(v) \in \St(f(v))$ for every vertex $v\in X$, and there will be a homotopy equivalence between $f$ and $g$ (many details omitted). This is a case of a more general tool called \textit{simplicial approximation}.
+	\end{proof}
 	
-	\subsection{Cohomology} We'll initially define Cohomology as an algebraic thing, but then see that it has some important implications for topology and geometry. \\
+	\section{Cohomology} We'll initially define Cohomology as an algebraic thing, but then see that it has some important implications for topology and geometry. \\
 	
 	Fix some abelian ``coefficient group'' $G$. Given any abelian group $A$, let $A^*$ be the group $\Hom(A,G)$. For any group homomorphism $f:A\to B$ we have the pullback map $f^*:B^*\to A^*$ by precomposition with $f$. So dualizing is a contravariant functor.
 	
@@ -835,8 +834,290 @@
 	H^k(X,A)\times H^{\ell}(X,B)\to H^{k+\ell}(X,A\cup B).
 	$$
 	
+	\medspace
+	
+	\subsection{Kunneth Formula} How can we understand the cohomology of $X\times Y$ in terms of the cohomologies of $X$ and $Y$ individually? We consider a special case in which $X$ and $Y$ are CW complexes and $H^*(Y;R)$ is free and finitely generated in every dimension.\\
+	
+	Given the projections $p_X:X\times Y \to X$ and $p_Y:X\times Y \to Y$, we can define the ``cross product'' $\mu: H^*(X;R)\otimes_R H^*(Y;R) \to H^*(X\times Y)$ by taking the cup product of the pullbacks:
+	$$
+	\mu: (\a,\b)\mapsto p^*_X(\a)\smile p_Y^*(\b).
+	$$
+	The important fact is that if $X,Y$ are CW complexes and $H^*(Y;R)$ is free and finitely-generated, then this map is an isomorphism. 
+	\begin{proof}
+		Fixing $Y$, we have the following two functors from CW pairs $(X,A)$ to rings:
+		$$h^n(X,A):= \bigoplus_i H^i(X,A) \otimes_R H^{n-i}(Y).$$
+		$$
+		k^n(X,A) := H^n(X\times Y,A\times Y).
+		$$
+		Both $h^*$ and $k^*$ satisfy the algebraic axioms for cohomology theories for CW pairs; that is, they are homotopy invariant, satisfy excision, etc. Also $\mu$ induces a map between $h^*\to k^*$ of a CW pair. $\mu$ is a natural transformation. To show the result is to show that $\mu$ is an isomorphism for $A=\emptyset$. We have to use the five lemma to induct on dimension. (read Hatcher for details).
+	\end{proof}\\
+	
+		\subsection{How to compute (note to myself)} If we have a space $X$ and want to calculate $H_*(X)$ or $H^*(X;G)$ for some $G$, how do we do that in practice? We've learned some techniques, which I recap here.\\
+		
+		Calculating Homology:
+		\begin{itemize}
+			\item Know the most essential cases:
+				\begin{align*} 
+				H_*(\RP^n) &= \begin{cases}
+				(\Z,\Z_2,0,\Z_2,0,\Z_2,0,\dots,\Z_2,0,\Z) & n \text{ odd},\\
+				(\Z,\Z_2,0,\Z_2,0,\Z_2,0,\dots,\Z_2,0) & n \text{ even}.
+			\end{cases}\\
+			H_*(\CP^n) &= \begin{cases}
+				(\Z,0,\Z,0,\Z,0,\dots,\Z,0,\Z) & n \text{ odd},\\
+				(\Z,0,\Z,0,\Z,0,\dots,\Z,0)  & n \text{ even}.
+			\end{cases}\\
+			H_*(S^n) &= (\Z,0,0,\dots,0,0,\Z).\\
+			H_*(M(G,n)) &= (\Z,0,0,\dots,0,0,G).
+			\end{align*}
+			\item Use Cellular Homology. If $X$ is a CW complex, we can express it in terms of its skeleta and attaching maps. The cellular homology of $X$ is the quotients of the exact sequence
+			$$
+			\cdots \to H_{n+1}(X^{n+1},X^n) \xrightarrow{d_{n+1}} H_n(X^n,X^{n-1})\xrightarrow{d_{n}} H_{n-1}(X^{n-1},X^{n-2}) \to \cdots 
+			$$
+			This is actually the easiest way to compute homology (usually). That's because each of these $H_j(X^j,X^{j-1})$ is $\Z^c$ where $c$ is the number of cells in dimension $j$. So each map $d_j$ is essentially a linear map. And moreover, $d_j$ can be determined entirely from the degrees of the attaching maps (say more later).
+		\end{itemize}
+	
+	Calculating Cohomology:
+	\begin{itemize}
+		\item First, is $H_*(X)$ easy to calculate or known to you already? If so, then use Universal Coefficient Theorem:
+		$$
+		H^j(X;G) = \Hom(H_j(X),G)\oplus \Ext(H_{j-1}(X),G).
+		$$
+		How to calculate Ext? Each $H_k(X)$ is an Abelian group, so it has some free parts and some torsion parts. If $H_k(X)=\Z^a \oplus (\Z_2)^{b_2}\oplus (\Z_3)
+		^{b_3} \oplus (\Z_5)^{b_5}\oplus \cdots $ then 
+		$$
+		\Ext(H_k(X);G) = (G/(2G))^{b_2} \oplus (G/(3G))^{b_3}\oplus (G/(5G))^{b_5}\cdots
+		$$
+		(note that the free part $\Z^a$ is dropped entirely).
+		\item If it's not easy to calculate $H_*(X)$ then there's basically only one other thing you can do. If you're in the specific case that $G=R$ a ring, and $X=A\times B$, and $H^*(A;R),H^*(B;R)$ are both known, and finally $H^*(B;R)$ is free in every dimension, then you can apply the K\"unneth formula:
+		$$
+		H^*(X;R) = H^*(A\times B;R) = H^*(A;R)\otimes_R H^*(B;R).
+		$$
+	\end{itemize}
 	
 	
+	\subsection{Poincare Duality} Let $M^n$ be an $n$-dimensional manifold. The homology of $M^n$ relative to a given point $x$ is 
+	$$
+	H_i(M,M-x) \cong H_i(\R^n,\R^n-x) \cong \widetilde{H}_{i-1}(\R^n - x) \cong \widetilde{H}_{i-1}(S^{n-1})
+	$$
+	by excision and so on. We define the space $\widetilde{M}$ as the space of all local orientations on $M$. This is actually a degree 2 covering space of $M$, given a certain topology. It is two-sheeted because there are two local orientations possible for any point $x\in M$. $\widetilde{M}$ is oriented.
+	
+	For example, in the case that $M=\RP^n$, then $\widetilde{M}=S^n$.\\
+	
+	\textbf{Poincare Duality (version 1)}: Suppose $M^n$ is a closed and oriented manifold. Then $$H_i(M;\Z) \cong H^{n-i}(M;\Z).$$
+	\begin{proof}
+%		We will show that $H^n(M;Z)\cong \Z$ if $M$ is orientable and 0 otherwise.\\
+		
+		Let $C$ be a sufficiently ``nice'' cell decomposition of $M$, and let $C^*$ be the dual cell decomposition. This produces a correspondence between $i$-dimensional cells of $C$ and $(n-i)$-dimensional cells of $C^*$. Moreover, this correspondence induces an isomorphism of chain groups. Then we can identify the homology of $C^*$ with the cohomology of $C$. (I am omitting details here).
+	\end{proof}\\
+	
+	As a consequence, we can use Euler characteristic to say some things in low dimensions. For example if $M^3$ is a 3-dimensional manifold (not necessarily orientable!) then $\chi(M)=0$ because $\chi(\widetilde{M})=2\chi(M)=0$ (oriented manifolds in odd dimension have Euler characteristic 0). If $M$ is connected, then $H_0=\Z$. Poincare duality implies $H_3=0$. This leaves 
+	$$
+	\chi(M) = 1 - \rk(H_1) + \rk(H_2) - 0 = 0 
+	$$
+	which implies $\rk(H_1)\geq 1$. That is, $\pi_1(M)$ has some map into $\Z$. Where does it come from? Mysterious.\\
+	
+	Important idea: $M$ being \textit{orientable} is equivalent to the $n$th homology being $\Z^k$ where $k$ is the number of connected components (the single generator is the sum of all $n$-cells with compatible orientation). Thus Poincar\'e duality gives $H^0(M;\Z)=\Z^k$.\\
+	
+	But what does this map $H_i(M;Z)\to H^{n-i}(M;\Z)$ actually look like? To answer this, we first need a pairing between homology and cohomology, which is called the \textit{cap product}:
+	$$
+	\frown : C_k(X)\times C^{\ell}(X)\to C_{k-\ell}(X)
+	$$
+	(assuming $k>\ell$)via 
+	$$
+	\sigma \frown \ph = \ph(\sigma | [v_0,\dots,v_{\ell}]) \cdot [v_{\ell},\dots,v_{k}]
+	$$
+	that is, we're ``feeding the front face" of $\sigma$ to $\ph$. Some properties:
+	\begin{itemize}
+		\item $\partial(\sigma \frown \ph)=(-1)^{\ell}(\partial \sigma \frown \ph - \sigma \frown \de \ph)$.
+		\item The cap product of a cycle and cocycle is a cycle.
+		\item The cap product of a boundary with a cocycle or cycle with coboundary is a boundary.
+		\item As a result, the cap product induces a map on homology and cohomology, as we wanted.
+	\end{itemize}
+	
+	We also have relative cup products
+	$$
+	H_k(X,A)\times H^{\ell}(X) \to H_{k-\ell}(X,A) 
+	$$
+	$$
+	H_k(X)\times H^{\ell}(X,A)\to H_{k-\ell}(X,A)
+	$$
+	$$
+	H_k(X,A)\times H^{\ell}(X,A) \to H_{k-\ell}(X)
+	$$
+	this last one is sort of surprising. The cap product is \textit{natural}, which in this case means that it commutes with maps induced by some $f:X\to Y$ on $H_k$ and $H^{\ell}$.\\
+	
+	
+	\textbf{Poincar\'e Duality (version 2)}: Let $M$ be a closed oriented $n$-manifold. Then the map
+	$$
+	D:H^k(M)\to H_{n-k}(M)
+	$$
+	given by $D:\a\mapsto [M]\frown \a$, where $[M]\in H_n(M)=\Z$ is a generator.\\
+	
+	To extend this result to manifolds that are not necessarily compact, we need to establish a cohomology theory for non-compact spaces, which will be \textit{cohomology with compact support}. For a compact set $K\subset X$, there is a relative cohomology $H^*(X,X-K)$ which we can also denote $H^*(X|K)$. We take a direct limit over all compact $K$ in $X$:
+	$$
+	H^i_c(X) := \lim_{K\subset X} H^i(X|K)
+	$$
+	This is cohomology with compact support. Directed limits are essentially countable ascending unions. Direct limit is an exact functor! Also note that to compute direct limits it suffices to take some cofinal sequence of compact sets like a sequence of closed balls $B_n$.\\
+	
+	\textbf{Poincar\'e Duality (version 3)}: Let $M$ be an oriented $n$-manifold, and let the map 
+	$$
+	D_M:H^i_c(M)\to H_{n-i}(M)
+	$$
+	be defined by taking the direct limit of maps $D_K:H^i(M|K)\to H_{n-k}(M)$ over all compact $K\subset M$. This is an isomorphism.
+	\begin{proof}
+		Let $(\ast)$ be the statement that $D_M$ is an isomorphism. We can first show that if $(\ast)$ holds for $U,V,U\cap V$ then $(\ast)$ holds for $U\cup V$ as well, using Mayer-Vietoris.\\
+		
+		Next, we show that if $(\ast)$ holds for an increasing chain of open sets $U_i$ whose union is $M$, then $(\ast)$ holds for $M$. This is because for every compact $K$, there will be some $U_i$ for which $K\subset U_i$, and thus $H^i(U_i|K) = H^i(M|K)$.
+	\end{proof}
+	
+\section{Higher Homotopy Groups} Let $X$ be a space with basepoint $x$. The $n$th homotopy group $\pi_n(X,x)$ is defined to be the set of homotopy classes of maps 
+$$
+f:(I^n,\partial I^n)\to (X,x).
+$$
+The group operation on $\pi_n(X,x)$ is given by concatenation along the first coordinate, similarly to the way that homotopy classes of paths are composed.\\
 
+For $n\geq 2$, the homotopy groups are always Abelian. This is roughly because in dimension $2$ there is ``enough room'' to swap $f+g$ around to $g+f$. A picture in Hatcher explains this well.\\
+
+For any path $\b$ connecting $x$ to $x'$, it induces a map
+$$
+\b_*: \pi(X,x')\to \pi(X,x).
+$$
+This $\b_*$ is in fact a group isomorphism, and it only depends on the homotopy class of $\b$ (rel endpoints). This shows that $\pi_n(X,x)$ only depends on the connected component of $x$.\\
+
+Now we collect some facts about $\pi_n(X,x)$:
+
+\begin{itemize}
+	\item $\pi_n(X,x)\cong \pi_n(X,x')$ if $x,x'$ are in the same path component.
+	\item This also gives $\pi_n(X,x)$ the structure of a $\Z[\pi_1(X,x)]$-module. 
+	\item $\pi_n$ is a functor in the category of based spaces.
+	\item If $p:(X',x')\to (X,x)$ is a covering space, then $p$ induces an isomorphism $p_*:\pi_n(X',x')\to \pi_n(X,x)$ for $n\geq 2$.
+	\item As a corollary, this shows that $\pi_n(X)$ is trivial if $X$ is a $K(\pi,1)$ (for $n\geq 2$). 
+\end{itemize}
+
+Generally speaking, $\pi_n$ gets more structured for higher $n$. $\pi_0$ is just a set (the collection of path components), $\pi_1$ a group, $\pi_2$ an abelian group, and so on.
+
+\subsection{Relative Homotopy Groups} Let $J^{n-1}$ be the boundary of $I^n$ but excluding one face $I^{n-1}$. For $x\in A\subset X$, we define the relative homotopy group
+$$
+\pi_n(X,A,x) := \{\text{homotopy classes of maps} \; f:(I^n,\partial I^n,J^{n-1})\to (X,A,x)\}
+$$
+so in other words the maps which map a given face into $A$ while sending the rest of the boundary to $x$. Note that for $n=1$ this doesn't really work; $I^{n-1}$ is just a point so it would already be forced to $x$, so this isn't a group.\\
+
+$\pi_n(X,A,x)$ is a group for $n\geq 2$, where the operation is by concatenation, sticking the $I^{n-1}$ faces next to each other. For $n\geq 3$ it is abelian, same reason why $\pi_2(X)$ is abelian.\\
+
+A map $f:(D^n,S^{n-1},p)\to (X,A,x)$ is homotopic to 0 in $\pi_n(X,A,x)$ iff $f$ is homotopic rel $S^{n-1}$ into $A$.\\
+
+Relative homotopy groups are useful because they produce long exact sequences:
+$$
+\begin{tikzcd}
+	\cdots & {\pi_n(A,x)} & {\pi_n(X,x)} & {\pi_n(X,A,x)} & {\pi_{n-1}(A,x)} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-5, to=1-6]
+\end{tikzcd}
+$$
+This even goes down to $\pi_0(X,x)$. To show that this is an exact sequence is actually not very hard, though it is better explained pictorally.\\
+
+\textbf{Whitehead's Theorem}: If $f:X\to Y$ is a map between connected CW complexes and $f_*:\pi_n(X)\to\pi_n(Y)$ is an isomorphism for all $n$ then $f$ is a homotopy equivalence (the converse is also clearly true). Further, if $f$ is an inclusion, then $Y$ deformation retracts to $X$.
+\begin{proof}
+	Let's handle the inclusion case first. Given $i:X\xhra{} Y$, we have
+	$$
+	\pi_n(X)\to \pi_n(Y)\to\pi_n(Y,X)\to\pi_{n-1}(X)\to\cdots
+	$$
+	Assuming that the induced maps $\pi_n(X)\to\pi_n(Y)$ are all isomorphisms, we see that $\pi_n(X,Y)$ are all 0. But this immediately implies that there is a retraction $Y\to X$ locally in each $n$-cell, and hence a deformation retraction $Y\to X$.\\
 	
+	To show the general case, we can replace $Y$ by $M_f$, which is a homotopy equivalence, and $M_f$ can retract into $X$ if we know that every map between CW complexes is homotopy equivalent to a cellular map.
+\end{proof}\\
+
+Another application: let $p\in X\subset CX$ where $CX$ is the cone on $X$. The long exact sequence given by $CX,X$ has $\pi_n(CX)$ trivial, which shows that $\pi_n(CX,X,x)\cong \pi_{n-1}(X,x)$. Incidentally this shows that $\pi_2(CX,X,x)$ can be any abelian group.\\
+
+Caution! Excision does not work for higher homotopy groups. If it did, then $\pi_n(D^2,S^1)\cong \pi_n(S^2)$ so $\pi_3(S^2)$ is trivial (from the long exact sequence). But we can explicitly give a nontrivial element of $\pi_3(S^2)$: \textit{fill in later}. It turns out that $\pi_3(S^2)=\Z$.\\
+
+\textbf{Proposition}: Let $X':= X\cup_{\ph} e^n$, i.e. $X$ with some $n$-cell $e^n$ attached via $\ph$. Then the inclusion $X\xhra{} X'$ induces a map $\pi_i(X)\to \pi_i(X')$ which is an isomorphism for $i< n-1$ and surjection for $i=n-1$.
+\begin{proof}
+	Caution!! Mayer-Vietoris does not apply here because we're talking about homotopy groups not homology groups. Check proof later in Hatcher.
+\end{proof}\\
+
+\textbf{Proposition}: Suppose $(X,A)$ is an $n$-connected (meaning $\pi_1(X,A)=0$ for $i\leq n$) CW pair. Then there is a pair $(Z,A)$ homotopic to $(X,A)$ for which all cells of $Z-A$ are dimension greater than $n$.
+\begin{proof}
+	The $n$-connected property implies by the long exact sequence that $\pi_i(A)\cong \pi_i(X)$ for $i<n$. For $i=n$ we get that $\pi_n(A)\to \pi_n(X)$ is a surjection. Adding $(n+1)$-cells can only add new relations to $\pi_n(A)$ and can't affect $\pi_{<n}(A)$ by the previous proposition, so we can add $(n+1)$-cells to $A$ to get $Y$ for which $\pi_n(Y)=\pi_n(X)$. Then we can also add more $(n+1)$-cells to make $\pi_{n+1}(Y)\to \pi_{n+1}(X)$ surjective. Then repeat with $(n+2)$ and so on.
+\end{proof}\\
+
+\textbf{Excision for CW pairs}: Let $X=A\cup B$ and $A\cap B = C$, and suppose $C$ is connected. If $(A,C)$ is $m$-connected and $(B,C)$ is $n$-connected, then 
+$$
+\pi_i(A,C)\to\pi_i(X,B)
+$$
+is an isomorphism for $i<m+n$ and a surjection for $i=m+n$. Note that this would be an isomorphism for all $i$ if we were talking about Homology, but here it's different.
+\begin{proof}
+	We begin with the simplest case where $A$ is $C$ with some attached $(m+1)$-cells and $B$ is $C$ with \textit{exactly one} attached $(n+1)$-cell.\\
+	
+	We can pick points $p_{\a}$ in each $(m+1)$-cell of $A$ and a point $q$ in the $(n+1)$-cell of $B$. We want to take a map $f:S^i\to (X,B)$ in $\pi_i(X,B)$ and push it off of $q$ while avoiding all points $p_{\a}$. After this is done, we can retract away from all of these points. The key thing is the dimension of the fibers $f^{-1}(p_{\a})$ and $f^{-1}(q)$ which are $i-m-1$ and $i-n-1$ respectively. To do this we need
+	$$
+	(i - m - 1) + (i-n-1) < i-1 \iff i < m+n + 1.
+	$$
+	This shows the surjection case. To show the isomorphism turns out to require one more dimension, so we require $i<m+n$.\\
+	
+	In general, adding higher-dimensional cells does not make this much harder because they only decrease (not increase) the dimension of the fiber of the points $q$ and $p_{\a}$.
+\end{proof}\\
+
+\textbf{Corollary (Freudenthal Suspension)}: If $S^i\to X$, then we get a map $\pi_i(X)\to \pi_{i+1}(SX)$. If $X$ is $(n-1)$-connected, then this map is an isomorphism for $i<2n-1$ and surjective for $i=2n-1$. It follows that the maps
+$$
+\pi_i(X)\to \pi_{i+1}(SX)\to \cdots \to \pi_{i+n}(S^nX) \to \cdots 
+$$
+eventually stabilize, and thus we can define 
+$$
+\pi_i^S(X) := \lim_{n\to\infty} \pi_{i+n}(S^nX)
+$$
+the \textit{stable homotopy group} of $X$.\footnote{What is $\pi_i^S(S^0)$ in general? This is unsolved.}\\
+
+Examples:
+\begin{itemize}
+	\item Consider $\pi_i(S^n)$. For $i<n$, it is trivial. For $i=n$, $\pi_n(S^n)=\Z$.
+	\item $\pi_n(\vee S^n_{\a})=\oplus_{\a} \Z$.
+	\item $\pi_n(S^1\vee S^n)$ is $\pi_n$ of the universal cover of $S^1\vee S^n$, which is a line with $\Z$-many $n$-spheres sticking to it. This is homotopic to $\vee_{\Z} S^n$, which has $\pi_n=\oplus_{\infty}\Z$.
+	\item If $(X,A)$ is an $r$-connected CW pair, and $A$ is $s$-connected, then the quotient $X,A\to X/A$ induces a map 
+	$$
+	\pi_i(X,A)\to \pi_i(X/A)
+	$$ 
+	and this is isomorphic for $i\leq r+s$ and surjective for $i=r+s+1$. This follows from our excision theorem on $(CA,A)$ which is $(s+1)$-connected and $(X,A)$ which is $r$-connected.
+	\item Let $X=\vee_{\a} S^n_{\a}$ with $(n+1)$-cells $e_{\b}$ attached via some $\ph_{\b}:S^n\to \vee S^n_{\a}$. We have
+	$$
+	\pi_n(X) = \oplus_{\a}\Z/\<\ph_{\b}\>
+	$$ 
+\end{itemize}
+
+\textbf{Hurewicz Theorem}: Suppose $X$ is $(n-1)$-connected where $n\geq 2$. Then 
+\begin{itemize}
+	\item $\tilde{H_i}(X)=0$ for $i<n$.
+	\item $\pi_n(X)\cong H_n(X)$.
+\end{itemize}
+ If $(X,A)$ is $(n-1)$-connected and $A$ is simply-connected and nonempty, then 
+ \begin{itemize}
+ 	\item $H_i(X,A) = 0$ for $i<n$,
+ 	\item $\pi_n(X,A)\cong H_n(X,A)$.
+ \end{itemize}
+\begin{proof}
+	The relative case follows from the absolute case.\\
+	
+	Wlog, we can consider $X$ as a wedge of $n$-cells and $(n+1)$-cells (nothing else affects homology or $\pi_n$). We've already seen that 
+	$$
+	\pi_n = \oplus_{\a} \Z / \<\ph_{\b}\>,
+	$$
+	and $H_n$ is the same thing.
+\end{proof}\\
+	
+	Note that this is all heavily dependent on $\pi_1(X)=0$.\\
+	
+\textbf{Corollary}: Suppose $X,Y$ are simply connected. Then a map $f:X\to Y$ is a homotopy equivalence iff the induced map $f_*:H_*(X)\to H_*(Y)$ is an isomorphism in every dimension.
+\begin{proof}
+	One direction is clear.\\
+	
+	Supposing $f_*$ is an isomorphism in every dimension, $H_*(Y,X)\cong 0$ in every dimension, so by Hurewicz's theorem $\pi_*(Y,X)=0$, and by Whitehead's theorem $f$ is a homotopy equivalence.
+\end{proof}\\
+
+\textbf{Corollary}: Let $M^3$ be a closed 3-manifold that is simply connected. Then $M^3\simeq S^3$.
+\begin{proof}
+	We can take the map from homework which is degree-1 to $S^3$ and show in each dimension $0,1,2,3$ that it induces an isomorphism on $H_*$. Thus by the previous corollary we see that $f$ is actually a homotopy equivalence to $S^3$.
+\end{proof}
 \end{document}

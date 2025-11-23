@@ -1,0 +1,153 @@
+\documentclass{amsart}
+
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Simple Guide to Solving Problems in Algebraic Topology}
+\author{Jalen Chrysos}
+\begin{document}
+	\begin{abstract}This is a consolidation of my algebraic topology notes. I don't intend to replicate any proofs of important statements unless they're immediate. I'm just aiming to make a dummyproof flowchart-style guide to solving Hatcher questions for my own use.
+	\end{abstract}
+	\maketitle
+	
+	\section{Basic Terminology} 
+	The most basic questions one asks in topology are 
+	\begin{center}
+		``Does there exist a map $X\to Y$ with property $P$?"
+	\end{center} 
+	To be able to answer these questions positively, we need methods of constructing maps, but this is usually the simple part. To answer them negatively, we need \textit{algebraic invariants}, properties of a space which are preserved by sufficiently nice maps.\\
+	
+	\textbf{Types of maps} (in order of increasing strictness):
+	\begin{itemize}
+		\item Homotopy equivalence: continuous maps with continuous ``inverses'' \textit{up to homotopy equivalence}.
+		\item Homeomorphism: continuous maps with continuous inverses.
+	\end{itemize}
+	
+	It's a lot easier to work with homotopy equivalence in practice because there's more you can do (contract simply-connected subspaces for example). The invariants of interest are all preserved by homotopy equivalence:\\
+	
+	\textbf{Algebraic Invariants}:
+	\begin{itemize}
+		\item Fundamental group: $\pi_1(X)$
+		\item Homology groups: $H_0(X),H_1(X),\dots$
+		\item Cohomology groups: $H^0(X;G),H^1(X;G),\dots$
+		\item Cohomology ring: $H^*(X;G)$ as a graded ring with $\smile$.
+		\item Higher homotopy groups: $\pi_2(X),\pi_3(X),\dots$
+	\end{itemize}
+	
+	First, we'll discuss how to compute all of these algebraic invariants, or at least glean information about them. We'll assume $X$ is a connected CW complex.\\
+	
+	\section{Fundamental Group}
+	
+	The fundamental group of $X$ is a group $\pi_1(X)$ whose elements are homotopy equivalence classes of loops in $X$, and whose multiplication is the concatenation of loops (at some base point, but if $X$ is connected then the basepoint doesn't matter).\\
+	
+	\underline{Quick Facts}:
+	\begin{itemize}
+		\item If $\pi_1(X)=0$ then we say $X$ is ``simply connected,'' i.e. all loops can be contracted.
+		\item $\pi_1(X)$ is in general non-Abelian.
+	\end{itemize}
+	
+	\underline{How to Calculate}: Use \textbf{Van Kampen's Theorem}:
+	\begin{itemize}
+		\item Write $X$ as a CW complex.
+		\item If $X$ has more than one 0-cell, quotient by a maximal spanning tree in $X^1$ so that $X$ has a single 0-cell (this is a homotopy equivalence so it preserves $\pi_1(X)$).
+		\item Let the 1-cells (loops) at this 0-cell be $\a_1,\a_2,\dots,\a_k$. The boundaries of the 2-cells are loops in $X^1$, so they can each be written as products of the $\a_j$. Let these boundaries be $\b_1,\b_2,\dots,\b_{\ell} \in \<\a_1,\dots,\a_k\>$. 
+		\item Now $\pi_1(X)$ is the free group on $\a_1,\dots,\a_k$ mod the boundaries of the 2-cells:
+		$$
+		\pi_1(X) := \<\a_1,\dots,\a_k \; | \; \b_1=\b_2=\cdots=\b_{\ell}=1\>.
+		$$
+	\end{itemize}
+	
+	\section{Homology}
+	
+	The Homology Groups of $X$ are a sequence $H_0(X),H_1(X),\dots$ of \textit{Abelian groups}, so they are of the form $\Z^a\oplus \Z_2^{b_2}\oplus \Z_3^{b_3}\oplus \Z_5^{b_5}\oplus \cdots$. \\
+	
+	\underline{Quick Facts}:
+	\begin{itemize}
+	\item $H_0(X)=\Z^a$ where $a$ is the number of connected components of $X$. 
+	\item $H_1(X)$ is the Abelianization of $\pi_1(X)$.
+	\item $H_n(X)=0$ for $n>\dim(X)$. 
+	\item If $X$ is a manifold of dimension $n$:
+		\begin{itemize}
+			\item $H_n(X)=\Z$ if $X$ is oriented and $H_n(X)=0$ otherwise.
+			\item $H_{n-1}(X)$ has torsion subgroup $0$ if $X$ is oriented and $\Z_2$ otherwise.
+		\end{itemize}
+	\end{itemize}
+	
+	\underline{How to Calculate}: There are a couple of useful methods.
+	\begin{enumerate}[(I)]
+		\item \textbf{Quotients}: 
+		\begin{itemize}
+			\item Express $X$ as a quotient $Y/A$ where $Y$ is a CW complex and $A$ is a subcomplex. Try to choose $Y$ and $A$ such that $H_*(Y)$ and $H_*(A)$ are both simpler than $H_*(X)$.
+			\item There is a long exact sequence relating $\tilde{H}_*(A),\tilde{H}_*(Y),$ and $\tilde{H}_*(X)$:
+			$$
+			\cdots \to \tilde{H}_j(A) \to \tilde{H}_j(Y) \to \tilde{H}_j(Y/A) \to \tilde{H}_{j-1}(A)\to \tilde{H}_{j-1}(Y)\to \tilde{H}_{j-1}(Y/A)\to \cdots 
+			$$
+			\item Now use $\tilde{H}_*(Y)$ and $\tilde{H}_*(A)$, along with exactness of the sequence, to deduce $\tilde{H}_*(X)$.
+			\item \textit{Special Cases / Notable Examples}: 
+			\begin{enumerate}[(i)]
+				\item If $A$ is contractible then $H_*(A)=0$, so $H_*(X)=H_*(Y)$.
+				\item When $X=S^n$, we can express it as $X=D^n/S^{n-1}$. Because $H_*(D^n)=0$, the exact sequence yields $\tilde{H}_j(S^n)\cong \tilde{H}_{j-1}(S^{n-1})$, so by induction we can see that $\tilde{H}_j(S^n)=\Z$ iff $j=n$, otherwise it is 0.
+			\end{enumerate}
+		\end{itemize} 
+		\item \textbf{Mayer-Vietoris}:
+		\begin{itemize}
+			\item Express $X$ as the union of two \textit{open} subcomplexes $A\cup B$. Try to choose $A$ and $B$ so that $A$,$B$, and $A\cap B$ are all simpler than $X$.
+			\item There is a long exact sequence relating $H_*(A),H_*(B),H_*(A\cap B),$ and $H_*(X)$:
+			$$
+			\cdots \to H_j(A\cap B) \to H_j(A)\oplus H_j(B) \to H_j(X) \to H_{j-1}(A\cap B)\to \cdots
+			$$ 
+			\item Now use $H_*(A),H_*(B),H_*(A\cap B)$, and the exactness of the sequence to deduce $H_*(X)$.
+			\item \textit{Special Cases / Notable Examples}:
+			\begin{enumerate}[(i)]
+				\item If $A\cap B$ is contractible, then $H_j(X)\cong H_j(A)\oplus H_j(B)$. In particular, we see that $H_j(A\vee B) = H_j(A)\oplus H_j(B)$.
+				\item 
+			\end{enumerate}
+		\end{itemize}
+		\item \textbf{Cellular Homology}: {\color{red} Not done}.
+		\begin{itemize}
+			\item Write $X$ as a CW complex.
+			\item For each $j$,
+		\end{itemize}
+		\item \textbf{K\"unneth Formula}:
+		\begin{itemize}
+			\item Use this if $X$ happens to be a product $A\times B$ and $H_*(B)$ is free in every dimension.
+			\item There is an isomorphism 
+			$$
+			H^*(A\times B;\Z) \cong H^*(A;\Z) \otimes H^*(B;\Z) 
+			$$
+			of the cohomology rings, and in particular 
+			$$
+			H^n(A\times B;\Z) \cong \bigoplus_{j=0}^n H^j(A;\Z) \oplus H^{n-j}(B;\Z)
+			$$
+			\item Putting this through the universal coefficient theorem,
+			$$
+			\Hom(H_n(A\times B;\Z);\Z) \cong \bigoplus_{j=0}^n \Hom(H_j(A),\Z) \oplus \Ext(H_{j-1}(A),\Z) \oplus \Hom(H_{n-j}(B),\Z)
+			$$
+		\end{itemize}
+	\end{enumerate}
+	
+	\section{Cohomology}
+	
+	The Cohomology of $X$ (wrt $G$) is a sequence of Abelian groups $H^0(X;G),H^1(X;G),\dots$.\\
+	
+	\underline{How to Calculate}: If you know $H_*(X)$, then use \textbf{Universal Coefficient Theorem}:
+	$$
+	H^j(X;G) = \Hom(H_j(X),G)\oplus \Ext(H_{j-1}(X),G).
+	$$
+	How to calculate Ext? Each $H_k(X)$ is an Abelian group, so it has some free parts and some torsion parts. If $H_k(X)=\Z^a \oplus (\Z_2)^{b_2}\oplus (\Z_3)
+	^{b_3} \oplus (\Z_5)^{b_5}\oplus \cdots $ then 
+	$$
+	\Ext(H_k(X);G) = (G/(2G))^{b_2} \oplus (G/(3G))^{b_3}\oplus (G/(5G))^{b_5}\cdots
+	$$
+	(note that the free part $\Z^a$ is dropped entirely).\\
+	
+	If it's not easy to calculate $H_*(X)$ then there's basically only one other thing you can do. If you're in the specific case that $G=R$ a ring, and $X=A\times B$, and $H^*(A;R),H^*(B;R)$ are both known, and finally $H^*(B;R)$ is free in every dimension, then you can apply the \textbf{K\"unneth formula}:
+	$$
+	H^*(X;R) = H^*(A\times B;R) = H^*(A;R)\otimes_R H^*(B;R).
+	$$
+	
+	The cohomology ring is a strictly finer invariant. Two spaces might have the same cohomology groups in every dimension but different ring structures
+	
+	\section{Homotopy Groups}
+	
+	\section{Invariants of Common Spaces}
+\end{document}

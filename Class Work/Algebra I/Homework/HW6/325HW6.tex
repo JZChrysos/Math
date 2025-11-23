@@ -1,0 +1,128 @@
+\documentclass{amsart}
+
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Math 325 HW 6}
+\author{Jalen Chrysos}
+\begin{document}
+	\maketitle
+	\textbf{Problem 1}: Let $A$ be Banach algebra. Prove that for sufficiently small $a\in A$, one has
+	$$
+	\log(\exp(a))=a, \;\; \exp(\log(1-a))=1-a.
+	$$
+	\begin{proof}
+		Recall the power series definitions of $\exp$ and $\log$:
+		$$
+		\exp(a) = 1 + a + \tfrac12 a^2 + \cdots \;\;\;\; \log(1+b) = b - \tfrac12b^2  + \tfrac13 b^3 - \cdots 
+		$$
+		We also know by Cauchy-Hadamard that $\log(1+b)$ converges for $|b|<1$, and $\exp(a)$ converges everywhere. Using these we can check that $\log'(1+b)=(1+b)^{-1}$ and $\exp'(a)=\exp(a)$. It follows that 
+		$$
+		\frac{\d}{\d t} \log(\exp(ta))= \frac{1}{\exp(ta)} \cdot a \exp(ta) = a \;\; \implies \log(\exp(ta)) = ta+c
+		$$ 
+		for some $c\in A$, but when $t=0$ we clearly get $\log(\exp(0))=0$, implying $c=0$. The other identity follows similarly.\\
+		
+		Or alternatively one could expand out the composed series and compute all of the coefficients.
+	\end{proof}
+	\newpage
+	\textbf{Problem 2}: Let $A^{\times}$ be the group of invertible elements of $A$, where $A$ is a Banach algebra. Show that any continuous group homomorphism $f:(\R,+)\to A^{\times}$ has the form $t\mapsto e^{ta}$ for some particular $a\in A$.
+	\begin{proof}
+		By Problem 9 on the previous homework, any map $g:\R\to \R^r$ is $t\mapsto tv$ for some fixed $v\in \R^r$. The proof naturally extends to any algebra in place of $\R^r$. To get such a map, compose $f$ with $\log$, giving 
+		$$
+		(\R,+) \xrightarrow{f} A^{\times} \xrightarrow{\log} (A,+)
+		$$
+		The composite map $g$ has the form $g:t\mapsto ta$ where $a\in A$. Since $\log$ is locally invertible near 1, we have $f(t)=\exp(g(t)) = e^{ta}$ for small $t$. And $f$ is a continuous group homomorphism, so if it agrees with $e^{ta}$ on an open neighborhood of 0 it agrees everywhere.
+	\end{proof}
+	
+	\newpage
+	\textbf{Problem 3}: Let $A$ be a Banach algebra. Prove that for $a,b\in A$, for sufficiently large $n\in \N$ one has
+	$$e^{a/n}\cdot e^{b/n} = e^{\tfrac1n(a+b+\a_n)} \;\;\; \text{and} \;\;\; e^{a/n}\cdot e^{b/n}\cdot e^{-\tfrac1n(a+b)} = e^{\tfrac{1}{n^2}(\tfrac12 (ab-ba)+\b_n)}$$
+	where $\a_n,\b_n\in A$ are sequences converging to 0 in $A$.
+	\begin{proof}
+		Let
+		$$
+		f_n(x) := e^{a/n}e^{b/n}-e^{(a+b+x)/n} = -x/n + o(n^2)
+		$$
+		As $n\to\infty$, the $-x/n$ term dominates all others. Let $B_{\ep}$ be the ball pf radius $\ep$ in $A$. For sufficiently large $n$, $f_n(B_{\ep})$ contains $0$, and thus there is some solution $f_n(x)=0$ with $B_{\ep}$. Let $\a_n$ be the smallest solution to $f_n$ for each $n$ sufficiently large. We've shown that $|\a_n|$ will eventually be below $\ep$, so $\a_n\to 0$.\\
+		
+		Similarly, we have
+		$$
+		g_n(x) := e^{a/n}e^{b/n}e^{-\tfrac1n (a+b)} - e^{\tfrac1{n^2}(\tfrac12 (ab-ba) + x)} = -x/n^2 + o(n^3)
+		$$
+		and the same argument applies to produce $\b_n$.
+	\end{proof}
+	
+	\newpage
+	\textbf{Problem 4}: Find the Lie algebras of $\OO_n(\R)$ and $U_n$.
+	\begin{proof}
+		If $a\in \Lie(\OO_n(\R))$ then $e^{ta}\in \OO_n(\R)$, or equivalently $e^{ta}(e^{ta})^{\top}=1$. So
+		$$
+		e^{ta^{\top}}=(e^{ta})^{-1} =e^{-ta}.
+		$$
+		Now, since $\exp$ is invertible near 1, this gives
+		$$
+		ta^{\top}=-ta \;\; \text{for small $t$} \; \iff \; a^{\top}+a=0.
+		$$
+		That is, $a$ is a \textit{skew-symmetric} matrix, i.e. its cross-diagonal terms sum to 0 and its diagonal is all 0. So $\Lie(\OO_n(\R))$ is the algebra of such matrices.\\
+		
+		Similarly in the case of $U_n$ we have $a\in \Lie(U_n)$ iff $e^{ta}e^{t\overline{a}^{\top}}=1$, which implies $a+\overline{a}^{\top}=0$. So $\Lie(U_n)$ is the space of conjugate-skew-symmetric matrices.
+	\end{proof}
+	
+	\newpage 
+	\textbf{Problem 5}: Let $T=(S^1)^r$. Show that 
+	\begin{enumerate}[(a)]
+		\item Any finite-dimensional \textit{complex} representation of $T$ is a direct sum of 1-dimensional representations.
+		\item Any 1-dimensional continuous representation $\rho:T\to \GL_1(\C)=\C^{\times}$ has the form $$\rho(e^{i\theta_1},\dots,e^{i\theta_r})=e^{i(m_1\theta_1+\cdots+m_r\theta_r)}$$
+		for some $m_1,\dots,m_r\in \Z$.
+	\end{enumerate}
+	\begin{proof}
+		(a): The Torus has commutative multiplication, so multiplication by any group element is an intertwining operator and thus by Schur's lemma, within any irreducible subrepresentation (using the fact that this is a \textit{complex} representation) $\rho(g)$ must be scaling by some complex number. This implies that every irrep is one-dimensional, since scaling preserves all subspaces. Moreover, $T$ is a compact group so it is completely reducible, thus any representation is the sum of irreps, each of which is finite-dimensional.\\
+		
+		(b): As $\rho$ is multiplicative, it is determined by its behavior on points of $T$ with all but one $\theta_j$ equal to 0. Also $(e^{i\theta})^{2\pi/\theta}=1$ so $\rho(e^{i\theta})^{2\pi/\theta}=1$ as well. Thus $\rho(e^{i\theta})=e^{i\ph}$ for some $\ph$, and in particular
+		$$
+		(e^{i\ph})^{2\pi/\theta} = 1 \implies \ph \cdot 2\pi/ \theta = 2\pi \cdot m \implies \ph = m \theta
+		$$
+		for some integer $m$. The claim follows.
+	\end{proof}
+	
+	\newpage
+	\textbf{Problem 6}: Let $G$ be a connected Lie group. Prove the following are equivalent:
+	\begin{enumerate}
+		\item $G$ is commutative.
+		\item $\Lie(G)$ is Abelian in the sense that $[a,b]=0$.
+		\item For some $m,n\geq 0$ such that $m+n=\dim(\Lie(G))$, there is an isomorphism $G\cong \R^m\times (S^1)^n$ of topological groups. 
+	\end{enumerate}
+	\begin{proof}
+		(2)$\implies$(1): Since $G$ is connected, each $g\in G$ can be written $g=e^{x_1}e^{x_2}\cdots e^{x_n}$ for $x_1,\dots,x_n\in \Lie(G)$. Let $h\in G$ be written similarly as $y=e^{y_1}\cdots e^{y_m}$. Then using (2), every pair $x_i,y_j$ commute, so powers of $x_i$ and $y_j$ commute, and thus $e^{x_i},e^{y_j}$ also commute. Thus, we can commute all of the exponentials past each other to yield $gh=hg$.\\
+		
+		(1)$\implies$(2): We can define $[x,y]$ in terms of a function $\R\to M_n(\R)$:
+		$$
+		[x,y] = xy-yx = \partial_t\big|_{t=0} e^{tx}e^y-e^{y}e^{tx}. 
+		$$
+		It is easy to confirm this by expanding the power series and multiplying the first few terms. Since $G$ is commutative and $e^{tx},e^{y}\in G$, $e^{tx}e^y-e^ye^{tx}=0$ for all $t$. Thus, $[x,y]=0$ as well.\\
+		
+		(2)$\implies$(3): Every $g\in G$ can be written as a product of exponentials 
+		$$
+		g=e^{a_1}e^{a_2}\cdots e^{a_k}
+		$$
+		for $a_i\in \Lie(G)$. By (2), all of these $a_i$ commute, so 
+		$$
+		g=e^{a_1+\cdots+a_k}
+		$$ 
+		That is to say that $\exp:\Lie(G)\to G$ is surjective. It may not be injective though. Let $\Lie(G)$ have basis $x_1,\dots,x_m,y_1,\dots,y_n$ where $x_j$ have $e^{tx_j}$ injective in $t$, and $e^{ty_j}$ is non-injective with $t_j$ minimal such that $e^{t_jy_j}=1$. In fact, $e^{ty_j}$ is periodic with period $t_j$, as 
+		$$
+		e^{(t+t_j)y_j} = e^{ty_j+t_jy_j} = e^{ty_j} e^{t_jy_j} = e^{ty_j}.
+		$$
+		So exp puts $G$ in bijection with the quotient $$\R\<x_1,\dots,x_m\> \times \R\<y_1,\dots,y_n\>/(t_1y_1,t_2y_2,\dots,t_ny_n) \cong \R^m \times (S^1)^n.$$
+		And this is a group isomorphism, as $\exp$ is continuous and preserves the group operations.\\
+		
+%		Suppose $\Lie(G)$ is Abelian and let $x_1,\dots,x_m,y_1,\dots,y_n$ be a basis for it over $\R$. Let $x_1,\dots,x_m$ be the torsion-free basis elements, and let $y_1,\dots,y_m$ be the torsion basis elements, i.e. those for which $t_jy_j=0$ for some nonzero $t_j\in \R$. Then we have the map $f:\R^m\times (S^1)^{n}\to G$ (with basis $r_1,\dots,r_m$ for $\R^m$ and $s_1,\dots,s_n$ for $(S^1)^{n}$) given by
+%		$$
+%		f:a_1r_1 + \cdots + a_mr_m + b_1s_1+\cdots + b_ns_n \mapsto e^{a_1}e^{a_2}\cdots e^{a_m} \cdot e^{t_1b_1}e^{t_2b_2}\cdots e^{t_nb_n}.
+%		$$
+%		$f$ is surjective because $G$ is connected and thus can be expressed as a product of exponentials
+		
+		(3)$\implies$(1): If $G\cong \R^m\times (S^1)^{n}$, then since multiplication is commutative in $\R^m$ and $(S^1)^{n}$, it is also commutative in $\R^m\times (S^1)^{n}$, and hence in $G$.\\
+		
+	
+	\end{proof}
+\end{document}
