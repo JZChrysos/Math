@@ -4,10 +4,15 @@
 
 \title{Math 317 HW 7}
 \author{Jalen Chrysos}
-4.1.5 8 15 17 4.2.1 4.2.5 4.2.10 4.2.13
 
 \begin{document}
+	\maketitle
 	\textbf{Problem 1 (Hatcher 4.1.5)}: For a pair $(X,A)$ of path-connected spaces, show that $\pi_1(X,A,x_0)$ can be identified in a natural way with the set of cosets $\a H$ of the subgroup $H\subset \pi_1(X,x_0)$ represented by loops in $A$ at $x_0$.
+	\begin{proof}
+		By definition, $\pi_1(X,A,x_0)$ is the group of (homotopy classes of) maps $I\to X$ beginning at $x_0$ and ending in $A$. In each of those classes there is a loop at $x_0$, since $A$ is path connected and paths can be extended by homotopy.
+		
+		If $\a$ is a loop at $x_0$ in $X$, then everything in $\a H$ is homotopic to $\a$ (do later)
+	\end{proof}
 	
 	\newpage
 	
@@ -24,9 +29,33 @@
 		\item For $f$ as in (a), consider the composition $gf$ where $g:S^n\to S^n$ collapses the complement of a small ball about $q$ to the basepoint. Use this to reduce (a) further to the case $k=1$.
 		\item Finish the argument by showing that an invertible $n\times n$ matrix can be joined by a path of such matrices to either the identity matrix or the matrix of a reflection. 
 	\end{enumerate}
+	\begin{proof}
+		(a): Lemma 4.10 says that $f$ is homotopic to a map $f_1:S^n\to S^n$ which is piecewise linear on some polyhedron $K\subset S^n$.\\
+		
+		(b): Supposing the result is true for $k=1$,\\
+		
+		(c): The space of $n\times n$ matrices with positive determinant is path-connected, as a subspace of $\R^{n^2}$. One way to see this is that every matrix $a\in M_n(\R)$ has a well defined logarithm
+		$$
+		\log(1 + a) = a + a^2/2 + a^3/3 + a^4/4 + \cdots
+		$$
+		and exponential 
+		$$
+		e^{a} = I + a + a^2/2 + a^3/6 + a^4/24 + \cdots
+		$$
+		so one can let $x=\log(a)$ and take the path $\gamma(t) = e^{tx}$. Then $\gamma(0)=I$, $\gamma(1)=e^x=a$, and $e^{tx}\in \GL_n(\R)$ because it has inverse $e^{-tx}$.  
+	\end{proof}
 	
 	\newpage
 	\textbf{Problem 4 (Hatcher 4.1.17)}: Show that if $X$ and $Y$ are CW complexes with $X$ $m$-connected and $Y$ $n$-connected, then $(X\times Y, X\vee Y)$ is $(m+n+1)$-connected, as is the smash product $X\wedge Y$.
+	\begin{proof}
+		We have the long exact sequence
+		$$
+		\cdots \to \pi_j(X\vee Y) \to \pi_j(X\times Y)\to \pi_j(X\times Y,X\vee Y) \to \pi_{j-1}(X\vee Y)\to \cdots 
+		$$
+		
+		By excision for homotopy groups, $\pi_j(X) \cong \pi_j(X\vee Y,)
+		
+	\end{proof}
 	
 	\newpage
 	\textbf{Problem 5 (Hatcher 4.2.1)}: Use homotopy groups to show that there is no retraction $\RP^n\to \RP^k$ for $n>k>0$.

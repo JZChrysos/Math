@@ -102,25 +102,18 @@
 				\item 
 			\end{enumerate}
 		\end{itemize}
-		\item \textbf{Cellular Homology}: {\color{red} Not done}.
+		\item \textbf{Cellular Homology}: 
 		\begin{itemize}
-			\item Write $X$ as a CW complex.
-			\item For each $j$,
-		\end{itemize}
-		\item \textbf{K\"unneth Formula}:
-		\begin{itemize}
-			\item Use this if $X$ happens to be a product $A\times B$ and $H_*(B)$ is free in every dimension.
-			\item There is an isomorphism 
+			\item Use this if $X$ is a CW complex with relatively few cells.
+			\item For each $j$, let $c_j$ be the number of $j$-cells in $X$, and let $C_j(X)\cong \Z^{c_j}$ be the Abelian group with generators corresponding to the $j$-cells of $X$.
+			\item We have the long exact sequence
 			$$
-			H^*(A\times B;\Z) \cong H^*(A;\Z) \otimes H^*(B;\Z) 
+			C_n(X) \xrightarrow{\d_n} C_{n-1}(X) \xrightarrow{\d_{n-1}}\cdots \xrightarrow{\d_1} C_0(X) \to 0
 			$$
-			of the cohomology rings, and in particular 
+			in which $\d_n$ acts by taking cells to their boundaries. $\d_n$ is a linear map $\Z^{c_n}\to \Z^{c_{n-1}}$, so we can see $\d_n$ as a $c_n\times c_{n-1}$ matrix.
+			\item $H_j(X)$ is the quotient
 			$$
-			H^n(A\times B;\Z) \cong \bigoplus_{j=0}^n H^j(A;\Z) \oplus H^{n-j}(B;\Z)
-			$$
-			\item Putting this through the universal coefficient theorem,
-			$$
-			\Hom(H_n(A\times B;\Z);\Z) \cong \bigoplus_{j=0}^n \Hom(H_j(A),\Z) \oplus \Ext(H_{j-1}(A),\Z) \oplus \Hom(H_{n-j}(B),\Z)
+			H_j(X) \cong \frac{\ker(\d_j)}{\im(\d_{j+1})}
 			$$
 		\end{itemize}
 	\end{enumerate}
@@ -129,25 +122,224 @@
 	
 	The Cohomology of $X$ (wrt $G$) is a sequence of Abelian groups $H^0(X;G),H^1(X;G),\dots$.\\
 	
-	\underline{How to Calculate}: If you know $H_*(X)$, then use \textbf{Universal Coefficient Theorem}:
-	$$
-	H^j(X;G) = \Hom(H_j(X),G)\oplus \Ext(H_{j-1}(X),G).
-	$$
-	How to calculate Ext? Each $H_k(X)$ is an Abelian group, so it has some free parts and some torsion parts. If $H_k(X)=\Z^a \oplus (\Z_2)^{b_2}\oplus (\Z_3)
-	^{b_3} \oplus (\Z_5)^{b_5}\oplus \cdots $ then 
-	$$
-	\Ext(H_k(X);G) = (G/(2G))^{b_2} \oplus (G/(3G))^{b_3}\oplus (G/(5G))^{b_5}\cdots
-	$$
-	(note that the free part $\Z^a$ is dropped entirely).\\
+	\underline{How to Calculate $H^*(X;G)$}: Use \textbf{Universal Coefficient Theorem}:
+		\begin{itemize}
+			\item Use this if you know $H_*(X)$.
+			\item The Cohomology can be determined from the Homology via the isomorphism
+			$$
+			H^j(X;G) = \Hom(H_j(X),G)\oplus \Ext(H_{j-1}(X),G).
+			$$
+			\item To calculate Ext: each $H_k(X)$ is an Abelian group, so it has some free parts and some torsion parts. If $H_k(X)=\Z^a \oplus (\Z_2)^{b_2}\oplus (\Z_3)
+			^{b_3} \oplus (\Z_5)^{b_5}\oplus \cdots $ then 
+			$$
+			\Ext(H_k(X);G) = (G/(2G))^{b_2} \oplus (G/(3G))^{b_3}\oplus (G/(5G))^{b_5}\cdots
+			$$
+			(note that the free part $\Z^a$ is dropped entirely).\\
+		\end{itemize}
+		
+		If $G=R$, a ring, then the cohomology groups $H^*(X;R)$ together form a graded ring under the cup product operation. With the additional structure of the cup product, the cohomology ring makes a strictly finer invariant than the groups alone. Two spaces might have the same cohomology groups in every dimension but different ring structures, e.g. with $S^2\vee S^4$ and $\CP^2$.\\
 	
-	If it's not easy to calculate $H_*(X)$ then there's basically only one other thing you can do. If you're in the specific case that $G=R$ a ring, and $X=A\times B$, and $H^*(A;R),H^*(B;R)$ are both known, and finally $H^*(B;R)$ is free in every dimension, then you can apply the \textbf{K\"unneth formula}:
+	\underline{How to Calculate $H^*(X;R)$ (as a ring)}:
+	\begin{enumerate}[(I)]
+		\item \textbf{K\"unneth Formula}:
+	\begin{itemize}
+	\item Use this if $X=A\times B$, and $H^*(A;R),H^*(B;R)$ are both known, and finally $H^*(B;R)$ is free in every dimension.
+	\item There is a ring isomorphism
 	$$
-	H^*(X;R) = H^*(A\times B;R) = H^*(A;R)\otimes_R H^*(B;R).
+	H^*(A\times B;R) \cong H^*(A;R)\otimes_R H^*(B;R).
 	$$
+	\item In particular this also implies that 
+	$$
+	H^n(A\times B;R) \cong \bigoplus_{j=0}^n H^j(A;R)\otimes_R H^{n-j}(B;R) 
+	$$
+	as groups.
+	\end{itemize}
+	\item \textbf{Poincar\'e Duality}:
+	\begin{itemize}
+		\item Use this if $X$ is a closed, connected $R$-oriented $n$-manifold. 
+		\item In this case $H^j(X;R)=H^{n-j}(X;R)$ for all $j$. We can sometimes guarantee that the generators $\pm 1 \in H^n(X;R)=\Z$ factor as cup products of elements in these two groups.
+		\item Suppose $R=\Z$. If $H^j(X;\Z)=H^{n-j}(X;\Z)$ has positive rank, then for $\a$ a $\Z$-generator in $H^j(X;\Z)$ and $\b$ a $\Z$-generator in $H^{n-j}(X;\Z)$, 
+		$$
+		\a \smile \b = \pm 1 \in H^n(X;\Z).
+		$$
+		\item Suppose $R$ is a field. If $H^j(X;R)=H^{n-j}(X;R)$ are nontrivial, then for any nonzero $\a\in H^j(X;R)$ and $\b\in H^j(X;R)$,
+		$$
+		\a \smile \b = \pm 1 \in H^n(X;R).
+		$$
+	\end{itemize}
+	\end{enumerate}
 	
-	The cohomology ring is a strictly finer invariant. Two spaces might have the same cohomology groups in every dimension but different ring structures
+	\section{Higher Homotopy Groups}
 	
-	\section{Homotopy Groups}
+	The $n$th homotopy group of $X$ is denoted $\pi_n(X)$. It is like a higher-dimensional analogue of $\pi_1(X)$, where the elements are equivalence classes of maps $S^n\to X$.\\
 	
-	\section{Invariants of Common Spaces}
+	\underline{Quick Facts}:
+	\begin{itemize}
+		\item $\pi_n(X)$ is Abelian for $n \geq 2$.
+		\item $\pi_j(S^n)=0$ for $j<n$, $\pi_n(S^n)=\Z$.
+		\item \textit{Hurewicz}: If $\pi_1(X)=0$, the first nonzero $\pi_i(X)$ and $H_j(X)$ occur at the same dimension $i=j$, and $\pi_j(X)=H_j(X)$.
+		\item For any collection of path-connected spaces $\{X_{\a}\}$, $\pi_n\big(\prod_{\a} X_{\a}\big) \cong \prod_{\a}\pi_n(X_{\a})$.
+	\end{itemize}
+	
+	\underline{How To Calculate $\pi_n(X)$}: 
+	\begin{enumerate}[(I)]
+		\item \textbf{Covering Space}:
+		\begin{itemize}
+			\item If $p:\tilde{X}\to X$ is a covering space of $X$, then 
+			$$p_*:\pi_n(\tilde{X})\to \pi_n(X)$$
+			is an isomorphism for all $n\geq 2$.
+			\item \textit{Special Cases}:
+			\begin{itemize}
+				\item If $X$ has a contractible universal cover then $\pi_n(X)=0$ for $n\geq 2$.
+			\end{itemize}
+		\end{itemize}
+		\item \textbf{Excision}:
+		\begin{itemize}
+			\item Express $X$ as a CW complex that is the union of two subcomplexes $A$ and $B$ whose intersection is subcomplex $C$.
+			\item If $(A,C)$ is $m$-connected and $(B,C)$ is $n$-connected, then the inclusion $(A,C)\xhra{} (X,B)$ induces the map
+			$$
+			\pi_j(A,C)\to \pi_j(X,B) 
+			$$ 
+			and this map is an isomorphism for $j<m+n$, and a surjection for $j=m+n$.
+			\item \textit{Special Cases}:
+			\begin{itemize}
+				\item If $C$ is a single point, i.e. $X=A\vee B$, then the map is $\pi_j(A)\to \pi_j(X,B)$.
+				\item One can represent $X$ as $(X/A)\vee A$. Applying the theorem in this case gives
+				$$
+				\pi_j(X/A)\to \pi_j(X,A)
+				$$
+				so we can identify quotients with relative homotopy groups in sufficiently good conditions.
+			\end{itemize}
+		\end{itemize}
+	\end{enumerate}
+	
+	\section{Existence Results}
+	
+	\underline{How to Build a Space with Given Algebraic Properties}: 
+	\begin{itemize}
+%		\item For any sequence of groups $G_1,G_2,\dots$ where $G_n$ is Abelian for $n\geq 2$, there is a  
+		\item \textit{Moore Spaces}: For any Abelian group $G$, there is a Moore space $M(G,n)$ for which
+		$$
+		\tilde{H}_j(X) = \begin{cases}
+			G & j=n\\
+			0 & j\neq n
+		\end{cases}
+		$$
+		\item By taking wedge products of Moore spaces $M(G_1,1),M(G_2,2),\dots$ one can construct a space with any arbitrary homology sequence.
+		\item \textit{Eilenberg-MacLane}: For any group $G$, there is a space $X$ of type $K(G,1)$, i.e. for which 
+		$$
+		\pi_j(X) = \begin{cases}
+			G & j=1\\
+			0 & j>1
+		\end{cases}
+		$$
+		Moreover, if $G$ is Abelian, then for any $n$ there is a space $X$ of type $K(G,n)$, i.e. for which
+		$$
+		\pi_j(X) = \begin{cases}
+			G & j=n\\
+			0 & j\neq n
+		\end{cases}
+		$$
+		All $K(G,n)$ spaces are weak-homotopy equivalent, and all CW complexes of type $K(G,n)$ are fully homotopy equivalent by Whitehead's Theorem.
+		\item \textit{Postnikov Tower}: For any connected CW complex $X$, there is decreasing sequence of CW complexes $X_1,X_2,\dots$ such that 
+		\begin{itemize}
+			\item $X$ is a subcomplex of each $X_j$,
+			\item The inclusion $X\xhra{} X_j$ induces an isomorphism on $\pi_i$ for $i\leq j$,
+			\item $\pi_i(X_j)=0$ for $i>j$.
+		\end{itemize} 
+	\end{itemize}
+	
+	\section{Strategies for Broad Question-Types} 
+	
+	\textit{``Are $X$ and $Y$ homotopy equivalent?"}
+	\begin{itemize}
+		\item If the answer is \textit{no}:
+		\begin{itemize}
+			\item You can probably determine this from their algebraic invariants. 
+			\item If the fundamental group, homology, cohomology ring, or any higher homotopy groups are different, then $X$ and $Y$ are not homotopy equivalent.
+			\end{itemize}
+		\item If the answer is \textit{yes}:
+		\begin{itemize} 
+			\item Then you should construct the map. 
+			\item If $X\subset Y$, then you may be able to find a deformation retraction.
+			\item If you can show that $f:X\to Y$ induces an isomorphism $f_*: H_*(X)\to H_*(Y)$, then this automatically implies that $f$ is a homotopy equivalence by Whitehead's + Hurewicz's Theorems.\\
+		\end{itemize}
+	\end{itemize}
+	
+	\textit{``Is there a space $X$ with algebraic property $P$?"}
+	\begin{itemize}
+		\item If the answer is \textit{no}:
+		\item If the answer is \textit{yes}:
+	\end{itemize}
+	
+	\section{Worked Examples} 
+	
+	\textbf{Example 1}: The Klein Bottle.\\
+	
+	\textit{Fundamental Group}: The Klein bottle can be represented as a CW complex with one 0-cell, two 1-cells, and one 2-cell as depicted below:
+	
+	$$\textbf{DIAGRAM}$$
+	
+	Letting the 1-cells be $\a,\b$, the attaching map of the 2-cell has boundary $\a\b\a^{-1}\b$, so by Van Kampen's Theorem we have
+	$$
+	\pi_1(X) = \<\a,\b \; | \; \a\b\a^{-1}\b = 1\>
+	$$
+	In other words $\a\b = \b^{-1}\a$. Every string of $\a$ and $\b$ can be rearranged using this rule into a canonical representative $\a^n\b^m$ with $n,m\in \Z$. These multiply by
+	$$
+	\a^{n_1}\b^{m_1} \cdot \a^{n_2}\b^{m_2} = \a^{n_1+n_2}\b^{(-1)^{n_2}m_1 + m_2}
+	$$
+	(each $\b$ in $\b^{m_1}$ has its sign swapped $n_2$ times when swapping with the $\a^{n_2}$ block). Thus we can consider $\pi_1(X)$ as $\Z \ltimes \Z$ with the action $n:m\mapsto (-1)^nm$. (revisit)\\
+	
+	\textit{Homology}: A natural way to calculate the homology of $K$ is via cellular homology. We have the exact sequence
+	$$
+	0 \to \Z \xrightarrow{\d_2} \Z^2 \xrightarrow{\d_1} \Z\xrightarrow{\d_0} 0
+	$$
+	where the boundary maps look like 
+	$$
+	\d_0 : \begin{pmatrix} 0 \end{pmatrix}, \;\;\; \d_1 = \begin{pmatrix}0 & 0 \end{pmatrix},\;\;\; \d_2 = \begin{pmatrix} 0 \\ 2 \end{pmatrix} 
+	$$
+	noting in $\d_2$ that the boundary of the 2-cell is $\a + \b - \a + \b = 0\a + 2\b$. So we have 
+	\begin{align*}
+	H_0(K) &= \frac{\ker(\d_0)}{\im(\d_1)} = \frac{\Z}{0} = \Z,\\
+	H_1(K) &= \frac{\ker(\d_1)}{\im(\d_2)} = \frac{\Z^2}{0\times 2\Z} = \Z\oplus \Z_2,\\
+	H_2(K) &= \frac{\ker(\d_2)}{\im(\d_3)} = \frac{0}{0} = 0.
+	\end{align*}
+	These also could have been calculated faster by using other methods:
+	\begin{itemize}
+		\item $H_0(K)=\Z$ because $K$ is connected.
+		\item $H_1(K)=\Z\oplus \Z_2$ because this is the abelianization of $\pi_1(K)$:
+		$$
+		\Ab\big(\<\a,\b\; | \; \a\b\a^{-1}\b = 1\>\big) = \Z\<\a,\b\>/(2\b) = \Z \oplus \Z_2.   
+		$$ 
+	\end{itemize}
+	Also note that $H_2(K)=0$ implies, by Poincar\'e Duality, that $K$ is non-orientable.\\
+	
+	\textit{Cohomology}: Let the coefficient ring be $G$. Having solved $H_*(K)$ already, we can use Universal Coefficient Theorem:
+	$$
+	H^j(K;G) = \Hom(H_j(K),G) \oplus \Ext(H_{j-1}(K),G).
+	$$
+	In the case $G=\Z$, we have 
+	\begin{align*}	
+	H^0(K;\Z) &= \Hom(\Z,\Z)\oplus \Ext(0,\Z) =(\Z)\oplus (0)= \Z\\
+	H^1(K;\Z) &= \Hom(\Z\oplus \Z_2,\Z)\oplus \Ext(\Z,\Z) = (\Z)\oplus(0)= \Z,\\ 
+	H^2(K;\Z) &= \Hom(0,\Z) \oplus \Ext(\Z\oplus \Z_2,\Z) = (0)\oplus(\Z_2) = \Z_2.
+	\end{align*}
+	For the ring structure, beginning with $\Z[x,y]$ where $x$ generates $H^1(K;\Z)=\Z$ and $y$ generates $H^2(K;\Z)=\Z_2$. We clearly have the relation $2y=0$ because $H^2(K;\Z)=\Z_2$, and $xy=y^2=0$ because $H^3=H^4=0$. The only product that could be nontrivial is $x^2$.\\
+	
+	When $G=\Z_2$,
+	\begin{align*}	
+	H^0(K;\Z_2) &= \Hom(\Z,\Z_2)\oplus \Ext(0,\Z_2) =(\Z_2)\oplus (0)= \Z_2\\
+	H^1(K;\Z_2) &= \Hom(\Z\oplus \Z_2,\Z_2)\oplus \Ext(\Z,\Z_2) = (\Z_2^2)\oplus(0)= \Z_2^2,\\ 
+	H^2(K;\Z_2) &= \Hom(0,\Z_2) \oplus \Ext(\Z\oplus \Z_2,\Z_2) = (0)\oplus(\Z_2) = \Z_2.
+	\end{align*}
+	
+	Now for the ring structure. \\
+	
+	\textit{Homotopy Groups}: There is a covering $\R^2\to K$ as depicted below:
+	$$
+	\textbf{Diagram}
+	$$
+	Xovering induces isomorphism on homotopy groups above dimension $1$, so $\pi_n(K)=0$ for $n\geq 2$.
+	
+	\section{Table of Computation Results}
 \end{document}
