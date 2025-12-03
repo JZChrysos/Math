@@ -1118,6 +1118,69 @@ Examples:
 
 \textbf{Corollary}: Let $M^3$ be a closed 3-manifold that is simply connected. Then $M^3\simeq S^3$.
 \begin{proof}
-	We can take the map from homework which is degree-1 to $S^3$ and show in each dimension $0,1,2,3$ that it induces an isomorphism on $H_*$. Thus by the previous corollary we see that $f$ is actually a homotopy equivalence to $S^3$.
-\end{proof}
+	We can take the map from homework which is degree-1 to $S^3$ and show in each dimension $0,1,2,3$ that it induces an isomorphism on $H_*$ (do this later for practice). Thus by the previous corollary we see that $f$ is actually a homotopy equivalence to $S^3$.
+\end{proof}\\
+
+	\subsection{Fibrations} This is a generalization of covering spaces.\\
+	
+	A map $p:E\to B$ has the \textit{homotopy lifting property} wrt $X$ if homotopies $g_t:X\times I\to B$ lift through $B$ to homotopies $\tilde{g_t}:X\times I \to E$, such that $\tilde{g_t}$ extends $\tilde{g_0}$ (which always exists):
+	$$
+	\begin{tikzcd}
+		{X\times \{0\}} && E \\
+		\\
+		{X\times I} && B
+		\arrow["{\tilde{g_0}}"', from=1-1, to=1-3]
+		\arrow[hook, from=1-1, to=3-1]
+		\arrow["p"', from=1-3, to=3-3]
+		\arrow["{\tilde{g_t}}"{description}, from=3-1, to=1-3]
+		\arrow["{g_t}", from=3-1, to=3-3]
+	\end{tikzcd}
+	$$
+	Similarly we can define the homotopy lifting property wrt $(X,A)$ to be the same except $\tilde{g}$ must agree with the lift to $(X\times \{0\})\cup (A\times I)$.\\
+	
+	$p:E\to B$ is a \textit{fibration} if it has the homotopy lifting property for every space $X$. It is a \textit{Serre fibration} if it at least has the HLP for all disks $D^k$ (equivalently all CW complexes). Serre fibrations are a lot more common; it is hard to show that any given map is a fibration, but easier to show it's Serre.\\
+	
+	Note that disks are a special case because the homotopy lifting property for $D^k$ implies it for the pair $(D^k,S^{k-1})$, which implies that it holds for all CW pairs (each cell can be handled separately).\\
+	
+	\textbf{Theorem}: If $p:E\to B$ is a Serre fibration. Let $b\in B$ be a basepoint and $x\in E$ be in $F:= p^{-1}(b)$, the fiber of $b$. Then the map
+	$$
+	p_*:\pi_n(E,F,x)\to \pi_n(B,b)
+	$$
+	is an isomorphism for all $n$.
+	\begin{proof}
+		First we'll show $p_*$ is surjective. Given anything in $\pi_n(B,b)$, by the HLP we can lift it to something which is $x$ on the top and side faces, and it is automatically $F$ on the bottom face because $b$ can only lift into $F$ via $p$.\\
+		
+		Now injectivity. If $f_0,f_1:(I^n,\partial I^n)\to (B,b)$ are homotopic and $\tilde{f_0},\tilde{f_1}$ are lifts of these two, then we can show that the lifts are homotopic as well. Again, this uses the HLP, and it's not hard to see graphically. \textit{important to note that this only ever uses the HLP on cells, so we only use that $p$ is a Serre fibration}.
+	\end{proof}\\
+	
+	As a corollary, if $B$ is path-connected, we have a long exact sequence
+	$$
+	\pi_n(F)\to\pi_n(E)\to \pi_n(B)\to\pi_{n-1}(F)\to \cdots\to\pi_0(F)\to\pi_0(E)\to 0
+	$$
+	So this can really help us to calculate homotopy groups, but only if we have good ways to show that a map is a Serre fibration.\\
+	
+	\textbf{Proposition}: If $B$ is path-connected, then the fibers of any Serre fibration $p$ are all homotopy equivalent.
+	\begin{proof}
+		A path between points $a$ and $b$ lifts to a map between fibers $F_a,F_b$ by the HLP. (so really we need the fibers to be CW complexes for this to work)
+	\end{proof}\\
+	
+	A particularly nice kind of fibration called a \textit{fiber bundle} is a $p:E\to B$ such that $B$ has some open cover $\{U\}$ such that for all $U$, $p^{-1}(U)$ is homeomorphic to $U\times F$ for some space $F$ (which is necessarily homeomorphic to all the fibers). There's some interesting stuff about transition functions (check hatcher!)\\
+	
+	\textit{A fiber bundle is a Serre fibration}. To show this we can effectively use HLP on each $U$ of the open cover (many details omitted).\\
+	
+	Examples:
+	\begin{itemize}
+		\item Covering spaces are fiber bundles for which $F$ is a discrete set. In this case the long exact sequence implies that $\pi_1(B)/\pi_1(E) \cong F$ and $\pi_n(B)\cong \pi_n(E)$ for $n\geq 2$. 
+		\item Let $X$ be a ``nice space.'' Let $G$ be a ``nice topological group'' acting on $X$. For example we could have $X$ a smooth manifold and $G$ a Lie group. Then $X$ is composed of the orbits of $G$. \textit{really go back and do this later it's important!!!!}
+		\item A particular instance of this group action example is with $S^1$ acting on $S^{2n+1}$. Thus using the long exact sequence yields $\pi_m(\CP^n)\cong \pi_{m+1}(S^{2n+1})$ for all $m>2$. And in particular this shows $\pi_m(\CP^{\infty})$ is $\Z$ for $m=2$ and $0$ else.
+		\item Another instance is the Hopf Fibration $S^1\to S^3\to S^2$, which can show us that $\pi_3(S^2)=\Z$.
+		\item Another is $\OO(n-1)\to \OO(n)\to S^{n-1}$.\\
+	\end{itemize}
+	
+	\subsection{Whitehead Product} There is a product $\pi_n\times \pi_m \to \pi_{n+m-1}$ called the \textit{whitehead product}. It has the following properties:
+	\begin{itemize}
+		\item It is bilinear.
+		\item $[f,g]=(-1)^{nm}[g,f]$.
+		\item If $h\in \pi_r(X)$, then $(-1)^{nr}[[f,g],h]+(-1)^{nm}[[g,h],f] + (-1)^{nm}[[n,f],g]=0$.
+	\end{itemize}
 \end{document}

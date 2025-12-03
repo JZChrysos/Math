@@ -35,6 +35,7 @@
 	
 	First, we'll discuss how to compute all of these algebraic invariants, or at least glean information about them. We'll assume $X$ is a connected CW complex.\\
 	
+	\newpage
 	\section{Fundamental Group}
 	
 	The fundamental group of $X$ is a group $\pi_1(X)$ whose elements are homotopy equivalence classes of loops in $X$, and whose multiplication is the concatenation of loops (at some base point, but if $X$ is connected then the basepoint doesn't matter).\\
@@ -45,7 +46,9 @@
 		\item $\pi_1(X)$ is in general non-Abelian.
 	\end{itemize}
 	
-	\underline{How to Calculate}: Use \textbf{Van Kampen's Theorem}:
+	\underline{How to Calculate}: 
+	\begin{enumerate}[(I)]
+		\item \textbf{Van Kampen's Theorem}:
 	\begin{itemize}
 		\item Write $X$ as a CW complex.
 		\item If $X$ has more than one 0-cell, quotient by a maximal spanning tree in $X^1$ so that $X$ has a single 0-cell (this is a homotopy equivalence so it preserves $\pi_1(X)$).
@@ -55,16 +58,23 @@
 		\pi_1(X) := \<\a_1,\dots,\a_k \; | \; \b_1=\b_2=\cdots=\b_{\ell}=1\>.
 		$$
 	\end{itemize}
+	\item \textbf{Covering Space}:
+	\begin{itemize}
+		\item bla
+		\item bla
+	\end{itemize}
+	\end{enumerate}
 	
+	\newpage
 	\section{Homology}
 	
-	The Homology Groups of $X$ are a sequence $H_0(X),H_1(X),\dots$ of \textit{Abelian groups}, so they are of the form $\Z^a\oplus \Z_2^{b_2}\oplus \Z_3^{b_3}\oplus \Z_5^{b_5}\oplus \cdots$. \\
+	The Homology Groups of $X$ are a sequence $H_0(X),H_1(X),\dots$ of \textit{Abelian groups}, so they are of the form $\Z^a\oplus \Z_{q_1}^{b_{q_1}}\oplus \Z_{q_2}^{b_{q_2}}\oplus \cdots$ where $q_i$ are prime powers. \\
 	
 	\underline{Quick Facts}:
 	\begin{itemize}
 	\item $H_0(X)=\Z^a$ where $a$ is the number of connected components of $X$. 
 	\item $H_1(X)$ is the Abelianization of $\pi_1(X)$.
-	\item $H_n(X)=0$ for $n>\dim(X)$. 
+	\item $H_j(X)=0$ if $X$ has no $j$-cells, in particular if $j>\dim(X)$. 
 	\item If $X$ is a manifold of dimension $n$:
 		\begin{itemize}
 			\item $H_n(X)=\Z$ if $X$ is oriented and $H_n(X)=0$ otherwise.
@@ -72,7 +82,7 @@
 		\end{itemize}
 	\end{itemize}
 	
-	\underline{How to Calculate}: There are a couple of useful methods.
+	\underline{How to Calculate}: 
 	\begin{enumerate}[(I)]
 		\item \textbf{Quotients}: 
 		\begin{itemize}
@@ -110,14 +120,15 @@
 			$$
 			C_n(X) \xrightarrow{\d_n} C_{n-1}(X) \xrightarrow{\d_{n-1}}\cdots \xrightarrow{\d_1} C_0(X) \to 0
 			$$
-			in which $\d_n$ acts by taking cells to their boundaries. $\d_n$ is a linear map $\Z^{c_n}\to \Z^{c_{n-1}}$, so we can see $\d_n$ as a $c_n\times c_{n-1}$ matrix.
+			in which $\d_n$ acts by taking cells to their boundaries, where each cell is counted \textit{with degree}. $\d_n$ is a linear map $\Z^{c_n}\to \Z^{c_{n-1}}$, so we can see $\d_n$ as a $c_n\times c_{n-1}$ matrix.
 			\item $H_j(X)$ is the quotient
 			$$
-			H_j(X) \cong \frac{\ker(\d_j)}{\im(\d_{j+1})}
+			H_j(X) \cong \frac{\ker(\d_j)}{\im(\d_{j+1})}.
 			$$
 		\end{itemize}
 	\end{enumerate}
 	
+	\newpage
 	\section{Cohomology}
 	
 	The Cohomology of $X$ (wrt $G$) is a sequence of Abelian groups $H^0(X;G),H^1(X;G),\dots$.\\
@@ -129,12 +140,22 @@
 			$$
 			H^j(X;G) = \Hom(H_j(X),G)\oplus \Ext(H_{j-1}(X),G).
 			$$
-			\item To calculate Ext: each $H_k(X)$ is an Abelian group, so it has some free parts and some torsion parts. If $H_k(X)=\Z^a \oplus (\Z_2)^{b_2}\oplus (\Z_3)
-			^{b_3} \oplus (\Z_5)^{b_5}\oplus \cdots $ then 
+			\item To calculate Ext: each $H_k(X)$ is an Abelian group, so it has some free parts and some torsion parts. If $H_k(X)=\Z^a \oplus (\Z_{q_1})^{b_{q_1}}\oplus (\Z_{q_2})
+			^{b_{q_2}} \oplus \cdots $ then 
 			$$
-			\Ext(H_k(X);G) = (G/(2G))^{b_2} \oplus (G/(3G))^{b_3}\oplus (G/(5G))^{b_5}\cdots
+			\Ext(H_k(X),G) = (G/(q_1G))^{b_{q_1}} \oplus (G/(q_2G))^{b_{q_2}}\oplus \cdots
 			$$
-			(note that the free part $\Z^a$ is dropped entirely).\\
+			(note that the free part $\Z^a$ is dropped entirely).
+			\item To calculate Hom: Hom is additive in its first argument, so if we have an Abelian homology group $H_k(X)=\Z^a \oplus (\Z_{q_1})^{b_{q_1}}\oplus (\Z_{q_2})
+			^{b_{q_2}} \oplus \cdots $ then
+			\begin{align*}
+			\Hom(H_k(X),G) &= \Hom(\Z,G)^a \oplus \Hom(\Z_{q_1},G)^{q_1}\oplus \Hom(\Z_{q_2},G)^{q_2}\oplus \cdots\\
+			&= G^a \oplus G[q_1]^{b_{q_1}} \oplus G[q_2]^{b_{q_2}} \oplus \cdots 
+			\end{align*}
+			where $G[n]$ denotes the $n$-torsion subgroup
+			$$
+			G[n] := \{g\in G : \underbrace{g + g + \cdots + g}_{n} = 0\}.
+			$$
 		\end{itemize}
 		
 		If $G=R$, a ring, then the cohomology groups $H^*(X;R)$ together form a graded ring under the cup product operation. With the additional structure of the cup product, the cohomology ring makes a strictly finer invariant than the groups alone. Two spaces might have the same cohomology groups in every dimension but different ring structures, e.g. with $S^2\vee S^4$ and $\CP^2$.\\
@@ -157,28 +178,34 @@
 	\item \textbf{Poincar\'e Duality}:
 	\begin{itemize}
 		\item Use this if $X$ is a closed, connected $R$-oriented $n$-manifold. 
-		\item In this case $H^j(X;R)=H^{n-j}(X;R)$ for all $j$. We can sometimes guarantee that the generators $\pm 1 \in H^n(X;R)=\Z$ factor as cup products of elements in these two groups.
+		\item In this case $H^j(X;R)=H^{n-j}(X;R)$ for all $j$. We can sometimes guarantee that the generators of $H^n(X;R)=\Z$ factor as cup products of elements in these two groups.
 		\item Suppose $R=\Z$. If $H^j(X;\Z)=H^{n-j}(X;\Z)$ has positive rank, then for $\a$ a $\Z$-generator in $H^j(X;\Z)$ and $\b$ a $\Z$-generator in $H^{n-j}(X;\Z)$, 
 		$$
-		\a \smile \b = \pm 1 \in H^n(X;\Z).
+		\a \smile \b \;\; \text{generates} \;\; H^n(X;\Z).
 		$$
 		\item Suppose $R$ is a field. If $H^j(X;R)=H^{n-j}(X;R)$ are nontrivial, then for any nonzero $\a\in H^j(X;R)$ and $\b\in H^j(X;R)$,
 		$$
-		\a \smile \b = \pm 1 \in H^n(X;R).
+		\a \smile \b \;\; \text{generates} \;\; H^n(X;R).
 		$$
 	\end{itemize}
 	\end{enumerate}
 	
+	\newpage
 	\section{Higher Homotopy Groups}
 	
 	The $n$th homotopy group of $X$ is denoted $\pi_n(X)$. It is like a higher-dimensional analogue of $\pi_1(X)$, where the elements are equivalence classes of maps $S^n\to X$.\\
 	
+	\underline{Terminology}:
+	\begin{itemize}
+		\item $X$ is $n$-\textit{connected} if $\pi_i(X)=0$ for $i\leq n$. So, in particular, $0$-connected means connected, and 1-connected means simply connected.\\
+	\end{itemize}
+	
 	\underline{Quick Facts}:
 	\begin{itemize}
 		\item $\pi_n(X)$ is Abelian for $n \geq 2$.
-		\item $\pi_j(S^n)=0$ for $j<n$, $\pi_n(S^n)=\Z$.
+		\item \textit{Cellular Approximation}: $\pi_j(X)=0$ if $X$ has no $j$-cells.
 		\item \textit{Hurewicz}: If $\pi_1(X)=0$, the first nonzero $\pi_i(X)$ and $H_j(X)$ occur at the same dimension $i=j$, and $\pi_j(X)=H_j(X)$.
-		\item For any collection of path-connected spaces $\{X_{\a}\}$, $\pi_n\big(\prod_{\a} X_{\a}\big) \cong \prod_{\a}\pi_n(X_{\a})$.
+		\item For any collection of path-connected spaces $\{X_{\a}\}$, $\pi_n\big(\prod_{\a} X_{\a}\big) \cong \prod_{\a}\pi_n(X_{\a})$.\\
 	\end{itemize}
 	
 	\underline{How To Calculate $\pi_n(X)$}: 
@@ -190,29 +217,42 @@
 			is an isomorphism for all $n\geq 2$.
 			\item \textit{Special Cases}:
 			\begin{itemize}
-				\item If $X$ has a contractible universal cover then $\pi_n(X)=0$ for $n\geq 2$.
+				\item If $X$ has a contractible covering space then $\pi_n(X)=0$ for $n\geq 2$.
+				\item If $X$ has a universal cover $\tilde{X}$ (so that $\pi_1(\tilde{X})=0$) then $\pi_2(X)=\pi_2(\tilde{X})=H_2(\tilde{X})$.
 			\end{itemize}
 		\end{itemize}
-		\item \textbf{Excision}:
+		\item \textbf{Quotients / Excision}:
 		\begin{itemize}
-			\item Express $X$ as a CW complex that is the union of two subcomplexes $A$ and $B$ whose intersection is subcomplex $C$.
-			\item If $(A,C)$ is $m$-connected and $(B,C)$ is $n$-connected, then the inclusion $(A,C)\xhra{} (X,B)$ induces the map
+			\item Express $X$ as a quotient $Y/A$, where $Y$ is a CW complex and $A$ a subcomplex.
+			\item If $(Y,A)$ is $r$-connected and $A$ is $s$-connected, then the map
 			$$
-			\pi_j(A,C)\to \pi_j(X,B) 
-			$$ 
-			and this map is an isomorphism for $j<m+n$, and a surjection for $j=m+n$.
+			\pi_j(Y,A)\to \pi_j(X)
+			$$
+			induced by the quotient map $Y\to X$ is an isomorphism for $j\leq r+s$ and a surjection for $j=r+s+1$.
+			\item The relative homology groups $\pi_i(Y,A)$ are potentially easier to compute if you have information about $\pi_*(A)$ and $\pi_*(Y)$, as we have the long exact sequence
+			$$
+			\cdots \to \pi_n(A) \to \pi_n(Y) \to \pi_n(Y,A)\to \pi_{n-1}(A) \to \cdots 
+			$$
+			\item This is in contrast to the situation with homology groups, in which this holds for all $j$.
 			\item \textit{Special Cases}:
 			\begin{itemize}
-				\item If $C$ is a single point, i.e. $X=A\vee B$, then the map is $\pi_j(A)\to \pi_j(X,B)$.
-				\item One can represent $X$ as $(X/A)\vee A$. Applying the theorem in this case gives
-				$$
-				\pi_j(X/A)\to \pi_j(X,A)
-				$$
-				so we can identify quotients with relative homotopy groups in sufficiently good conditions.
+				\item If $Y$ is $r$-connected and $A$ is $s$-connected where $s\geq r$, then it follows from the long exact sequence that $(Y,A)$ is $r$-connected so the theorem holds. If $r>s$, in particular if $Y$ is contractible, then $(Y,A)$ is $s$-connected.
 			\end{itemize}
+%			\item Express $X$ as a CW complex that is the union of two subcomplexes $A$ and $B$ whose intersection is subcomplex $C$.
+%			\item If $(A,C)$ is $m$-connected and $(B,C)$ is $n$-connected, then the inclusion $(A,C)\xhra{} (X,B)$ induces the map
+%			$$
+%			\pi_j(A,C)\to \pi_j(X,B) 
+%			$$ 
+%			and this map is an isomorphism for $j<m+n$, and a surjection for $j=m+n$.
+%			\item \textit{Special Cases}:
+%			\begin{itemize}
+%				\item If $C$ is a single point, i.e. $X=A\vee B$, then the map is $\pi_j(A)\to \pi_j(X,B)$.
+%				\item 
+%			\end{itemize}
 		\end{itemize}
 	\end{enumerate}
 	
+	\newpage
 	\section{Existence Results}
 	
 	\underline{How to Build a Space with Given Algebraic Properties}: 
@@ -245,33 +285,40 @@
 		\begin{itemize}
 			\item $X$ is a subcomplex of each $X_j$,
 			\item The inclusion $X\xhra{} X_j$ induces an isomorphism on $\pi_i$ for $i\leq j$,
-			\item $\pi_i(X_j)=0$ for $i>j$.
-		\end{itemize} 
-	\end{itemize}
-	
-	\section{Strategies for Broad Question-Types} 
-	
-	\textit{``Are $X$ and $Y$ homotopy equivalent?"}
-	\begin{itemize}
-		\item If the answer is \textit{no}:
-		\begin{itemize}
-			\item You can probably determine this from their algebraic invariants. 
-			\item If the fundamental group, homology, cohomology ring, or any higher homotopy groups are different, then $X$ and $Y$ are not homotopy equivalent.
-			\end{itemize}
-		\item If the answer is \textit{yes}:
-		\begin{itemize} 
-			\item Then you should construct the map. 
-			\item If $X\subset Y$, then you may be able to find a deformation retraction.
-			\item If you can show that $f:X\to Y$ induces an isomorphism $f_*: H_*(X)\to H_*(Y)$, then this automatically implies that $f$ is a homotopy equivalence by Whitehead's + Hurewicz's Theorems.\\
+			\item $\pi_i(X_j)=0$ for $i>j$.\\
 		\end{itemize}
 	\end{itemize}
 	
-	\textit{``Is there a space $X$ with algebraic property $P$?"}
+	\underline{How to Construct Homotopy Equivalences}:
 	\begin{itemize}
-		\item If the answer is \textit{no}:
-		\item If the answer is \textit{yes}:
+		\item \textit{Whitehead's Theorem}: To show that a map $f:X\to Y$ is a homotopy equivalence, it suffices to show that $f_*:\pi_*(X)\to\pi_*(Y)$ is an isomorphism in all dimensions. 
+		\item It also suffices to show that $f_*:H_*(X)\to H_*(Y)$ is an isomorphism in all dimensions.
 	\end{itemize}
+	\newpage
+%	\section{Strategies for Broad Question-Types} 
+%	
+%	\textit{``Are $X$ and $Y$ homotopy equivalent?"}
+%	\begin{itemize}
+%		\item If the answer is \textit{no}:
+%		\begin{itemize}
+%			\item You can probably determine this from their algebraic invariants. 
+%			\item If the fundamental group, homology, cohomology ring, or any higher homotopy groups are different, then $X$ and $Y$ are not homotopy equivalent.
+%			\end{itemize}
+%		\item If the answer is \textit{yes}:
+%		\begin{itemize} 
+%			\item Then you should construct the map. 
+%			\item If $X\subset Y$, then you may be able to find a deformation retraction.
+%			\item If you can show that $f:X\to Y$ induces an isomorphism $f_*: H_*(X)\to H_*(Y)$, then this automatically implies that $f$ is a homotopy equivalence by Whitehead's + Hurewicz's Theorems.\\
+%		\end{itemize}
+%	\end{itemize}
+%	
+%	\textit{``Is there a space $X$ with algebraic property $P$?"}
+%	\begin{itemize}
+%		\item If the answer is \textit{no}:
+%		\item If the answer is \textit{yes}:
+%	\end{itemize}
 	
+	\newpage
 	\section{Worked Examples} 
 	
 	\textbf{Example 1}: The Klein Bottle.\\
@@ -311,8 +358,8 @@
 		$$
 		\Ab\big(\<\a,\b\; | \; \a\b\a^{-1}\b = 1\>\big) = \Z\<\a,\b\>/(2\b) = \Z \oplus \Z_2.   
 		$$ 
+		\item $H_2(K)=0$ because $H_1(K)$ is not free, which implies $K$ is non-orientable.\\
 	\end{itemize}
-	Also note that $H_2(K)=0$ implies, by Poincar\'e Duality, that $K$ is non-orientable.\\
 	
 	\textit{Cohomology}: Let the coefficient ring be $G$. Having solved $H_*(K)$ already, we can use Universal Coefficient Theorem:
 	$$
@@ -341,5 +388,7 @@
 	$$
 	Xovering induces isomorphism on homotopy groups above dimension $1$, so $\pi_n(K)=0$ for $n\geq 2$.
 	
+	\newpage
 	\section{Table of Computation Results}
+	
 \end{document}

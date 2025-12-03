@@ -15,3 +15,5 @@
 \contentsline {subsection}{\tocsubsection {}{2.4}{Poincare Duality}}{17}{subsection.2.4}%
 \contentsline {section}{\tocsection {}{3}{Higher Homotopy Groups}}{19}{section.3}%
 \contentsline {subsection}{\tocsubsection {}{3.1}{Relative Homotopy Groups}}{19}{subsection.3.1}%
+\contentsline {subsection}{\tocsubsection {}{3.2}{Fibrations}}{22}{subsection.3.2}%
+\contentsline {subsection}{\tocsubsection {}{3.3}{Whitehead Product}}{23}{subsection.3.3}%

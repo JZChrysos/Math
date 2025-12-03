@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  20 NOV 2025 12:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  2 DEC 2025 12:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1354,20 +1354,91 @@ Underfull \hbox (badness 10000) in paragraph at lines 1116--1118
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 1121--1123
 
-[21] (./TopologyNotes.aux)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1124--1125
+
+ []
+
+
+
+[21]
+Underfull \hbox (badness 10000) in paragraph at lines 1138--1140
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1141--1142
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1143--1144
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1151--1152
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1153--1155
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1159--1161
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1164--1166
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1167--1168
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1169--1170
+
+ []
+
+
+
+[22]
+Underfull \hbox (badness 10000) in paragraph at lines 1177--1178
+
+ []
+
+
+
+[23] (./TopologyNotes.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
-Package rerunfilecheck Info: File `TopologyNotes.out' has not changed.
-(rerunfilecheck)             Checksum: 0E928CC675316A38FBB4C5DF3C5AD380;2983.
+
+
+Package rerunfilecheck Warning: File `TopologyNotes.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `TopologyNotes.out':
+(rerunfilecheck)             Before: D7FD953BE2EAF95A1E894DF989BA53FE;3119
+(rerunfilecheck)             After:  D5159DCA868A2318467747DC94D02C0B;3293.
  ) 
 Here is how much of TeX's memory you used:
- 27219 strings out of 467748
- 539246 string characters out of 5431138
- 924036 words of memory out of 5000000
- 55271 multiletter control sequences out of 15000+600000
+ 27283 strings out of 467748
+ 540509 string characters out of 5431138
+ 924149 words of memory out of 5000000
+ 55331 multiletter control sequences out of 15000+600000
  636036 words of font info for 73 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  103i,16n,108p,682b,1023s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1389,10 +1460,10 @@ b><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive
 /2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/202
 5/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on TopologyNotes.pdf (21 pages, 341835 bytes).
+Output written on TopologyNotes.pdf (23 pages, 350459 bytes).
 PDF statistics:
- 306 PDF objects out of 1000 (max. 8388607)
- 240 compressed objects within 3 object streams
- 43 named destinations out of 1000 (max. 500000)
- 149 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 320 PDF objects out of 1000 (max. 8388607)
+ 252 compressed objects within 3 object streams
+ 47 named destinations out of 1000 (max. 500000)
+ 157 words of extra memory for PDF output out of 10000 (max. 10000000)
 
