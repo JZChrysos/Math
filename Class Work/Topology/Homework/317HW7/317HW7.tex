@@ -9,9 +9,15 @@
 	\maketitle
 	\textbf{Problem 1 (Hatcher 4.1.5)}: For a pair $(X,A)$ of path-connected spaces, show that $\pi_1(X,A,x_0)$ can be identified in a natural way with the set of cosets $\a H$ of the subgroup $H\subset \pi_1(X,x_0)$ represented by loops in $A$ at $x_0$.
 	\begin{proof}
-		By definition, $\pi_1(X,A,x_0)$ is the group of (homotopy classes of) maps $I\to X$ beginning at $x_0$ and ending in $A$. In each of those classes there is a loop at $x_0$, since $A$ is path connected and paths can be extended by homotopy.
+		By definition, $\pi_1(X,A,x_0)$ is the group of (homotopy classes of) maps $\gamma: I\to X$ beginning at $x_0$ and ending in $A$, where the homotopies are rel $x_0,A$. Since $A$ is connected, such $\gamma$ can be homotopically extended to end at $x_0$ and thus form a loop. All possible extensions within $A$ are homotopic to $\gamma$, and thus are all equivalent in $\pi_1(X,A,x_0)$.\\
 		
-		If $\a$ is a loop at $x_0$ in $X$, then everything in $\a H$ is homotopic to $\a$ (do later)
+		The correspondence is as follows: each class $[\gamma] \in \pi_1(X,A,x_0)$ contains loops in $\pi_1(X)$. If $\a$ is such a loop in $[\gamma]$, then all of $\a H$ is in $[\gamma]$ because concatenating loops in $A$ (elements of $H$) can be done homotopically rel $A$. So this $\a H$ is the class we associate to $[\gamma]$. It is well-defined because if $\b\simeq \a$ in $\pi_1(X)$, then the homotopy between them fixes both endpoints at $x_0$ which is strictly stronger than fixing one and keeping the other in $A$, so $\b\simeq \a$ in $\pi_1(X,A,x_0)$ as well. 
+		
+		The inverse is just given by inclusion of $\a H$ into $\pi_1(X,A,x_0)$, as they are all in the same class (as shown above). It is easy to check that the composition of these two is the identity.
+		
+%		In each of those classes there is a loop at $x_0$, since $A$ is path connected and paths can be extended by homotopy.
+%		
+%		If $\a$ is a loop at $x_0$ in $X$, then everything in $\a H$ is homotopic to $\a$ (do later)
 	\end{proof}
 	
 	\newpage
@@ -35,11 +41,15 @@
 		\item Finish the argument by showing that an invertible $n\times n$ matrix can be joined by a path of such matrices to either the identity matrix or the matrix of a reflection. 
 	\end{enumerate}
 	\begin{proof}
-		(a): Lemma 4.10 says that $f$ is homotopic to a map $f_1:S^n\to S^n$ which is piecewise linear on some polyhedron $K\subset S^n$.\\
+		(a): Applying lemma 4.10 in the case $Z=S^n$ and $W=\emptyset$ says that $f$ is homotopic to a map $f_1:S^n\to S^n$ which is piecewise linear (viewing $S^n$ as $\R^n$ locally) on some polyhedron $K\subset S^n$ such that $K$ contains $f_1^{-1}(U)$ for some $U\subset \R^n$. Therefore, it suffices to show the case where $f$ is of this form.
 		
-		(b): Supposing the result is true for $k=1$,\\
+		Since $f$ is piecewise linear on $K$ (with finitely many pieces), the points $p$ defining the corners of linear pieces can have $f(p)$ moved slightly while keeping $f$ linear on the adjoining pieces, and this is clearly continuous. We can homotope $f$ by adjusting its value on these points $p$ so that all the piecewise linear parts become invertible. Then any given point $q\in U$ can have at most one preimage per linear piece and none outside of $K$, so the preimage is finite. And one can slightly move $q$ such that the preimages are all strictly inside the pieces, achieving the desired conditions.\\
 		
-		(c): The space of $n\times n$ matrices with positive determinant is path-connected, as a subspace of $\R^{n^2}$. One way to see this is that every matrix $a\in M_n(\R)$ has a well defined logarithm
+		(b): Let $|f^{-1}(q)|=k$. Outside $k$ small neighborhoods of preimages of $q$, the image of $f$ is contained in $S^n\setminus \{q\}\simeq D^n$, which is contractible, so we can homotope $f$ so that it is the basepoint outside of these $k$ neighborhoods. But then $f$ is literally a product (in the $\pi_n$ sense) of $k$ maps, each of which has a single preimage of $q$. Thus if we show that any $f'$ with $k=1$ is of the form $\pm \id \in \pi_n$, then this $f$ will be $\pm k\cdot \id$, which proves the theorem for general $k$. So it suffices to address the case $k=1$.\\
+		
+		(c): Suppose we have a map $f$ of this type with $k=1$. In the same way as part (b), we can homotope $f$ so that it is constant outside a neighborhood of $f^{-1}(q)$, and we already know it is invertible inside such a neighborhood from part (a). If we can deform $f$ to $\pm\id$ in this neighborhood, then that will prove the theorem.
+		
+		The space of $n\times n$ matrices with \textit{positive} determinant is path-connected, as a subspace of $\R^{n^2}$. One way to see this is that every matrix $a\in M_n(\R)$ has a well defined logarithm
 		$$
 		\log(1 + a) = a + a^2/2 + a^3/3 + a^4/4 + \cdots
 		$$
@@ -47,7 +57,9 @@
 		$$
 		e^{a} = I + a + a^2/2 + a^3/6 + a^4/24 + \cdots
 		$$
-		so one can let $x=\log(a)$ and take the path $\gamma(t) = e^{tx}$. Then $\gamma(0)=I$, $\gamma(1)=e^x=a$, and $e^{tx}\in \GL_n(\R)$ because it has inverse $e^{-tx}$.  
+		so one can let $x=\log(a)$ and take the path $\gamma(t) = e^{tx}$. Then $\gamma(0)=I$, $\gamma(1)=e^x=a$, and $e^{tx}\in \GL_n(\R)$ because it has inverse $e^{-tx}$. 
+		
+		Similarly, the space of negative determinant matrices is path connected. Whichever one of these we are in initially, we can deform to get $\id$ or $-\id$. 
 	\end{proof}
 	
 	\newpage
@@ -90,29 +102,54 @@
 	$$
 	and compute the action of $\pi_1(A)$ on these three groups. In particular show that the action is trivial on $\pi_2(A)$ and $\pi_2(X,A)$ but nontrivial on $\pi_2(X)$.
 	\begin{proof}
-		$\pi_3(X,A)=0$ by cellular approximation, as $X$ has no cells of dimension 3 so one could deform any map $S^3\to X$ to a point. And we know that 
+		First, we already know that the sequence
 		$$
-		\pi_3(X,A)\to \pi_2(A)\to \pi_2(X)
+		\pi_3(X,A)\to \pi_2(A)\to\pi_2(X)\to\pi_2(X,A)\to\pi_1(A)\to\pi_1(X)\to\pi_1(X,A)
 		$$
-		is exact in general. This shows that $\pi_2(A)\to \pi_2(X)$ is injective.
+		is exact. To show the short exactness of this piece, it suffices to show that $\pi_1(A)\to \pi_1(X)$ is an isomorphism, which is clear, and that $\pi_3(X,A)=0$. Note that this incidentally shows $\pi_1(X,A)=0$, which we will use later.
 		
-		Now to show that $\pi_2(X)\to \pi_2(X,A)$ is surjective, it suffices to show that $\pi_1(A)\to\pi_1(X)$ is injective, i.e. that if a loop in $A$ is nullhomotopic in $X$ then it is nullhomotopic in $A$ too. $\pi_1(A)=\pi_1(X)=\Z$, and the inclusion of the generator of $\pi_1(A)$ (Say more precisely)\\
+		Now let's calculate each of these groups $\pi_2$. We can immediately see that 
+		$$
+		\pi_2(A) = \pi_2(S^1\times S^2) = \pi_2(S^1)\times \pi_2(S^2) = \Z.
+		$$
+		Similarly $\pi_2(X,A)$ must be $\pi_2(X/A)=\Z$ as well by Hurewicz, because $\pi_1(X,A)=0$ (we will show next that the action of $\pi_1(A)$ is trivial). And it follows by exactness of the sequence above that $\pi_2(X)$ must be $\Z^2$.
 		
-		$\pi_2(A) = \pi_2(S^1\times S^2) = 0\times \Z= \Z$.\\
+		To compute the action of $\pi_1(A)$, consider the universal cover $p:X'\to X$. $X'$ is the mapping torus rolled out into a line. $\pi_1(A)$ acts on this space by translating the line. 
 		
-		$\pi_1(A)$ acts on $\pi_2(A)$ by
+		For $\pi_2(A)$, the action is trivial because the 2-sphere is just being pushed down the $S^2_{\a}\times \R$ tube, and can be retracted back again homotopically. Similarly for $\pi_2(X,A)$ with the $S^2_{\b}\times \R$ tube. But with $\pi_2(X)$, the action of $\pi_1(A)$ can split a sphere in $S^2_{\b}$ between the two tubes, so it is nontrivial.
+	\end{proof}
+	\newpage
+	\textbf{Problem 7 (Hatcher 4.2.7)}: Construct a CW complex with prescribed homotopy groups and prescribed actions of $\pi_1$ on those homotopy groups.
+	\begin{proof}
+		One can construct, by taking a product of $K(G_n,n)$ for $n\geq 2$, a space $X'$ which has homotopy groups $\pi_n(X)=G_n$ for $n\geq 2$. Now we want $X'$ to be a covering space of some $X$, $p:X'\to X$ (which necessarily has the same homotopy groups for $n\geq 2$) while making $\pi_1(X)=G_1$ \textit{and} ensuring the desired actions of $G_1$ on each $G_n$. It suffices to do this for one $n$ at a time.\\
+		
+		We just need the deck group of this covering to match the desired action of $\pi_1$. We can attach a contractible tree of 1-cells representing the free group, and then in $X$ we can identify some of the branches where there are relations that want to impose.
 	\end{proof}
 	
 	\newpage
-	\textbf{Problem 7 (Hatcher 4.2.10)}: Let $X$ be the CW complex obtained from $S^2\vee S^n$ (where $n\geq 2$) by attaching $e^{n+1}$ by a map representing the polynomial $p(t)\in \Z[t,t^{-1}]\cong \pi_n(S^1\vee S^n)$, so that $\pi_n(X)\cong \Z[t,t^{-1}]/(p(t))$. Show that $\pi_n'(X)$ is cyclic and compute its order in terms of $p(t)$. Give examples showing that the group $\pi_n(X)$ can be finitely-generated or not, independently of whether $\pi_n'(X)$ is finite or infinite.
+	\textbf{Problem 8 (Hatcher 4.2.10)}: Let $X$ be the CW complex obtained from $S^1\vee S^n$ (where $n\geq 2$) by attaching $e^{n+1}$ by a map representing the polynomial $p(t)\in \Z[t,t^{-1}]\cong \pi_n(S^1\vee S^n)$, so that $\pi_n(X)\cong \Z[t,t^{-1}]/(p(t))$. Show that $\pi_n'(X)$ is cyclic and compute its order in terms of $p(t)$. Give examples showing that the group $\pi_n(X)$ can be finitely-generated or not, independently of whether $\pi_n'(X)$ is finite or infinite.
 	\begin{proof}
-		By the relative Hurewicz theorem, 
+		$S^1\vee S^n$ has a universal cover $Y$ that is a line with $\Z$ copies of $S^n$ attached along it. $\pi_1$ acts on $Y$ by shifting this line.\\
+		
+		$\pi_n'(X)$ is $\pi_n(X)$ but quotienting out the action of $\pi_1(X)$. Since $\pi_1(X)$ acts as multiplication by $t$, this is the same as setting $t$ to 1, or quotienting by $(t-1)$. That is,
+		$$
+		\pi_n'(X) = \Z[t,t^{-1}]/(p(t),t-1) = \Z/(p(1))
+		$$
+		So $\pi_n'(X)$ is cyclic of order $p(1)$ (or infinite if $p(1)=0$).\\
+		
+		$\pi_n'(X)$ finite, $\pi_n(X)$ finitely-generated: take $p(t)=1-t-t^2$, for which $\pi_n(X)$ can be generated by just $1$ and $t$, and $\pi_n'(X)=0$.\\
+		
+		$\pi_n'(X)$ finite, $\pi_n(X)$ infinitely-generated: take $p(t)=2-t$, for which $\pi_n(X)=\Z[t,t^{-1}]/(2-t) = \Z[\tfrac12]$ which is infinitely generated, but $\pi_n'(X)=0$.\\
+		
+		$\pi_n'(X)=\Z$, $\pi_n(X)$ finitely-generated: take $p(t)=t-1$, for which $\pi_n(X)=\pi_n'(X)=\Z$.\\
+		
+		$\pi_n'(X)=\Z$, $\pi_n(X)$ infinitely-generated: take $p(t)=2t-2$, for which $\pi_n'(X)=\Z$ and $\pi_n(X)$ has nonzero and unrelated $t^n$ for all $n\in \Z$, so it is infinitely-generated. 
 	\end{proof}
 	
 	\newpage
-	\textbf{Problem 8 (Hatcher 4.2.13)}: Show that a map between connected $n$-dimensional CW complexes is a homotopy equivalence if it induces an isomorphism on $\pi_i$ for $i\leq n$.
+	\textbf{Problem 9 (Hatcher 4.2.13)}: Show that a map between connected $n$-dimensional CW complexes is a homotopy equivalence if it induces an isomorphism on $\pi_i$ for $i\leq n$.
 	\begin{proof}
-		Whitehead's theorem implies that if $f:X\to Y$ induces an isomorphism on $\pi_i$ for all $i$ then it is a homotopy equivalence. If $X,Y$ are $n$-dimensional, then $\pi_i(X)=\pi_i(Y)=0$ for $i>n$, so any such $f$ automatically induces an isomorphism on these groups. Thus it suffices to know that $f_*:\pi_i(X)\to \pi_i(Y)$ is an isomorphism for $i\leq n$, as desired.
+		If $f_*:\pi_i(X)\to\pi_i(Y)$ is an isomorphism for $i\leq n$ then $\pi_i(Y,X)=0$ for $1<i\leq n$. The case $i=1$ may not be true. But if we pass to universal covers $Y'$ and $X'$, then $\pi_i(Y',X')=0$ for $1\leq i \leq n$, so $H_i(Y',X')=0$ by Hurewicz Theorem. And for $i> n$, $H_i(Y',X')=H_i(Y'/X')=0$ automatically because $Y'/X'$ has no $i$-cells, as $Y',X'$ are $n$-dimensional. Thus, by Hurewicz again, $\pi_i(Y',X')=\pi_i(Y,X)=0$ for all $i$, and so $f_*$ induces an isomorphism in all dimensions, and by Whitehead's theorem $f$ is therefore a homotopy equivalence. 
 	\end{proof}
 	
 	

@@ -1177,10 +1177,80 @@ Examples:
 		\item Another is $\OO(n-1)\to \OO(n)\to S^{n-1}$.\\
 	\end{itemize}
 	
+	\subsection{Path Space Fibration} Given a map $f:A\to B$, one can define the space $E_f$ to be
+	$$
+	E_f := \{(a,\gamma) : a\in A, \gamma:I\to B \; \gamma(0)=f(a)\} \subset A\times B^I
+	$$
+	We have a map $p:E_f\to B$ given by $(a,\gamma)\mapsto \gamma(1)$. This map is a fibration (not even just a Serre fibration).
+	\begin{proof}
+		Given $g_t:X\to B$ with $\tilde{g_0}:X\to E_f$, we can lift to $E_f$ by just extending the path to get $g_t(a)\circ\gamma$ (check later).
+	\end{proof}\\
+	So we've shown that we can take any map $f:A\to B$ and get a homotopy equivalent fibration $p:E_f\to B$. The fiber $F_f$ is called the \textit{homotopy fiber} of $f$. So we get the LES
+	$$
+	\cdots\to \pi_n(F_f)\to \pi_n(A)\to\pi_n(B)\to \pi_{n-1}(F_f)\to\cdots 
+	$$
+	A special case: let $A=\{b\}$ and let $f:b\mapsto b\in B$ be an inclusion, with $b$ the basepoint. Now $E_f$ is the path space $PB$. The homotopy fiber is $\Omega B$, the \textit{loop space} of $B$. The path space $PB$ is contractible, so the LES yields 
+	$$
+	\pi_n(B) \cong \pi_{n+1}(\Omega B)
+	$$
+	In general if $B$ is a CW complex then a theorem of Milnor says that $\Omega B$ is homotopy equivalent toa CW complex.
+	
 	\subsection{Whitehead Product} There is a product $\pi_n\times \pi_m \to \pi_{n+m-1}$ called the \textit{whitehead product}. It has the following properties:
 	\begin{itemize}
 		\item It is bilinear.
 		\item $[f,g]=(-1)^{nm}[g,f]$.
 		\item If $h\in \pi_r(X)$, then $(-1)^{nr}[[f,g],h]+(-1)^{nm}[[g,h],f] + (-1)^{nm}[[n,f],g]=0$.
 	\end{itemize}
+	
+	\subsection{Eilenberg MacLane Spaces} A $K(G,n)$ is a space $X$ with $\pi_n(X)=G$ and $\pi_m(X)=0$ for $n\neq m$. One can construct a $K(G,n)$ relatively easily: begin with a space with $\pi_n(X)=G$ with only $n$ and $(n+1)$-cells, and then add $(n+2)$-cells to kill $\pi_{n+1}(X)$, add $(n+3)$-cells, etc.\\
+	
+	Moreover, the space is unique up to homotopy. We can easily construct a map which is an isomorphism on all homology groups (most are 0 so the isomorphism is automatic) and then by Whitehead's theorem it is a homotopy equivalence.\\
+	
+	Who cares about $K(G,n)$s? There are two things they're good for: one is making Postnikov towers. The other is that they ``represent homology.''\\
+	
+	First, for spaces $A$ and $B$, we can consider the group $\<A,B\>$ consisting of homotopy classes of basepoint-preserving maps $A\to B$. This is sort of a generalization of $\pi_i$, with
+	$$
+	\pi_i(B) = \<S^i,B\>.
+	$$ 
+	If $\Sigma A$ is the reduced suspension of $A$, then 
+	$$
+	\<\Sigma A,B\> = \<A,\Omega B\>
+	$$
+	so we can think of $\Sigma$ and $\Omega$ as ``adjoint.'' In particular, if $B$ is a $K(G,n)$, then
+	$$
+	\<\Sigma A, K(G,n)\> = \<A,\Omega K(G,n)\> = \<A,K(G,n-1)\>
+	$$
+	and because $\<\Sigma^2A,B\>$ is always Abelian (essentially for the same reason that $\pi_{\geq 2}$ is) we see that $\<A,K(G,n)\>$ is always Abelian as well. But moreover, it is also a very specific Abelian group:\\
+	
+	\textbf{Theorem}: If $X$ is a connected CW complex, $n>0$, and $G$ an Abelian group, let $\<X,K(G,n)\>$ be the set of homotopy equivalence classes of basepoint-preserving maps $X\to K(G,n)$. Then
+	$$
+	\<X,K(G,n)\> \cong H^n(X;G).
+	$$
+	\begin{proof}
+		Let $h^n(X) := \<X,K(G,n)\>$. We'll show that this has all of the cohomology axioms. Homotopy invariance is easy, as is product. The dimension axiom follows from Hurewicz.\\
+		
+		The substantial part is the long exact sequence for pairs, which goes
+		$$
+		\cdots \to \<\Sigma X/A,K\>\to \<\Sigma X,K\> \to \<\Sigma A,K\> \to \<X/A,K\>\to \<X,K\> \to \<A,K\>
+		$$
+		and it's actually not hard to show that this is exact.
+	\end{proof}\\
+	
+	We know by universal coefficient theorem + Hurewicz theorem that $H^n(K(G,n);G)\cong \Hom(G,G)$. What the previous theorem also shows is that \\
+	
+	Examples: (note that $[A,B]$ is like $\<A,B\>$ but for \textit{non-basepointed} classes of maps)
+	\begin{itemize}
+		\item $S^1$ is a $K(\Z,1)$. So the previous theorem shows that $[X,S^1]\cong H^1(X,\Z)$ for any connected CW complex $X$. 
+		\item $\CP^{\infty}$ is a $K(\Z,2)$. The previous theorem shows that $[X,\CP^{\infty}]\cong H^2(X;\Z)$.\\
+	\end{itemize}
+	
+	One can see the cup product through homotopy in this way. Let $A,B$ be abelian groups and $p,q\in \N$. We can take
+	$$
+	K(A,p) \wedge K(B,q) = K(A,p)\times K(B,q) / (K(A,p)\vee K(B,q))
+	$$
+	which will have lowest-dimension cells in dimension $p+q$. In particular, $\pi_{p+q}$ of this space is $A\otimes B$. So if $\a\in H^p(X;A)$ and $\b\in H^q(X;B)$, then we can associate to these $\a,\b$ maps $X\to K(A,p)$ and $X\to K(B,q)$, and the map 
+	$$
+	f\wedge g:X \to K(A,p)\wedge K(B,q) \xhra{} K(A\otimes B,p+q)
+	$$
+	corresponds to the cup product $\a\cup \b\in H^{p+q}(X,A\otimes B)$.
 \end{document}

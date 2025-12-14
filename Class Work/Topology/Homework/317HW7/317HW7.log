@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  28 NOV 2025 10:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  7 DEC 2025 21:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -832,28 +832,33 @@ Package hyperref Info: Link coloring ON on input line 8.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 12--13
+
+ []
+
+
 
 [1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 25--26
+Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
  []
 
 
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 38--39
+Underfull \hbox (badness 10000) in paragraph at lines 46--47
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 40--41
+Underfull \hbox (badness 10000) in paragraph at lines 48--49
 
  []
 
 
 
 [3]
-Overfull \hbox (21.49486pt too wide) detected at line 66
+Overfull \hbox (21.49486pt too wide) detected at line 78
 [] \OMS/cmsy/m/n/10 ! [] ! \OML/cmm/m/it/10 ^^Y[]\OT1/cmr/m/n/10 (\OML/cmm/m/it
 /10 X[] \OMS/cmsy/m/n/10 _ \OML/cmm/m/it/10 Y[]\OT1/cmr/m/n/10 ) [] \OML/cmm/m/
 it/10 ^^Y[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X[] \OMS/cmsy/m/n/10 ^^B \OML/cmm/
@@ -861,7 +866,7 @@ m/it/10 Y[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! [] ! []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 66--68
+Underfull \hbox (badness 10000) in paragraph at lines 78--80
 
  []
 
@@ -872,10 +877,42 @@ Underfull \hbox (badness 10000) in paragraph at lines 66--68
 [5]
 
 [6]
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
+
+ []
+
+
 
 [7]
+Underfull \hbox (badness 10000) in paragraph at lines 132--133
 
-[8] (./317HW7.aux)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 137--139
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 144--145
+
+ []
+
+
+
+[8]
+
+[9] (./317HW7.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
@@ -884,13 +921,13 @@ Package rerunfilecheck Info: File `317HW7.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 25615 strings out of 467748
- 499082 string characters out of 5431138
- 870203 words of memory out of 5000000
- 53706 multiletter control sequences out of 15000+600000
+ 25630 strings out of 467748
+ 499127 string characters out of 5431138
+ 875318 words of memory out of 5000000
+ 53720 multiletter control sequences out of 15000+600000
  634194 words of font info for 67 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 103i,11n,108p,595b,464s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,11n,108p,641b,464s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-di
@@ -904,10 +941,10 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2025/texmf-dist
 /fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2025/texmf-dist/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2025/texmf-dist/fonts/t
 ype1/public/amsfonts/symbols/msbm7.pfb>
-Output written on 317HW7.pdf (8 pages, 158484 bytes).
+Output written on 317HW7.pdf (9 pages, 169587 bytes).
 PDF statistics:
- 121 PDF objects out of 1000 (max. 8388607)
- 82 compressed objects within 1 object stream
- 12 named destinations out of 1000 (max. 500000)
+ 126 PDF objects out of 1000 (max. 8388607)
+ 86 compressed objects within 1 object stream
+ 13 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

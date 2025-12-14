@@ -2,7 +2,7 @@
 
 \input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
 
-\newcommand{\Ad}{Ad}
+\DeclareMathOperator{\Ad}{Ad}
 
 \title{Math 325 HW 7}
 \author{Jalen Chrysos}
@@ -21,7 +21,7 @@
 	\end{enumerate}
 	\begin{proof}
 		(a): We know $hf-fh = -2f$, so 
-		$$hf(v) = (fh - 2f)(v) = (\lambda - 2)v.$$
+		$$hf(v) = (fh - 2f)(v) = (\lambda - 2)fv.$$
 		I claim that in general $h(f^iv)=(\lambda - 2i)f^iv$. This can be seen inductively:
 		\begin{align*}
 		hf^iv &= hf(f^{i-1}v) \\
@@ -45,7 +45,23 @@
 			&= \lambda f^iv + ((i-1)\lambda - i(i+1))f^{i-1}(v)\\
 		\end{align*}
 		
-		(c): Let $v$ be any nonzero vector in $V$. By part (a), we see that $e^iv$ is an eigenvector of $h$ for all $i$, and they all have different eigenvalues, so $e^iv=0$ for all but finitely-many $i\in \N$. Thus let $i$ be maximal such that $e^iv\neq 0$. Then $e(e^iv)=0$ but $h(e^iv)=(\lambda + 2i)(e^iv)$. \textit{to do: why is $\lambda$ an integer}.\\
+		(c): Let $v$ be any nonzero vector in $V$. By part (a), we see that $e^iv$ is an eigenvector of $h$ for all $i$, and they all have different eigenvalues, so $e^iv=0$ for all but finitely-many $i\in \N$. Thus let $d$ be maximal such that $e^dv\neq 0$. Then $e(e^dv)=0$ and $h(e^dv)=(\lambda + 2d)(e^dv)$.
+		
+		We can view $h$ with respect to the eigenbasis $v,ev,e^2v,\dots,e^dv$ as the matrix
+		$$
+		h = \begin{bmatrix}
+			\lambda & 0 & 0 & \cdots & 0\\
+			0 & \lambda + 2 & 0 & \cdots & 0\\
+			0 & 0 & \lambda + 4 & \cdots & 0\\
+			\vdots & \vdots & \vdots & \ddots & 0\\
+			0 & 0 & 0 & \cdots & \lambda + 2d
+		\end{bmatrix}
+		$$
+		and thus $h$ has trace 
+		$$
+		\tr(h) = \sum_{i=0}^d \lambda + 2i = (d+1)\lambda + (d)(d+1) = (d+1)(\lambda + d).
+		$$
+		But since $\tr(h)=\tr(ef-fe) = \tr(ef)-\tr(fe) = 0$, this implies $\lambda = -d$, and hence $h(e^dv)=d e^dv$.\\
 		
 		(d): Let $V$ be a simple $\U(e,h,f)$-module. By (c), there is some $v$ with $e(v)=0$ and $h(v)=dv$. By (a) and (b), the subspace $V'=\<v,f(v),f^2(v),\dots\>$ is closed under multiplication by $h$ and $e$, and clearly $f$ as well, so $V'$ is a submodule. Since $V$ is simple and $V'\neq 0$ (as $v\neq 0$), $V'=V$.\\
 		
@@ -89,14 +105,14 @@
 		form an $\R$-basis of the Lie algebra $\sl_2(\R)$ and that these matrices satisfy the relations in problem 1.
 	\end{enumerate}
 	\begin{proof}
-		$\sl_2(\R)$ is exactly the matrices with trace 0, i.e. those of the form
+		$\sl_2(\R)$ is exactly the matrices $x$ such that $\det(e^{tx})=e^{t\cdot \tr(x)}=1$ for all $t\in \R$, or equivalently $\tr(x)=0$. Thus, $\sl_2(\R)$ consists of the matrices
 		$$
 		\begin{pmatrix}
 			a & b \\
 			c & -a
 		\end{pmatrix} = aH + bE + cF
 		$$
-		for some $a,b,c\in \R$. Thus $E,F,H$ are a basis for $\sl_2(\R)$. 
+		for $a,b,c\in \R$. Thus $E,F,H$ are a basis for $\sl_2(\R)$. 
 		
 		It is easy to check the three relations by just doing the matrix multiplications. In fact, we can check that $HE=E,EH=-E$, and and $HF=-F,FH=F$, and 
 		$$
@@ -124,7 +140,41 @@
 	\begin{proof}
 		(a) Just as in problem 2, we can check that $he=e,eh=-e,hf=-f,fh=f$. And $ef=1_{ii},fe=1_{jj}$, which shows $ef-fe=h$.\\
 		
-		(b): 
+		(b): Since $[1_{ii},1_{jj}]=0$ for all $i,j$, the actions of $\phi(1_{ii})$ all pairwise commute as well. Thus if $v$ is any eigenvector of $\phi(1_{ii})$ with eigenvalue $\lambda_i$, then 
+		$$
+		\phi(1_{jj})v = \lambda_i^{-1}\phi(1_{jj})\phi(1_{ii})v = \lambda_i^{-1}\phi(1_{ii})\phi(1_{jj})v
+		$$
+		so $\phi(1_{jj}v)$ is also an eigenvector of $\phi(1_{ii})$ with eigenvalue $\lambda_i$. Thus the $\phi(1_{ii})$-eigenspace $W$ corresponding to $\lambda_i$ is both $\phi(1_{jj})$-invariant.
+		
+		Since $\phi(1_{jj})$ preserves $W$, there is at least some eigenvector $w\in W$ of $\phi(1_{jj})$ because $\C$ is algebraically closed. Thus, the space of common eigenvectors between the two operators is nontrivial. In this way, one can continue inductively and show that the space of common eigenvectors between all the $\phi(1_{ii})$ is nontrivial, and thus contains some $v$ with corresponding eigenvalues $\lambda_i$ for $\phi(1_{ii})$.\\
+		
+		Now for any $i < j$, $w := \phi(1_{ij})v$ is also an eigenvector for all $\phi_{kk}$, though with different eigenvalues;
+		$$
+		\phi(1_{kk})w = \phi(1_{kk})\phi(1_{ij}v) = \big(\phi(1_{ij})\phi(1_{kk}) + [\phi(1_{kk}),\phi(1_{ij})]\big)v
+		$$
+		in the case $k\not\in \{i,j\}$, the commutator is 0, yielding
+		$$
+		\phi(1_{kk})w = \big(\phi(1_{ij})\lambda_k\big)v = \lambda_k w
+		$$
+		so the eigenvalue does not change. In the case $k=i$, the commutator is $\lambda_{ij}$, resulting in 
+		$$
+		\phi(1_{ii})w = \big(\phi(1_{ij})\lambda_i + \phi(1_{ij})\big)v = (\lambda_i + 1)w
+		$$
+		so the eigenvalue increases by 1. In the case $k=j$, the commutator is $-\lambda_{ij}$, giving
+		$$
+		\phi(1_{jj})w = \big(\phi(1_{ij})\lambda_j -\phi(1_{ij})\big)v = (\lambda_j - 1)w
+		$$
+		so the eigenvalue decreases by 1. If we begin by maximizing the metric
+		$$
+		n\lambda_1 + (n-1)\lambda_2 + \cdots + \lambda_n
+		$$
+		then replacing $v$ by $w$ would result in increasing this metric by 
+		$$
+		(n-i+1) - (n-j+i) = j-i
+		$$
+		which would contradict maximality. Thus, $w$ cannot exist, so $\phi(1_{ij})v=0$.\\
+		
+		To get the third condition, note that $\lambda_i-\lambda_{i+1}$ is the eigenvalue of $v$ for $h=1_{ii}-1_{jj}$. By the same trace argument as in problem 1(c), we see that this eigenvalue must be a positive integer.
 	\end{proof}
 	
 	\newpage
@@ -144,7 +194,7 @@
 		Note that
 		$$
 		\xi = \begin{bmatrix}
-			a'(0) & b'(0)\\ c'(0) & d'(0)
+			-a'(0) & -b'(0)\\ -c'(0) & -d'(0)
 		\end{bmatrix}.
 		$$
 		We can calculate $L_{\xi}(p)$ as
@@ -152,56 +202,41 @@
 			L_{\xi}(p) &= \frac{\d(p(e^{-t\xi}(x,y)))}{\d t}\Big|_{t=0}\\
 			&= \frac{\d p(a(t)x + b(t)y,c(t)x+d(t)y)}{\d t}\Big|_{t=0}\\
 			&= (\partial_1 p)(a'(0)x + b'(0)y) + (\partial_2 p)(c'(0)x + d'(0)y) \\
-			&= (\partial_1 p)\cdot \xi_1(x,y) + (\partial_2p )\cdot \xi_2(x,y).
+			&= (\partial_1 p)\cdot -\xi_1(x,y) + (\partial_2p )\cdot -\xi_2(x,y).
 		\end{align*}
 		For $\xi \in \{H,E,F\}$ from the previous problem, this yields
 		$$
-		L_H(p) = \partial_1 p \cdot x - \partial_2 p \cdot y, \;\; L_E(p) = \partial_2 p \cdot x, \;\; L_F(p) = \partial_1 p \cdot y.
+		L_H(p) = \partial_2 p \cdot y - \partial_1 p \cdot x, \;\; L_E(p) = -\partial_1 p \cdot y, \;\; L_F(p) = -\partial_2 p \cdot x.
 		$$
 		Checking the relations from problem 1,
 		\begin{align*}
-		(L_HL_E - L_EL_H)(p) &= (\partial_1 L_E)x - (\partial_2 L_E)y - (\partial_2 L_H) x\\
-		&= (\partial_2 p)x - 0 + (\partial_2 p)x\\
-		&= 2(\partial_2 p)x = 2L_E (p)
+		(L_HL_E - L_EL_H)(p) &= (\partial_2 L_E)y - (\partial_1 L_E)x - (\partial_1 L_H) y\\
+		&= (-\partial_1 p)y - 0 + (-\partial_1 p)y\\
+		&= -2(\partial_1 p)y = 2L_E(p)
 		\end{align*}
 		and similarly 
 		\begin{align*}
-			(L_HL_F - L_FL_H)(p) &= (\partial_1 L_F)x - (\partial_2 L_F)y - (\partial_1 L_H) y\\
-			&= 0 - (\partial_1 L_F)y - (\partial_1 p)y\\
-			&= -2(\partial_1 p)y = -2L_F(p)  
+			(L_HL_F - L_FL_H)(p) &= (\partial_2 L_F)y - (\partial_1 L_F)x - (\partial_2 L_H) x\\
+			&= 0 - (-\partial_2 L_F)x - (-\partial_2 p)x\\
+			&= 2(\partial_2 p)x = -2L_F(p)  
 		\end{align*}
 		and
 		\begin{align*}
-			(L_EL_F - L_FL_E)(p) &= (\partial_2L_F)x - (\partial_1L_E)y\\
-			&= (\partial_1p)x - (\partial_2 p)y\\
+			(L_EL_F - L_FL_E)(p) &= (-\partial_1L_F)y - (-\partial_2 L_E)x\\
+			&= (\partial_2 p)y - (\partial_1 p)x\\
 			&= L_H(p).
 		\end{align*}
 	\end{proof}
 	\newpage
 	\textbf{Problem 5}: Use problems 1 and 4 to prove that the representations $\SL_2(\R)\to \GL(P_d)$ are precisely the irreducible finite dimensional continuous representations of $\SL_2(\R)$.
 	\begin{proof}
-		In problem 4 we showed that $L_H,L_E,L_F$ satisfy the relations of problem 1, so the conclusion of problem 1 follows: there is exactly one simple $n$-dimensional $(L_H,L_E,L_F)$-module up to isomorphism.\\
-		
-%		And $\GL(P_d)$ is such a module, with actions given by 
-%		$$
-%		L_H \cdot x^iy^j = 0, \;\; L_E\cdot x^iy^j = x^{i-1}y^{i+1}, \;\; L_F \cdot x^iy^j = x^{i+1}y^{j-1}.
-%		$$
-%		So\\
-%		
-%		The representation $\SL_2(\R)\to \GL(P_d)$ via 
-%		$$
-%		\begin{pmatrix}
-%			a & b \\ c & d
-%		\end{pmatrix} \cdot x^iy^j = (a+d)x^iy^j + (b)x^{i+1}y^{j-1} + (c)x^{i-1}y^{j+1}
-%		$$
-
 		Let $\rho: \SL_2(\R)\to \GL(P_d)$ be the representation
 		$$
 		\rho \begin{pmatrix}
 			a & b \\ c & d
 		\end{pmatrix} \cdot x^iy^j = (ax+by)^i(cx+dy)^j.
 		$$
-		We showed in class that if $\rho$ is irreducible then $\d\rho:\sl_2(\R)\to \End(P_d)$ is irreducible, since $\SL_2(\R)$ is connected.\\
+		This is $d+1$ dimensional. $\rho$ is irreducible because $\d\rho$ is, as we will show:\\
 		
 		Note that 
 		$$
@@ -215,14 +250,15 @@
 			0 & 1
 		\end{bmatrix}, \;\; e^{tF} = I + tF = \begin{bmatrix}
 		1 & 0\\
-		-t & 1
+		t & 1
 		\end{bmatrix}. 
 		$$
 		So can calculate $\d\rho$ on the basis $H,E,F$ of $\sl_2(\R)$ as 
 		\begin{align*}
 		\d\rho(H)(x^iy^j) &= \partial_t \rho(e^{tH})\cdot (x^iy^j)\big|_{t=0}\\
-		&= \partial_t (e^{ti}e^{-tj})\big|_{t=0}\\
-		&= i-j.
+		&= \partial_t ((e^tx)^i(e^{-t}y)^j)\big|_{t=0}\\
+		&= \partial_t e^{t(i-j)}x^iy^j\big|_{t=0}\\
+		&= (i-j)x^iy^j.
 		\end{align*}
 		For $E$, we have
 		\begin{align*}
@@ -234,13 +270,14 @@
 		Similarly,
 		\begin{align*}
 			\d\rho(F)(x^iy^j) &= \partial_t \rho(e^{tF})\cdot (x^iy^j)\big|_{t=0}\\
-			&= \partial_t (x)^i(y-tx)^j \big|_{t=0}\\
-			&= x^i\cdot j(y-tx)^{j-1}\cdot -x \big|_{t=0}\\
-			&= -jx^{i+1}y^{j-1}.
+			&= \partial_t (x)^i(y+tx)^j \big|_{t=0}\\
+			&= x^i\cdot j(y+tx)^{j-1}\cdot x \big|_{t=0}\\
+			&= jx^{i+1}y^{j-1}.
 		\end{align*}
 		
-		In particular for $y^d$, $\d\rho(H)(y^d)=-d$, $\d\rho(E)(y^d)=0$, and $\d\rho(F)(y^d)=-dxy^{d-1}$.
+		The action of $L_H,L_E,L_F$ on $C^{\infty}(\R^2)$ restricts to an action on $P_d$. It is easy to check, using the calculations from problem 4, that $\d\rho(H)$ acts the same as $L_H$ on $P_d$ (up to sign), and similarly for $\d\rho(E)$ and $\d\rho(F)$. Thus, $P_d$ is equivalent as a representation of $\R\<L_H,L_E,L_F\>$ and as a representation of $\sl_2(\R)$, so the conclusion of problem 1 implies that there is exactly one $n$-dimensional irrep of $\sl_2(\R)$, which is $P_{n-1}$ (one can see that the action on the basis $\{x^iy^j\}$ is the same).\\
 		
+		Conversely, all irreps of $\SL_2(\R)$ are of this form. This follows from the classification theorem which says that there is exactly one irrep with a given highest weight, which in this case is $(d,d-2,d-4,\dots,-d)$.
 	\end{proof}
 	\newpage
 	\textbf{Problem 6}: 
@@ -262,6 +299,42 @@
 		\end{pmatrix}
 		$$
 		\item Find $[I_i,I_j]$ for $i,j\in \{1,2,3\}$ and express $I_i$ in terms of $H,F,E$.
+		\begin{proof}
+			(a): If 
+			$$ g=
+			\begin{pmatrix}
+				a & b\\
+				c & d
+			\end{pmatrix} \in SU_2
+			$$
+			then being unitary implies that $|a|^2+|b|^2=1$ and $a\overline{c} + b\overline{d}=0$, so $\overline{d}/a = -\overline{c}/b$. If this ratio is $x\in \C$, then we have $d= \overline{ax}$ and $c=\overline{-bx}$. Using the fact that $g$ has determinant 1,
+			$$
+			1 = ad-bc = a(\overline{ax}) - b(\overline{-bx}) = (|a|^2 + |b|^2)\overline{x} \implies x=1 
+			$$
+			so 
+			$$
+			g = \begin{pmatrix}
+				a & b \\ -\overline{b}& \overline{a}
+			\end{pmatrix}
+			$$
+			as desired. Moreover, for any $a,b\in \C$ such that $|a|^2+|b|^2=1$, this $g$ is clearly in $SU_2$.\\
+			
+			(b): We showed in a previous homework that $\uu_2$ consists of the skew-hermitian matrices, and that $\sl_2$ is the trace 0 matrices. Thus, $\su_2$ is the intersection of these:
+			$$
+			\begin{pmatrix}
+				ir & s+it \\ 
+				-s+it & -ir
+			\end{pmatrix}
+			$$
+			where $r,s,t\in \R$. So over $\R$, it is clearly generated by $I_1,I_2,I_3$.\\
+			
+			(c): Note that $I_1=iH$, $I_2=E-F$, and $I_3=i(E+F)$. This gives
+			\begin{align*}
+			[I_1,I_2] &= iH(E-F) - (E-F)iH = i(HE-HF - EH +FH) = i(2E + 2F) = 2I_3.\\
+			[I_2,I_3] &= (E-F)i(E+F) - i(E+F)(E-F) = 2i(EF - FE) = 2iH = 2I_1.\\
+			[I_3,I_1] &= i(E+F)iH - iHi(E+F) = HE + HF - EH -FH = 2E - 2F = 2I_2.
+			\end{align*}
+		\end{proof}
 	\end{enumerate}
 	
 	\newpage
@@ -269,13 +342,52 @@
 		\item Classify irreducible representations of $\su_2$ in finite-dimensional complex vector spaces up to isomorphism.
 		\item Let $g_d:SU_2 \to \GL(P_d)$ be the representation of $SU_2$ in the vector space $P_d$. Show that the representations $g_d$ are precisely the irreducible finite-dimensional continuous representations of $SU_2$.
 	\end{enumerate}
+	\begin{proof}
+		(a): As shown in problem 6, $I_1=iH,I_2=E-F,I_3=i(E+F)$. It follows that $H,E,F\in \su_2$ as linear combinations of $I_1,I_2,I_3$:
+		$$
+		H = -iI_1, \;\; E = \tfrac12(I_2-iI_3), \;\; F = \tfrac12(-I_2-iI_3)
+		$$
+		In fact, $\su_2$ is a $\C$-algebra generated by $H,E,F$, since they generate $I_1,I_2,I_3$ which in turn generate $\su_2$. Thus, the conclusion in problem 1 (d) applies, showing that there is exactly one $n$-dimensional irrep for each $n$, up to isomorphism.\\
+		
+		(b): First, $g_d$ is irreducible because $\d g_d$ is, which follows from problem 1 if we check that $\d g_d(H)$ (and $E,F$) have the same action on the basis elements of $x^iy^i$ as dictated in problem 1. And unlike in problem 5, the converse also holds automatically because $SU_2$ is simply connected, so because $\d g_d$ is the unique irrep of $\su_2$, $g_d$ must be the unique irrep of $SU_2$ as well.
+	\end{proof}
 	
 	\newpage
-	\textbf{Problem 8}: Let $\Ad: SU_2\to \GL(P_d)$ be the representation of $SU_2$ that sends $g\in SU_2$ to $\Ad g:\su_2\to \su_2$, where $\Ad g:x\mapsto gxg^{-1}$. Let $\d(\Ad):\su_2\to \End_{\R}(\su_2)=|lie(\GL(\su_2))$ be the differential of the representation $\Ad$.
+	\textbf{Problem 8}: Let $\Ad: SU_2\to \GL(\su_2)$ be the representation of $SU_2$ that sends $g\in SU_2$ to $\Ad g:\su_2\to \su_2$, where $\Ad g:x\mapsto gxg^{-1}$. Let $\d(\Ad):\su_2\to \End_{\R}(\su_2)=\Lie(\GL(\su_2))$ be the differential of the representation $\Ad$.
 	\begin{enumerate}[(a)]
 		\item Show that $\ker(\Ad)=\pm \id$ and that $\d(\Ad)$ is injective.
 		\item Construct a surjective morphism of Lie groups $SU_2\to \SO_3(\R)$ with kernel $\pm \id$. That is, construct an isomorphism $\SO_3(\R)\cong SU_2/\{\pm \id\}$. 
 	\end{enumerate}
+	\begin{proof}
+		(a): If $\Ad(g)=\id$, then $gxg^{-1}=x$ for all $x\in \su_2$, or equivalently for each of the three basis matrices. Let
+		$$
+		g = \begin{pmatrix}
+			a & b \\ c & d
+		\end{pmatrix}.
+		$$
+		If $g$ commutes with $I_1$ then it follows that $b=c=0$. If $g$ commutes with $I_2$ then it follows that $a=d$. Finally, because $g\in SU_2$ to begin with, $ad-bc = 1$, hence $a^2=1$. Thus $g$ is either $\id$ or $-\id$, as expected.\\
+		
+		To show that $\d (\Ad)$ is injective, we have by proposition 9.6.2(2) that $$\ker(\d \Ad) = \Lie(\ker(\Ad)) = \Lie(\pm \id) = 0$$
+		noting that $e^{tx}=\pm \id$ for all $t\in \R$ implies $x=0$, as $\exp$ is invertible near 0.\\
+		
+		(b): We'll show that $\Ad$ is such a morphism by showing that it is surjective onto $\SO_3(\R)$.\\
+		
+		The basis $I_1,I_2,I_3$ of $\su_2$ is orthonormal with inner product $\<a,b\>=-\tfrac12\tr(ab)$. Any $\Ad(g)$ preserves this inner product, as 
+		$$
+		-\tfrac12 \tr(\Ad g (x) \Ad g(y)) = -\tfrac12 \tr(gxyg^{-1}) = -\tfrac12 \tr(xy)
+		$$
+		because trace is invariant under conjugation. Thus, we see that $\Ad g$ is an orthogonal transformation on the 3-dimensional basis of $\su_2$, so the image of $\Ad$ lies within $\OO_3(\R)$. Thus the image of $\d \Ad$ lies within $\Lie(\OO_3(\R))$, which we know to be the skew-symmetric matrices in $M_3(\R)$, a 3-dimensional subspace:
+		$$
+		\oo_3(\R) = \Bigg\{\begin{pmatrix}
+			0 & a & b \\
+			-a & 0 & c\\
+			-b & -c & 0
+		\end{pmatrix} \;\; \Bigg| \;\; a,b,c\in \R\Bigg\}
+		$$
+		Then $\d \Ad:\su_2 \to \oo_3$ is a map $\R^3\to \R^3$. We know from part (a) that it is injective, so it is also surjective. And note that $\oo_3(\R)=\so_3(\R)$, since $\det(e^{tx})=1\iff \tr(x)=0$ is already true in $\oo_3(\R)$. So in fact $\d \Ad$ is bijective on $\so_3(\R)$. 
+		
+		$\Ad$ cannot be surjective onto $\OO_3(\R)$, as $SU_2$ is connected and $\Ad$ is continuous, so $\im(\Ad)$ must be connected as well. This implies that $\im(\Ad)$ is contained in the connected component of $1$, which is $\SO_3(\R)$ (we showed this to be connected in previous homework). And because $\d \Ad$ is surjective on $\so_3(\R)$, $\Ad$ must be surjective on $\SO_3(\R)$ as well.
+	\end{proof}
 	
 	\newpage 
 	\textbf{Problem 9}: 
@@ -283,4 +395,10 @@
 		\item Prove that any continuous irreducible representation of the group $\SO_3(\R)$ has odd dimension. Moreover, for every odd integer $2m+1$, there is exactly one continuous irreducible representation of dimension $2m+1$.
 		\item Prove theorem 2.1.2(2), which says that any continuous finite-dimensional representation of $\SO_3(\R)$ is isomorphic to the representation $H_d$ for some $d\geq 0$.
 	\end{enumerate}
+	\begin{proof}
+		(a):  As shown in problem 8, $\SO_3(\R)$ is isomorphic to $SU_2/\{\pm\id\}$ via $\Ad$. Thus, representations of $\SO_3(\R)$ map to representations of $SU_2$ by just having $-\id$ act trivially. Because there is a unique representation of $SU_2$ in each dimension, there can be a representation of $\SO_3$ iff the induced representation of $SU_2$ is $g_p$; that is, if $-\id$ acts trivially. In $g_d$, $-\id$ acts as scaling by $(-1)^d$ on $P_d$. This is trivial iff $d$ is even, hence when $P_d$ has odd dimension.\\
+		
+		(b): Recall that $P_d=RP_{d-2}\oplus H_d$, so $$\dim(H_d) = \dim(P_d) - \dim(P_{d-2}) = {d \choose 2} - {d-2 \choose 2} = 2d+1$$
+		thus $H_d$ is the unique continuous representation of $\SO_3(\R)$ in dimension $2d+1$.
+	\end{proof}
 \end{document}

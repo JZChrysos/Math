@@ -14,3 +14,4 @@
 \contentsline {subsection}{\tocsubsection {}{1.13}{Representations of Lie Groups and Lie Algebras}}{16}{subsection.1.13}%
 \contentsline {subsection}{\tocsubsection {}{1.14}{Complex Lie Groups}}{17}{subsection.1.14}%
 \contentsline {subsection}{\tocsubsection {}{1.15}{Holomorphic Irreps of $\GL _n(\mathbb {C})$}}{19}{subsection.1.15}%
+\contentsline {subsection}{\tocsubsection {}{1.16}{Tensors of representations}}{20}{subsection.1.16}%

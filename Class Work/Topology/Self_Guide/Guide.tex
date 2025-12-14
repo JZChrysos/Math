@@ -5,9 +5,13 @@
 \title{Simple Guide to Solving Problems in Algebraic Topology}
 \author{Jalen Chrysos}
 \begin{document}
-	\begin{abstract}This is a consolidation of my algebraic topology notes. I don't intend to replicate any proofs of important statements unless they're immediate. I'm just aiming to make a dummyproof flowchart-style guide to solving Hatcher questions for my own use.
+	\begin{abstract}This is a consolidation of my algebraic topology notes. My intention is to organize things for practical use. Results are sometimes bizarrely out of logical order because I order them by their \textit{usefulness} rather than how easy they are to prove. I've also omitted a lot of important definitions.
 	\end{abstract}
 	\maketitle
+	
+	\tableofcontents
+	
+	\newpage
 	
 	\section{Basic Terminology} 
 	The most basic questions one asks in topology are 
@@ -32,7 +36,27 @@
 		\item Cohomology ring: $H^*(X;G)$ as a graded ring with $\smile$.
 		\item Higher homotopy groups: $\pi_2(X),\pi_3(X),\dots$
 	\end{itemize}
-	
+	Here are these properties of $X$ partially-ordered from fine to coarse (arrow $A\to B$ indicates that $A$ determines $B$)
+	$$
+	\begin{tikzcd}[sep=small]
+		&&& {\text{homeomorphism type}} \\
+		&&& {\text{homotopy type}} \\
+		{\pi_1\text{-module}} && {\pi_*(X) \text{ ring}} &&& {H^*(X;R)\text{ ring}} \\
+		& {\pi_*(X)} && {H_*(X)} && {H^*(X;G)} \\
+		& {\pi_1(X)} &&& {\chi(X)}
+		\arrow[from=1-4, to=2-4]
+		\arrow[from=2-4, to=3-1]
+		\arrow[from=2-4, to=3-3]
+		\arrow[from=2-4, to=3-6]
+		\arrow[from=2-4, to=4-4]
+		\arrow[from=3-1, to=4-2]
+		\arrow[from=3-3, to=4-2]
+		\arrow[from=3-6, to=4-6]
+		\arrow[from=4-2, to=5-2]
+		\arrow[from=4-4, to=5-5]
+		\arrow[from=4-6, to=5-5]
+	\end{tikzcd}
+	$$
 	First, we'll discuss how to compute all of these algebraic invariants, or at least glean information about them. We'll assume $X$ is a connected CW complex.\\
 	
 	\newpage
@@ -66,15 +90,75 @@
 	\end{enumerate}
 	
 	\newpage
+	\section{Computing with Exact Sequences}
+	
+	A sequence of Abelian groups with group homomorphisms between them
+	$$
+	\cdots \xra{f_{n+2}} A_{n+1} \xra{f_{n+1}} A_n \xra{f_n} A_{n-1} \xra{f_{n-1}} \cdots \xra{f_1} A_0 \to 0
+	$$
+	is called \textit{exact} if $\ker(f_{n})=\im(f_{n+1})$ for each $n$. This is a condition which actually comes up a lot. When computing the homology or homotopy groups of a space, it is common to have an exact sequence where some groups are known and some are not. If you have enough information, you can deduce the identities of the missing groups by using exactness.\footnote{A lot of this is very specific to the category of Abelian groups and wouldn't hold in more general settings.}\\
+	
+	\underline{Computing Missing Groups}:
+	\begin{itemize}
+		\item \textit{Zero}: If 
+		$$
+		A\xra{f} B \xra{g} C
+		$$
+		is an exact sequence and $f=g=0$ then $B=0$. So if $A=C=0$ then $B=0$.
+		\item \textit{Isomorphisms}: If 
+		$$
+		A\xra{f} B\xra{g} C\xra{h} D
+		$$
+		is exact, then $g$ is an isomorphism iff $f=h=0$. So if $A,D$ are 0 then you can conclude $B\cong C$, though the converse is not true. 
+		\item \textit{Rank}: If
+		$$
+		0\to A\to B \to C \to 0
+		$$
+		is exact, then $\rk(A)+\rk(C)=\rk(B)$. That is, the free part of $B$ is the direct sum of the free parts of $A$ and $C$. This is a generalization of the rank-nullity theorem from linear algebra. More generally, if
+		$$
+		0\to A_1 \to A_2 \to \cdots \to A_n \to 0
+		$$
+		is exact, then 
+		$$
+		\sum_{k=1}^n (-1)^k \rk(A_k) = 0.
+		$$
+		\item \textit{Splitting}: A short exact sequence 
+		$$
+		0\to A \to B \to C \to 0
+		$$
+		is called \textit{split} if $B\cong A\oplus C$. This is guaranteed to be true if $A,C$ are free, but not in general; for example,
+		$$
+		0\to \Z\xhra{\times 2} \Z \xra{\text{mod }2} \Z_2\to 0
+		$$
+		is exact, yet $\Z\not\cong \Z\oplus \Z_2$.
+		
+		The \textit{splitting lemma} says that a short exact sequence being split is equivalent to the existence of bla bla 
+		
+		A special case of this is when $C$ is a free group, in which case a retract automatically exists. 
+	\end{itemize}
+	
+	\newpage
 	\section{Homology}
 	
 	The Homology Groups of $X$ are a sequence $H_0(X),H_1(X),\dots$ of \textit{Abelian groups}, so they are of the form $\Z^a\oplus \Z_{q_1}^{b_{q_1}}\oplus \Z_{q_2}^{b_{q_2}}\oplus \cdots$ where $q_i$ are prime powers. \\
+	
+	\underline{Terminology}:
+	\begin{itemize}
+	\item The \textit{reduced homology} $\tilde{H}_j(X)$ is equal to $H_j(X)$ for $j>0$, and $H_0(X) \cong \tilde{H}_0(X) \oplus \Z$.
+	\item The \textit{relative homology} of a CW complex $X$ and its subcomplex $Y$, denoted $H_j(X,Y)$, can oftentimes be computed by the long exact sequence
+	$$
+	\cdots \to H_j(Y)\to H_j(X) \to H_j(X,Y) \to H_{j-1}(Y)\to H_{j-1}(X)\to H_{j-1}(X,Y)\to \cdots 
+	$$
+	I won't define it in more detail than that.
+	\end{itemize}
 	
 	\underline{Quick Facts}:
 	\begin{itemize}
 	\item $H_0(X)=\Z^a$ where $a$ is the number of connected components of $X$. 
 	\item $H_1(X)$ is the Abelianization of $\pi_1(X)$.
 	\item $H_j(X)=0$ if $X$ has no $j$-cells, in particular if $j>\dim(X)$. 
+	\item $H_j(X\vee Y)\cong H_j(X)\oplus H_j(Y)$. 
+	\item \textit{Excision}: If $Y$ is a subcomplex of $X$, $\tilde{H}_j(X/Y)\cong H_j(X,Y)$.
 	\item If $X$ is a manifold of dimension $n$:
 		\begin{itemize}
 			\item $H_n(X)=\Z$ if $X$ is oriented and $H_n(X)=0$ otherwise.
@@ -87,15 +171,15 @@
 		\item \textbf{Quotients}: 
 		\begin{itemize}
 			\item Express $X$ as a quotient $Y/A$ where $Y$ is a CW complex and $A$ is a subcomplex. Try to choose $Y$ and $A$ such that $H_*(Y)$ and $H_*(A)$ are both simpler than $H_*(X)$.
-			\item There is a long exact sequence relating $\tilde{H}_*(A),\tilde{H}_*(Y),$ and $\tilde{H}_*(X)$:
+			\item By excision $\tilde{H}_j(X) \cong H_j(Y,A)$, yielding the long exact sequence:
 			$$
-			\cdots \to \tilde{H}_j(A) \to \tilde{H}_j(Y) \to \tilde{H}_j(Y/A) \to \tilde{H}_{j-1}(A)\to \tilde{H}_{j-1}(Y)\to \tilde{H}_{j-1}(Y/A)\to \cdots 
+			\cdots \to H_j(A) \to H_j(Y) \to \tilde{H}_j(X) \to H_{j-1}(A)\to H_{j-1}(Y)\to \tilde{H}_{j-1}(X)\to \cdots 
 			$$
-			\item Now use $\tilde{H}_*(Y)$ and $\tilde{H}_*(A)$, along with exactness of the sequence, to deduce $\tilde{H}_*(X)$.
+			\item Now use $H_*(Y)$ and $H_*(A)$, along with exactness of the sequence, to deduce $H_*(X)$.
 			\item \textit{Special Cases / Notable Examples}: 
 			\begin{enumerate}[(i)]
 				\item If $A$ is contractible then $H_*(A)=0$, so $H_*(X)=H_*(Y)$.
-				\item When $X=S^n$, we can express it as $X=D^n/S^{n-1}$. Because $H_*(D^n)=0$, the exact sequence yields $\tilde{H}_j(S^n)\cong \tilde{H}_{j-1}(S^{n-1})$, so by induction we can see that $\tilde{H}_j(S^n)=\Z$ iff $j=n$, otherwise it is 0.
+				\item When $X=S^n$, we can express it as $X=D^n/S^{n-1}$. Because $H_*(D^n)=0$, the exact sequence yields $H_j(S^n)\cong H_{j-1}(S^{n-1})$, so by induction we can see that $H_j(S^n)=\Z$ iff $j=n$, otherwise it is 0.
 			\end{enumerate}
 		\end{itemize} 
 		\item \textbf{Mayer-Vietoris}:
@@ -109,7 +193,6 @@
 			\item \textit{Special Cases / Notable Examples}:
 			\begin{enumerate}[(i)]
 				\item If $A\cap B$ is contractible, then $H_j(X)\cong H_j(A)\oplus H_j(B)$. In particular, we see that $H_j(A\vee B) = H_j(A)\oplus H_j(B)$.
-				\item 
 			\end{enumerate}
 		\end{itemize}
 		\item \textbf{Cellular Homology}: 
@@ -120,13 +203,43 @@
 			$$
 			C_n(X) \xrightarrow{\d_n} C_{n-1}(X) \xrightarrow{\d_{n-1}}\cdots \xrightarrow{\d_1} C_0(X) \to 0
 			$$
-			in which $\d_n$ acts by taking cells to their boundaries, where each cell is counted \textit{with degree}. $\d_n$ is a linear map $\Z^{c_n}\to \Z^{c_{n-1}}$, so we can see $\d_n$ as a $c_n\times c_{n-1}$ matrix.
+			in which $\d_n$ acts by taking cells to their boundaries, where each cell is counted \textit{with degree}. $\d_n$ is a linear map $\Z^{c_n}\to \Z^{c_{n-1}}$, so we can see $\d_n$ as a $c_n\times c_{n-1}$ matrix whose $(i,j)$th entry is the degree of the restriction of $\d_n$ to a boundary map from the $i$th $n$-cell to the $j$th $(n-1)$-cell. (see examples to get a sense of how this works)
 			\item $H_j(X)$ is the quotient
 			$$
 			H_j(X) \cong \frac{\ker(\d_j)}{\im(\d_{j+1})}.
 			$$
 		\end{itemize}
+		\item \textbf{Poincar\'e Duality}:
+		\begin{itemize}
+			\item Use this if $X$ is an oriented $n$-manifold (recall that $X$ is oriented iff $H_n(X)\cong \Z$).
+			\item If $X$ is a closed, oriented $n$-manifold, then 
+			$$
+			H_j(X) \cong H^{n-j}(X;Z) \cong \Hom(H_{n-j}(X),\Z) \oplus \Ext(H_{n-j-1}(X),\Z).
+			$$
+			For instructions on how to easily compute $\Hom$ and $\Ext$, see the Cohomology section.
+			\item If $X$ is an oriented $n$-manifold \textit{with boundary} $\partial X$, then 
+			$$
+			H_j(X,\partial X) \cong H^{n-j}(X;\Z) \;\;\; \text{and} \;\;\; H_{n-j}(X) \cong H^j(X,\partial X;\Z).
+			$$
+			\item Also note that every manifold $X$ has a 2-sheeted cover $\tilde{X}\to X$ where $\tilde{X}$ is oriented. \\
+		\end{itemize}
 	\end{enumerate}
+	
+	\underline{Related Ideas}:
+	\begin{itemize}
+		\item \textbf{Euler Characteristic}: This is a coarser invariant than Homology, and often easier to compute, especially when working with manifolds.
+		\item The Euler characteristic of a space $X$, denoted $\chi(X)$, is the integer
+		$$
+		\chi(X) := \sum_{j=0}^n (-1)^j \rk(H_j(X))
+		$$
+		where $\rk(A)$ is the number of copies of $\Z$ in the group $A$.
+		\item It is also equal to the alternating sum
+		$$
+		\chi(X) = \sum_{j=0}^n (-1)^j \#(\text{$n$-cells of $X$}).
+		$$
+		\item If $X$ is a closed $n$-manifold (not necessarily oriented!) then $\chi(X)=0$.
+		\item If $X$ is a manifold with boundary, then $\chi(\partial X)=2\chi(X)$. So the Euler characteristic of a boundary is always even.
+	\end{itemize}
 	
 	\newpage
 	\section{Cohomology}
@@ -162,6 +275,12 @@
 	
 	\underline{How to Calculate $H^*(X;R)$ (as a ring)}:
 	\begin{enumerate}[(I)]
+		\item \textbf{Geometric Intuition}:
+		\begin{itemize}
+			\item Use this if you're in a \textit{very} simple or easy-to-visualize space $X$.
+			\item Elements of the cohomology group $H^j(X;R)$ can be identified with homotopy classes of $(n-j)$-dimensional surfaces in $X$.
+			\item In this setting the cup product of two elements is the intersection of the corresponding surfaces (with orientation). It's important to note that this is invariant under homotopies of the two elements. This is a pretty bad explanation.
+		\end{itemize}
 		\item \textbf{K\"unneth Formula}:
 	\begin{itemize}
 	\item Use this if $X=A\times B$, and $H^*(A;R),H^*(B;R)$ are both known, and finally $H^*(B;R)$ is free in every dimension.
@@ -197,65 +316,82 @@
 	
 	\underline{Terminology}:
 	\begin{itemize}
-		\item $X$ is $n$-\textit{connected} if $\pi_i(X)=0$ for $i\leq n$. So, in particular, $0$-connected means connected, and 1-connected means simply connected.\\
+		\item $X$ is $n$-\textit{connected} if $\pi_i(X)=0$ for $i\leq n$. So, in particular, $0$-connected means connected, and 1-connected means simply connected.
+		\item The \textit{relative homotopy} of $Y$ wrt $A$, denoted $\pi_i(Y,A)$, can oftentimes be computed from $\pi_*(Y)$ and $\pi_*(A)$ via the long exact sequence
+		$$
+		\cdots \to \pi_n(A) \to \pi_n(Y) \to \pi_n(Y,A)\to \pi_{n-1}(A) \to \cdots 
+		$$
+		I won't define it.\\
 	\end{itemize}
 	
 	\underline{Quick Facts}:
 	\begin{itemize}
 		\item $\pi_n(X)$ is Abelian for $n \geq 2$.
-		\item \textit{Cellular Approximation}: $\pi_j(X)=0$ if $X$ has no $j$-cells.
+		\item $X$ is \textit{contractible} iff $\pi_j(X)=0$ for all $j$. The groups $\pi_*(X)$ do not generally determine the homotopy-type of $X$ but in this special case they do.
+		\item \textit{Cellular Approximation}: $\pi_j(X)=0$ if $X$ has no cells of dimension $\leq j$.
 		\item \textit{Hurewicz}: If $\pi_1(X)=0$, the first nonzero $\pi_i(X)$ and $H_j(X)$ occur at the same dimension $i=j$, and $\pi_j(X)=H_j(X)$.
+		\begin{itemize}
+			\item \textit{\color{blue}Wedge of $n$-cells}: It follows from cellular approximation that any wedge of $n$-spheres is $(n-1)$-connected. So by Hurewicz, $$\pi_n\Big(\bigvee_{\a}S^n_{\a}\Big) = H_n\Big(\bigvee_{\a}S^n_{\a}\Big) = \Z^{\a}$$
+			\item \textit{\color{blue}Wedge of $n$-cells with attached $(n+1)$-cells}: Similarly, if $X$ has only cells of dimensions $n$ and $n+1$, with $n$-cells $\vee_{\a}S^n_{\a}$ and $(n+1)$-cells $S^{n+1}_{\b}$ attached via some attaching maps $\ph_{\b}:S^n\to \vee_{\a}S^n_{\a}$, then 
+			$$
+			\pi_n(X) = H_n(X) = \Z^{\a} / \<\ph_{\b}\>_{\b}
+			$$
+			by Cellular approximation.\footnote{These two examples are typically used to \textit{prove} Hurewicz's theorem, so this is a bit backwards. But it's easy to remember them this way.}
+		\end{itemize}
 		\item For any collection of path-connected spaces $\{X_{\a}\}$, $\pi_n\big(\prod_{\a} X_{\a}\big) \cong \prod_{\a}\pi_n(X_{\a})$.\\
 	\end{itemize}
 	
 	\underline{How To Calculate $\pi_n(X)$}: 
 	\begin{enumerate}[(I)]
-		\item \textbf{Covering Space}:
+		\item \textbf{Fiber Bundles}:
 		\begin{itemize}
-			\item If $p:\tilde{X}\to X$ is a covering space of $X$, then 
-			$$p_*:\pi_n(\tilde{X})\to \pi_n(X)$$
-			is an isomorphism for all $n\geq 2$.
+			\item A map $p:E\to X$ is called a \textit{fiber bundle} if there is an open cover $\{U\}$ of $X$ such that $p^{-1}(U)$ is homeomorphic to $U\times F$ for all $U$ in the open cover ($F$ is the \textit{fiber}).
+			\item If there is such a fiber bundle $p$, then we have the long exact sequence
+			$$
+			\cdots \to \pi_n(F)\to \pi_n(E)\to \pi_n(X) \to \pi_{n-1}(F)\to \cdots \to \pi_0(F)\to \pi_0(E)\to 0
+			$$
+			and one can use this sequence to gain information about $\pi_n(X)$.
 			\item \textit{Special Cases}:
 			\begin{itemize}
-				\item If $X$ has a contractible covering space then $\pi_n(X)=0$ for $n\geq 2$.
-				\item If $X$ has a universal cover $\tilde{X}$ (so that $\pi_1(\tilde{X})=0$) then $\pi_2(X)=\pi_2(\tilde{X})=H_2(\tilde{X})$.
+				\item \textit{Covering space}: If $p:\tilde{X}\to X$ is a covering space of $X$, then it is a fiber bundle with $F$ some discrete set, so $\pi_n(F)=0$ for $n\geq 2$, hence
+				$$p_*:\pi_n(\tilde{X})\to \pi_n(X)$$
+				is an isomorphism for all $n\geq 2$.
+				\item \textit{Universal cover}: If $X$ has a universal cover $\tilde{X}$ (so that $\pi_1(\tilde{X})=0$) then $\pi_2(X)=\pi_2(\tilde{X})=H_2(\tilde{X})$.
+				\item \textit{Group action}: If $X$ is acted upon by a topological group $G$, then one can obtain a fiber bundle by taking the quotient of this action:
+				$$
+				G \to X\to X/G
+				$$
+				where $X/G$ is the space of $G$-orbits of $X$.
+				\item \textit{Hopf Fibration}: \textit{check later to get definition right}
 			\end{itemize}
 		\end{itemize}
 		\item \textbf{Quotients / Excision}:
 		\begin{itemize}
 			\item Express $X$ as a quotient $Y/A$, where $Y$ is a CW complex and $A$ a subcomplex.
-			\item If $(Y,A)$ is $r$-connected and $A$ is $s$-connected, then the map
+			\item If $(Y,A)$ is $r$-connected (a common way to tell this is if $Y,A$ have the same $r$-skeleton) and $A$ is $s$-connected, then the map
 			$$
 			\pi_j(Y,A)\to \pi_j(X)
 			$$
 			induced by the quotient map $Y\to X$ is an isomorphism for $j\leq r+s$ and a surjection for $j=r+s+1$.
-			\item The relative homology groups $\pi_i(Y,A)$ are potentially easier to compute if you have information about $\pi_*(A)$ and $\pi_*(Y)$, as we have the long exact sequence
-			$$
-			\cdots \to \pi_n(A) \to \pi_n(Y) \to \pi_n(Y,A)\to \pi_{n-1}(A) \to \cdots 
-			$$
 			\item This is in contrast to the situation with homology groups, in which this holds for all $j$.
-			\item \textit{Special Cases}:
+			\item \textit{Important Cases}:
 			\begin{itemize}
-				\item If $Y$ is $r$-connected and $A$ is $s$-connected where $s\geq r$, then it follows from the long exact sequence that $(Y,A)$ is $r$-connected so the theorem holds. If $r>s$, in particular if $Y$ is contractible, then $(Y,A)$ is $s$-connected.
+				\item isisisi
+%				\item \textit{Wedge of $n$-spheres}: If $X$ is a wedge of some collection of $n$-spheres $X=\vee_{\a} S^n_{\a}$, then $\pi_n(X)=\Z^{\a}$. Let $Y=\prod_{\a} S^n_{\a}$. Then we have the exact sequence
+%				$$
+%				\underbrace{\pi_{n+1}(Y,X)}_{0}\to \pi_n(X)\to \pi_n(Y) \to \underbrace{\pi_n(Y,X)}_{0}
+%				$$ 
+%				$X$ is $(n-1)$-connected and $(Y,X)$ is $(2n-1)$-connected, so by excision $\pi_j(Y,X)=\pi_j(Y/X)$ for $j\leq 3n-3$. And $Y/X$ has no cells below dimension $2n-1$, giving the 0s above by cellular approximation. Thus $\pi_j(X)\cong \pi_j(Y)\cong \pi_j(S^n)^{\oplus \a} = \Z^{\a}$.\\
 			\end{itemize}
-%			\item Express $X$ as a CW complex that is the union of two subcomplexes $A$ and $B$ whose intersection is subcomplex $C$.
-%			\item If $(A,C)$ is $m$-connected and $(B,C)$ is $n$-connected, then the inclusion $(A,C)\xhra{} (X,B)$ induces the map
-%			$$
-%			\pi_j(A,C)\to \pi_j(X,B) 
-%			$$ 
-%			and this map is an isomorphism for $j<m+n$, and a surjection for $j=m+n$.
-%			\item \textit{Special Cases}:
-%			\begin{itemize}
-%				\item If $C$ is a single point, i.e. $X=A\vee B$, then the map is $\pi_j(A)\to \pi_j(X,B)$.
-%				\item 
-%			\end{itemize}
 		\end{itemize}
 	\end{enumerate}
+	
+	The group $\pi_n(X)$ has additional structure: it is acted upon by $\pi_1(X)$. A loop $\gamma \in \pi_1(X)$ acts on a map $f:S^n\to X$ in $\pi_n(X)$ by sending the basepoint of $S^n$ around $\gamma$. This additional structure can sometimes help to calculate $\pi_n(X)$.
 	
 	\newpage
 	\section{Existence Results}
 	
-	\underline{How to Build a Space with Given Algebraic Properties}: 
+	\underline{Building a Space with Given Algebraic Properties}: 
 	\begin{itemize}
 %		\item For any sequence of groups $G_1,G_2,\dots$ where $G_n$ is Abelian for $n\geq 2$, there is a  
 		\item \textit{Moore Spaces}: For any Abelian group $G$, there is a Moore space $M(G,n)$ for which
@@ -289,10 +425,33 @@
 		\end{itemize}
 	\end{itemize}
 	
-	\underline{How to Construct Homotopy Equivalences}:
+	\underline{Constructing Homotopy Equivalences}:
 	\begin{itemize}
+		\item \textit{Quotient}: If $A$ is a contractible subspace of $X$, then $X\simeq X/A$.
+		\item \textit{Deformation Retraction}: A homotopy $f:X\to A$, where $A$ is a subspace of $X$, is a deformation retraction if it restricts to the identity on $A$. Any such map is a homotopy equivalence (the inverse being given by inclusion).
 		\item \textit{Whitehead's Theorem}: To show that a map $f:X\to Y$ is a homotopy equivalence, it suffices to show that $f_*:\pi_*(X)\to\pi_*(Y)$ is an isomorphism in all dimensions. 
-		\item It also suffices to show that $f_*:H_*(X)\to H_*(Y)$ is an isomorphism in all dimensions.
+		\item If $X$ and $Y$ are \textit{simply connected}, it also suffices to show that $f_*:H_*(X)\to H_*(Y)$ is an isomorphism in all dimensions, by Hurewicz's theorem.\\
+	\end{itemize}
+	
+	\underline{Constructing Homotopies and Continuous Maps}:
+	\begin{itemize}
+		\item \textit{Homotopy Extension Property for CW Pairs}: Every CW complex $X$ and subcomplex $A$ has the homotopy extension property, which says that if one has a map $f_0:X\to Y$ and a homotopy on just $A$, $h_t:A\to Y$ for which $h_0=f_0|_A$, then this homotopy can be extended to $\tilde{h}_t:X\to A$ where $\tilde{h}_0=f_0$.
+		\item As a special case of this, to show that there is a retract $X\to A$ (a continuous map which is the identity on $A$, a weaker condition than being a deformation retract!) it suffices to find a map $X\to A$ which restricts to a map \textit{homotopic to} $\id_A$. Then HEP will extend this homotopy to $X$ and the resulting map will be a retract onto $A$.\\
+	\end{itemize}
+	
+	\underline{Ways to show that a map $f:X\to X$ has a fixed point}:
+	\begin{itemize}
+		\item \textit{Brouwer's Fixed Point Theorem}: If $X$ is homeomorphic to a closed ball then $f$ has a fixed point.
+		\item \textit{Lefschetz Fixed Point Theorem}: Assume $X$ is compact and has highest dimension $n$. The Lefschetz trace of $f$ is the alternating sum
+		$$
+		\tau(f) := \sum_{i=0}^{n} (-1)^n \tr(f_*:H_i(X)\to H_i(X)).
+		$$ 
+		If this sum is nonzero then $f$ has a fixed point.
+		\item \textit{Degree}: If $X=S^n$, then if $f:S^n\to S^n$ has no fixed point, it must be homotopic to the antipodal map and thus have degree $(-1)^{n+1}$; that is, the induced map
+		$$
+		f_*:\underbrace{H_n(S^n)}_{\Z}\to \underbrace{H_n(S^n)}_{\Z}
+		$$
+		is a multiplication by $(-1)^{n+1}$. If the degree is anything other than this, then there must be a fixed point.
 	\end{itemize}
 	\newpage
 %	\section{Strategies for Broad Question-Types} 
@@ -319,6 +478,8 @@
 %	\end{itemize}
 	
 	\newpage
+
+	
 	\section{Worked Examples} 
 	
 	\textbf{Example 1}: The Klein Bottle.\\
@@ -386,9 +547,33 @@
 	$$
 	\textbf{Diagram}
 	$$
-	Xovering induces isomorphism on homotopy groups above dimension $1$, so $\pi_n(K)=0$ for $n\geq 2$.
+	Covering induces isomorphism on homotopy groups above dimension $1$, so $\pi_n(K)=0$ for $n\geq 2$.
 	
 	\newpage
-	\section{Table of Computation Results}
+	\section{A Couple of Important Results Proved via These Techniques}
+	
+	\textbf{Brouwer's Fixed Point Theorem}: Any continuous map $f:D^2\to D^2$ has a fixed point.
+	\begin{proof}
+		Suppose that $f$ has no fixed point. Then we can obtain a deformation retraction $D^2\to S^1$ by projecting $x$ away from $f(x)$ at a constant rate until it hits $\partial D^2$ (this is only well-defined because $x\neq f(x)$). This would imply that $D^2$ and $S^1$ have the same homotopy type but they clearly don't ($D^2$ is contractible while $S^1$ is not).
+	\end{proof}\\
+	
+	This result can be extended to any $D^n$ and hence any contractible space $X$.\\
+	
+	If $X$ is a convex subset of euclidean space, any continuous map $f:X\to X$ is homotopic to the identity map via
+	$$
+	h_t(x) = (1-t)x + tf(x).
+	$$
+	Note $h_0(x)=x$ and $h_1(x)=f(x)$.\\
+	
+	\textbf{Fundamental Theorem of Algebra}: Any polynomial $p(x)=\sum_{j=0}^n p_jx^j$ where $p_n\neq 0$ and $n\geq 1$ has $n$ complex roots (counted with multiplicity).
+	\begin{proof}
+		It suffices to show that there is at least one complex root $z$; then one can inductively apply the result to $p(x)/(x-z)$.\\
+		
+		If no root exists then $p(z)$ is a nonzero complex number for all $z\in \C$. We can produce a homotopy from $\C \to \C\setminus \{0\}$ by sending $z$ straight to $p(z)$ at a constant rate. 
+	\end{proof} 
+	
+	\newpage
+	
+	\section{Table of Homology and Homotopy for common spaces.}
 	
 \end{document}

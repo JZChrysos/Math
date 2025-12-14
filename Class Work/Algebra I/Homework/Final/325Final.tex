@@ -1,0 +1,123 @@
+\documentclass{amsart}
+
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Math 325 Final}
+\author{Jalen Chrysos}
+
+\begin{document}
+	\maketitle
+	\textbf{Problem 1}: Fix $F\in \GL_n(\R)$ and consider the following set:
+	$$
+	G_F = \{g\in M_n(\R) \; | \; F^{-1} g^{\top} F g = \id \}.
+	$$
+	Check that $G_F$ is a closed subgroup of $\GL_n(\R)$ and find an explicit description of $\Lie(G_F)$ in terms of $F$.
+	\begin{proof}
+		$G_F$ is closed because it is the preimage of the closed set $\{I_n\}\in M_n(\R)$ under the continuous function $g\mapsto F^{-1}g^{\top} F g$ (it is a degree-2 polynomial in the matrix entries of $g$ hence continuous).\\
+		
+		To determine $\Lie(G_F)$, $x\in \Lie(G_F)$ if the following holds for all $t\in \R$:
+		\begin{align*}
+			F^{-1}(e^{tx})^{\top}Fe^{tx} &= I_n\\
+			F^{-1}e^{tx^{\top}}Fe^{tx} &= I_n\\
+			e^{tF^{-1}x^{\top}F}e^{tx} &= I_n\\
+			e^t{F^{-1}x^{\top}F + x} &= I_n
+		\end{align*}
+		the last step follows because if $e^{a}e^{b}=\id$ then $e^{b}e^{a}=\id$ so $e^{a+b}=\id$. The only matrix $a$ for which $e^{ta}=\id$ for all $t$ is $a=0$, so 
+		$$
+		\Lie(G_F) = \{x\in M_n(\C) \; | \; F^{-1}x^{\top}F + x = 0\}
+		$$
+		which is just a system of $n^2$ linear equations in the matrix entries of $x$.
+	\end{proof}
+	
+	\newpage
+	
+	\textbf{Problem 2}: The action of the unitary group $U_n$ in $M_n(\C)$ by conjugation $g:x\mapsto gxg^{-1}$ gives a representation $\rho:U_n\to \GL(M_n(\C))$.
+	\begin{enumerate}[(i)]
+		\item Show that $\rho$ is not irreducible.
+		\item Decompose $\rho$ into a direct sum of irreps of $U_n$ (in complex vector spaces).
+	\end{enumerate}
+	\begin{proof}
+		(i): The identity matrix commutes with all other matrices, so $\rho(g)$ fixes every matrix $\lambda I$. Thus, the subspace $\C I$ is a subrepresentation of $\rho$, so $\rho$ cannot be irreducible.\\
+		
+		(ii): As we've shown in class, $\d\rho(a):x\mapsto [a,x]$. Any irreducible subrepresentation of $\d\rho$ corresponds to an irreducible subrepresentation of $\rho$. So it suffices to decompose $\d\rho$.\\
+		
+		A potentially useful fact is that $\gl_n = \uu_n\oplus i \uu_n$. We know that the action of $\GL_n(\C)$ on $M_n(\C)$ by conjugation has its irreps corresponding exactly to the eigenvalues of the matrices. So the corresponding irreps of $\d\rho$ as a representation of $GL_n(\C)$ are the same. The decomposition gives that any matrix in $\gl_n$ can be given as a sum $a+bi$ where $a,b\in \uu_n$, so that
+		$$
+		[a+bi,x] = [a,x] + i[b,x].
+		$$
+		As a complex vector space, any subprepresentation $V$ of $\d\rho$ (as a representation of $\uu_n$) is also a subrepresentation of $\gl_n$, since 
+		$$
+		[a,x],[b,x]\in V \implies [a+bi,x]\in V.
+		$$
+		Thus, the irreps are actually the same, and $\rho$ can be decomposed as irreps corresponding to matrices with given eigenvalues.
+	\end{proof}\\
+	
+	\newpage 
+	
+	\textbf{Problem 3}: Let $V$ be a complex vector space of dimension $n>0$. The group $\GL(V)=\GL_{\C}(V)$ acts in $V$ and in $V^*$. Thus, there is a natural $\GL(V)$-action in $\Sym^p(V)$ and $\Sym^p(V^*)$. Show that for each $p\geq 1$, the resulting representations of $\GL(V)$ in $\Sym^p(V)$ and $\Sym^p(V^*)$ are irreducible and non-isomorphic.
+	\begin{proof}
+%		The action of $\GL(V)$ on $\Sym^p(V)$ is isomorphic to the action on $P_d\in \C[x_1,\dots,x_n]$. We know that $\GL_n(\C)$ is a reductive group, i.e. the representation $P_d$ is completely reducible. So $P_d$ breaks into a sum of irreps. 
+	Let $v_1,\dots,v_n$ be a basis for $V$. The polynomial $v_1^p$ is a highest-weight for $\Sym^p(V)$, since every $\hat{1}_{ij}$ for $i<j$ kills it. Its weight is $\lambda=(p,0,0,\dots,0)$, as
+	$$
+	h\cdot v_1^p = (h_1v_1)^p = h_1^p v_1^p.
+	$$
+	This is the unique vector of weight $\lambda$, since any polynomial with a factor of $v_j$ for $j\neq 1$ will be preserved by $\hat{1}_{jj}$. Also, $\lambda$ is the unique highest-weight; for $v$ to be a common eigenvector of all diagonal matrices, it must be a monomial, and $v_1^p$ is the only monomial which is killed by all the upper-triangular matrices. We know that $\GL_n(\C)$ is reductive, so this is a completely-reducible representation. So if it were not $M(\lambda,v_1^p)$, then we could take an irreducible subrepresentation outside of $M(\lambda,v_1^p)$ which would have no highest-weight, which by the classification theorem is impossible. Thus, $\Sym^p(V)=M(\lambda,v_1^p)$.\\
+	
+	Let $v_1^*,\dots, v_n^*$ be a basis for $V^*$. In this case, $v_n^{*p}$ is the highest weight and its weight is $\mu = (0,0,\dots,0,-p)$, we
+	$$
+	h\cdot v_n^{*p} = (v_n^* \circ h^{-1})^p = h_n^{-p}v_n^{*p}.
+	$$
+	Similarly, this is the unique vector of weight $\mu$, and all the same arguments follow to show that $\Sym^p(V^*)$ is irreducible.\\
+	
+	Now, each irreducible representation has a \textit{unique} highest weight, and $\lambda,\mu$ are different, and they are different for all $p$, so all of these are distinct irreps of $\GL_n(\C)$.
+	\end{proof}\\
+	
+	\newpage 
+	\textbf{Problem 4}: Let $G$ be a Lie group and $H$ the connected component of $G$ containing $1_G$.
+	\begin{enumerate}[(i)]
+		\item Show that $H$ is a normal subgroup of $G$.
+		\item Show that if $G$ is commutative and the group $C:=G/H$ is a finite cyclic group $\Z_n$, then there is a group homomorphism $f:C\to G$ such that for all $c\in C$ one has $f(c) \equiv c \pmod H$. 
+	\end{enumerate}
+	\begin{proof}
+		(i): We'll use the fact that connected implies path-connected for Euclidean spaces, which a Lie group is.\\
+		
+		First, we show that $H$ is a group: if $a,b\in H$ then there is a continuous path $\gamma:[0,1]\to H$ such that $\gamma(0)=1_G$ and $\gamma(1)=b$. Then $a\gamma(t)$ is a continuous path $[0,1]\to G$ because $a$ acts continuously on $G$, and it connects $a$ to $ab$, so $ab\in H$ because $H$ is connected.
+		
+		Similarly, if $g\in G$ and $h\in H$, there is a path $\gamma:[0,1]\to H$ with $\gamma(0)=1_G$ and $\gamma(1)=h$, so $g\gamma(t)g^{-1}$ is a continuous path in $G$ connecting $1_G$ to $ghg^{-1}$, thus $ghg^{-1}\in H$, making $H$ a normal subgroup.\\
+		
+		(ii): Let $\Lie(G)$ be the Lie algebra of $G$. Since $H$ is connected, everything in $H$ is generated by $e^{\Lie(G)}$ as we've shown on homework, and $G$ is commutative so $e^{a}e^{b}=e^{a+b}$, thus everything in $H$ can actually be represented directly as an exponential of something in $\Lie(G)$, i.e. $H=e^{\Lie(G)}$.\\
+		
+		Fix some $a$ in the coset of $H$ corresponding to $1\in \Z_n$. Because $G/H=\Z_n$, every element of $G$ is $a^je^x$ for some $x\in \Lie(G)$ and $j\in [0,n-1]$. And because $H=e^{\Lie(G)}$ and $a^n\in H$, we have that $a^n=e^y$ for some $y\in \Lie(G)$. To get an element $g\in G$ with order exactly $n$, we can take $g:=ae^{-y/n}$ to get
+		$$
+		g^n = a^ne^{-y}=1
+		$$
+		so that $\<g\>\cong \Z_n$. So $f$ can be defined by $f:j\mapsto g^j$.
+		
+%		Let $g\neq 0$ be an element of the connected component corresponding to the coset of $1\in C=\Z_n$, and suppose it has diagonal $(\lambda_1,\dots,\lambda_k)$.
+%		We know that $g^n\in H$, so there is a continuous path $\gamma$ connecting $g^n$ to $1_{G}$. The $n$th power map on $M_k(\C)$ is continuous and $kn$-to-1, so there is a continuous local inverse $L:M_k(\C)\to M_k(\C)$ which maps $L:g^n\mapsto g$. Now consider the composition $L\circ \gamma$. This is a continuous path in $M_k(\C)$ which begins at $g$ and ends at an $n$th root of $I_k$.
+	\end{proof}\\
+	
+	\newpage 
+	\textbf{Problem 5}: Let $\Aff^{>0}(\R)$ be the group of affine linear transformations $g_{a,b}:\R\to \R$ 
+	$$
+	g_{a,b}: x\mapsto ax + b
+	$$
+	for $a\in \R^{>0}$ and $b\in \R$. Let $\rho:\Aff^{>0}(\R)\to \GL(V)$ be a continuous representation in a finite-dimensional complex vector space $V$. Prove that if $v\in V$ is such that $\rho(g_{1,b})(v)=e^bv$ for all $b\in \R$ then $v=0$.
+	\begin{proof}
+		We have the commutator relation
+		$$
+		g_{1,b} \circ g_{a,0} = g_{a,0}\circ g_{1,b/a}.
+		$$
+		If such a $v$ exists, this implies
+		$$
+		g_{1,b} \cdot (g_{a,0} \cdot v) = g_{a,0}\cdot e^{b/a} v = e^{b/a} (g_{a,0}\cdot v).
+		$$
+		That is, every $g_{a,0}v$ is an eigenvector for every $g_{1,b}$, with eigenvalue $e^{b/a}$.
+		
+		This implies that any nonzero vectors $\{g_{a,0}v\}_{a\in \R^+}$ are linearly independent, since they have different eigenvalues wrt $g_{1,b}$ for $b\neq 0$. So because $V$ is finite-dimensional, we can conclude that all but finitely many $a$ have $g_{a,0}\cdot v = 0$. But $\rho$ is a \textit{continuous} representation, so $\rho(g_{a,0}) v$ is a continuous function in $a$ that is 0 for all but finitely many $a$, and thus it must be 0 for all $a$. But then when $a=1$,
+		$$
+		v = g_{1,0} \cdot v = 0.
+		$$
+		So such a $v$ cannot exist.
+	\end{proof}
+\end{document}

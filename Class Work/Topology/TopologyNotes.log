@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  2 DEC 2025 12:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  4 DEC 2025 14:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1418,27 +1418,70 @@ Underfull \hbox (badness 10000) in paragraph at lines 1177--1178
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 1205--1206
 
-[23] (./TopologyNotes.aux)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1207--1208
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1209--1210
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1222--1224
+
+ []
+
+
+
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 1230--1231
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1235--1238
+
+ []
+
+
+Overfull \hbox (12.1134pt too wide) in paragraph at lines 1239--1240
+[]\OT1/cmr/m/n/10 We know by uni-ver-sal co-ef-fi-cient the-o-rem + Hurewicz th
+e-o-rem that $\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 K\OT1/cmr/m
+/n/10 (\OML/cmm/m/it/10 G; n\OT1/cmr/m/n/10 ); \OML/cmm/m/it/10 G\OT1/cmr/m/n/1
+0 ) [] [](\OML/cmm/m/it/10 G; G\OT1/cmr/m/n/10 )$.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1239--1240
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1244--1245
+
+ []
+
+
+
+[24] (./TopologyNotes.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
-
-
-Package rerunfilecheck Warning: File `TopologyNotes.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `TopologyNotes.out':
-(rerunfilecheck)             Before: D7FD953BE2EAF95A1E894DF989BA53FE;3119
-(rerunfilecheck)             After:  D5159DCA868A2318467747DC94D02C0B;3293.
+Package rerunfilecheck Info: File `TopologyNotes.out' has not changed.
+(rerunfilecheck)             Checksum: F259BB36D6DE7A823C6DAA061E9E6D5F;3697.
  ) 
 Here is how much of TeX's memory you used:
- 27283 strings out of 467748
- 540509 string characters out of 5431138
- 924149 words of memory out of 5000000
- 55331 multiletter control sequences out of 15000+600000
+ 27291 strings out of 467748
+ 540597 string characters out of 5431138
+ 924164 words of memory out of 5000000
+ 55336 multiletter control sequences out of 15000+600000
  636036 words of font info for 73 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  103i,16n,108p,682b,1023s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1460,10 +1503,10 @@ b><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive
 /2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/202
 5/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on TopologyNotes.pdf (23 pages, 350459 bytes).
+Output written on TopologyNotes.pdf (24 pages, 357713 bytes).
 PDF statistics:
- 320 PDF objects out of 1000 (max. 8388607)
- 252 compressed objects within 3 object streams
- 47 named destinations out of 1000 (max. 500000)
- 157 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 339 PDF objects out of 1000 (max. 8388607)
+ 270 compressed objects within 3 object streams
+ 50 named destinations out of 1000 (max. 500000)
+ 181 words of extra memory for PDF output out of 10000 (max. 10000000)
 
