@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  6 JAN 2026 11:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  8 JAN 2026 23:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**TopologyNotes.tex
-(./TopologyNotes.tex
+**318HW1.tex
+(./318HW1.tex
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
 (c:/texlive/2025/texmf-dist/tex/latex/amscls/amsart.cls
@@ -128,17 +128,18 @@ Package: amssymb 2013/01/14 v3.01 AMS font symbols
 )
 (c:/texlive/2025/texmf-dist/tex/latex/asymptote/asymptote.sty
 Package: asymptote 2024/02/26 v1.38 Asymptote style file for LaTeX
-
-(./TopologyNotes.pre)
+ (./318HW1.pre)
 \ASYbox=\box56
 \ASYdimen=\dimen160
 \c@asy=\count295
 \AsyStream=\write3
 \AsyPreStream=\write4
- (c:/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty
+
+(c:/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks30
-) (c:/texlive/2025/texmf-dist/tex/latex/base/ifthen.sty
+)
+(c:/texlive/2025/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 )
 (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty
@@ -182,7 +183,7 @@ Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 (c:/texlive/2025/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 ))
-\openout4 = `TopologyNotes.pre'.
+\openout4 = `318HW1.pre'.
 
 )
 (c:/texlive/2025/texmf-dist/tex/latex/mathtools/mathtools.sty
@@ -732,41 +733,39 @@ Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
 ))
 \c@count=\count344
 Package hyperref Info: Option `colorlinks' set `true' on input line 28.
-)
-(./TopologyNotes.aux)
-\openout1 = `TopologyNotes.aux'.
+) (./318HW1.aux)
+\openout1 = `318HW1.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 13.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 7.
 
- (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+(c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 13.
-
+LaTeX Font Info:    Trying to load font information for U+msb on input line 7.
 
 (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+stmry on input line 1
-3.
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 7
+.
 
 (c:/texlive/2025/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 (c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -791,11 +790,11 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring ON on input line 13.
+Package hyperref Info: Link coloring ON on input line 7.
 
-(./TopologyNotes.out) (./TopologyNotes.out)
+(./318HW1.out) (./318HW1.out)
 \@outlinefile=\write6
-\openout6 = `TopologyNotes.out'.
+\openout6 = `318HW1.out'.
 
 
 *geometry* driver: auto-detecting
@@ -833,697 +832,48 @@ Package hyperref Info: Link coloring ON on input line 13.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Class amsart Warning: Abstract should precede \maketitle in AMS document classe
-s; reported on input line 16.
-
-(./TopologyNotes.toc)
-\tf@toc=\write7
-\openout7 = `TopologyNotes.toc'.
-
-
 
 [1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 26--27
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 55--56
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 62--64
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 67--68
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
 
  []
 
 
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 92--93
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 98--99
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 103--105
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 116--118
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 124--127
-
- []
-
-
-
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 133--135
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 140--141
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 151--153
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 154--155
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 156--157
-
- []
-
-
-
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 169--171
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 174--175
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 182--183
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--191
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 192--193
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
-
- []
-
-
-
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 217--220
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 232--233
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 259--260
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 263--264
-
- []
-
-
-
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 265--267
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 280--281
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 284--286
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 291--293
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 294--295
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 296--297
-
- []
-
-
-
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 309--311
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 313--315
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 316--317
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 336--338
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 351--353
-
- []
-
-
-
-[8]
-Underfull \hbox (badness 10000) in paragraph at lines 383--384
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 426--427
-
- []
-
-
-
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 437--438
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 439--441
-
- []
-
-
-Overfull \hbox (14.65607pt too wide) detected at line 478
-[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 484--485
-
- []
-
-
-
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 501--503
-
- []
-
-
-Overfull \hbox (40.08456pt too wide) detected at line 527
-[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 527--529
-
- []
-
-
-
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 592--594
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 597--598
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 599--600
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 608--609
-
- []
-
-
-
-[12]
-Underfull \vbox (badness 6016) has occurred while \output is active []
-
-
-
-[13]
-Underfull \hbox (badness 10000) in paragraph at lines 720--722
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 726--728
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 731--732
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 733--734
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 735--737
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 738--739
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 740--741
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 745--747
-
- []
-
-
-
-[14]
-Underfull \hbox (badness 10000) in paragraph at lines 755--757
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 767--769
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 781--783
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 797--798
-
- []
-
-
-
-[15]
-Underfull \hbox (badness 10000) in paragraph at lines 839--840
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 851--854
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 855--856
-
- []
-
-
-
-[16]
-Underfull \hbox (badness 10000) in paragraph at lines 904--905
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 910--912
-
- []
-
-
-
-[17]
-Underfull \hbox (badness 10000) in paragraph at lines 916--918
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 919--920
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 946--948
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--955
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 959--961
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 968--969
-
- []
-
-
-
-[18]
-Underfull \hbox (badness 10000) in paragraph at lines 976--978
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 979--980
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 984--986
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1002--1004
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1005--1006
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1007--1008
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1019--1021
-
- []
-
-
-
-[19]
-Underfull \hbox (badness 10000) in paragraph at lines 1027--1029
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1030--1032
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1033--1034
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1035--1036
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1039--1041
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1044--1046
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1053--1054
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1058--1060
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1061--1063
-
- []
-
-
-
-[20]
-Underfull \hbox (badness 10000) in paragraph at lines 1071--1073
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1101--1102
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1106--1109
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1110--1111
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1114--1115
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1116--1118
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1121--1123
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1124--1125
-
- []
-
-
-
-[21]
-Underfull \hbox (badness 10000) in paragraph at lines 1138--1140
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1141--1142
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1143--1144
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1151--1152
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1153--1155
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1159--1161
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1164--1166
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1167--1168
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1169--1170
-
- []
-
-
-
-[22]
-Underfull \hbox (badness 10000) in paragraph at lines 1177--1178
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1205--1206
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1207--1208
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1209--1210
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1222--1224
-
- []
-
-
-
-[23]
-Underfull \hbox (badness 10000) in paragraph at lines 1230--1231
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1235--1238
-
- []
-
-
-Overfull \hbox (12.1134pt too wide) in paragraph at lines 1239--1240
-[]\OT1/cmr/m/n/10 We know by uni-ver-sal co-ef-fi-cient the-o-rem + Hurewicz th
-e-o-rem that $\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 K\OT1/cmr/m
-/n/10 (\OML/cmm/m/it/10 G; n\OT1/cmr/m/n/10 ); \OML/cmm/m/it/10 G\OT1/cmr/m/n/1
-0 ) [] [](\OML/cmm/m/it/10 G; G\OT1/cmr/m/n/10 )$.
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1239--1240
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1244--1245
-
- []
-
-
-
-[24]
-Underfull \hbox (badness 10000) in paragraph at lines 1265--1267
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1273--1274
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1279--1281
-
- []
-
-
-
-[25] (./TopologyNotes.aux)
+[3] (./318HW1.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
-Package rerunfilecheck Info: File `TopologyNotes.out' has not changed.
-(rerunfilecheck)             Checksum: 39105FB04B01D77A756FEF5C4398DE15;4091.
+Package rerunfilecheck Info: File `318HW1.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 27300 strings out of 467748
- 540730 string characters out of 5431138
- 924167 words of memory out of 5000000
- 55340 multiletter control sequences out of 15000+600000
- 636036 words of font info for 73 fonts, out of 8000000 for 9000
+ 25619 strings out of 467748
+ 499011 string characters out of 5431138
+ 871318 words of memory out of 5000000
+ 53718 multiletter control sequences out of 15000+600000
+ 634194 words of font info for 67 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 103i,16n,108p,682b,1023s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,6n,108p,627b,464s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
-live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/202
-5/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
-8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/
-texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/202
-5/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2025/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmsy5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pf
-b><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/tex
-live/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive
-/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/202
-5/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on TopologyNotes.pdf (25 pages, 363429 bytes).
+live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
+><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texl
+ive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2025/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2025/texmf-dist
+/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2025/texmf-dist/fon
+ts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on 318HW1.pdf (3 pages, 139843 bytes).
 PDF statistics:
- 357 PDF objects out of 1000 (max. 8388607)
- 287 compressed objects within 3 object streams
- 55 named destinations out of 1000 (max. 500000)
- 197 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 89 PDF objects out of 1000 (max. 8388607)
+ 57 compressed objects within 1 object stream
+ 4 named destinations out of 1000 (max. 500000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

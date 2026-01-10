@@ -1,0 +1,49 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Manifolds}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+\maketitle
+
+These are my notes for Topology II taught by Eduard Looijenga at UChicago in Winter 2026.
+
+\section{Basic Definitions}
+
+A \textit{topological manifold} of dimension $m$ is a topological space $M$ that is Hausdorff and locally homeomorphic to $\R^m$. Such an $M$ has an open covering $\A = \{U_{\a}\}$ called an \textit{atlas} with associated homeomorphisms (\textit{charts}) $\kappa_{\a}:U_{\a}\to \R^m$ which are compatible, meaning that in each intersection $U_{\a}\cap U_{\b}$, we have a homeomorphic coordinate change map:
+$$
+\R^m \supset \kappa_{\a}(U_{\a}\cap U_{\b}) \xra{\kappa_{\b}\kappa_{\a}^{-1}} \kappa_{\b}(U_{\a}\cap U_{\b}) \subset \R^m
+$$
+The atlas is $C^k$ if all the coordinate change maps are $C^k$.\\
+
+$\A$ must be $C^k$ in order to define the notion of a $C^k$ function $M\to \R$ (relative to $\A$); otherwise, we could have $f:M\to \R$ that is $C^k$ through one chart but not another. Naturally, which functions $M\to \R$ are $C^k$ depends on $\A$. And in fact, \textbf{atlases define the same notion of $C^k$ iff they are compatible}. That is, all possible notions of a $C^k$ function on $M$ correspond to maximal atlases, or ``$C^k$ \textit{structures}.''\\
+
+The presence of a $C^k$ structure enriches $M$ and allows one to say more about it, so the natural question is which $M$ have such structures. Whitney showed that all manifolds with a $C^k$ structure also have a $C^{\infty}$ structure that can be obtained by restricting the corresponding atlas (and hence a $C^j$ structure for $j>0$). So the $C^k$ structures come together. However, there are topological manifolds with no $C^1$ structure, and hence no $C^k$ structure for any $k>0$. Thus the only distinction is between smooth manifolds and non-differentiable manifolds. We will be concerned only with the former.\\
+
+Smooth manifolds are always (given some cardinality restrictions) diffeomorphic to smooth submanifolds of $\R^n$ for some $n$.\\
+
+\subsection{Submanifolds}
+A \textit{submanifold} $N\subset M$ is a subset of $M$ for which the charts $\kappa:M\to \R^m$ send $N$ to a linear subspace $\R^k\subset \R^m$. These charts naturally give $N$ the structure of a $k$-manifold.\\  
+
+We are interested in questions of the form: can a given $N$ be realized as a submanifold of a given $M$? Especially when $M=\R^m$. Another way to say this is: can $N$ be \textit{embedded} in $M$?\\
+
+\subsection{Tangent Space} If manifold $M$ is smooth, it has the additional structure of \textit{tangent spaces} $T_pM$ at each point $p\in M$. These are vector spaces of the same dimension as $M$. Specifically, $T_pM$ is the set of vectors that are $\gamma'(0)$ for curves $\gamma:I\to M$ with $\gamma(0)=p$.\\
+
+For each map $f:M\to N$ where $M,N$ are smooth manifolds, we can see the derivative of $f$ at $p\in M$ as a linear map between the tangent spaces $D_pf :T_pM\to T_{f(p)}N$.\\
+
+\subsection{Basic Results} 
+
+%\textbf{Lemma}: Given two $C^k$ atlases $\{U_{\a},\kappa_{\a}\}$ and $\{V_{\b},\lambda_{\b}\}$ of the same manifold $M$, the following are equivalent:
+%\begin{enumerate}[(i)]
+%	\item The two atlases define the same notion of a $C^k$ function.
+%	\item $\{U_{\a}\} \cup \{V_{\a}\}$ is a $C^k$ atlas.
+%\end{enumerate}
+%\begin{proof}
+%	$(i)\implies (ii)$: It suffices to show that the coordinate change maps $\kappa_{\a}\lambda_{\b}^{-1}$ are all $C^k$. do later
+%\end{proof}\\
+%
+%This result implies that all atlases giving the same notion of a $C^k$ function can be combined into a maximal atlas. Such an atlas is called a ``$C^k$ structure'' on $M$.\\
+
+\end{document}

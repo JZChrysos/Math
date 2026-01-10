@@ -19,3 +19,5 @@
 \contentsline {subsection}{\tocsubsection {}{3.3}{Path Space Fibration}}{23}{subsection.3.3}%
 \contentsline {subsection}{\tocsubsection {}{3.4}{Whitehead Product}}{23}{subsection.3.4}%
 \contentsline {subsection}{\tocsubsection {}{3.5}{Eilenberg MacLane Spaces}}{23}{subsection.3.5}%
+\contentsline {section}{\tocsection {}{}{Topology II with Looijenja}}{25}{section*.3}%
+\contentsline {subsection}{\tocsubsection {}{3.6}{Differentiable Manifolds}}{25}{subsection.3.6}%

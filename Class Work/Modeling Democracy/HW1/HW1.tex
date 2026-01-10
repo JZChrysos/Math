@@ -1,0 +1,105 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Modeling Democracy HW 1}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+	\maketitle
+	
+\textbf{Problem 1}: Compute the results of all the voting systems we discussed using the following vote profile:
+$$
+\begin{tabular}{|c|c|c|c|}
+	\hline 
+	x1 & x2 & x3 & x1\\
+	\hline 
+	A & B & D & A\\
+	B & C & A & C\\
+	 C& A & C & B\\
+	 D & D & B & D\\
+	 \hline
+\end{tabular}
+$$
+\begin{proof}
+We will break all ties alphabetically (for both election and elimination) and all predetermined orders of candidates will be alphabetical as well. Note that $A$ is Condorcet and $D$ is anti-Condorcet, which will simplify some calculations. For STV, I will assume that two candidates must be elected.
+
+\begin{itemize}
+	\item \textit{Plurality}: $D$ wins, having the most first-choice votes.
+	\item \textit{PWC}: $A$ wins because it is Condorcet.
+	\item \textit{Borda}: $A$ wins with a total of 14 points ($B,C,D$ get $9,8,9$ respectively).
+	\item \textit{Condo-Borda}: $A$ wins because it is Condorcet.
+	\item \textit{Top-Two}: $A$ wins because the top two are $A$ and $D$ (tiebreak) and $A$ wins over $D$.
+	\item \textit{IRV}: $B$ wins. $C$ is eliminated first. Then $A$ (tiebreak). Then $D$.
+	\item \textit{Sequential}: $A$ wins because it is Condorcet.
+	\item \textit{STV}: $A$ and $D$ win. The threshold is $7/(2+1) = 2.\overline{33}$. $D$ immediately meets it. $\tfrac29$ of the $D$-preferring ballots are distributed. Now $A$ has $1+1+\tfrac29 \cdot 3 = 2.\overline{66}$ votes, so $A$ is elected.
+	\item \textit{Coombs}: $A$ wins. $D$ is eliminated first. Then $B$. Then $C$.
+	\item \textit{Secondality}: $A$ wins, having 3 second-choice votes (tiebreak with $C$).
+	\item \textit{Smith}: $A$ wins because it is Condorcet.
+	\item \textit{Beatpath}: $A$ wins because it is Condorcet (using Problem 5(d)).
+	\item \textit{Dodgson}: $A$ wins because it is Condorcet (Glad I don't have to do this one for real!).
+	\item \textit{Kemeny}: $(A,C,B,D)$ is the resulting ranking, with a total distance of $16$ from the profile. We can show this as follows:
+	\begin{itemize}
+		\item The distance between two ballots is at least the number of individual pairs of candidates that are ranked oppositely between the two ballots, as one swap can invert only one of these pairs.
+		\item The total number of inverted pairs between $(A,C,B,D)$ and all other ballots is $16$, as one can check.
+		\item A strict majority of the profile agrees with $(A,C,B,D)$ on each of the six comparisons, so any other ballot is forced to have at least $17$ inverted pairs, and thus $17$ total distance. Thus, $16$ is optimal.
+	\end{itemize}
+	\item \textit{Ranked Pairs}: $A$ wins because it is Condorcet.
+	\item \textit{Plurality Veto}: $A$ wins. The candidates begin with points $(A=2,B=2,D=3)$. Both $B$ and $D$ must be eliminated before 2 remaining ballots will have $A$ as the last choice.
+	\item \textit{Sortition}: $C$ wins. I flipped two coins and got $(T,H)$.
+	\item \textit{Dictatorship}: $B$ wins. I appointed voter $\#2$ the dictator, and she wanted $B$.
+\end{itemize}
+
+\end{proof}\\
+
+\newpage 
+
+\textbf{Problem 2}: Show that domsets are nested.
+
+\begin{proof}
+	
+	Suppose $X$ and $Y$ are both domsets. If neither is contained in the other then there exist candidates $x\in X\setminus Y$ and $y\in Y\setminus X$. If $x$ beats $y$ then $Y$ is not really a domset because one of its candidates is beaten by a candidate outside $Y$. Likewise in the opposite direction. Thus (assuming no ties) $x$ and $y$ cannot both exist, which is to say that one of $X,Y$ is contained in the other.
+\end{proof}\\
+
+\textbf{Problem 3}: Show that the winner of a sequential election always belongs to the Smith set.
+\begin{proof}
+	Problem 2 implies that the Smith set exists and has size at least 1. A strong candidate can never lose against a weak candidate by definition. At the point when there is only one strong candidate remaining, that candidate cannot lose any matches and thus will win the election.
+\end{proof}\\
+
+\textbf{Problem 4}: Show that a Condorcet candidate can be a losing spoiler.
+\begin{proof}Consider the following election among three candidates $A,B,C$: 
+$$
+\begin{tabular}{|c|c|c|}
+	\hline
+	x4 & x3 & x2\\
+	\hline
+	A & C & B\\
+	B & B & C\\
+	C & A & A\\
+	\hline
+\end{tabular}
+$$
+In this situation, $A$ wins the plurality election. However, if $B$ was not in the race, the two $B$ voters would vote for $C$, bringing $C$ to a win; that is, $B$ is a losing spoiler. Moreover, 6 voters prefer $B$ to $C$ and 5 voters prefer $B$ to $A$, a majority in either case, making $B$ Condorcet.
+\end{proof}\\
+
+\textbf{Problem 5}: 
+\begin{enumerate}[(a)]
+	\item Show that beatpath elimination is transitive.
+	\item Conclude that the beatpath method is well-defined (that the order in which candidates are eliminated does not matter) and that there is at least one winner.
+	\item Show that the beatpath method has the unanimity property.
+	\item Show that beatpath is Smith-fair.
+\end{enumerate}
+\begin{proof}
+	(a) The strength of two concatenated beatpaths is the minimum of their strengths. Suppose the strongest paths $p:A\to B$ and $q:B\to C$ have strengths $x,y$ respectively, and that $x>y$. Then the concatenation of these paths is a beatpath $r:A\to C$ of strength $y$. I claim that this path is stronger than any path $C\to A$.
+	
+	Suppose for the sake of contradiction that a path $s:C\to A$ of strength $y'\geq y$ existed. Then one could concatenate $s$ with $p$ to get a path $C\to B$ of strength $\min(x,y') \geq y$, at least as strong as $q$, which contradicts the fact that $B$ eliminates $C$. Thus, $A$ eliminates $C$.\\
+	
+	(b): If $B$ eliminates $C$, then $C$ will always be eliminated by the beatpath method: even if $B$ is eliminated by $A_1$, and $A_1$ by $A_2$, and so on, since there are only finitely-many candidates there will be a remaining candidate $A_k$ by the time $C$ is considered, which will eliminate $C$ by transitivity. 
+	
+	For the winner set to be empty would mean that all candidates were eliminated by another, but there are only finitely-many candidates so this implies the existence of a cycle of elimination which cannot exist by transitivity.\\
+	
+	(c): If the entire profile ranks $A$ above $B$ then the direct beatpath $A\to B$ is as strong as any beatpath could possibly be. If there was a unanimous beatpath $B\to\cdots \to A$ then every ballot would have to agree on the relative rankings of all candidates involved, which would imply that they all ranked $B$ above $A$, though the exact opposite is true. So $A$ eliminates $B$ in this scenario, making the rule unanimity-fair.\\
+	
+	(d): Let $S$ be the Smith set. There is no beatpath from any candidate outside $S$ to one in $S$ because at the point the path initially crosses into $S$, the match would have to be a loss. Conversely, the direct edge from any $A\in S$ to any $B\in \overline{S}$ is a beatpath. Thus, all candidates outside $S$ will be eliminated, so the method is Smith-fair.
+\end{proof}
+\end{document}

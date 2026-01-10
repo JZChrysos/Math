@@ -1,0 +1,62 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{MATH 318 HW 1}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+	\maketitle
+% OPTIONAL QUESTIONS
+%\textbf{Problem 1 (2.3)}: Prove that two $C^k$-manifolds (with $k\geq 1$) that are $C^k$-diffeomorphic have the same dimension.
+%
+%\newpage 
+%
+%\textbf{Problem 2 (2.5)}: Prove that for $m\leq n$, $S^m$ is a smooth submanifold of $S^n$ if we identify $S^m$ with $S^n\cap (\R^{m+1}\times 0)$. Conclude the same for $P^m$ and $P^n$.
+%
+%\newpage 
+
+\textbf{Problem 1 (2.6)}: Let $f:\R^n\to \R$ be a homogeneous function of degree $d$. Prove that $f^{-1}(1)$ is a (possibly empty) submanifold of dimension $n-1$.
+\begin{proof}
+	By Example 2.6, it suffices to show that the derivative of a homogeneous function $f:\R^n\to \R$ is surjective on points within $f^{-1}(1)$. In this case because the dimension of the output space is 1, it is equivalent to show that the derivative is nonzero. For $f$ to be homogeneous of degree $d$ means that $f(\lambda v)=\lambda^df(v)$ for all $v\in \R^n$ and $\lambda \in \R$. In particular, where $f(v)=1$, $f(\lambda v) = \lambda^df(v) = \lambda^d$, so the derivative in direction $v$ at $v$ is $d\lambda^{d-1}$ which is nonzero. \textbf{revisit. should depend on $|v|$ i think.}
+\end{proof}
+
+\newpage
+
+\textbf{Problem 2 (2.7)}: Show that $\SL_n(\R)$ is a smooth submanifold of $\R^{n^2}$ and determine its dimension. Prove also that the map $\SL_n(\R)\times \SL_n(\R)\to \SL_n(\R)$ via $(\sigma,\tau)\mapsto \sigma\tau^{-1}$ is smooth. Do the same for $\SO_n(\R)$.
+\begin{proof}
+	$\SL_n(\R)$ is the preimage $\det^{-1}(1)$ of $\det:\R^{n^2}\to \R$. The determinant is homogeneous of degree $n$. Thus, by the previous problem, $\SL_n(\R)$ is a submanifold of dimension $n^2-1$.
+	
+	$\tau\mapsto \tau^{-1}$ is smooth on $\SL_n(\R)$ as it is given by the adjugate matrix, so each coordinate is just the determinant of one of the minors, a polynomial in the matrix entries in $\tau$ and thus smooth. Similarly, each entry of $\sigma\tau^{-1}$ is a polynomial in the entries of $\sigma$ and $\tau$ and thus smooth.\\
+	
+	$\SO_n(\R)$ can be seen as the preimage $f^{-1}(I)$ where $f:\SL_n(\R)\to \SL_n(\R)$ is defined $f:a \mapsto a a^{\top}$, a homogeneous map of degree 2. \textbf{not done!}
+\end{proof}
+
+\newpage 
+
+\textbf{Problem 3 (4.2)}: Find an embedding of $S^n\times S^m$ in $\R^{n+m+1}$.
+\begin{proof}
+	Since $S^n$ and $S^m$ are compact, it suffices to produce an injective immersion. Take $S^n$ and $S^m$ to be the submanifolds of $\R^{n+1},\R^{m+1}$ given by
+	$$
+	S^n = \{x_1,\dots,x_{n+1} \; : \; x_1^2 + \cdots + x_{n+1}^2 = 1\}, \;\;\; 	S^m = \{z_1,\dots,z_{m+1} \; : \; z_1^2 + \cdots + z_{n+1}^2 = 1\}. 
+	$$
+	Fixing some $R>1$, define the map $f:\R^{n+1}\times \R^{m+1} \to \R^{n+m+1}$ by
+	$$
+	f:(x_1,\dots,x_{n+1},z_1,\dots,z_{m+1}) \mapsto \Big(x_1(R+z_1),\dots,x_{n+1}(R+z_1),z_2,z_3,\dots,z_{m+1}\Big).
+	$$
+	$f$ is polynomial in every coordinate and thus smooth. I claim that $f$ is injective as a map restricted to $S^n\times S^m$.
+	
+	Suppose $(x_1',\dots,x_{n+1}',z_1',\dots,z_{m+1}')$ is another point in $S^n\times S^m$ mapped to the same output by $f$. The first $n+1$ coordinates give
+	$$
+	x_j(R+z_1) = x_{j}'(R+z_1') \implies \frac{x_j}{x_j'} = \frac{R+z_1'}{R+z_1} =: \lambda
+	$$
+	for all $1\leq j\leq n+1$. Because $R>1$ and $|z_1|,|z_1'|\leq 1$, we have $\lambda > 0$. But then
+	$$
+	1= x_1^2 + \cdots + x_{n+1}^2 = \lambda^2(x_1'^2 + \cdots + x_{n+1}'^2) = \lambda^2 \implies \lambda = 1. 
+	$$
+	This gives $z_1=z_1'$ and hence $x_j=x_j'$ for all $j$. From the remaining $m$ coordinates, it immediately follows that $z_j=z_j'$ for $j\geq 2$, so the two points are indeed equal. That is, $f$ is injective on $S^n\times S^m$, and thus it is an embedding of $S^n\times S^m$ into $\R^{n+m+1}$.
+	
+	%Then immediately $z_j'=z_j$ for $j\geq 2$, and hence because $z_1^2 = 1 - z_2^2-\cdots-z_{m+1}^2$ we have $z_1^2=z_1'^2$, giving $z_1=\pm z_1'$.
+\end{proof}
+	
+\end{document}

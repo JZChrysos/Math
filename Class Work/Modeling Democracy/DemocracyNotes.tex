@@ -1,0 +1,127 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Modeling Democracy Notes}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+\maketitle
+
+\section{About the Class}
+
+\begin{itemize}
+	\item Professor is Moon Duchin, who we should address as Moon.
+	\item This is an ``interdisciplinary PhD class.''
+	\item There will be Problem Sets. There will be Proofs.
+	\item There is an option to give a presentation.\footnote{``For those of you looking to do anything later in life, this is good practice."} Past projects have turned into publications.
+	\item No laptops (oops).
+\end{itemize}
+
+\newpage 
+
+\section{Voting Systems}
+
+A voting system takes as an input the ranked preferences of a population on some finite number of options and outputs a collective choice (either of a subset of those options or a ranking of them). Here are some examples\footnote{Note that many of these only identify sets of winners, within which tiebreaks must be conducted.}:\\
+
+First, we have voting rules which only take into account the pairwise comparison graph (PWCG), a directed graph on the set of candidates with weights of edges corresponding to the margins of match-ups between any pair of candidates in isolation.\\
+
+\noindent \underline{PWCG-Based Rules}:
+\begin{itemize}
+	\item \textit{PWC}: Whoever wins most head-to-head match-ups wins.
+	\item \textit{Sequential}: A tournament structure is fixed ahead of time. In each match-up, the winner is determined by the ranked-choice ballots. The winner of the tournament is selected.
+	\item \textit{Smith}: The winner is selected (using some other procedure) from within the Smith Set; that is, the smallest subset of candidates $S$ such that no candidate outside $S$ beats any candidate in $S$.
+	\item \textit{Beatpath}: 
+	\begin{itemize}
+		\item A \textit{beatpath} is a directed path in the PWCG.
+		\item The \textit{strength} of a beatpath is the least margin of any link in the path.
+		\item A candidate $A$ \textit{dominates} $B$ if the strongest beatpath from $A$ to $B$ is stronger than the strongest beatpath from $B$ to $A$.
+		\item In the Beatpath voting rule, the winner is selected (somehow) from among the candidates which are not dominated by any other candidate.
+	\end{itemize}
+	\item \textit{Ranked Pairs}: Edges in the PWCG are sequentially ``activated'' in order of greatest margin first, skipping any that would produce a directed cycle. The resulting graph will have a Condorcet candidate within that graph, and that candidate is selected.\\
+\end{itemize}
+
+Next, we have methods which repeatedly eliminate candidates using a runoff system:\\
+
+\noindent \underline{Runoff-Based Rules:}
+\begin{itemize}
+		\item \textit{Top-Two}: The top two in terms of first-choice votes proceed to a second runoff election. This can be determined by the relative ranking of the top two in the profile. Or alternatively, in the real world there can be a second election later, allowing time for more campaigning.
+	\item \textit{IRV (Instant-Runoff Voting)}: The candidates with least first-choice votes are repeatedly eliminated and their votes redistributed until one remains (only one election).
+	\item \textit{STV (Single Transferable Vote)}: In a situation where $K$ winners must be selected, select a threshold $T$ (often $V/(K+1)$ where $V$ is the number of voters) and run the following algorithm until $K$ candidates are elected:
+	\begin{enumerate}[(1)]
+		\item If any candidate has more than $T$ first-choice votes:
+		\begin{itemize}
+			\item The one with the most votes, $A$, is elected.
+			\item The voters who elected $A$ ``spend'' the portion of their remaining ballot corresponding to the portion that was necessary to reach $T$, so that the weight of their ballot for the remainder of the decision procedure is multiplied by $(M-T)/M$ where $M$ is the (weighted) total of first-choice ballots for $A$.
+			\item $A$ is removed from the pool of candidates and all ballots are consolidated.
+			\item Repeat step 1.
+		\end{itemize}
+		\item Otherwise, if no candidate has $T$ first-choice votes, remove the candidate with the least first-choice votes. Then try step 1 again.
+	\end{enumerate}
+	\item \textit{Coombs}: Like IRV except that the candidate with most last-choice votes is repeatedly eliminated.\\
+\end{itemize}
+
+Next we have voting rules that are metric-based. A metric on ballots can be defined as follows: let the distance between two rankings be the least number of elementary moves required to get from one ballot to the other, where an elementary move consists of either swapping two adjacent-ranking candidates or (if ballots are permitted to be incomplete) adding/removing a candidate in last place. Then the following methods are possible:\\
+
+\noindent \underline{Metric-Based Rules}:
+\begin{itemize}
+	\item \textit{Dodgson}: From any profile, there is a least distance to an alternate profile where candidate $A$ is Condorcet. Dodgson voting elects the candidate for which this distance is minimized.
+	\item \textit{Kemeny}: For every ordering of the candidates, we compute the distance to each ballot in the profile and sum these. The ordering in which this distance is minimized is selected, and a winner or multiple winners can be derived from this order. \\
+\end{itemize}
+
+Some rules privilege information about precise ranking levels rather than relative match-ups:\\
+
+\noindent \underline{Rank-Specific Rules}:
+\begin{itemize}
+	\item \textit{Plurality}: Whoever gets the most first-choice votes wins.
+	\item \textit{Borda}: Candidates are awarded $a_1$ points for each first place ranking, $a_2$ points for each second place ranking, etc. Typically $a_i=N-i$, where $N$ is the number of candidates.
+	\item \textit{Condo-Borda}: If there is a Condorcet winner (i.e. option which wins all direct match-ups), it wins. Otherwise, proceed by Borda.
+	\item \textit{Secondality}: The candidate with the second-most first-choice votes wins (I think this is mostly a joke).
+	\item \textit{Plurality Veto}: Each candidate is awarded one point for each first-choice vote they receive. The voters are ordered in some way (which does effect the outcome) and each voter's ballot removes one point from their least-favored candidate remaining. When a candidate has lost all points, they are eliminated.\\
+\end{itemize}
+
+And finally we have the simplest of all voting rules:\\
+
+\noindent \underline{Dictatorship}:
+\begin{itemize}
+\item \textit{Dictatorship}: One particular voter decides the result.
+\end{itemize}
+
+\newpage 
+
+\section{Criteria for Fairness}
+
+Voting systems can be judged based on various criteria for ``fairness." Below is a list of these.\\
+
+First, there are criteria based on guaranteeing sufficiently common ballot features are reflected in the outcome:\\
+
+\underline{Consensus-Based Criteria}:
+\begin{itemize}
+	\item \textit{Pareto Efficient}: If all ballots rank $A$ first, then $A$ must win.
+	\item \textit{Unanimity-fair}: If all ballots rank $A$ above $B$, then the outcome must have $A$ above $B$.
+	\item \textit{Majority-fair}: If the majority of ballots rank $A$ first, then $A$ must win.
+	\item \textit{Condorcet-fair}: If $A$ is Condorcet then $A$ must win.
+	\item \textit{Smith-fair}: The winner must come from the Smith set.\\
+\end{itemize}
+
+Next there are robustness criteria which restrict the effect that given changes to the ballots can have on the outcome:\\
+
+\underline{Profile-Robustness Criteria}:
+\begin{itemize}
+	\item \textit{Monotonic}: If $A$ is winning and a ballot is changed so that $A$ moves up, $A$ must still win.
+	\item \textit{Strictly Monotonic}: If $A$ is winning and a ballot is changed without moving $A$ downward, $A$ must still win.
+	\item \textit{Strategy-Proof}: If $A$ is winning, changing a ballot which ranks $B$ over $A$ cannot cause $B$ to win.
+	\item \textit{Independence of Irrelevant Alternatives}: The relative outcome of candidates $A$ and $B$ cannot be affected by swapping any two candidates other than $A$ and $B$ on a given ballot.
+	\item \textit{Voter Anonymity}: The voting rule does not depend on the order of ballots.\\
+\end{itemize}
+
+Finally there are criteria restricting the effect that given changes to the candidate pool can have on the outcome:\\
+
+\underline{Candidate-Robustness Criteria}:
+\begin{itemize}
+	\item \textit{No Spoilers}: Removing a non-winning candidate cannot affect the winner set.
+	\item \textit{No Weak Spoilers}: Removing a \textit{weak} non-winner cannot affect the winner set.
+	\item \textit{Candidate Anonymity}: The voting rule does not depend on the order of candidates.
+\end{itemize}
+
+\end{document}
