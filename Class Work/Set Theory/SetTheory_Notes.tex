@@ -3,6 +3,7 @@
 
 \DeclareMathOperator{\ZFC}{\sf{ZFC}}
 \DeclareMathOperator{\ZF}{\sf{ZF}}
+\DeclareMathOperator{\cf}{\rm{cf}}
 
 \title{Set Theory Notes}
 \author{Jalen Chrysos}
@@ -69,6 +70,9 @@
 	Additional proposed axioms independent of $\ZFC$:
 	\begin{itemize}
 		\item \textbf{Continuum Hypothesis}: If $A\subseteq \R$ and $A$ is infinite then either $|A|=\omega$ or $|A|=|\R|$. That is, $|\R|=|\aleph_1|$. 
+		\item \textbf{Generalized Continuum Hypothesis}: For all $\kappa\geq \aleph_0$, $2^{\kappa}=\kappa^+$.
+		\item \textbf{Weakly Inaccessible Cardinal}: There exists $\kappa>\aleph_0$ such that $\kappa=\cf(\kappa)$.
+		\item \textbf{Strongly Inaccessible Cardinal}: There exists $\kappa$ such that $2^{\lambda}<\kappa$ for all $\lambda <\kappa$.
 	\end{itemize}
 	
 	\newpage
@@ -79,7 +83,31 @@
 	
 	Like with sets, there is no set of all ordinals (that set would be an ordinal itself). So we use the convention that the collection of all ordinals is a ``class.''\\
 	
+	The \textit{cofinality} of $\kappa$, denoted $\cf(\kappa)$, is the least cardinal $\lambda$ such that $\kappa$ can be represented as the union of a sequence of size $\lambda$. A cardinal is called \textit{regular} if $\cf(\kappa) = \kappa$ and \textit{singular} otherwise.\\
 	
+	\textbf{K\"onig's Theorem}: If $\kappa \geq \aleph_0$ and $\lambda \geq \cf(\kappa)$, then $\kappa^{\lambda} > \kappa$.
+	\begin{proof}
+		Let $f:\lambda\to \kappa$ be cofinal and $g:\kappa\to \kappa^{\lambda}$. We want to use $f$ to find a function $h\in \kappa^{\lambda}$ that is not in the image of $g$. This is a diagonalization argument: we only need $h$ to differ somewhere from $g(x)$ for each $x<\kappa$. We do this by defining $h(y)$ as the least cardinal that is not in the image of $\{z : z \leq f(y)\}$ under $g$. Because $f(y)$ covers $\kappa$ as $y$ ranges over $\lambda$, this works.
+	\end{proof}\\
 	
+	\textbf{Corollary}: If GCH holds and $\kappa>\lambda$ are cardinals with $\kappa$ infinite, then:
+	$$\kappa^{\lambda} = \begin{cases}
+		\kappa^+ & \lambda \geq \cf(\kappa)\\
+		\kappa & \lambda < \cf(\kappa)
+	\end{cases}$$
+	\begin{proof}
+		In the case $\lambda \geq \cf(\kappa)$, by K\"onig's Theorem $\kappa^{\lambda} > \kappa$, but on the other hand by GCH $\kappa^{\lambda} \leq 2^{\kappa} = \kappa^+$.\\
+		
+		In the case $\lambda < \cf(\kappa)$, then bla bla \textit{do later, it's short}.
+	\end{proof}\\
+	
+	In the absence of GCH, on the other hand, exponentiation of cardinals is undecidable in general.\\
+	
+	Given a set-like class relation $R$ on $A$, the \textit{Mostowski Collapsing Function} $G$ of $(A,R)$ is defined by $G(x) = \{G(y): y\in A \^ yRx\}$. The \textit{Mostowski Collapse} of $(A,R)$ is $M:=\im(G)$. It essentially turns $(A,R)$ into $(M,\in)$.
+	
+	\newpage
+	\section{Consistency Results}
+	
+	Suppose we want to show that some statement $P$ is consistent with $\ZFC$. The natural way to do this is to give a model. For our purposes, we'll give a set. If we can show within $\ZFC$ that a given set $S$ exists and models $P$, then we will have shown $P$ is consistent with $\ZFC$.
 	
 \end{document}

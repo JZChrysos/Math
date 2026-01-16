@@ -18,7 +18,11 @@
 
 \textbf{Problem 1 (2.6)}: Let $f:\R^n\to \R$ be a homogeneous function of degree $d$. Prove that $f^{-1}(1)$ is a (possibly empty) submanifold of dimension $n-1$.
 \begin{proof}
-	By Example 2.6, it suffices to show that the derivative of a homogeneous function $f:\R^n\to \R$ is surjective on points within $f^{-1}(1)$. In this case because the dimension of the output space is 1, it is equivalent to show that the derivative is nonzero. For $f$ to be homogeneous of degree $d$ means that $f(\lambda v)=\lambda^df(v)$ for all $v\in \R^n$ and $\lambda \in \R$. In particular, where $f(v)=1$, $f(\lambda v) = \lambda^df(v) = \lambda^d$, so the derivative in direction $v$ at $v$ is $d\lambda^{d-1}$ which is nonzero. \textbf{revisit. should depend on $|v|$ i think.}
+	By Example 2.6, it suffices to show that the derivative of a homogeneous function $f:\R^n\to \R$ is surjective on points within $f^{-1}(1)$. In this case because the dimension of the output space is 1, it is equivalent to show that the derivative is nonzero. 
+	
+	For $f$ to be homogeneous of degree $d$ means that $f(\lambda v)=\lambda^df(v)$ for all $v\in \R^n$ and $\lambda \in \R$. In particular, where $f(v)=1$, $f(\lambda v) = \lambda^df(v) = \lambda^d$, so the derivative in direction $v$ (which is defined because $f(0)=0$ so $0\not\in f^{-1}(1)$) at $v$ is nonzero. In particular 
+	$$\partial_{t} f(v+t v) = \partial_{t} f((1+t)v) = \partial_{t} (1+t)^d = d(1+t)^{d-1} = d \; \text{(at $t=0$)}$$ 
+	so $f$ has nonzero derivative at all points in $f^{-1}(1)$, thus making $f^{-1}(1)$ a submanifold of dimension $n-1$ as desired.
 \end{proof}
 
 \newpage
@@ -29,7 +33,24 @@
 	
 	$\tau\mapsto \tau^{-1}$ is smooth on $\SL_n(\R)$ as it is given by the adjugate matrix, so each coordinate is just the determinant of one of the minors, a polynomial in the matrix entries in $\tau$ and thus smooth. Similarly, each entry of $\sigma\tau^{-1}$ is a polynomial in the entries of $\sigma$ and $\tau$ and thus smooth.\\
 	
-	$\SO_n(\R)$ can be seen as the preimage $f^{-1}(I)$ where $f:\SL_n(\R)\to \SL_n(\R)$ is defined $f:a \mapsto a a^{\top}$, a homogeneous map of degree 2. \textbf{not done!}
+	$\SO_n(\R)$ can be seen as the fiber $f^{-1}(I)$ where $f:\GL_n(\R)\to \Sym_n(\R)$ is defined $f:a \mapsto a a^{\top}$, with the codomain being the symmetric matrices. So by Corollary 4.3, it suffices to show that $D_pf$ is surjective at every special orthogonal matrix $p$.
+	
+	To do this, wlog suppose we want to show that the symmetric matrix with 1 in the $(i,j)$ and $(j,i)$ places and 0 elsewhere is in the image of $D_pf$ (the diagonal case is easy). Let $c_k$ be the $k$th column of $p$. Assume wlog that $c_j$ is not in the direction $(1,1,\dots,1)$; otherwise swap $i,j$ and the following construction will work (note that they cannot both be in the same direction because $p$ has determinant 1). Consider $D_p(f)$ of the vector $v$ that perturbs the matrix by 
+	$$p_{i1} \mapsto p_{i1} + v_1, \;\; p_{i2}\mapsto p_{i2} + v_2, \;\; \dots \;\; p_{in}\mapsto p_{in} + v_n.$$
+	 We can choose $v$ to be orthogonal to $c_k$ for $k\neq i,j$ and also orthogonal to $(1,1,\dots,1)$. Due to this choice, the perturbation by $v$ doesn't affect $c_i\cdot c_k$ for any $k\neq i,j$, nor any dot product that doesn't involve $c_i$. $c_i\cdot c_i$ changes by $2(v_1+v_2+\cdots+v_n)$, which is 0 because $v$ to be orthogonal to $(1,1,\dots,1)$. Now, because we assumed that $c_j$ is not in the direction $(1,1,\dots,1)$, and also $p$ is orthogonal so it is not in the direction of any other $c_k$, $c_i\cdot c_j$ is changed by $v\cdot c_j$, which is nonzero. Thus, this (and its symmetric opposite) is the only entry that has nonzero determinant. So $D_pf$ is surjective, as desired.
+	
+	Proving that the product and inverse are smooth is the same as for $\SL_n(\R)$.
+	
+	As for the dimension, 4.3 gives that the codimension should be $\dim(\Sym_n(\R))$, which is $n + (n-1) + \cdots + 1 = \tfrac12(n)(n+1)$, so $\dim(\SO_n(\R)) = n^2 - \tfrac12(n)(n+1) = \tfrac12(n)(n-1)$. 
+	
+%	$\SO_n(\R)$ is homeomorphic to
+%	$$S^{n-1}\times S^{n-2}\times \cdots \times S^1$$
+%	as each $(n-1)$-tuple $(a_1,a_2,\dots,a_{n-1})$ in this product can be uniquely and continuously mapped to a $\SO_n(\R)$ matrix as follows: take the first column to be $a_1$, let the $(n-1)$-plane orthogonal to $a_1$ be $V_1$, take the second column to be $a_2\in V_1$, let the $(n-2)$-plane orthogonal to both $a_1$ and $a_2$ be $V_2$, $\dots$, and finally when $V_{n-1}$ is a 1-dimensional space, take whichever of the two unit vectors will make the resulting matrix det 1 (the other will give det -1). 
+%	
+%	This is continuous and bijective. This parametrization gives the dimension of $\SO_n(\R)$ as
+%	$$
+%	\dim(\SO_n(\R)) = (n-1) + (n-2) + \cdots + 1 = \tfrac12 n(n-1).
+%	$$
 \end{proof}
 
 \newpage 

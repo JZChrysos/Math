@@ -18,22 +18,63 @@ $$
 $$
 The atlas is $C^k$ if all the coordinate change maps are $C^k$.\\
 
-$\A$ must be $C^k$ in order to define the notion of a $C^k$ function $M\to \R$ (relative to $\A$); otherwise, we could have $f:M\to \R$ that is $C^k$ through one chart but not another. Naturally, which functions $M\to \R$ are $C^k$ depends on $\A$. And in fact, \textbf{atlases define the same notion of $C^k$ iff they are compatible}. That is, all possible notions of a $C^k$ function on $M$ correspond to maximal atlases, or ``$C^k$ \textit{structures}.''\\
+$\A$ must be $C^k$ in order to define the notion of a $C^k$ function $M\to \R$ (relative to $\A$); otherwise, we could have $f:M\to \R$ that is $C^k$ through one chart but not another. Naturally, which functions $M\to \R$ are $C^k$ depends on $\A$. And in fact, \textbf{atlases define the same notion of $C^k$ iff they are compatible}. That is, all possible notions of a $C^k$ function on $M$ correspond to maximal atlases, or ``$C^k$ \textit{structures}.''
 
-The presence of a $C^k$ structure enriches $M$ and allows one to say more about it, so the natural question is which $M$ have such structures. Whitney showed that all manifolds with a $C^k$ structure also have a $C^{\infty}$ structure that can be obtained by restricting the corresponding atlas (and hence a $C^j$ structure for $j>0$). So the $C^k$ structures come together. However, there are topological manifolds with no $C^1$ structure, and hence no $C^k$ structure for any $k>0$. Thus the only distinction is between smooth manifolds and non-differentiable manifolds. We will be concerned only with the former.\\
+The presence of a $C^k$ structure enriches $M$ and allows one to say more about it, so it is natural to ask whether a given $M$ has a $C^k$ structure. Whitney showed that all manifolds with a $C^k$ structure also have a $C^{\infty}$ structure that can be obtained by restricting the corresponding atlas (and hence a $C^j$ structure for $j>0$). So the $C^k$ structures come together. However, there are topological manifolds with no $C^1$ structure, and hence no $C^k$ structure for any $k>0$. Thus the only distinction is between smooth manifolds and non-differentiable manifolds. We will be concerned only with the former.\\
 
-Smooth manifolds are always (given some cardinality restrictions) diffeomorphic to smooth submanifolds of $\R^n$ for some $n$.\\
+A bijection $f:M\to N$ between smooth manifolds is called a \textit{diffeomorphism} if it and its inverse are both $C^1$. This is more strict than a \textit{homeomorphism}, which is only required to be continuous in both directions.
 
-\subsection{Submanifolds}
-A \textit{submanifold} $N\subset M$ is a subset of $M$ for which the charts $\kappa:M\to \R^m$ send $N$ to a linear subspace $\R^k\subset \R^m$. These charts naturally give $N$ the structure of a $k$-manifold.\\  
+While in Algebraic topology we are concerned with the homotopy types of spaces, which is a coarser characterization than homeomorphism type, when studying smooth manifolds we can also ask about the diffeomorphism type, which is finer\footnote{For example, the homeomorphism type of $S^7$ splits into 28 diffeomorphism types, as shown by Milnor.}.
 
-We are interested in questions of the form: can a given $N$ be realized as a submanifold of a given $M$? Especially when $M=\R^m$. Another way to say this is: can $N$ be \textit{embedded} in $M$?\\
+\subsection{Submanifolds, Immersions, Submersions, and Embeddings}
+All $m$-manifolds $M$, because they are locally homeomorphic to $\R^m$, have an associated \textit{tangent space} $T_pM$ at each point $p$. This is literally the set of tangent vectors to $M$ at $p$. It is in fact a vector space of dimension $m$. For smooth maps $f:M\to N$, we can think of the derivative $D_pf$ as literally a linear map between tangent spaces $D_pf :T_p M \to T_{f(p)}N$.\\
 
-\subsection{Tangent Space} If manifold $M$ is smooth, it has the additional structure of \textit{tangent spaces} $T_pM$ at each point $p\in M$. These are vector spaces of the same dimension as $M$. Specifically, $T_pM$ is the set of vectors that are $\gamma'(0)$ for curves $\gamma:I\to M$ with $\gamma(0)=p$.\\
+The quality of $D_pf$ locally tells us a lot about its overall properties.
+\begin{itemize}
+	\item $f$ is called an \textit{immersion} if $D_pf$ is injective at all points $p$.
+	\item $f$ is called a \textit{submersion} if $D_pf$ is surjective (i.e. full rank) at all points $p$.
+	\item $f$ is called a \textit{local diffeomorphism} if $D_pf$ is invertible at all points $p$.
+\end{itemize}
+Note that a local diffeomorphism need not be a diffeomorphism because though it is locally invertible it might not be globally (consider e.g. the map $\R\to S^1$ given by $x\mapsto e^{ix}$).
 
-For each map $f:M\to N$ where $M,N$ are smooth manifolds, we can see the derivative of $f$ at $p\in M$ as a linear map between the tangent spaces $D_pf :T_pM\to T_{f(p)}N$.\\
+The image of a local diffeomorphism need not even be a manifold. Consider the map taking $S^1$ to a figure-eight. Locally, every section of the circle is sent to a segment of the figure-eight, yet near the crossing point there is no homeomorphism to $\R$, so the figure-eight isn't a manifold. Another way of looking at this is that the tangent space to the figure-eight at the crossing point is \textit{not} a vector-space. For a higher-dimensional example, take the Klein bottle. There is a local diffeomorphism to a ``fake Klein bottle'' in $\R^3$ which self-intersects in a circle.
 
-\subsection{Basic Results} 
+If an immersion is injective (so its image has no self-intersections), it is called an \textit{embedding}. The image of an embedding $f:M\to N$ is always a manifold, and is called a \textit{submanifold} of $N$. Submanifolds can be equivalently characterized in another way: a manifold $A\subset N$ is a submanifold of $N$ if the charts $\kappa:N\to \R^n$ send $A$ to a linear subspace $\R^k\subset \R^n$.\\
+
+Question: Can a given $N$ be realized as a submanifold of a given $M$ (especially when $M=\R^m$)? Or in another way, can we classify all submanifolds of a given $M$ up to diffeomorphism type?
+\begin{itemize}
+	\item Any smooth manifold (as long as its topology has a countable basis) can be embedded in $\R^m$ for sufficiently large $m$, though exactly what $m$ is the minimum is not always easy to determine. 
+	\begin{itemize} 
+		\item \textbf{Whitney's Embedding Theorem}: a smooth $m$-manifold can always be embedded in $\R^{2m}$ and immersed in $\R^{2m-1}$ (smaller dimensions may be possible). 
+		\item Cohen proved more generally that a smooth $m$-manifold could be immersed in $\R^{2m-a(m)}$, where $a(m)$ is the number of 1's in the binary expansion of $m$.
+		\item For example, the Klein bottle $K$ can be described without reference to an underlying space via gluing instructions, and the lowest-dimensional space it can be embedded in is $\R^4$. In $\R^3$ it can be \textit{immersed}, but not embedded.
+	\end{itemize}
+\item \textbf{Inverse/Implicit Function Theorem}:
+\begin{itemize}
+	\item If $f:M\to N$ is an immersion at $p$, $f(U)$ is a submanifold of $N$ for some open $U\ni p$.
+	\item If $f:M\to N$ is a submersion at $p\mapsto q$, then the fiber $f^{-1}(q)$ is a submanifold of $M$.
+\end{itemize}
+\item \textbf{Transverse Intersections}:
+\begin{itemize}
+	\item We say $f:M\to N$ is \textit{transverse} to a submanifold $Q\subseteq N$ if for $q=f(p)\in Q$, $D_qf(T_p(M))$ and $T_q(Q)$ span $T_q(N)$. This is denoted $f\pitchfork Q$.
+	\item In this case, $f^{-1}(Q)$ is a submanifold of $M$ with the same codimension as $Q$ in $N$.\\
+\end{itemize}
+\end{itemize}
+
+\subsection{Tangent Bundles and Vector Fields} Every smooth manifold $M$ has an associated \textit{tangent bundle} $TM$ whose elements are pairs $(p,v)$ where $v\in T_pM$. It is a $2m$-dimensional manifold.\\
+
+A \textit{vector field} over a manifold is a smooth map $V:M\to TM$ with $V(p)\in T_p(M)$. For some manifolds $M$, it is possible to give a basis for $TM$ by vector fields; that is, to give vector fields $V_1,V_2,\dots,V_m$ such that their values at $p\in M$ are always a basis of $T_pM$.\\
+
+Question: For which $M$ is there a basis of vector spaces?
+\begin{itemize}
+	\item Examples:
+	\begin{itemize}
+		\item For $M=S^1$ there is a basis, given by a $90$-degree rotation at every $p$. Thinking of $S^1$ as $\C^{\times}$, this corresponds algebraically to a multiplication by $i$.
+		\item For $M=S^2$, there is not. There isn't even a nonzero vector field $V:M\to TM$. Suppose there were such $V:M\to TM$. Such $V$ induces by projection a map $V':S^2\to S^2$ with $V'(p)\bot p$ for all $p\in S^2$. But we know from Algebraic Topology that every map $S^n\to S^n$ either maps at least a point to its antipode or has a fixed point (if $p,V'(p)$ are not antipodes then there is a unique shortest path between them, so we can homotope every $V'(p)$ continuously along this shortest path to $p$, giving a homotopy to the identity map, and hence there is a fixed point).
+		\item For $M=S^3$, there is a basis. It is given by analogy to the Quaternions: thinking of $S^3$ as $\HH^{\times}$, then we have a basis via the three vector fields $p\mapsto ip,p\mapsto jp,p\mapsto kp$. 
+	\end{itemize}
+\end{itemize}
+
 
 %\textbf{Lemma}: Given two $C^k$ atlases $\{U_{\a},\kappa_{\a}\}$ and $\{V_{\b},\lambda_{\b}\}$ of the same manifold $M$, the following are equivalent:
 %\begin{enumerate}[(i)]

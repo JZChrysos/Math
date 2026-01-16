@@ -1,6 +1,17 @@
 \documentclass{amsart}
 \input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
 
+\DeclareMathOperator{\SF}{\sf{SF}}
+\DeclareMathOperator{\CF}{\sf{CF}}
+\DeclareMathOperator{\MF}{\sf{MF}}
+\DeclareMathOperator{\PE}{\sf{PE}}
+\DeclareMathOperator{\UF}{\sf{UF}}
+\DeclareMathOperator{\IIA}{\sf{IIA}}
+\DeclareMathOperator{\SP}{\sf{SP}}
+\DeclareMathOperator{\SM}{\sf{SM}}
+\DeclareMathOperator{\NS}{\sf{NS}}
+\DeclareMathOperator{\NWS}{\sf{NWS}}
+
 \title{Modeling Democracy Notes}
 \author{Jalen Chrysos}
 
@@ -101,27 +112,122 @@ First, there are criteria based on guaranteeing sufficiently common ballot featu
 	\item \textit{Unanimity-fair}: If all ballots rank $A$ above $B$, then the outcome must have $A$ above $B$.
 	\item \textit{Majority-fair}: If the majority of ballots rank $A$ first, then $A$ must win.
 	\item \textit{Condorcet-fair}: If $A$ is Condorcet then $A$ must win.
-	\item \textit{Smith-fair}: The winner must come from the Smith set.\\
+	\item \textit{Smith-fair}: Winners must come from the Smith set.\\
 \end{itemize}
 
 Next there are robustness criteria which restrict the effect that given changes to the ballots can have on the outcome:\\
 
 \underline{Profile-Robustness Criteria}:
 \begin{itemize}
-	\item \textit{Monotonic}: If $A$ is winning and a ballot is changed so that $A$ moves up, $A$ must still win.
-	\item \textit{Strictly Monotonic}: If $A$ is winning and a ballot is changed without moving $A$ downward, $A$ must still win.
-	\item \textit{Strategy-Proof}: If $A$ is winning, changing a ballot which ranks $B$ over $A$ cannot cause $B$ to win.
-	\item \textit{Independence of Irrelevant Alternatives}: The relative outcome of candidates $A$ and $B$ cannot be affected by swapping any two candidates other than $A$ and $B$ on a given ballot.
-	\item \textit{Voter Anonymity}: The voting rule does not depend on the order of ballots.\\
+	\item \textit{Monotonic}: If $A$ is winning and one ballot is altered by swapping $A$ upwards, $A$ still wins.
+	\item \textit{Strictly Monotonic}: If $A$ is winning and one ballot is altered by any swap that doesn't swap $A$ downwards, $A$ still wins.
+	\item \textit{Strategy-Proof}: If altering a single ballot changes the winner from $A$ to $B$, then the original ballot had $A>B$ and the altered ballot had $B>A$\footnote{If this is not true, then voters may be incentivized to report their preferences falsely. For example, if ballot 1 and ballot 2 both have $A>B$, then a voter whose true preferences are ballot 2 should switch to ballot 1.}. 
+	\item \textit{Voter Anonymity}: The voting rule does not depend on the order of ballots.
+	\item \textit{Non-Dictatorship}: The outcome does not depend on only one voter.\\
 \end{itemize}
 
-Finally there are criteria restricting the effect that given changes to the candidate pool can have on the outcome:\\
+Then there are criteria restricting the effect that given changes to the candidate pool can have on the outcome:\\
 
 \underline{Candidate-Robustness Criteria}:
 \begin{itemize}
-	\item \textit{No Spoilers}: Removing a non-winning candidate cannot affect the winner set.
-	\item \textit{No Weak Spoilers}: Removing a \textit{weak} non-winner cannot affect the winner set.
-	\item \textit{Candidate Anonymity}: The voting rule does not depend on the order of candidates.
+	\item \textit{No Spoilers}: If $A$ is winning, removing $B$ cannot cause $A$ to lose, nor can adding in a candidate $C$, unless $C$ is the sole winner. In these scenarios,  $B$ and $C$ are called spoilers.
+	\item \textit{No Weak Spoilers}: There can be no spoilers that are weak, i.e. not in the Smith set.
+	\item \textit{Candidate Anonymity}: The voting rule does not depend on the order of candidates.\\
 \end{itemize}
+
+And finally, here is one important criterion which requires robustness in both senses:\\
+
+\underline{General Robustness Criteria}:
+\begin{itemize}
+	\item \textit{Independence of Irrelevant Alternatives}: The relative outcome of candidates $A$ and $B$ cannot be affected by swapping any two candidates other than $A$ and $B$ on a given ballot \textit{or} by adding or subtracting other candidates. In other words, whether $A<B$ in the outcome depends only on how each voter ranked $A$ relative to $B$\footnote{If one has Voter Anonymity and Candidate Anonymity (two very reasonable expectations), $\IIA$ would imply that whether $A\succ B$ depends only on the \textit{number} of ballots preferring $A>B$ vs $B>A$, and by candidate anonymity this decision procedure must be the same for all pairs of candidates, so in effect the voting rule must be determined }.\\
+\end{itemize}
+
+\subsection{Relationships Between Fairness Criteria} To understand these criteria better, one should see how they relate, which are stronger and weaker, and so on. To begin with, here is a diagram of the implications:
+$$
+\begin{tikzcd}
+	&& {\sf{SF}} \\
+	&& {\sf{CF}} && {\sf{SP}} && {\sf{IIA}} \\
+	{\sf{UF}} && {\sf{MF}} && {\sf{SM}} && {\sf{NS}} \\
+	& {\sf{PE}} &&& {\sf{M}} && {\sf{NWS}}
+	\arrow[Rightarrow, from=1-3, to=2-3]
+	\arrow[Rightarrow, from=2-3, to=3-3]
+	\arrow[Rightarrow, from=2-5, to=3-5]
+	\arrow[Rightarrow, from=2-7, to=3-7]
+	\arrow[Rightarrow, from=3-1, to=4-2]
+	\arrow[Rightarrow, from=3-3, to=4-2]
+	\arrow[Rightarrow, from=3-5, to=4-5]
+	\arrow[Rightarrow, from=3-7, to=4-7]
+\end{tikzcd}
+$$
+Now, in many places one can 
+\newpage 
+
+\section{Impossibility Results}
+
+Having established some desirable fairness properties, we're forced to bite the bullet: many of them can never coexist in one voting rule.\\
+
+\underline{Incompatible Fairness Criteria}:
+\begin{itemize}
+	\item \textit{Monotonic} and \textit{No Spoilers}:
+	\begin{proof}
+		Consider the following simple profile with a Condorcet cycle:
+		\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline 
+			$\times 1$ & $\times 1$ & $\times 1$ \\
+			\hline 
+			$A$ & $B$ & $C$\\
+			$B$ & $C$ & $A$\\
+			$C$ & $A$ & $B$\\
+			\hline
+		\end{tabular}
+		\end{center}
+		In principle, it should be difficult to name a winner here due to the symmetry. Indeed, by Monotonicity, $A$ would lose if $B$ were removed, $B$ would lose if $C$ were removed, and $C$ would lose if $A$ were removed. Thus if any of $A,B,C$ were winning, they could be made to lose by removing a candidate, making the removed candidate a spoiler. So there are either spoilers or the system declares no winner.
+	\end{proof}\\
+	
+	\item (\textbf{Arrow}) \textit{Unanimity Fair}, \textit{Independence of Irrelevant Alternatives} and \textit{Non-Dictatorship}:
+	\begin{proof}
+		Consider the following sequence of profiles:
+		\begin{center}
+			$P_1 = $
+			\begin{tabular}{|c|c|}
+				\hline 
+				$\times 1$ & $\times 1$ \\
+				\hline 
+				$A$ & $B$ \\
+				$B$ & $A$ \\
+				$C$ & $C$ \\
+				\hline
+			\end{tabular}
+			\hspace{0.5cm}
+			$P_2=$
+			\begin{tabular}{|c|c|}
+				\hline 
+				$\times 1$ & $\times 1$ \\
+				\hline 
+				$A$ & $B$ \\
+				$B$ & $C$ \\
+				$C$ & $A$ \\
+				\hline
+			\end{tabular}
+			\hspace{0.5cm}
+			$P_3=$
+			\begin{tabular}{|c|c|}
+			\hline 
+			$\times 1$ & $\times 1$ \\
+			\hline 
+			$A$ & $C$ \\
+			$B$ & $B$ \\
+			$C$ & $A$ \\
+			\hline
+			\end{tabular}
+		\end{center}
+		In profile $P_1$, a unanimity-fair voting rule must rank $C$ last. Suppose WLOG that it ranks $A$ first. Then in $P_2$, by IIA, the voting rule must still return $A>B>C$ because the ranking of $B$ relative to $C$ hasn't changed. And moving from $P_2$ to $P_3$, the relative rankings of $(A,B)$ and $(A,C)$ haven't changed, so the voting rule must still give  
+	\end{proof}
+	\item  (\textbf{Muller-Satterthwaite}) \textit{Pareto Efficient}, \textit{Strongly Monotonic} and \textit{Non-Dictatorship}:
+	\item (\textbf{Gibbard-Satterthwaite}) \textit{Pareto Efficient}, \textit{Strategy-Proof} and \textit{Non-Dictatorship}:\\
+\end{itemize}
+
+If one considers Monotonicity, Unanimity-fairness, Pareto Efficiency, and Non-Dictatorship to be essential requirements of a fair voting system (and they do seem like reasonable requests), then these impossibility theorems can be interpreted as saying that the properties \textit{No Spoilers}, \textit{Independence of Irrelevant Alternatives}, \textit{Strongly Monotonic}, and \textit{Strategy-Proof} can never be achieved in any fair ranking-based voting system.
 
 \end{document}
