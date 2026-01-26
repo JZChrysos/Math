@@ -4,6 +4,7 @@
 \DeclareMathOperator{\ZFC}{\sf{ZFC}}
 \DeclareMathOperator{\ZF}{\sf{ZF}}
 \DeclareMathOperator{\cf}{\rm{cf}}
+\DeclareMathOperator{\Con}{\rm{Con}}
 
 \title{Set Theory Notes}
 \author{Jalen Chrysos}
@@ -77,37 +78,103 @@
 	
 	\newpage
 	
-	\section{Ordinals and Cardinals}
+%	\section{Ordinals and Cardinals}
+%	
+%	Within the language of set theory, we can define the \textit{ordinals} as the sets $\a$ which are both \textit{transitive} (i.e. if $\gamma\in \b\in \a$ then $\gamma\in \a$) and \textit{well-ordered} (i.e. for $\b,\gamma\in \a$, either $\b\in \gamma$ or $\gamma\in \beta$, and every subset of $\a$ has a least element)\footnote{The latter condition is actually guaranteed by Foundation.}.\\
+%	
+%	Like with sets, there is no set of all ordinals (that set would be an ordinal itself). So we use the convention that the collection of all ordinals is a ``class.''\\
+%	
+%	The \textit{cofinality} of $\kappa$, denoted $\cf(\kappa)$, is the least cardinal $\lambda$ such that $\kappa$ can be represented as the union of a sequence of size $\lambda$. A cardinal is called \textit{regular} if $\cf(\kappa) = \kappa$ and \textit{singular} otherwise.\\
+%	
+%	\textbf{K\"onig's Theorem}: If $\kappa \geq \aleph_0$ and $\lambda \geq \cf(\kappa)$, then $\kappa^{\lambda} > \kappa$.
+%	\begin{proof}
+%		Let $f:\lambda\to \kappa$ be cofinal and $g:\kappa\to \kappa^{\lambda}$. We want to use $f$ to find a function $h\in \kappa^{\lambda}$ that is not in the image of $g$. This is a diagonalization argument: we only need $h$ to differ somewhere from $g(x)$ for each $x<\kappa$. We do this by defining $h(y)$ as the least cardinal that is not in the image of $\{z : z \leq f(y)\}$ under $g$. Because $f(y)$ covers $\kappa$ as $y$ ranges over $\lambda$, this works.
+%	\end{proof}\\
+%	
+%	\textbf{Corollary}: If GCH holds and $\kappa>\lambda$ are cardinals with $\kappa$ infinite, then:
+%	$$\kappa^{\lambda} = \begin{cases}
+%		\kappa^+ & \lambda \geq \cf(\kappa)\\
+%		\kappa & \lambda < \cf(\kappa)
+%	\end{cases}$$
+%	\begin{proof}
+%		In the case $\lambda \geq \cf(\kappa)$, by K\"onig's Theorem $\kappa^{\lambda} > \kappa$, but on the other hand by GCH $\kappa^{\lambda} \leq 2^{\kappa} = \kappa^+$.\\
+%		
+%		In the case $\lambda < \cf(\kappa)$, then bla bla \textit{do later, it's short}.
+%	\end{proof}\\
+%	
+%	In the absence of GCH, on the other hand, exponentiation of cardinals is undecidable in general.\\
+%	
+%	Given a set-like class relation $R$ on $A$, the \textit{Mostowski Collapsing Function} $G$ of $(A,R)$ is defined by $G(x) = \{G(y): y\in A \^ yRx\}$. The \textit{Mostowski Collapse} of $(A,R)$ is $M:=\im(G)$. It essentially turns $(A,R)$ into $(M,\in)$.
+%	
+%	\newpage
 	
-	Within the language of set theory, we can define the \textit{ordinals} as the sets $\a$ which are both \textit{transitive} (i.e. if $\gamma\in \b\in \a$ then $\gamma\in \a$) and \textit{well-ordered} (i.e. for $\b,\gamma\in \a$, either $\b\in \gamma$ or $\gamma\in \beta$, and every subset of $\a$ has a least element)\footnote{The latter condition is actually guaranteed by Foundation.}.\\
+	\section{Fragments and Class Models}
 	
-	Like with sets, there is no set of all ordinals (that set would be an ordinal itself). So we use the convention that the collection of all ordinals is a ``class.''\\
+	\underline{Structures of Set Theory:}
+	\begin{itemize}
+	\item The class of \textit{Rank-$\kappa$} sets, denoted $R(\kappa)$, is defined inductively as follows: $R(0)$ is just the empty set, and in general $x\in R(\kappa)$ iff all elements of $x$ have rank less than $\kappa$.
+	\begin{itemize}
+		\item This is a set, and it can be constructed fairly simply.
+		\item If $\kappa$ is strongly inaccessible, $|R(\a)|<\kappa$ for all $\a<\kappa$.
+	\end{itemize}
+	\item The class of \textit{Hereditarily Cardinality-$\kappa$} sets, denoted $H(\kappa)$, is the class of sets $x$ such that the ``transitive closure'' of $x$ has cardinality less than $\kappa$.
+	\begin{itemize}
+		\item Whereas the class of sets with cardinality $<\kappa$ is not a set, $H(\kappa)$ \textit{is} actually a set; to show this, we can show that $H(\kappa)$ is contained in $R(\kappa)$, a set, thus by Comprehension it must be a set.
+		\item The proof: if $t$ is the transitive closure of $x$, let $\a$ be the least ordinal that is not the rank of anything in $t$. Then for $\b>\a$, $\b$ cannot be the rank of anything in $t$ either, since $t$ is transitively closed and thus $\a$ would have to be the rank of some of its elements. So the ranks of elements in $t$ are all less than $\a$, so $x$ itself has rank at most $\a$. \\
+	\end{itemize}
+	\end{itemize}
 	
-	The \textit{cofinality} of $\kappa$, denoted $\cf(\kappa)$, is the least cardinal $\lambda$ such that $\kappa$ can be represented as the union of a sequence of size $\lambda$. A cardinal is called \textit{regular} if $\cf(\kappa) = \kappa$ and \textit{singular} otherwise.\\
+	\underline{Fragments of Set Theory:}
+	\begin{itemize}
+		\item $\ZFC$ - Pow: 
+		\begin{itemize}
+			\item For a regular cardinal $\kappa>\omega$, $H(\kappa)$ is a model for $\ZFC$ - Pow. 
+			\item $H(\kappa)$ can only model Powerset if $\kappa$ is strongly inaccessible, equivalently $H(\kappa)=R(\kappa)$. This shows that $\ZFC$ cannot prove the existence of such a $\kappa$, since it cannot prove its own consistency.
+		\end{itemize}
+		\item $\ZFC$ - Pow + $\neg$Pow:
+		\begin{itemize}
+			\item This is modeled by $H(\omega_1)$, for example. This also shows that $\ZFC$ - Pow cannot prove the existence of an uncountable set.
+		\end{itemize}
+		\item $\ZFC$ - Rep:
+		\begin{itemize}
+			\item $R(\omega+\omega)$ is model for $\ZFC$ - Rep.
+		\end{itemize}
+		\item $\ZFC$ + SIC:
+		\begin{itemize}
+			\item 
+		\end{itemize}
+	\end{itemize}
 	
-	\textbf{K\"onig's Theorem}: If $\kappa \geq \aleph_0$ and $\lambda \geq \cf(\kappa)$, then $\kappa^{\lambda} > \kappa$.
-	\begin{proof}
-		Let $f:\lambda\to \kappa$ be cofinal and $g:\kappa\to \kappa^{\lambda}$. We want to use $f$ to find a function $h\in \kappa^{\lambda}$ that is not in the image of $g$. This is a diagonalization argument: we only need $h$ to differ somewhere from $g(x)$ for each $x<\kappa$. We do this by defining $h(y)$ as the least cardinal that is not in the image of $\{z : z \leq f(y)\}$ under $g$. Because $f(y)$ covers $\kappa$ as $y$ ranges over $\lambda$, this works.
-	\end{proof}\\
+	\newpage 
 	
-	\textbf{Corollary}: If GCH holds and $\kappa>\lambda$ are cardinals with $\kappa$ infinite, then:
-	$$\kappa^{\lambda} = \begin{cases}
-		\kappa^+ & \lambda \geq \cf(\kappa)\\
-		\kappa & \lambda < \cf(\kappa)
-	\end{cases}$$
-	\begin{proof}
-		In the case $\lambda \geq \cf(\kappa)$, by K\"onig's Theorem $\kappa^{\lambda} > \kappa$, but on the other hand by GCH $\kappa^{\lambda} \leq 2^{\kappa} = \kappa^+$.\\
-		
-		In the case $\lambda < \cf(\kappa)$, then bla bla \textit{do later, it's short}.
-	\end{proof}\\
-	
-	In the absence of GCH, on the other hand, exponentiation of cardinals is undecidable in general.\\
-	
-	Given a set-like class relation $R$ on $A$, the \textit{Mostowski Collapsing Function} $G$ of $(A,R)$ is defined by $G(x) = \{G(y): y\in A \^ yRx\}$. The \textit{Mostowski Collapse} of $(A,R)$ is $M:=\im(G)$. It essentially turns $(A,R)$ into $(M,\in)$.
-	
-	\newpage
 	\section{Consistency Results}
 	
-	Suppose we want to show that some statement $P$ is consistent with $\ZFC$. The natural way to do this is to give a model. For our purposes, we'll give a set. If we can show within $\ZFC$ that a given set $S$ exists and models $P$, then we will have shown $P$ is consistent with $\ZFC$.
+	G\"odel showed that $\Gamma\nvdash \Con(\Gamma)$ for any fragment of set theory $\Gamma$. We can therefore define the partial order $\lhd$ on fragments, where 
+	$$\Gamma \lhd \Lambda \; \iff \; \Lambda \vdash \Con(\Gamma).$$ 
+	With this notation, G\"odel's second incompleteness theorem as the fact that $\Gamma \not\lhd \Gamma$. Showing $\Gamma \lhd \Lambda$ will typically involve working within $\Lambda$ to produce a model of $\Gamma$.
+	
+	We also define a slightly finer partial order $\leq$ by 
+	$$\Gamma\leq \Lambda \; \iff \; \Con(\Lambda)\implies \Con(\Gamma)$$
+	and say $\Gamma \sim \Lambda$ if $\Gamma \leq \Lambda$ and $\Lambda \leq \Gamma$.\\
+	
+	Suppose we want to show that some statement $P$ is consistent with $\ZFC$. The natural way to do this is to give a model. What we'll do is give a ``model'' that is actually a class $\MM$ (i.e. set of propositions) inside of which $\ZFC + P$ holds. Then we will have in fact shown $P$ is consistent with $\ZFC$, because if an inconsistency appears, it must appear in $\MM$ as well (exercise).\\
+	
+	We will basically think about classes as models of $\ZFC$ or its fragments, with $\ph^{\MM}$ denoting ``$\ph$ holds within $\MM$.'' We will say $\ph$ is \textit{absolute} wrt a class and subclass $\MM\subseteq \NN$ if $\ph^{\MM} \iff \ph^{\NN}$. Of course, all of the quantifier-free formulas $\ph$ are absolute for any class-subclass pair. But also bounded-quantifier formulas are always absolute, as long as $\MM,\NN$ are both \textit{transitive} (exercise). If $\MM\models T$ and $\NN\models T$, and $T$ proves that $\ph,\psi$ are equivalent, then $\ph$ is absolute iff $\psi$ is.\\
+	
+	So the big idea here is that as long as we only consider classes that are transitive, then all bounded-quantifier formulas are absolute, including formulas like ``$x$ is transitive,'' ``$x$ is a function,'' etc. It's also true, though this is not bounded-quantifier, that if $R$ well-orders $A\subseteq \MM$ then $\MM$ models this fact.\\
+	
+	Now we need to know how the $\ZFC$ axioms appear in classes.
+	\begin{itemize}
+		\item \textbf{Foundation}: $\MM$ has foundation as long as $\MM$ is a subset of the class of well-founded sets (exercise).
+		\item \textbf{Extensionality}: $\MM$ has extensionality as long as $\MM$ is transitive (exercise). This is necessary because e.g. $\MM=\{0,\{0,1\},\{0,2\}\}$ does not have extensionality, since $\{0,1\}$ and $\{0,2\}$ appear to have the same elements from the perspective of $\MM$.
+		\item \textbf{Powerset, Pairing, Union}: All fairly trivial to check.
+		\item \textbf{Comprehension}: 
+	\end{itemize}
+	
+	Consistency results
+	\begin{itemize}
+		\item Without using foundation, $\ZF$ proves that WF (the class of well-founded sets) and $R(\omega)$ (the sets of rank at most $\omega$) are both models of $\ZF$ - infinity. This implies that  $$CON(\ZF - Foundation)\implies CON(\ZF- Inf)$$
+		And moreover, WF is a model of $Inf$ as well, whereas $R(\omega)$ is not. This shows that $Inf$ is independent of $\ZF-Inf$, given the consistency of $\ZF - Foundation$.
+	\end{itemize}
 	
 \end{document}

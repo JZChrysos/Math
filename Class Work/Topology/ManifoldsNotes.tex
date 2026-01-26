@@ -1,7 +1,7 @@
 \documentclass{amsart}
 \input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
 
-\title{Manifolds}
+\title{Differentiable Manifolds}
 \author{Jalen Chrysos}
 
 \begin{document}
@@ -27,7 +27,7 @@ A bijection $f:M\to N$ between smooth manifolds is called a \textit{diffeomorphi
 While in Algebraic topology we are concerned with the homotopy types of spaces, which is a coarser characterization than homeomorphism type, when studying smooth manifolds we can also ask about the diffeomorphism type, which is finer\footnote{For example, the homeomorphism type of $S^7$ splits into 28 diffeomorphism types, as shown by Milnor.}.
 
 \subsection{Submanifolds, Immersions, Submersions, and Embeddings}
-All $m$-manifolds $M$, because they are locally homeomorphic to $\R^m$, have an associated \textit{tangent space} $T_pM$ at each point $p$. This is literally the set of tangent vectors to $M$ at $p$. It is in fact a vector space of dimension $m$. For smooth maps $f:M\to N$, we can think of the derivative $D_pf$ as literally a linear map between tangent spaces $D_pf :T_p M \to T_{f(p)}N$.\\
+All $m$-manifolds $M$, because they are locally homeomorphic to $\R^m$, have an associated \textit{tangent space} $T_pM$ at each point $p$. When $M$ is inside a Euclidean space, this is literally the set of tangent vectors to $M$ at $p$. In general it can be defined for all manifolds $M$ in a compatible way. $T_pM$ is in fact a vector space of dimension $m$. For smooth maps $f:M\to N$, we can think of the derivative $D_pf$ as literally a linear map between tangent spaces $D_pf :T_p M \to T_{f(p)}N$.\\
 
 The quality of $D_pf$ locally tells us a lot about its overall properties.
 \begin{itemize}
@@ -63,17 +63,81 @@ Question: Can a given $N$ be realized as a submanifold of a given $M$ (especiall
 
 \subsection{Tangent Bundles and Vector Fields} Every smooth manifold $M$ has an associated \textit{tangent bundle} $TM$ whose elements are pairs $(p,v)$ where $v\in T_pM$. It is a $2m$-dimensional manifold.\\
 
-A \textit{vector field} over a manifold is a smooth map $V:M\to TM$ with $V(p)\in T_p(M)$. For some manifolds $M$, it is possible to give a basis for $TM$ by vector fields; that is, to give vector fields $V_1,V_2,\dots,V_m$ such that their values at $p\in M$ are always a basis of $T_pM$.\\
+A \textit{vector field} over a manifold is a smooth map $V:M\to TM$ with $V(p)\in T_p(M)$. For some manifolds $M$, it is possible to give a basis for $TM$ by vector fields; that is, to give vector fields $V_1,V_2,\dots,V_m$ such that their values at $p\in M$ are always a basis of $T_pM$. Such manifolds are called \textit{parallelizable}.\\
 
-Question: For which $M$ is there a basis of vector spaces?
+Question: Which $M$ are parallelizable?
 \begin{itemize}
 	\item Examples:
 	\begin{itemize}
-		\item For $M=S^1$ there is a basis, given by a $90$-degree rotation at every $p$. Thinking of $S^1$ as $\C^{\times}$, this corresponds algebraically to a multiplication by $i$.
-		\item For $M=S^2$, there is not. There isn't even a nonzero vector field $V:M\to TM$. Suppose there were such $V:M\to TM$. Such $V$ induces by projection a map $V':S^2\to S^2$ with $V'(p)\bot p$ for all $p\in S^2$. But we know from Algebraic Topology that every map $S^n\to S^n$ either maps at least a point to its antipode or has a fixed point (if $p,V'(p)$ are not antipodes then there is a unique shortest path between them, so we can homotope every $V'(p)$ continuously along this shortest path to $p$, giving a homotopy to the identity map, and hence there is a fixed point).
-		\item For $M=S^3$, there is a basis. It is given by analogy to the Quaternions: thinking of $S^3$ as $\HH^{\times}$, then we have a basis via the three vector fields $p\mapsto ip,p\mapsto jp,p\mapsto kp$. 
+		\item $M=S^1$ is parallelizable. A basis can be given by a $90$-degree rotation at every $p$. Thinking of $S^1$ as $\C^{\times}$, this corresponds algebraically to a multiplication by $i$.
+		\item $M=S^2$ is not. In fact, there isn't even a nonzero vector field $V:M\to TM$. Suppose there were such $V:M\to TM$. Such $V$ induces by projection a map $V':S^2\to S^2$ with $V'(p)\bot p$ for all $p\in S^2$. But we know from Algebraic Topology that every map $S^n\to S^n$ either maps at least a point to its antipode or has a fixed point (if $p,V'(p)$ are not antipodes then there is a unique shortest path between them, so we can homotope every $V'(p)$ continuously along this shortest path to $p$, giving a homotopy to the identity map, and hence there is a fixed point).
+		\item $M=S^3$ is parallelizable. It is given by analogy to the Quaternions: thinking of $S^3$ as $\HH^{\times}$, then we have a basis via the three vector fields $p\mapsto ip,p\mapsto jp,p\mapsto kp$. 
+		\item As it turns out, $S^1,S^3,S^7$ are the only spheres that are parallelizable.
+	
 	\end{itemize}
+	\item In general, all Lie groups are parallelizable (we show this on HW).\\
+	\end{itemize}
+	
+A \textit{derivation} is an $\R$-linear map $D:\EE(U)\to \EE(U)$ (where $\EE(U)$ is the space of functions on $U$) which obeys the Leibniz rule $D(fg)=Df\cdot g  +f\cdot Dg$. The derivative along any vector is a natural example of such a map, and more generally a vector field can act on $\EE(U)$ in the same way. In fact, \textbf{all derivations correspond to actions of vector fields}; that is, every derivation is of the form
+$$
+V(f)(p) = (f\circ \gamma)'(0) = D_p (f)\cdot V(p) 
+$$
+where $\gamma:\R\to U$ is a smooth path such that $\gamma(0)=p$ and $\gamma'(p)=V(p)$ (note that this only depends on the vector field $V$).
+
+To go the other way, the vector field associated with derivation $D$ is
+$$
+V(p) = (D(\gamma_1)(p),D(\gamma_2)(p),\dots,D(\gamma_m)(p))
+$$
+where $\gamma_j:\R\to M$ are paths with $\gamma_j(0)=p$ which form a basis of the tangent space $T_pM$.\\ 
+
+For any derivations $V,W$ on $M$, the \textit{Lie bracket} $[V,W]:=V\circ W-W\circ V$ is a derivation (simple exercise), and hence the Lie bracket can be defined on the space of smooth vector fields on $M$, making this space into a Lie Algebra. The Lie bracket is bilinear, anti-symmetric, and satisfies the Jacobi identity:
+$$
+[A,[B,C]]  + [B,[C,A]] + [C,[A,B]] = 0.
+$$
+
+\subsection{Flows}
+\begin{itemize}
+\item A \textit{flow} is a smooth map $H:\R\times M\to M$ with the properties \begin{itemize}
+	\item $H_0=\id_M$
+	\item $H_tH_s=H_{t+s}$.
 \end{itemize}
+\item We write $H_t:M\to M$ for $H_t:p\mapsto (t,p)$. The map $t\mapsto H_t$ is a group homomorphism $\R$ to the group of diffeomorphisms on $M$. 
+\item The \textit{orbit through $p$}, denoted $\gamma_p$, is $\gamma_p:t\mapsto H_t(p)$.
+\item For each $H$ we have an associated vector field $V_H:p\mapsto \gamma_p'(0)\in T_pM$. This is called the \textit{infinitesimal generator} of $H$.
+\begin{itemize}
+	\item This correspondence is not bijective; there are vector fields that do not come from flows.
+	\item However, there is a bijective correspondence between \textit{maximal local flows} and vector fields. A local flow is like a flow except it need not be defined on all of $\R\times M$, rather for each $m\in M$ it is defined on some open interval around 0. It is maximal if this domain $\Omega\subset \R\times M$ is as large as possible, so on the boundary $H$ should be diverging.
+	\item The maximal local flow corresponding to $V$ is called the \textit{evolution} of $V$.
+\end{itemize}
+\item Question: which $V$ generate a flow (as opposed to a local flow)?
+\begin{itemize}
+	\item If the evolution of $V$ contains a fixed time interval $(-\ep,\ep)$ at every point of $M$, then it generates a flow (HW).
+	\item If $V$ is compactly supported, then it generates a flow (HW).\\
+\end{itemize}
+\end{itemize}
+
+One natural application of this concept is to describe the vector field $[V,W]$: if $V,W$ generate flows $H,I$, then we can write $[V,W]$ as a derivative in terms of these flows:
+$$
+\partial_s\partial_t\big|_{s=t=0} I_tH_sI_t^{-1}H_s^{-1} = [V,W].
+$$
+Intuitively, $[V,W]$ measures the failure of $H$ and $I$ to commute. Conversely, if $[V,W]=0$, then $H_sI_t=I_tH_s$ (HW).
+
+\newpage
+
+\section{Differential Forms}
+
+
+
+
+%A smooth map $f:E\to M$ is called a \textit{fiber bundle} if $f$ is locally ``projection-like,'' meaning that every $p\in M$ has an open neighborhood $U\subseteq M$ and a smooth retraction $r:f^{-1}(U)\to f^{-1}(p)$ such that
+%$$
+%(r,f): f^{-1}(U) \to f^{-1}(p)\times U
+%$$
+%is a diffeomorphism.\\
+%
+%The \textbf{Ehresmann Fibration Theorem} says that if $f$ is a \textit{proper submersion} (proper meaning that the inverse image of a compact set is compact), then $f$ is a fiber bundle. The proof of this fact uses vector fields in an essential way, though I won't reproduce it here.\\
+
+
 
 
 %\textbf{Lemma}: Given two $C^k$ atlases $\{U_{\a},\kappa_{\a}\}$ and $\{V_{\b},\lambda_{\b}\}$ of the same manifold $M$, the following are equivalent:

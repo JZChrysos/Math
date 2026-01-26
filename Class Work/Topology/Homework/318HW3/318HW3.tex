@@ -1,0 +1,105 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{318 HW 3}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+	\maketitle
+	
+	\textbf{Problem 2.3}: Let $G$ be a Lie group with unit $e$. Prove that the Lie product of two left invariant vector fields on $G$ is left invariant. Conclude that the Lie bracket defines a product $T_eG\times T_eG\to T_eG$. Compute this bracket for $G=\GL_n(\R)$, where $T_eG=M_{n\times n}(\R)$.
+	\begin{proof}
+		Let $V,W$ be two left-invariant vector fields on $G$. Then
+		\begin{align*}
+		(L_{g*}[V,W]) &= L_{g*}\circ [V,W]\circ L_{g}^*  \\
+		&= L_{g*}\circ (VW-WV)\circ L_{g}^* \\
+		&= L_{g*}VWL_g^* - L_{g*}WVL_g^*\\
+		&= L_{g*}VL_g^*L_{g*}WL_g^* - L_{g*}WL_g^*L_{g*}VL_g^*\\
+		&= (L_{g*}V)\circ (L_{g*}W) - (L_{g*}W)\circ (L_{g*}V)\\
+		&= V\circ W - W\circ V = [V,W] 
+		\end{align*}
+		In the middle we used the fact that $L_{g}^*L_{g*} = \id$.\\
+		
+		By problem 1.4(b) from the previous homework, there is a \textit{unique} left-invariant vector field $F_a:g\mapsto ga$ on $G$ which is $a$ at $e\in G$. And $[F_a,F_b]$ is left-invariant as well, so it is $F_c$ for some $c\in T_eG$, thus we can put a lie bracket on $T_eG$ by
+		$$
+		[F_a,F_b] = F_c \; \; \iff \;\; [a,b] = [F_a,F_b](e) = c.
+		$$ 
+		It is well-defined because $F_a,F_b$ are unique. We can check that this is bilinear:
+		$$
+		[v,w+w'] = [F_v,F_{w+w'}](e) = [F_v,F_w + F_{w'}](e) =[F_v,F_w](e) +  [F_v,F_{w'}](e)
+		$$
+		using the fact that $F_{w+w'}(g)= g(w+w') = gw + gw' = F_w(g) + F_{w'}(g)$. 
+		Skew-symmetry and the Jacobi identity follow from the same properties for the Lie bracket on vector fields.\\
+		
+		Now let $G=\GL_n(\R)$ and let $a,b\in T_eG= M_{n\times n}(\R)$. We have the following computation:
+		\begin{align*}
+		F_{[a,b]}(f)(g) &= [F_a,F_b](f)(g) \\
+		&= (F_aF_b(f) - F_bF_a(f))(g)\\
+		&= (F_{ba}(f) - F_{ab}(f))(g)\\
+		&= D_gf(F_{ba}(g)) - D_gf(F_{ab}(g))\\
+		&= D_gf(gba) - D_gf(gab)\\
+		&= D_gf(g(ba-ab))\\
+		&= D_gf(F_{ba-ab}(g))\\
+		&= F_{ba-ab}(f)(g)
+		\end{align*}
+		which gives $[a,b]=ba-ab$.
+	\end{proof} 
+	
+	\newpage
+	
+	\textbf{Problem 3.7}: Prove that every compactly supported vector field $V$ on $M$ generates a flow.
+	\begin{proof}
+		First we reduce to exercise 3.6, which states that $V$ generates a flow as long as its evolution is defined on $(-\ep,\ep)\times M$ for some $\ep>0$. So we must show that if $V$ is compactly supported then it is of this type.
+		
+		Let $C$ be the support of $V$. Using existence and uniqueness of solutions to ODEs, we can cover $\{0\}\times C$ with open neighborhoods $(-\ep_{\a},\ep_{\a})\times U_{\a}$ for which there is a unique solution. Because $C$ is compact, we can take a finite subcover, for which there is some minimum $\ep_{\a}$ which we call $\ep$. On $M\setminus C$, which is open because $C$ is compact, $V=0$, so the identity is a solution for all times in $\R$. Now by combining these solutions (as we showed was possible in class and in the notes) we get a local flow defined on $(-\ep,\ep)\times M$.\\
+		
+		Now to solve exercise 3.6: suppose $V$ generates a local flow $h$ defined on $(-\ep,\ep)\times M$. Then one can define a flow $H$ compatible with $h$ as follows: for $x\in M$ and $t\in \R$, inductively define $H$ by
+		$$H(t,x) = \begin{cases}
+			h(t,x) & |t|<\ep \\
+			H(t-\tfrac12\ep,h(\tfrac12\ep,x)) & t > \ep\\
+			H(t+\tfrac12\ep,h(-\tfrac12\ep,x)) & t < -\ep
+		\end{cases}$$
+		To show that this is a flow, we must show that it is smooth, $H_0=\id$, and $H_{s}H_t=H_{s+t}$. The latter two are clear from the definition of $H$. To show that $H$ is smooth at $(t,x)$ for $t>\ep$, since $H(t,x)=H(t-\tfrac12\ep,h(\tfrac12\ep,x))$, it reduces to the case $(t-\tfrac12\ep,h(\tfrac12\ep,x))$, and by induction to the case $t<\ep$, for which $H(t,p)=h(t,p)$ is smooth because it is a local flow.
+	\end{proof}
+	\newpage 
+	
+	\textbf{Problem 3.10}: Let $V,W$ be the infinitesimal generators of flows $H,I$. 
+	\begin{enumerate}[(a)]
+		\item Prove that 
+		$$
+		\partial_s \partial_t\big|_{s=t=0} H_sI_tH_s^{-1}I_t^{-1} = -[V,W].
+		$$
+		\item Prove that if $H_sI_t=I_tH_s$ for all $s,t\in \R$, then $[V,W]=0$.
+		\item Assuming $[V,W]=0$, show that $H_s^*W=W$ for all $s$. Then show that $H_sI_t=I_tH_s$ for all $s,t$.
+	\end{enumerate}
+	
+	\begin{proof}
+		(a): Viewing $V,W$ as derivations, we can ask how the LHS acts on a function $f:M\to \R$ and expect that we will get $W(V(f))-V(W(f))$:
+		\begin{align*}
+			\partial_s\partial_t \big|_{s=t=0} H_sI_tH_s^{-1}I_t^{-1} &= \partial_s\partial_t \big|_{s=t=0} H_s^*I_t^*H_s^{-1*}I_t^{-1*}\\
+			&= \partial_s\partial_t \big|_{s=t=0} H_s^*I_t^*H_{s*}I_{t*}\\
+			&=  \partial_s\big|_{s=0} H_s^*I_0^*H_{s*} (-W) + H_s^*(W)H_{s*}I_{0*}\\
+			&= \partial_s\big|_{s=0} (-W) + H_s^*(W)H_{s*}\\
+			&= 0 + H_0^*(W)(-V) + (V)(W)H_{0*}\\
+			&= -WV + VW\\
+			&= -[V,W].
+		\end{align*}
+		This uses a couple of facts that I should explain: one is that $\partial_t|_{t=0} I_t^*=W$ and $\partial_t|_{t=0}I_{t*}=-W$, and similarly for $s,H,V$ (this is shown in proposition 3.10 in the notes). Another is that when two operators $A_t,B_t$ both depending on a parameter $t$ are composed, their derivative in $t$ works like the product rule:
+		$$
+		\partial_t|_{t=0} A_t\circ B_t = B_0'\cdot A_0 + A'_0\cdot B_0
+		$$
+		which follows from treating the two $t$s as separate variables and applying the chain rule.\\
+		
+		(b): If $H_sI_t=I_tH_s$ then $H_sI_tH_s^{-1}I_t^{-1}=\id$, so by part (a), 
+		$$-[V,W] = \partial_s\partial_t H_sI_tH_s^{-1}I_t^{-1} = \partial_s\partial_t \id = 0.$$
+		
+		(c): By proposition 3.10 in the notes, $\partial_s|_{s=0} H_s^*W = [V,W]$, so if $[V,W]=0$ then $H_s^*W$ is constant in $s$. And at $s=0$ we know that $H_0^*W=W$, so $H_s^*W=W$ for all $s$. The same reasoning shows that $I_t^*V=V$ for all $t\in \R$.
+		
+		Using this fact, 
+		$$H_s^*I_t^*(f) = WV(f) \;\; \text{and} \;\; I_t^*H_s^*(f)=VW(f)$$ and since $[V,W]=0$, $WV(f)=VW(f)$, so $H_s^*I_t^*$ and $I_t^*H_s^*$ act the same way as operators on $\EE(M)$, thus they are equal as derivations and vector fields.
+		 
+%		 By exercise 3.3, if $V$ generates flow $H$, $H_{t*}(V)=V$ for all $t\in \R$.
+	\end{proof}
+
+\end{document}

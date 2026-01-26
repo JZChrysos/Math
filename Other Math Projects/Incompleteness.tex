@@ -1,0 +1,55 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Incompleteness}
+\author{Jalen Chrysos}
+
+\begin{document}
+	\maketitle
+	
+	\begin{center}
+		``Everything possible to be believed is an image of truth." -- William Blake
+	\end{center}
+	
+	\section{Introduction} David Hilbert believed (or at least hoped) that mathematics might produce an algorithm for determining whether a given statement was true or false. For example, one could feed in the statement
+	$$
+	\forall n \geq 3,\,  a,b,c\geq 1: \; a^n + b^n \neq c^n
+	$$
+	and out would come ``True.'' Such an algorithm would probably be horribly slow, but its existence is more important than its efficiency. 
+	
+	A stronger claim would be that there exists some reasonable\footnote{That is to say, consistent and \textit{computably enumerable}.} set of axioms from which any statement can be proven either true or false. If this were true, then the algorithm could be written in the following way: to decide a statement $\ph$, list every possible string of characters, checking each to see if it is a proof of $\ph$ or $\neg \ph$ (checking the correctness of a proof is certainly possible).
+	
+	G\"odel showed that neither of these is true in general. There is no algorithm to determine the truth of a statement of number theory, for example. Consequently, there is no reasonable set of axioms that can decide all statements of number theory. There are multi-variable polynomials $P(x_1,x_2,\dots,x_n)$ for which the statement
+	$$
+	\exists x_1,x_2,\dots,x_n\in \N^n : P(x_1,\dots,x_n) = 0
+	$$
+	cannot be proven or disproven from the axioms of arithmetic (some such polynomials are known)\footnote{What a relief that Fermat's Last Theorem was not one of this type!}. 
+	
+	
+	\newpage
+	
+	\section{Chaitin's Method} One type of statement that a theory fails to prove in general is lower bounds on the \textit{complexity} of numbers. \\
+	
+	Fixing a ``programming language'' in advance, the \textit{Kolmogorov Complexity} of a number $n\in \N$, which we denote $K(n)$, is the length of the shortest program whose output is $n$.\\
+	
+	\textbf{Chaitin's Incompleteness Theorem}: Assuming $T$ is consistent, there is some $L$ for which $T$ cannot prove any statement of the form $K(n)\geq L$.
+	\begin{proof}
+		Suppose on the contrary that $T$ decides all such statements. Then one can determine whether $K(n)\geq L$ by searching through all $T$-proofs. In this manner, write an algorithm $A_L$ which outputs the first $n$ it finds whose complexity is at least $L$ (this always exists because there are only finitely-many algorithms of length $\leq L$, so eventually all $n$ have $K(n)\geq L$).
+		
+		And now the paradox: this algorithm itself has a length on the order of $X + \log_2(L)$ for some $X$ ($L$ itself must be encoded, and that can be done in binary, but the rest of the program stays the same regardless of $L$). Now select $L$ to be greater than the length of $A_L$: 
+		$$L> X + \log_2(L).$$ 
+		For this large $L$, the $n$ that $A_L$ outputs has complexity at most the length of $A_L$, hence less than $L$, but the algorithm was specifically written to produce an output \textit{more} complex than $L$. Thus, no such algorithm can exist---some lower-bounds on complexity must be unprovable. 
+	\end{proof}\\
+	
+	You might be thinking: why can't we just run every program of length $<L$ and see if they output $n$? If none of them do then $K(n)\geq L$, right? The issue is that not every algorithm halts, and we have no way of knowing which ones do. We might potentially conclude an algorithm will never halt if our theory $T$ proves that, but we can't just run it and check.
+	
+	However, if we know that among $n_1,n_2$, one has complexity at least $L$ and one has complexity less than $L$, we can algorithmically determine which is which: simply run all algorithms of length $L$ ``simultaneously'' and wait for one of them to output either $n_1$ or $n_2$. If one outputs $n_1$, we will have shown that $K(n_2)\geq L$ (assuming that $T$ is consistent). By the previous theorem, for sufficiently large $L$ this is impossible, so\\
+	
+	\textbf{G\"odel's Second Incompleteness Theorem (proof due to Kritchman and Raz 2010)}: If $T$ is consistent, the consistency of $T$ cannot be proven by $T$.
+	\begin{proof}
+		Let $L$ be a complexity level such that $K(n)\geq L$ is unprovable in $T$ for all $n$ (shown to exist by previous theorem). Now, within a set $S$, let $m_L(S)$ be the number of its elements whose complexity is at least $L$, i.e.
+		$$m_L(S) := \{n\in S: K(n)\geq L\}.$$
+		A
+	\end{proof}
+ 	
+\end{document}

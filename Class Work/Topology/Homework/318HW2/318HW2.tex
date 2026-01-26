@@ -1,0 +1,54 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{MATH 318 HW 2}
+\author{Jalen Chrysos}
+
+\begin{document}
+	\maketitle
+	\textbf{Problem 1.4.4}: Let $M,T$ be manifolds, $Q\subset N$ a submanifold and $F:T\times M\to N$ a smooth map that is transversal to $Q$, so that $F^{-1}Q$ is a submanifold of $T\times M$. For $t\in T$, let $f_t:M\to N$ be the map defined by $f_t(p)=F(t,p)$. Show that $f_t$ is transversal to $Q$ iff $t$ is a regular value of $F^{-1}Q\xra{\pi_T}T$.
+	\begin{proof}
+		$t$ is a regular value of $\pi_T$ iff for all $(t,p)\in \pi_T^{-1}(t)\cap F^{-1}Q$ (equivalently $p\in f_t^{-1}(Q))$, 
+		$$D_{(t,p)}\pi_T(T_{(t,p)}(F^{-1}Q)) = T_tT.$$
+		Sorry for the awful notation. $D_{(t,p)}\pi_T$ just truncates to the $T$ part of $T\times M$, since movement in the $M$ coordinates does not affect the image of $\pi_T$. So $t$ is a regular value of $\pi_T$ iff the tangent space $T_{(t,p)}(F^{-1}Q)$ is transversal to $\{t\}\times M$, or equivalently if $f_t$ is transversal to $Q$.
+	\end{proof}
+	\newpage
+	
+	\textbf{Problem 2.1.2}: Prove that the tangent bundle of $\P^m$ can be obtained from $TS^m$ by identifying the pairs $(p,v)$ and $(-p,-v)$.
+	\begin{proof}
+		Let $f:S^m\to \P^m$ be the quotient map identifying antipodes of $S^m$. $f$ induces a map on tangent bundles $Df: TS^m\to T\P^m$. Since $f$ is a 2-to-1 covering map, $T\P^m$ is $TS^m/Df$. Now to check which points of $TS^m$ are identified by $Df$, if $(a,v),(b,w)\in TS^m$ and 
+		$$
+		(f(a),D_af(v)) = (f(b),D_bf(w)) 
+		$$
+		then $f(a)=f(b)\implies a = \pm b$. If $a=b$, then $D_af(v)=D_af(w)$ implies $v=w$ because $D_af$ is invertible, so that case is trivial. If $a=-b$, then noting that $D_af=-D_{-a}f$, we have $D_af(v)=D_{-a}f(w)=-D_af(w)=D_af(-w)$ so $v=-w$, again using the fact that $D_af$ is invertible. Thus, the only relation is identifying $(a,v)$ and $(-a,-v)$, as expected. 
+	\end{proof}
+	\newpage
+	
+	\textbf{Problem 2.1.4}: Let $G$ be a Lie group with unit $e$. For $g\in G$ let $L_g$ be the map $L_g:h\mapsto gh$.
+	\begin{enumerate}[(a)]
+		\item Prove that the map $G\times T_e G\to TG$, $(g,v)\mapsto D_eL_g(v)$ is a diffeomorphism. Conclude that $G$ has a basis of vector fields.
+		\item Prove that for every $v\in T_eG$ there exists a unique left-invariant vector field on $G$ that is equal to $v$ at $e$.
+	\end{enumerate} 
+	\begin{proof}
+		(a): If $\gamma:I\to G$ represents $v$ in $T_eG$, then $g\cdot \gamma$ represents $D_eL_g(v)$. But since $G$ is a lie group, $g\cdot \gamma$ varies smoothly in $g$, so $(g\cdot \gamma)'(0)$ is also smooth as a function in $g$, thus making the map differentiable. And it has inverse given by $w\mapsto D_gL_{g^{-1}}(w)$, so it is a diffeomorphism.
+%		Let $\kappa:U\to \R^m$ be a chart of $G$ near $e$ and $\lambda:V\to \R^m$ a chart near $g$. We have $D_eL_g(v)$
+		
+		Given this diffeomorphism $f:G\times T_eG\to TG$, $G$ has a basis of vector fields given by $V_j:g\mapsto f(g,e_j)$ for $1\leq j \leq m$, where $e_1,\dots,e_m$ are a basis for $T_eG$ and $m=\dim(G)$. We know that $\{f(g,e_1),\dots,f(g,e_m)\}$ are linearly independent for all $g$ because $f$ is invertible.\\
+		
+		(b): The desired vector field is $V:g\mapsto D_eL_g(v)$, and it is easy to see that this works. For uniqueness, any left-invariant vector field equal to $v$ at $e$ is a unique linear combination of $V_1,\dots,V_j$.
+		
+%		$v$ can be expressed as a linear combination of the basis of vector fields,
+%		$$
+%		v = \lambda_1 V_1(e) + \lambda_2 V_2(e) + \cdots + \lambda_m V_m(e). 
+%		$$
+%		Then the vector field
+%		$$
+%		V^*(g) :=  \lambda_1 g^{-1}V_1(g) + \lambda_2 V_2(g) + \cdots + \lambda_m V_m(g) 
+%		$$
+%		takes value $v$ at $e$ and is left invariant, as 
+%		$$
+%		V_j(hg) = D_eL_{hg}(v) = hD_eL_g(v) = V_j(g)
+%		$$
+	\end{proof}
+	
+\end{document}

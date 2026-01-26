@@ -1,0 +1,149 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{PHYS 132 HW \#2}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+	\maketitle
+	
+	\textbf{Problem 5}: I'm assuming that $60$ degrees means $60$ degrees from the surface, not $60$ degrees from the normal vector. So given an electric field of $E$, the flux at a given point is $\sqrt{3}/2 \cdot E$, and thus the total flux is 
+	$$
+	\Phi_E = \sqrt{3}/2 \cdot E \cdot A
+	$$
+	where $A$ is the area of the surface. Adding in the known values of $\Phi_E$ and $A$ gives
+	$$
+	E = \frac{\Phi_E}{\sqrt{3}{2} \cdot A} = \frac{4.44 N m^2/C}{\sqrt{3}{2} \cdot 6.66 \cdot 10^{-4} m^2} = 7.7 \cdot 10^3 N/C.
+	$$\\
+	
+	\textbf{Problem 6}: \\
+	(a): For $S_2$ and $S_4$, the top and bottom faces, the electric field is parallel to the faces, so there is no flux. 
+	
+	For $S_1$ and $S_3$, the flux is equal to the area of the face times $\sin(53)E$, since that is the component perpendicular to the faces. That is,
+	$$
+	\Phi_{S_3} = L^2 \cdot \sin(53)\cdot E = 31.9 N m^2 /C.
+	$$ 
+	Assuming that the orientation of the normal vectors is toward the exterior of the cube, $\Phi_{S_1} = -\Phi_{S_3} = -31.9 Nm^2/C$, as the flux is going in rather than out of $S_1$.
+	Similarly,
+	$$
+	\Phi_{S_5} = L^2 \cdot \cos(53)\cdot E = 24.1 N m^2 /C, \;\;\; \Phi_{S_6} = -24.1 N m^2/C.
+	$$ 
+	
+	(b): Adding up the faces, we can see that it is 0. This is consistent with Gauss's Law because the electric field is uniform and there is no charge contained inside the box.\\
+	
+	\textbf{Problem 9}: \\
+	
+	(a): As shown in chapter 22, when a sphere has a uniform charge $q$ on its surface, the electric field inside the sphere is 0.\\
+	
+	(b): Outside the sphere, the electric field is given by $kq/r^2$. In the case $r=0.06m$, this gives
+	$$
+	E = \frac{kq}{r^2} = \frac{9\cdot 10^9 \cdot -49 \cdot 10^{-6} C}{(0.06 m )^2} = -1.2 \cdot 10^8 N/C
+	$$
+	directed toward the sphere (because it is negatively charged).\\
+	
+	(c): 5cm outside the paint layer is a radius of $0.11m$, giving
+	$$
+	E = \frac{kq}{r^2} = \frac{9\cdot 10^9 \cdot -49 \cdot 10^{-6} C}{(0.11 m )^2} = -3.6 \cdot 10^7 N/C
+	$$
+	directed toward the sphere.\\
+	
+	\textbf{Problem 10}: \\
+	
+	(a): 0 by Gauss's Law.\\
+	
+	(b): $q_2$ is contained in the sphere but not $q_1$, giving 
+	$$-6\cdot 10^{-9} C / \ep_0 = -6.7 \cdot 10^2 N m^2/C$$
+	by Gauss's Law.\\
+	
+	(c): Now both charges are contained, so the total charge enclosed in the sphere is $-2nC$, giving 
+	$$-2 \cdot 10^{-9} C / \ep_0 = -2.2 \cdot 10^2 N m^2/C$$
+	by Gauss's Law.\\
+	
+	\textbf{Problem 13}: \\
+	
+	The $0.05m$ section has total charge $0.26 \mu C$. The electric field is uniform, so the force experienced by each individual point in one of these lines is equal. The electric field of one line on a given point in the other is given by (shown in ch 22)
+	$$
+	E = \frac{2k\lambda}{r} = \frac{2(9\cdot 10^9)(5.2 \cdot 10^{-6})}{0.3} = 3.1\cdot 10^5 N/C
+	$$
+	so the total force is 
+	$$
+	EQ = E\cdot 0.26 \mu C = 0.08 N.
+	$$
+	
+	\textbf{Problem 14}: \\
+	(a): Using the derivation in chapter 22, outside a solid sphere of radius $R$ and charge $Q$, the electric field at radius $r>R$ is $kQ/r^2$. Here $r=0.450m+0.100m$, giving
+	$$
+	\frac{kQ}{r^2} = \frac{(9\cdot 10^9)(0.25 \cdot 10^{-9})}{0.55^2} = 7.4 N/C
+	$$
+	
+	(b): Inside the sphere, the electric field is $kQr/R^3$, giving
+	$$
+	\frac{kQr}{R^3} = \frac{(9\cdot 10^9)(0.25 \cdot 10^{-9})(0.35)}{0.45^3} = 8.6 N/C
+	$$
+	
+	\textbf{Problem 47}: \\
+	
+	(a): We can compute the charge by integrating in $r$:
+	\begin{align*}
+		Q_{total} &= \int_0^R 4\pi r^2 \rho(r) \; \d r\\
+		&= \frac{12 Q}{R^3} \int_0^R r^2 - \frac{r^3}{R} \; \d r\\
+		&= \frac{12 Q}{R^3} \Big(\frac{1}{3} R^3 - \frac{1}{4R} R^4\Big)\\
+		&= Q.
+	\end{align*}
+	
+	(b): The electric field at this point induced by each shell is $kq/r^2$ where $q$ is the charge on that shell, so the total charge induced is $kQ/r^2$, which is the same as a point charge, as expected.\\
+	
+	(c): If $r\leq R$, then the shells of radius between $r$ and $R$ induce no electric field on a point of radius $r$, since it is inside the shell. So to compute the total electric field we just integrate the charge only up to radius $r$, which we can call $Q_r$, and the electric field is $kQ_r/r^2$.
+	$$
+	Q_r = \int_0^r 4\pi r'^2 \rho(r') \; \d r' = \frac{12Q}{R^3} \Big(\frac{1}{3} r^3 - \frac{1}{4R}r^4\Big) = Q\Big(\frac{r}{R}\Big)^3(4-3\frac{r}{R}) 
+	$$
+	$$
+	E = kQ_r/r^2 = -\frac{3Q}{R^4} r^2 + \frac{4Q}{R^3}r. 
+	$$
+	
+	(d): Here is the graph:
+	\begin{center}
+	\includegraphics[width=\textwidth]{C:/Users/jzchr/MathDocuments/Class Work/Physics 132-133/132HW2/HW_P47.png}
+\end{center}
+	The green parabola is the regime for $r\leq R$, and the purple is the regime for $r\geq R$ (in the graph I've set $R=5$).\\
+	
+	(e): The field is maximized in the regime of $r\leq R$. It is at the apex of the parabola, where $r=2R/3$, at which the value is
+	$$
+	E = -\frac{3Q}{R^4} \Big(\frac{2R}{3}\Big)^2 + \frac{4Q}{R^3}\Big(\frac{2R}{3}\Big) = \frac{4Q}{3R^2}.
+	$$
+	
+	\textbf{Problem 52}: \\
+		(a): We can compute the charge by integrating in $r$:
+	\begin{align*}
+		Q_{total} &= \int_0^R 4\pi r^2 \rho(r) \; \d r\\
+		&= 4\pi\rho_0 \int_0^R  r^2 - \frac{4r^3}{3R} \; \d r\\
+		&= 4\pi \rho \Big(\frac{1}{3}R^3 - \frac{1}{4}\frac{4R^4}{3R}\Big) \; \d r\\
+		&= 0.
+	\end{align*}
+	
+		(b): Similarly to problem 47(b), the field is 0 outside the sphere because the sphere acts like a point charge.\\
+		
+		(c): The charge inside the ball of 
+		\begin{align*}
+			Q_{r} &= \int_0^r 4\pi r'^2 \rho(r') \; \d r'\\
+			&= 4\pi\rho_0 \int_0^r  r'^2 - \frac{4r'^3}{3R} \; \d r'\\
+			&= 4\pi \rho \Big(\frac{1}{3}r^3 - \frac{r^4}{3R}\Big) \; \d r'\\
+			&= \frac{4\pi \rho_0r^3}{3}\Big(1-\frac{r}{R}\Big).
+		\end{align*}
+		which gives
+		$$
+		E = kQ_r/r^2 = \frac{4\pi \rho_0r}{3}\Big(1-\frac{r}{R}\Big)
+		$$
+		
+		(d): 
+		
+		\begin{center}
+			\includegraphics[width=8cm]{C:/Users/jzchr/MathDocuments/Class Work/Physics 132-133/132HW2/HW_P52.png}
+		\end{center}
+		
+		For $r\geq R$ the graph is constant at 0 (in this graph $R=5$).
+		
+		(e): It is maximum at the apex of the parabola, where $r=R/2$ and 
+		$$E = kQ_r/r^2 = \frac{\pi \rho_0R}{3}.$$
+\end{document}

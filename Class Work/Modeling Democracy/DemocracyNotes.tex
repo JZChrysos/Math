@@ -12,6 +12,13 @@
 \DeclareMathOperator{\NS}{\sf{NS}}
 \DeclareMathOperator{\NWS}{\sf{NWS}}
 
+\usepackage[table]{xcolor}
+%
+%\usepackage{fontawesome}
+%%\usepackage{arev}
+%\newcommand{\cmark}{\faCheck}%
+%\newcommand{\xmark}{\faTimes}%
+
 \title{Modeling Democracy Notes}
 \author{Jalen Chrysos}
 
@@ -42,14 +49,14 @@ First, we have voting rules which only take into account the pairwise comparison
 	\item \textit{PWC}: Whoever wins most head-to-head match-ups wins.
 	\item \textit{Sequential}: A tournament structure is fixed ahead of time. In each match-up, the winner is determined by the ranked-choice ballots. The winner of the tournament is selected.
 	\item \textit{Smith}: The winner is selected (using some other procedure) from within the Smith Set; that is, the smallest subset of candidates $S$ such that no candidate outside $S$ beats any candidate in $S$.
-	\item \textit{Beatpath}: 
+	\item \textit{Beatpath (Schulze)}: 
 	\begin{itemize}
 		\item A \textit{beatpath} is a directed path in the PWCG.
 		\item The \textit{strength} of a beatpath is the least margin of any link in the path.
 		\item A candidate $A$ \textit{dominates} $B$ if the strongest beatpath from $A$ to $B$ is stronger than the strongest beatpath from $B$ to $A$.
 		\item In the Beatpath voting rule, the winner is selected (somehow) from among the candidates which are not dominated by any other candidate.
 	\end{itemize}
-	\item \textit{Ranked Pairs}: Edges in the PWCG are sequentially ``activated'' in order of greatest margin first, skipping any that would produce a directed cycle. The resulting graph will have a Condorcet candidate within that graph, and that candidate is selected.\\
+	\item \textit{Ranked Pairs (Tideman)}: Edges in the PWCG are sequentially ``activated'' in order of greatest margin first, skipping any that would produce a directed cycle. The resulting graph will have a Condorcet candidate within that graph, and that candidate is selected.\\
 \end{itemize}
 
 Next, we have methods which repeatedly eliminate candidates using a runoff system:\\
@@ -82,11 +89,11 @@ Next we have voting rules that are metric-based. A metric on ballots can be defi
 
 Some rules privilege information about precise ranking levels rather than relative match-ups:\\
 
-\noindent \underline{Rank-Specific Rules}:
+\noindent \underline{Position-Based Rules}:
 \begin{itemize}
 	\item \textit{Plurality}: Whoever gets the most first-choice votes wins.
 	\item \textit{Borda}: Candidates are awarded $a_1$ points for each first place ranking, $a_2$ points for each second place ranking, etc. Typically $a_i=N-i$, where $N$ is the number of candidates.
-	\item \textit{Condo-Borda}: If there is a Condorcet winner (i.e. option which wins all direct match-ups), it wins. Otherwise, proceed by Borda.
+	\item \textit{Condo-Borda (Black)}: If there is a Condorcet winner (i.e. option which wins all direct match-ups), it wins. Otherwise, proceed by Borda.
 	\item \textit{Secondality}: The candidate with the second-most first-choice votes wins (I think this is mostly a joke).
 	\item \textit{Plurality Veto}: Each candidate is awarded one point for each first-choice vote they receive. The voters are ordered in some way (which does effect the outcome) and each voter's ballot removes one point from their least-favored candidate remaining. When a candidate has lost all points, they are eliminated.\\
 \end{itemize}
@@ -106,7 +113,7 @@ Voting systems can be judged based on various criteria for ``fairness." Below is
 
 First, there are criteria based on guaranteeing sufficiently common ballot features are reflected in the outcome:\\
 
-\underline{Consensus-Based Criteria}:
+\noindent \underline{Consensus-Based Criteria}:
 \begin{itemize}
 	\item \textit{Pareto Efficient}: If all ballots rank $A$ first, then $A$ must win.
 	\item \textit{Unanimity-fair}: If all ballots rank $A$ above $B$, then the outcome must have $A$ above $B$.
@@ -117,18 +124,18 @@ First, there are criteria based on guaranteeing sufficiently common ballot featu
 
 Next there are robustness criteria which restrict the effect that given changes to the ballots can have on the outcome:\\
 
-\underline{Profile-Robustness Criteria}:
+\noindent \underline{Profile-Robustness Criteria}:
 \begin{itemize}
-	\item \textit{Monotonic}: If $A$ is winning and one ballot is altered by swapping $A$ upwards, $A$ still wins.
-	\item \textit{Strictly Monotonic}: If $A$ is winning and one ballot is altered by any swap that doesn't swap $A$ downwards, $A$ still wins.
-	\item \textit{Strategy-Proof}: If altering a single ballot changes the winner from $A$ to $B$, then the original ballot had $A>B$ and the altered ballot had $B>A$\footnote{If this is not true, then voters may be incentivized to report their preferences falsely. For example, if ballot 1 and ballot 2 both have $A>B$, then a voter whose true preferences are ballot 2 should switch to ballot 1.}. 
+	\item \textit{Monotonic}: If $A$ is winning and one ballot is altered in favor of $A$ (so that $A$'s ranking relative to all other candidates is no worse and all other relative rankings remain the same), then $A$ still wins.
+	\item \textit{Strictly Monotonic}: If $A$ is winning and one ballot is altered in favor or neutrally to $A$ (so that $A$'s ranking relative to all other candidates is no worse, and relative rankings unrelated to $A$ may change), $A$ still wins.
+	\item \textit{Strategy-Proof}: No voter can improve the outcome for themselves by voting any ranking other than their true preferences. Equivalently, altering a single ballot can only change the winner from $A$ to $B$ if it inverts their positions in favor of $B$\footnote{If this is not true, then voters may be incentivized to report their preferences falsely. For example, if ballot 1 and ballot 2 both have $A>B$, then a voter whose true preferences are ballot 2 should switch to ballot 1.}. 
 	\item \textit{Voter Anonymity}: The voting rule does not depend on the order of ballots.
 	\item \textit{Non-Dictatorship}: The outcome does not depend on only one voter.\\
 \end{itemize}
 
 Then there are criteria restricting the effect that given changes to the candidate pool can have on the outcome:\\
 
-\underline{Candidate-Robustness Criteria}:
+\noindent \underline{Candidate-Robustness Criteria}:
 \begin{itemize}
 	\item \textit{No Spoilers}: If $A$ is winning, removing $B$ cannot cause $A$ to lose, nor can adding in a candidate $C$, unless $C$ is the sole winner. In these scenarios,  $B$ and $C$ are called spoilers.
 	\item \textit{No Weak Spoilers}: There can be no spoilers that are weak, i.e. not in the Smith set.
@@ -137,29 +144,92 @@ Then there are criteria restricting the effect that given changes to the candida
 
 And finally, here is one important criterion which requires robustness in both senses:\\
 
-\underline{General Robustness Criteria}:
+\noindent \underline{General Robustness Criteria}:
 \begin{itemize}
-	\item \textit{Independence of Irrelevant Alternatives}: The relative outcome of candidates $A$ and $B$ cannot be affected by swapping any two candidates other than $A$ and $B$ on a given ballot \textit{or} by adding or subtracting other candidates. In other words, whether $A<B$ in the outcome depends only on how each voter ranked $A$ relative to $B$\footnote{If one has Voter Anonymity and Candidate Anonymity (two very reasonable expectations), $\IIA$ would imply that whether $A\succ B$ depends only on the \textit{number} of ballots preferring $A>B$ vs $B>A$, and by candidate anonymity this decision procedure must be the same for all pairs of candidates, so in effect the voting rule must be determined }.\\
+	\item \textit{Independence of Irrelevant Alternatives}: The relative outcome of candidates $A$ and $B$ cannot be affected by swapping any two candidates other than $A$ and $B$ on a given ballot \textit{or} by adding or subtracting other candidates. In other words, whether $A<B$ in the outcome depends only on how each voter ranked $A$ relative to $B$\footnote{If one assumes Voter Anonymity, $\IIA$ implies that whether $A\succ B$ depends only on the \textit{number} of ballots preferring $A>B$ vs $B>A$, so the voting rule must be determined from the PWCG alone.}.\\
 \end{itemize}
 
-\subsection{Relationships Between Fairness Criteria} To understand these criteria better, one should see how they relate, which are stronger and weaker, and so on. To begin with, here is a diagram of the implications:
+\subsection{Relationships Between Fairness Criteria} To understand these criteria better, one should see how they relate, which are stronger and weaker, and so on. To begin with, here is a diagram of all the direct implications (a non-arrow indicates independence):
 $$
 \begin{tikzcd}
-	&& {\sf{SF}} \\
-	&& {\sf{CF}} && {\sf{SP}} && {\sf{IIA}} \\
-	{\sf{UF}} && {\sf{MF}} && {\sf{SM}} && {\sf{NS}} \\
-	& {\sf{PE}} &&& {\sf{M}} && {\sf{NWS}}
-	\arrow[Rightarrow, from=1-3, to=2-3]
-	\arrow[Rightarrow, from=2-3, to=3-3]
-	\arrow[Rightarrow, from=2-5, to=3-5]
+	& \SF \\
+	& \CF &&&&& \IIA \\
+	\UF & \MF && \SM & \SP && \NS \\
+	& \PE && \sf{M} &&& \NWS
+	\arrow[Rightarrow, from=1-2, to=2-2]
+	\arrow[Rightarrow, from=2-2, to=3-2]
 	\arrow[Rightarrow, from=2-7, to=3-7]
 	\arrow[Rightarrow, from=3-1, to=4-2]
-	\arrow[Rightarrow, from=3-3, to=4-2]
-	\arrow[Rightarrow, from=3-5, to=4-5]
+	\arrow[Rightarrow, from=3-2, to=4-2]
+	\arrow[Rightarrow, from=3-4, to=4-4]
+	\arrow[Rightarrow, 2tail reversed, from=3-5, to=3-4]
 	\arrow[Rightarrow, from=3-7, to=4-7]
 \end{tikzcd}
 $$
-Now, in many places one can 
+
+Most of these implications are trivial, with the one nontrivial fact being that $\SP$ and $\SM$ are equivalent; a proof of that is next. To show that there are no other implications:
+\begin{itemize}
+	\item If the voting rule is \textit{constant}, then it obeys both $\SM / \SP$ and $\IIA$ (since no perturbation can change the outcome), but not $\PE$. Thus, nothing on the middle or left can imply $\PE$.
+	\item \textbf{not done}\\
+\end{itemize}
+
+\textbf{Claim}: The following are equivalent:
+\begin{enumerate}[(i)]
+	\item $f$ is Strategy-Proof.
+	\item $f$ is Strictly Monotonic.
+	\item $f$ has the property that if an adjacent swap on a single ballot changes the outcome from $A$ to $B$, then it must have been the swap ${A\choose B}\to {B \choose A}$.
+\end{enumerate}
+\begin{proof}
+	(i)$\implies $(ii): Suppose $f$ is SP yet not SM, so there is some change to a ballot $b_1\to b_2$ which is neutral/positive to $A$ yet causes $A$ to lose and $B$ to win. Since $f$ is SP, $b_1$ must prefer $A$ to $B$ (otherwise this change would be a strategic vote), and because the swap was neutral or positive to $A$, $b_2$ must also prefer $A$ to $B$. But now the reverse change $b_2\to b_1$ \textit{is} a strategic vote for a voter whose true preferences are $b_2$, as it causes $A$ to win, which $b_2$ prefers. This is a contradiction, so SP implies SM.\\
+%	
+%	(ii)$\implies$(i): If $f$ is SM, then if a change of one ballot $b_1\to b_2$ switches the winner from $A$ to $B$, it must be that the move was not neutral or positive for $A$; that is, $A$ was inverted with at least one other candidate. Considering the reverse ballot change $b_2\to b_1$, in this direction $B$ must have been negatively \\
+	
+	(ii)$\implies$(iii): Suppose $f$ is SM. This already implies that if an adjacent swap moves the winner from $A$ to $B$, then it must \textit{not} be neutral or positive for $A$, so in particular $A$ must be swapped down. And looking in the reverse direction, which changes the winner from $B$ to $A$, we can see similarly that the reverse swap must be negative for $B$. With these two facts, we can see that the swap must be ${A\choose B}\to {B \choose A}$.\\
+	
+%	(iii)$\implies$(ii): Suppose $f$ has property (iii) but is not SM, so that there is some ballot alteration $b_1\to b_2$ which is neutral/positive for $A$ yet changes the outcome from $A$ to $B$. This permutation can be broken into adjacent swaps such that each swap is neutral/positive to $A$: first order the candidates above $A$ as in $b_2$ (neutral), then elevate $A$ into its position in $b_2$ (positive), and finally rearrange the candidates below $A$ as in $b_2$ (neutral). But by (iii), none of these individual swaps can change the winner from $A$ to any other candidate, so the winner should still be $A$ at the end, thus $f$ is SM.\\
+	
+	(iii)$\implies$(i): Suppose $f$ has property (iii) but is not strategy-proof. Let $b_1\to b_2$ be a ballot alteration which changes the winner from $A$ to $B$ and such that $b_1$ prefers $B$ over $A$ (a witness to the failure of SP). But I claim that I can change $b_1$ into $b_2$ through a sequence of swaps which will not allow $B$ to win due to property (iii): divide the candidates into two sets, $S_+$ (those $b_1$ prefers to $A$) and $S_-$ ($A$ and those $b_1$ does not prefer to $A$). Then permute both sets so that each is ordered as in $b_2$. By (iii), the winner can only be in $S_-$ now. Finally, elevate each candidate in $S_-$ to its position in $b_2$. By (iii), none of these swaps can affect who the winner is. So finally, $b_2$ must have a winner in $S_-$, and in particular it cannot be $B$, which was assumed to be preferred to $A$ by $b_1$, so $f$ is Strategy-Proof.
+\end{proof}\\
+
+There are a few more relations between combinations of these criteria:
+\begin{itemize}
+	\item $\PE + \SM/\SP \implies \UF$: if every ballot has $A>B$ yet $B$ is winning, then one can (neutrally to $B$) move $A$ to the top of every ballot, which by $\PE$ makes $A$ the winner but by $\SM$ shouldn't change the winner from $B$, a contradiction.
+\end{itemize}
+
+\newpage
+
+\section{Comparing Voting Rules}
+
+\begin{center}
+	
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+	\hline 
+	& $\PE$ & $\UF$ & $\MF$ & $\CF$ & $\SF$ & $\sf{M}$ & $\SM$ & $\NWS$ & $\NS$ \\
+	\hline 
+	Plurality & $\cellcolor{green!25}$ & & & & & & & &\\
+	\hline 
+	Borda & $\cellcolor{green!25}$& & & & & & & &\\
+	\hline 
+	Constant &$\cellcolor{red!25}$ & & & & & & & &\\
+	\hline 
+	Dictator &$\cellcolor{green!25}$ & & & & & & & &\\
+	\hline 
+	Beatpath &$\cellcolor{green!25}$ & & & & & & & &\\
+	\hline 
+	Ranked Pairs &$\cellcolor{green!25}$ & & & & & & & &\\
+	\hline 
+	IRV &$\cellcolor{green!25}$ & & & & & & & &\\
+	\hline 
+	Coombs &$\cellcolor{green!25}$ & & & & & & & &\\
+	\hline 
+	Dodgson & & & & & & & & &\\
+	\hline 
+	Kemeny & & & & & & & & &\\
+	\hline
+\end{tabular}
+
+\end{center}
+
 \newpage 
 
 \section{Impossibility Results}
@@ -168,7 +238,7 @@ Having established some desirable fairness properties, we're forced to bite the 
 
 \underline{Incompatible Fairness Criteria}:
 \begin{itemize}
-	\item \textit{Monotonic} and \textit{No Spoilers}:
+	\item \textit{Majority Fair} and \textit{No Spoilers}:
 	\begin{proof}
 		Consider the following simple profile with a Condorcet cycle:
 		\begin{center}
@@ -182,52 +252,61 @@ Having established some desirable fairness properties, we're forced to bite the 
 			\hline
 		\end{tabular}
 		\end{center}
-		In principle, it should be difficult to name a winner here due to the symmetry. Indeed, by Monotonicity, $A$ would lose if $B$ were removed, $B$ would lose if $C$ were removed, and $C$ would lose if $A$ were removed. Thus if any of $A,B,C$ were winning, they could be made to lose by removing a candidate, making the removed candidate a spoiler. So there are either spoilers or the system declares no winner.
+		In principle, it should be difficult to name a winner here due to the symmetry. Indeed, by Majority fairness, $A$ would lose if $B$ were removed, $B$ would lose if $C$ were removed, and $C$ would lose if $A$ were removed. Thus if any of $A,B,C$ were winning, they could be made to lose by removing a candidate, making the removed candidate a spoiler. So there are either spoilers or the system declares no winner.
 	\end{proof}\\
 	
 	\item (\textbf{Arrow}) \textit{Unanimity Fair}, \textit{Independence of Irrelevant Alternatives} and \textit{Non-Dictatorship}:
 	\begin{proof}
-		Consider the following sequence of profiles:
-		\begin{center}
-			$P_1 = $
-			\begin{tabular}{|c|c|}
-				\hline 
-				$\times 1$ & $\times 1$ \\
-				\hline 
-				$A$ & $B$ \\
-				$B$ & $A$ \\
-				$C$ & $C$ \\
-				\hline
-			\end{tabular}
-			\hspace{0.5cm}
-			$P_2=$
-			\begin{tabular}{|c|c|}
-				\hline 
-				$\times 1$ & $\times 1$ \\
-				\hline 
-				$A$ & $B$ \\
-				$B$ & $C$ \\
-				$C$ & $A$ \\
-				\hline
-			\end{tabular}
-			\hspace{0.5cm}
-			$P_3=$
-			\begin{tabular}{|c|c|}
-			\hline 
-			$\times 1$ & $\times 1$ \\
-			\hline 
-			$A$ & $C$ \\
-			$B$ & $B$ \\
-			$C$ & $A$ \\
-			\hline
-			\end{tabular}
-		\end{center}
-		In profile $P_1$, a unanimity-fair voting rule must rank $C$ last. Suppose WLOG that it ranks $A$ first. Then in $P_2$, by IIA, the voting rule must still return $A>B>C$ because the ranking of $B$ relative to $C$ hasn't changed. And moving from $P_2$ to $P_3$, the relative rankings of $(A,B)$ and $(A,C)$ haven't changed, so the voting rule must still give  
+		
 	\end{proof}
-	\item  (\textbf{Muller-Satterthwaite}) \textit{Pareto Efficient}, \textit{Strongly Monotonic} and \textit{Non-Dictatorship}:
-	\item (\textbf{Gibbard-Satterthwaite}) \textit{Pareto Efficient}, \textit{Strategy-Proof} and \textit{Non-Dictatorship}:\\
+	\item  (\textbf{Muller-Satterthwaite}) \textit{Pareto Efficient}, \textit{Strictly Monotonic} and \textit{Non-Dictatorship}:
+	\begin{proof}
+		This only fails at 3 candidates or more (with 2, plurality works just fine).\\
+		
+		$\SM$ has some unreasonably strong consequences. Say a profile is on the $(A,B)$-\textit{boundary} if $A$ is currently winning and a single swap can make $B$ win. Then $\SM$ implies that a profile can be on at most one boundary; if it were on both $(A,X)$ and $(A,Y)$, then there would be two swaps $x,y$ on different ballots (different because $\SM$ implies that they are swaps ${A\choose X}\to {X\choose A}$ and ${A\choose Y}\to {Y\choose A}$ which cannot both be available on one ballot) that could change the outcome to $X$ and to $Y$. But what if both are swapped? $x$ changes the winner to $X$, and $y$ is neutral to $X$, so the winner should be $X$, yet symmetrically it should be $Y$ if they are performed in the other order---a contradiction.
+		$$
+		\begin{tikzcd}
+			{\boxed{A}} & \begin{array}{c} \begin{bmatrix}A & A \\ X & Y\end{bmatrix} \end{array} && \begin{array}{c} \begin{bmatrix}X & A \\ A & Y\end{bmatrix} \end{array} & {\boxed{X}} \\
+			\\
+			{\boxed{A}} & \begin{array}{c} \begin{bmatrix}A & Y \\ X & A\end{bmatrix} \end{array} && \begin{array}{c} \begin{bmatrix}X & Y \\ A & A\end{bmatrix} \end{array} & {\boxed{X}}
+			\arrow["win", squiggly, tail reversed, no head, from=1-1, to=1-2]
+			\arrow["x", from=1-2, to=1-4]
+			\arrow["y"', from=1-2, to=3-2]
+			\arrow["win", squiggly, from=1-4, to=1-5]
+			\arrow["{y}", from=1-4, to=3-4]
+			\arrow["win"', squiggly, from=3-2, to=3-1]
+			\arrow["{x}"', from=3-2, to=3-4]
+			\arrow["win", squiggly, from=3-4, to=3-5]
+		\end{tikzcd}
+		$$
+		Note also that the swap $y$ keeps the profile on the $(A,X)$-boundary. More generally, if $x$ changes the winner from $A$ to $X$, then \textit{any} swap $y$ not between $A$ and $X$ in any other ballot must leave the profile in the $(A,X)$-boundary; otherwise, applying $x$ after $y$ must result in $A$ winning, so that applying $y$ again switches the winner from $A$ to $X$, implying that $B=X$ and $Y=A$ in the diagram below, i.e. $y$ is ${X\choose A}\to {A\choose X}$.
+		$$
+		\begin{tikzcd}
+			{\boxed{A}} & \begin{array}{c} \begin{bmatrix}A & B \\ X & Y\end{bmatrix} \end{array} && \begin{array}{c} \begin{bmatrix}X & B \\ A & Y\end{bmatrix} \end{array} & {\boxed{X}} \\
+			\\
+			{\boxed{A}} & \begin{array}{c} \begin{bmatrix}A & Y \\ X & B\end{bmatrix} \end{array} && \begin{array}{c} \begin{bmatrix}X & Y \\ A & B\end{bmatrix} \end{array} & {\boxed{A}}
+			\arrow["win", squiggly, tail reversed, no head, from=1-1, to=1-2]
+			\arrow["x", from=1-2, to=1-4]
+			\arrow["y"', from=1-2, to=3-2]
+			\arrow["win", squiggly, from=1-4, to=1-5]
+			\arrow["{y}", from=1-4, to=3-4]
+			\arrow["win"', squiggly, from=3-2, to=3-1]
+			\arrow["{x}"', from=3-2, to=3-4]
+			\arrow["win", squiggly, from=3-4, to=3-5]
+		\end{tikzcd}
+		$$
+		
+		Now using these consequences of $\SM$, we can establish dictatorship fairly easily: take a profile that is on the $(A,B)$-boundary for some $A,B$, and suppose that $v$ is a ballot which has a pivotal swap available. Then without making any swaps of $(A,B)$ one can elevate another candidate $C$ to the top of every ballot other than $v$, leaving the profile still on the $(A,B)$-boundary. Then elevate $C$ in $v$ until it is between $A$ and $B$. This pushes the profile out of the $(A,B)$-boundary, but the winner is still $A$ because this is neutral to $A$. But now, $C$ is unanimously preferred to $B$, \\
+	\end{proof}
+	\item (\textbf{Gibbard-Satterthwaite}) \textit{Pareto Efficient}, \textit{Strategy-Proof} and \textit{Non-Dictatorship}:
+	\begin{proof}
+		Equivalent to above, since $\SM\iff \SP$.
+	\end{proof}\\
 \end{itemize}
 
 If one considers Monotonicity, Unanimity-fairness, Pareto Efficiency, and Non-Dictatorship to be essential requirements of a fair voting system (and they do seem like reasonable requests), then these impossibility theorems can be interpreted as saying that the properties \textit{No Spoilers}, \textit{Independence of Irrelevant Alternatives}, \textit{Strongly Monotonic}, and \textit{Strategy-Proof} can never be achieved in any fair ranking-based voting system.
 
+\newpage 
+
+\section{Modeling Elections and Voter Behavior}
 \end{document}
