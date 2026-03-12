@@ -228,6 +228,7 @@
 	\underline{Related Ideas}:
 	\begin{itemize}
 		\item \textbf{Euler Characteristic}: This is a coarser invariant than Homology, and often easier to compute, especially when working with manifolds.
+		\begin{itemize}
 		\item The Euler characteristic of a space $X$, denoted $\chi(X)$, is the integer
 		$$
 		\chi(X) := \sum_{j=0}^n (-1)^j \rk(H_j(X))
@@ -238,7 +239,8 @@
 		\chi(X) = \sum_{j=0}^n (-1)^j \#(\text{$n$-cells of $X$}).
 		$$
 		\item If $X$ is a closed $n$-manifold (not necessarily oriented!) then $\chi(X)=0$.
-		\item If $X$ is a manifold with boundary, then $\chi(\partial X)=2\chi(X)$. So the Euler characteristic of a boundary is always even.
+		\item If $X$ is a manifold with boundary, then $\chi(\partial X)=2\chi(X)$. 
+		\end{itemize}
 	\end{itemize}
 	
 	\newpage
@@ -246,7 +248,9 @@
 	
 	The Cohomology of $X$ (wrt $G$) is a sequence of Abelian groups $H^0(X;G),H^1(X;G),\dots$.\\
 	
-	\underline{How to Calculate $H^*(X;G)$}: Use \textbf{Universal Coefficient Theorem}:
+	\underline{How to Calculate $H^*(X;G)$}:
+	\begin{enumerate}[(I)]
+		\item \textbf{Universal Coefficient Theorem}:
 		\begin{itemize}
 			\item Use this if you know $H_*(X)$.
 			\item The Cohomology can be determined from the Homology via the isomorphism
@@ -270,6 +274,7 @@
 			G[n] := \{g\in G : \underbrace{g + g + \cdots + g}_{n} = 0\}.
 			$$
 		\end{itemize}
+	\end{enumerate}
 		
 		If $G=R$, a ring, then the cohomology groups $H^*(X;R)$ together form a graded ring under the cup product operation. With the additional structure of the cup product, the cohomology ring makes a strictly finer invariant than the groups alone. Two spaces might have the same cohomology groups in every dimension but different ring structures, e.g. with $S^2\vee S^4$ and $\CP^2$.\\
 	
@@ -569,7 +574,7 @@
 	\begin{proof}
 		It suffices to show that there is at least one complex root $z$; then one can inductively apply the result to $p(x)/(x-z)$.\\
 		
-		If no root exists then $p(z)$ is a nonzero complex number for all $z\in \C$. We can produce a homotopy from $\C \to \C\setminus \{0\}$ by sending $z$ straight to $p(z)$ at a constant rate. 
+		If no root exists then $p$ is a continuous map from $\C$ to $\C\setminus \{0\}$, which is in general possible (constant maps, e.g.). Then one can compose this with a projection onto $S^1$ to yield a continuous map $f:\C\to S^1$. \textit{later}
 	\end{proof} 
 	
 	\newpage

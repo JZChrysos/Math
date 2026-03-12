@@ -1,0 +1,75 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{PHYS 13200 HW \#5}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+	\maketitle
+	
+	\section*{Chapter 24}
+	
+	\textbf{Problem 3}:\\
+	
+	(a): $V = Q/C = (0.148 \cdot 10^{-6})/(245 \cdot 10^{-12}) \approx 604 V$.\\
+	
+	(b): $A = 4\pi k d C = 4\pi (9\cdot 10^9) (0.328 \cdot 10^{-3})(245 \cdot 10^{-12}) \approx 9.1 \cdot 10^{-3} m^2$.\\
+	
+	(c): $V$ is the integral of $E$ over the gap between the plates, so $V=d|E|$, which gives $|E| = 604 / (0.328 \cdot 10^{-3}) = 1.8 \cdot 10^6 N/C$.\\
+	
+	(d): We also know $E=\sigma / \ep_0 = 4\pi k \sigma$ so $\sigma = E/(4\pi k) = (1.8 \cdot 10^{6})/(4\pi 9\cdot 10^{9}) = 1.6 \cdot 10^{-5} C/m^2$. One could also calculate this by taking $Q/A$ and the result is the same.\\
+	
+	\textbf{Problem 11}:\\
+	
+	(a): $C = Q/V = 3.3 \cdot 10^{-9}/220 = 1.5 \cdot 10^{-11} F$.\\
+	
+	(b): $C = A/(4\pi k d) = 4\pi r^2/(4\pi k d)= r^2/(kd)$, so $d = (0.04)^2/(9\cdot 10^9\cdot 1.5 \cdot 10^{-11}) = 0.012 m$, which implies that the inner radius is $0.04 - 0.012 = 0.028 m$.\\
+	
+	(c): Near the inner shell, the electric field magnitude is $4\pi k Q/A = 4\pi (9\cdot 10^9) / 4\pi r^2 = 9\cdot 10^9/(0.028)^2 = 1.15 \cdot 10^13 N/C$.\\
+	
+	\textbf{Problem 21}:\\
+	
+	(a): The middle capacitance is 
+	$$
+	\frac{1}{\frac{1}{18} + \frac{1}{30} + \frac{1}{10}} \approx 5.3 nF
+	$$
+	and the capacitance of the whole circuit is the sum of the three parallel branches, which is $7.5 + 5.3 + 6.5 = 19.3 nF$.\\
+	
+	(b): $C = Q/V \implies Q = CV = (19.3 \cdot 10^{-9})(25) = 4.8 \cdot 10^{-7} C$.\\
+	
+	(c): $Q = CV = (6.5\cdot 10^{-9})(25) = 1.6 \cdot 10^{-7} C$.\\
+	
+	(d): $25V$.\\
+	
+	\textbf{Problem 26}:\\
+	
+	(a): Doubling the distance doubles the capacitance $C=Q/V$. Thus if $Q$ is held constant $V$ must be halved, which halves the energy as $U=\tfrac12 QV$. This gives $U=4.19 J$.\\
+	
+	(b): If $V$ is fixed then $Q$ doubles, so the energy doubles, hence $U=16.76 J$.\\
+	
+	\textbf{Problem 59}:\\
+	
+	(a): The rightmost square has capacitance $4.6+2.3=6.9$ so it is effectively just a $C_1$. Then similarly we can strip away the middle square to be left with 3 $C_1$s in parallel, which has capacitance $2.3 \mu F$.\\
+	
+	(b): The charge on each $C_1$ and the effective capacitor in series between them is $CV = 6.9 \cdot 420/3 = 966 \mu C$. The voltage across the $C_2$ is $420/3 V$ so its charge is $4.6\cdot 420/3 = 644 \mu C$.\\
+	
+	(c): It is $420/9 \approx 47 V$ as the voltage is cut in thirds and then in thirds again.\\
+	
+	\section*{Chapter 25}
+	
+	\textbf{Problem 18}:\\
+	
+	If the length is tripled then the cross sectional area will be $\tfrac13 A$. So the resistance is $\rho 3L/(\tfrac13 A) = 9\rho L/A = 9R$.\\
+	
+	\textbf{Problem 31}:\\
+	
+	(a): The total voltage in the circuit given by the batteries is $24V$ (since they are now in the same orientation) and the total resistance is $17\Omega$, so $V=IR$ gives $I\approx 1.41 A$. \\
+	
+	(b): The actual voltage across the top battery is $16V - Ir = 16 - 1.41\cdot 1.6 = 13.7 V$.\\
+	
+	\textbf{Problem 45}:\\
+	
+	The internal resistance of the battery is $3.5/(25+3.5)\approx 12\%$ of the resistance in the circuit, hence the battery draws $12\%$ of the power available in the circuit.
+	
+\end{document}

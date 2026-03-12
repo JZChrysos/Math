@@ -1,0 +1,94 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{PHYS 13200 HW \#7}
+\author{Jalen Chrysos}
+
+\begin{document}
+	\maketitle
+	
+	\textbf{Problem 22}:\\
+	
+	The distance traveled in the field is a quarter circle, so it is $\pi r / 2$ where $r$ is the radius of that circle. Thus
+	$$
+	\frac{2\cdot 1.18\cdot 10^{-2} m}{\pi} = r = \frac{m v }{|q| B}
+	$$
+	so we can calculate $B$ as 
+	$$
+	B = \frac{mv}{|q| (2.36 \cdot 10^{-2} / \pi)} = \frac{1.67 \cdot 10^{-27} \cdot 1.2 \cdot 10^3}{1.6\cdot 10^{-19} \cdot (2.36 \cdot 10^{-2} / \pi)} = 0.0017 T.
+	$$
+	
+	\textbf{Problem 25}:\\
+	
+	If the particles are undeflected then the electric and magnetic forces on the particle must cancel. The electric field is 
+	$$
+	E = \frac{V}{d} = \frac{150}{0.0082} = 18300 N/C
+	$$
+	so it applies a force of 
+	$$
+	F = qE = (3.2 \cdot 10^{-19})\cdot 18300 = 5.85 \cdot 10^{-15} N.
+	$$
+	Thus the magnetic field must impart the same force, so 
+	$$
+	F = qvB \implies B = \frac{F}{qv} = 0.045 T
+	$$
+	The magnetic field must be oriented \textit{out} of the page so that the induced force on the particle is downward, counteracting the upward force imparted by the electric field (right hand rule).
+	
+	\textbf{Problem 29}:\\
+	
+	The horizontal segments of wire are forced downward by the magnetic field with magnitude 
+	$$
+	F = I \cdot L \cdot B = 4.5 \cdot 0.6 \cdot 0.24 = 0.648 N
+	$$
+	and the vertical segment is forced to the right with magnitude
+	$$
+	F = I \cdot L \cdot B = 4.5 \cdot 0.3 \cdot 0.24 = 0.324 N
+	$$
+	so overall the force has magnitude 
+	$$
+	\sqrt{0.648^2 + 0.324^2} = 0.724 N
+	$$
+	and the direction is 26.6 degrees clockwise from the right.
+	
+	\textbf{Problem 36}:\\
+	
+	(a): The torque is $IBA\sin(\phi) = 6.2 \cdot 0.19 \cdot 0.05\cdot 0.08 = 0.0047 N\cdot m$.\\
+	
+	(b): $\mu = IA = 6.2 \cdot 0.05 \cdot 0.08 = 0.025 A \cdot m^2$.\\
+	
+	(c): The area is maximal when the loop is a circle, which would give $r=0.26/2\pi = 0.041$, and $A=\pi r^2 = 0.0054 m^2$. Then the torque becomes $6.2\cdot 0.19\cdot 0.0054 = 0.0064 N\cdot m$.\\
+	
+	\textbf{Problem 39}:\\
+	
+	(a): The coil will rotate around the A2 axis because the magnetic field is parallel to A2 and perpendicular to A1.\\
+	
+	(b): The torque can be computed as $IBA = 2 \cdot 3 \cdot 0.5 = 3 N\cdot m$. Thus the angular acceleration is $\a = \tau m / r^2 = 3 \cdot 0.212 / 0.25^2 = 10.176$.\\
+	
+	\textbf{Problem 42}:\\
+	
+	The potential energy goes from $\mu B$ to $-\mu B$, so the change is $2\mu B = 2\cdot 1.45 \cdot 0.835 = 2.42 J$.
+	
+	\textbf{Problem 45}:\\
+	
+	(a): The drift velocity $v_d$ is determined by $I = n q v_d A$, so 
+	$$
+	v_d = \frac{I}{nq A} = \frac{120}{5.85 \cdot 10^{28} \cdot 1.6\cdot 10^{-19} \cdot (0.0118 \cdot 0.0023)} = 0.00047 m/s
+	$$
+	
+	(b): 
+	$$ E_z = -v_d B_y = -0.00047 \cdot 0.95 = -0.00045 N/C$$
+	in the z direction (equivalently, 0.00045 in the negative z direction).\\
+	
+	(c):
+	$$
+	V = E_z \cdot d = 0.00045 \cdot 0.0118 = 5.31 \cdot 10^{-6} V
+	$$
+	
+	\textbf{Problem 55}:\\
+	
+	If the force of the magnetic field is $F$, then balancing gravity down the slope will require $F\cos(\theta) = mg\sin(\theta)$. $F$ can be expressed as $ILB$, so we have
+	$$
+	I = \frac{mg \tan(\theta)}{BL}
+	$$
+	The current must be directed toward the right in the diagram.
+\end{document}

@@ -1,0 +1,503 @@
+\documentclass{amsart}
+
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tabu}
+
+\DeclareMathOperator{\Cl}{\mathrm{Cl}}
+
+\title{How Many Vector Fields Can Fit on a Sphere?}
+\author{Jalen Chrysos}
+\begin{document}
+	\begin{abstract}
+		This is my final project for Topology II (MATH 318) at UChicago in Winter 2026, taught by Eduard Looijenga.
+	\end{abstract}
+	\maketitle
+	
+	\tableofcontents
+	
+	\newpage 
+	
+	\section{Vector Fields}
+	
+	Let $M$ be a smooth, connected $m$-manifold. A \textit{vector field} on $M$ is a smooth map $V:M\to TM$, assigning to each $p\in M$ a tangent vector $V(p)\in T_pM$. In other words, a smooth section of the tangent bundle on $M$.
+	
+%\begin{figure}[h]
+%	\includegraphics{C:/Users/jzchr/MathDocuments/Class Work/Topology/DiffGeoFinal/Figures/Fig1.png}
+%	\caption{A non-vanishing vector field on the torus.}
+%\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.6\linewidth]{C:/Users/jzchr/MathDocuments/Class Work/Topology/DiffGeoFinal/Figures/Fig1.png}
+		\caption{A non-vanishing vector field on $S^1\times S^1$.}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.5\linewidth]{C:/Users/jzchr/MathDocuments/Class Work/Topology/DiffGeoFinal/Figures/Fig2.png}
+		\caption{A vector field with two stationary points on $S^2$.}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{}
+	\label{fig:test}
+\end{figure}
+
+	The range of possible vector fields supported by $M$ carries important topological information about $M$. For example, can such a vector field be nonzero at all points?\\
+	
+	\noindent \underline{\textbf{Question 1}}: For which (compact) $M$ does there exist a non-vanishing vector field on $M$?\\
+	
+	\noindent Famously, when $M=S^2$, there is no such vector field---this is the ``Hairy Ball Theorem.'' On the other hand, when $M=S^1\times S^1$, the 2-torus, there \textit{is} a non-vanishing vector field, as pictured in Fig 1. These two facts are a special case of the following general solution to Question 1:\\
+	
+	\noindent \textbf{Theorem 1}: A compact manifold $M$ supports a non-vanishing vector field if and only if $\chi(M)=0$.
+	
+	\begin{proof}
+	   The forward direction follows from the Poincar\'e-Hopf Theorem, which says that for any vector field $V$ on a compact manifold $M$,
+		$$
+		\sum_{p\in Z(V)} \Ind_p(V) = \chi(M),
+		$$ 
+		where $Z(V)$ is the set of zeros (or ``stationary points'') of $V$, $\Ind_p(V) \in \{\pm 1\}$ is the \textit{index} of the stationary point $p$, and $\chi(M)$ is the Euler characteristic of $M$. In the case where $V$ has no zeros, the sum is empty, so $\chi(M)=0$.
+		$$\textbf{Picture illustrating Poincar\'e-Hopf Theorem}$$
+		In the particular case $M=S^2$, with $\chi(S^2)=2$, this shows that there are at least \textit{two} zeros of any vector field on $S^2$, as reflected in Fig 1(B).\\
+		
+		Now for the converse direction, we'll show that if $\chi(M)=0$ then it is possible to construct a non-vanishing vector field on $M$.
+		
+		Take for granted that there is some $V$ on $M$ with finitely many stationary points (this can be done by triangulating $M$ and constructing a vector field on $M$ as in the proof of the Poincar\'e-Hopf Theorem). Because $\chi(M)=0$, Poincar\'e-Hopf implies that the zeros of $V$ have indices summing to 0. Take a sphere $S^{m-1}$ (or something homeomorphic to it) that does not contain any zeros of $V$ but encloses all of them in its interior $D^{m}$. We will construct another smooth vector field $V'$ that is equal to $V$ outside of $D^m$ but is non-vanishing inside of $D^m$, hence non-vanishing on $M$.\\
+		
+		$$\textbf{Picture of this proof}$$
+		
+		The key is that when we restrict $V$ to $S^{m-1}$, since it is nonzero, it induces the map $\hat{V}:S^{m-1}\to S^{m-1}$ given by
+		$$\hat{V}: x \mapsto \frac{V(x)}{||V(x)||}$$
+		The sum of indices of zeros inside $D^m$ being 0 implies that $\deg(\hat{V})=0$. Then by Hopf's Degree Theorem, which says that two maps $S^{m-1}\to S^{m-1}$ are homotopic if they have the same degree, $V$ is actually nullhomotopic. Taking a homotopy $h:[0,1]\times S^{m-1}\to \R^{m}\setminus \{0\}$ with $h(1,x)$ as constant, then one can extend $V$ to be defined on $D^m$ as well by 
+		$$
+		V'(r,\theta) := h(1-r,\theta).
+		$$
+		This is well-defined because $V'(0,\theta) = h(1,\theta)$ which is constant in $\theta$, as $h$ is a homotopy to the constant map. And it is equal to $V$ on $S^{m-1}$. Thus $V$ is a non-vanishing vector field on $M$.
+		
+	\end{proof}
+	
+	
+	
+	\newpage
+	
+	\section{Frames}
+	
+	A $k$-\textit{frame} on $M$ is a collection of $k$ vector fields $V_1,V_2,\dots,V_k$ with the property that $V_1(p),\dots,V_k(p)$ are linearly independent for all $p\in M$. A 1-frame is thus a non-vanishing vector field.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=.4\linewidth]{C:/Users/jzchr/MathDocuments/Class Work/Topology/DiffGeoFinal/Figures/Fig3.png}
+		\caption{A $2$-frame on $S^1\times S^1$.}
+	\end{figure}
+	
+	For each $M$, there is a maximal $k$ for which there exists a $k$-frame on $M$, and we call this $k$ ``$\Span(M)$.'' For example, Fig 2 illustrates a $2$-frame on $S^1\times S^1$, showing that $\Span(S^1\times S^1)=2$. A natural extension of Question 1 is the following:\\
+%	The focus of this paper is the computation of $\Span(M)$ for various manifolds $M$, particularly $S^m$.
+	
+	\noindent \underline{\textbf{Question 2:}} What is $\Span(M)$ for each $M$?\\
+	
+	\noindent This section will address a historically significant case of this question, where $M=S^n$. One construction was demonstrated in successive work by Hurwitz, Radon, and Eckmann. It was an open question for twenty years whether this construction was truly optimal until finally, Adams showed that it was, using techniques in the blossoming field of K-theory.\\
+	
+	\noindent\textbf{Theorem 2}: Let $\nu_2(n)$ be the 2-adic valuation of $n$, and suppose $\nu_2(n) = 4a + b$ where $b<4$.
+	\begin{enumerate}[(a)]
+		\item (Hurwitz, Radon, Eckmann 1942): $\Span(S^{n-1})\geq 8a+2^b-1$.
+		\item (Adams 1962): $\Span(S^{n-1}) = 8a + 2^b - 1$.\\ 
+	\end{enumerate}
+	
+	\noindent Note that this agrees with Theorem 1; $\Span(S^{2m})=0$ for all $m$, as $\chi(S^{2m})=2$. In this section, I'll show Theorem 2(a) by constructing a frame on $S^{n-1}$ of the desired dimension.
+	
+	\subsection{Small Cases} Before going into the general construction, it will be useful to see how this is done in a few small cases. In the case of $S^1$, it is not hard to see that taking tangent vectors obtained by a 90-degree rotation yields a non-vanishing vector field, showing that $\Span(S^1)=1$. Viewing $S^1$ as $\C^{\times}$, this vector field can be written as $V:x\mapsto i\cdot x$.
+	$$
+	\textbf{Picture of $S^1$ and $S^3$ cases}
+	$$
+	We can extend this idea to $S^3$ by identifying it with $\HH^{\times}$ with the usual inner product and taking vector fields $V_1:x\mapsto i\cdot x$, $V_2:x\mapsto j\cdot x$, and $V_3:x\mapsto k \cdot x$. The elements $i,j,k$ act on $S^3$ as
+	$$
+%	1 = \begin{pmatrix}
+%		1 & 0 & 0 & 0\\
+%		0 & 1 & 0 & 0\\
+%		0 & 0 & 1 & 0\\
+%		0 & 0 & 0 & 1
+%	\end{pmatrix}, \;\; 
+	i = \begin{pmatrix}
+		0 & 1 & 0 & 0\\
+		-1 & 0 & 0 & 0\\
+		0 & 0 & 0 & 1\\
+		0 & 0 & -1 & 0
+	\end{pmatrix}, \;\;
+	j = \begin{pmatrix}
+		0 & 0 & 1 & 0\\
+		0 & 0 & 0 & -1\\
+		-1 & 0 & 0 & 0\\
+		0 & 1 & 0 & 0
+	\end{pmatrix}, \;\;
+	k = \begin{pmatrix}
+		0 & 0 & 0 & 1\\
+		0 & 0 & 1 & 0\\
+		0 & -1 & 0 & 0\\
+		-1 & 0 & 0 & 0
+	\end{pmatrix}.   
+	$$
+	As these are all orthogonal matrices, they preserve the inner product. Thus, we can see that $V_1(x)$ is indeed orthogonal to $x$:
+	$$
+	\<x,ix\> = \<ix,i^2x\> = -\<ix,x\> = -\<x,ix\> \implies \<x,ix\>=0,
+	$$
+	and the same follows for $V_2,V_3$. Moreover, they are all mutually orthogonal:
+	$$
+	\<ix,jx\> = \<i^2x,ijx\> = -\<x,kx\> = 0, 
+	$$
+	likewise for $i,k$ and $j,k$. So $V_1,V_2,V_3$ is, as claimed, a 3-frame on $S^3$, showing that $\Span(S^3)=3$.\\
+	
+	The idea behind both of these constructions was to see $\R^n$ as an orthogonal representation of some $\R$-algebra with $k$ generators. Now we will carry this idea out in as much generality as possible.
+	
+	\subsection{Clifford Algebras}
+	For any $k\in \N$ and quadratic form $Q:\R^k\to \R$, we define the real \textit{Clifford Algebra} $\Cl_k(Q)$ as
+	$$
+	\Cl_k(Q) := \frac{\R[e_1,\dots,e_k]}{(e_ie_j=-e_je_i \; \forall i\neq j, \;\; v^2 = Q(v) \; \forall v\in \R^k)}
+	$$
+	One can view $\Cl_k(Q)$ as a natural generalization of several important algebras. For example:
+	$$
+	\Cl_k(0) = \bigwedge \R^k, \;\; \Cl_1(-1) \cong \C, \;\; \Cl_2(-1) \cong \HH
+	$$
+	(here $Q=-1$ really means $Q(v)=-||v||^2$, which is equivalent to $Q(e_j)=-1$ for all $j$). In the case of $\Cl_2(-1)\cong \HH$, the isomorphism is given by
+	$$
+	(1,e_1,e_2,e_1e_2) \mapsto (1,i,j,k).
+	$$
+%	or $+1$, we denote the associated algebras $C_k^+$ and $C_k^-$ respectively:
+%	$$
+%	C_k^+ := \frac{\R[e_1,\dots,e_k]}{(e_ie_j = -e_je_i, \;\; e_i^2=-1)_{\forall i\neq j}}, \;\;\; C_k^- := \frac{\R[e_1,\dots,e_k]}{(e_ie_j = -e_je_i, \;\; e_i^2=+1)_{\forall i\neq j}}.
+%	$$ 
+%	For small $k$, the $C_k^+$ are familiar algebras:
+%	$$
+%	C_0^+ =\R, \;\;\; C_1^+ = \C, \;\;\; C_2^+ = \HH.  
+%	$$
+%	$C_k^-$ are less familiar.\\
+	
+	Due to the relations in $\Cl_k(Q)$, any product of the generators $e_1,\dots,e_k$ is equivalent to a product $a\cdot  e_{i_1}\cdots e_{i_{\ell}}$ for some sequence $i_1 < i_2 <\cdots < i_{\ell}$ and $a\in \R$. Let the set of all $2^k$ such products be $G_k$. This $G_k$ is thus an $\R$-basis for $\Cl_k(Q)$ for any $Q$, showing that $\dim(\Cl_k(Q))=2^k$.\\
+	
+	Having seen that $\Cl_k(-1)$ generalizes $\C$ and $\HH$, the next thing one might try is to use $\Cl_k(-1)$ in the same way, but the proof method does not carry over to general $k$. The issue is that we cannot say $\<g\cdot x,x\>=0$ for all $g\in G_k$; that only follows when $g^2=-1$, which holds for terms $e_j$ but not for products, e.g. $(e_1e_2e_3)^2=1$.
+	
+	But the fact that multiplication by the $e_j$ \textit{does} produce tangent vectors yields a path toward generality: $\Cl_k(-1)$ does not always produce $2^k$-frames, but it at least produces $k$-frames, both on itself as a vector space \textit{and} on smaller spaces it acts upon.\\
+	
+	\noindent \textbf{Lemma 2.1}: If $\R^n$ is a representation of $\Cl_k(-1)$, then there is a $k$-frame on $S^{n-1}$. In particular,
+	$$
+	\{V_i: x\mapsto e_i\cdot x\}_{1\leq i \leq k}
+	$$
+	is a $k$-frame on $S^{n-1}$.
+	\begin{proof}
+		We can endow $\R^n$ with the inner product
+		$$
+		\<x,y\> := \sum_{g\in G_k} (g\cdot x, g\cdot y)
+		$$
+		where $(\bullet,\bullet)$ is the usual inner product on $\R^n$. This inner product is $G_k$-invariant, as action of $G_k$ only permutes the sum. Thus, we can assume that $\Cl_k(-1)$ acts \textit{orthogonally} on $\R^n$.\\
+		
+		To check that $\{V_i: x\mapsto e_i\cdot x\}$ is a $k$-frame we must check two things: first, that these $V_i$ actually are vector fields on $S^{n-1}$, i.e. $V_i(x) \in T_xS^{n-1}$. To show this, we use the fact that the inner product on $\R^n$ is $G_k$-invariant:
+		$$
+		\<e_i \cdot x,x\> = \<e_i^2\cdot x, e_i \cdot x\> = -\<x,e_i\cdot x\> = -\<e_i\cdot x,x\> \implies \<e_i\cdot x,x\>=0.
+		$$
+		Next, we show that $\<V_i(x),V_j(x)\>=0$ for all $i\neq j$:
+		\begin{align*}
+		\<e_i\cdot x,e_j\cdot x\> &= \<(e_ie_j)e_i\cdot x,(e_ie_j)e_j\cdot x\>\\
+		&= \<-e_je_i^2 \cdot x, e_ie_j^2 \cdot x\>\\
+		&= \<e_j\cdot x,-e_i\cdot x\>\\
+		&= -\<e_i\cdot x,e_j\cdot x\> \\
+		\<e_i\cdot x,e_j\cdot x\>&=0.
+		\end{align*}
+		Thus, $V_1,\dots,V_k$ are $k$ mutually orthogonal vector fields on $S^{n-1}$.
+	\end{proof}\\
+	
+	With Lemma 2.1, the question becomes ``what is the largest $k$ such that $\Cl_k(-1)$ is represented in $\R^n$?'' or in other words, ``what is the largest $k$ such that $\Cl_k(-1)$ embeds into $\GL_n(\R)$?'' There is also the inverse question: ``what is the smallest $n$ such that $\Cl_k(-1)$ embeds into $\GL_n(\R)$?'' Let this minimal dimension be $m(k)$. Immediately we can say that $m(k)\leq 2^k$, as $\Cl_k(-1)$ acts on itself by multiplication. But in general, it is possible to do better than this. For example, when $k=3$, $\Cl_3(-1)$ can be made to act on $\HH$, as we will see, yielding $m(3)\leq 4$.\\
+	
+%	We can see that $2^k\leq n$, as the $2^k$ elements of $G_k$ are linearly independent but any $n+1$ linearly independent matrices in $\GL_n(\R)$ can produce a nontrivial linear combination with top row 0, a non-invertible and nonzero element, which can't exist in $\Cl_k(-1)$.
+	
+	
+	\subsection{Computing $\Cl_k(\pm 1)$}
+	In order to compute $m(k)$, we will need to get a clearer idea of the structure of these $\Cl_k(-1)$ for $k\geq 3$. In order to do this, we'll also study the algebras $\Cl_k(+1)$, which are closely related.
+	
+	The first few $\Cl_k(+1)$ can be shown isomorphic to familiar $\R$-algebras:
+	\begin{itemize}
+		\item $\Cl_0(+1)\cong \R$, trivially.
+		\item $\Cl_1(+1)\cong \R^2$, via the isomorphism $(1,e_1)\mapsto ((1,1),(1,-1))$.
+		\item $\Cl_2(+1)\cong \R(2)$, \textit{the algebra of $2\times 2$ matrices} over $\R$, via the isomorphism
+		$$
+		(1,e_1,e_2,e_1e_2) \mapsto \Bigg(
+		\begin{pmatrix}
+			1 & 0\\
+			0 & 1
+		\end{pmatrix}, 
+		\begin{pmatrix}
+			1 & 0\\
+			0 & -1
+		\end{pmatrix}, 
+		\begin{pmatrix}
+			0 & 1\\
+			1 & 0
+		\end{pmatrix}, 
+		\begin{pmatrix}
+			0 & -1\\
+			1 & 0
+		\end{pmatrix}\Bigg)
+		$$
+		In terms of the action on $\R^2$, $e_1$ and $e_2$ are both reflections across lines $y=0$ and $x=y$ respectively, and $e_1e_2$ is a 90 degree counterclockwise rotation.\\
+	\end{itemize}
+	
+	Furthermore, we know the first three $\Cl_k(-1)$ algebras to be $\R,\C,\HH$. For $k\geq 3$, $\Cl_k(-1)$ and $\Cl_k(+1)$ are related by the following isomorphism:\\
+	
+	\noindent \textbf{Lemma 2.2}: $\Cl_k(\mp 1)\cong \Cl_2(\mp 1) \otimes \Cl_{k-2}(\pm 1)$.
+	\begin{proof}
+		Let the generators of $\Cl_2$ and $\Cl_{k-2}$ be $f_1,f_2$ and $g_1,\dots,g_{k-2}$. Consider the following map $\ph:\Cl_k(\mp 1)\to \Cl_2(\mp 1)\otimes \Cl_{k-2}(\pm 1)$ generated by
+%		$$
+%		\ph: e_j \mapsto \begin{cases}
+%			f_1\otimes 1 & j=1\\
+%			f_2 \otimes 1 & j=2\\
+%			f_1f_2 \otimes g_{j-2} & j\geq 3.
+%		\end{cases}
+%		$$
+		\begin{align*}
+			\ph: e_1 \mapsto& \; f_1\otimes 1\\
+			\ph: e_2 \mapsto& \; f_2\otimes 1\\
+			\ph: e_j \mapsto& \; f_1f_2\otimes g_{j-2} \;\;\; \text{for} \; j\geq 3.
+		\end{align*}
+		To show that this is an algebra homomorphism we must only check that the relations of the algebra are preserved. First we show that $\ph(e_i)\ph(e_j)+\ph(e_j)\ph(e_i)=0$ for all $i\neq j$. If $i,j\in \{1,2\}$,
+		$$
+		\ph(e_i)\ph(e_j)+\ph(e_j)\ph(e_i) = (f_if_j+f_jf_i)\otimes 1 = 0.
+		$$
+		If $i\in \{1,2\}$ and $j\geq 3$, we have
+		$$
+		\ph(e_i)\ph(e_j)+\ph(e_j)\ph(e_i)= (f_if_1f_2 + f_1f_2f_i)\otimes g_{j-2} = \pm (f_1f_if_2 - f_1f_if_2)\otimes g_{j-2} = 0
+		$$
+		(the $\pm$ depends on $Q$, but in either case it is 0). If $i,j\geq 3$, then
+		$$
+		\ph(e_i)\ph(e_j)+\ph(e_j)\ph(e_i) = f_1f_2f_1f_2\otimes (g_{i-2}g_{j-2}- g_{j-2}g_{i-2}) = 0.
+		$$
+		Next we must show that $\ph(e_i)^2=Q(e_i)$. The case $i\leq 2$ is immediate, and when $i\geq 3$ we have
+		$$
+		\ph(e_i)^2 = f_1f_2f_1f_2\otimes g_{i-2}^2 = -f_1^2f_2^2\otimes g_{i-2}^2 = -Q\cdot Q\cdot (-Q)\cdot 1\otimes 1 = Q\cdot 1\otimes 1.
+		$$
+		Here we used the fact that the sign of $Q$ is opposite for $\Cl_{k-2}(\pm 1)$. Thus $\ph$ is an algebra homomorphism as desired.\\
+		
+		Next we show that $\ph$ is an isomorphism by exhibiting the inverse,
+		\begin{align*}
+		\ph^{-1}: f_i\otimes 1 \mapsto& \; e_i\\
+		\ph^{-1}: 1 \otimes g_j \mapsto& -e_1e_2e_{j+2}.
+		\end{align*}
+		We must check that these are inverses: in one direction, $\ph(\ph^{-1}(f_i\otimes 1)) = \ph(e_i) = f_i\otimes 1$ and
+%		\begin{align*}
+%		\ph(\ph^{-1} f_i\otimes g_j) &= \ph(-e_ie_1e_2e_{j+2})\\
+%		&= -(f_i\otimes 1)(f_1\otimes 1)(f_2\otimes 1)(f_1f_2\otimes g_j)\\
+%		&= -f_if_1f_2f_1f_2\otimes g_j\\
+%		&= f_if_1^2f_2^2 \otimes g_j\\
+%		&= f_i\otimes g_j
+%		\end{align*}
+\begin{align*}
+	\ph(\ph^{-1} 1\otimes g_j) &= \ph(-e_1e_2e_{j+2})\\
+	&= -(f_1\otimes 1)(f_2\otimes 1)(f_1f_2\otimes g_j)\\
+	&= -f_1f_2f_1f_2\otimes g_j\\
+	&= f_1^2f_2^2 \otimes g_j\\
+	&= Q(f_1)Q(f_2) \cdot 1\otimes g_j\\
+	&= 1\otimes g_j
+\end{align*}
+		(note that this works with both $Q=\pm 1$). In the other direction, for $j\leq 2$ it is clear that $\ph^{-1}(\ph(e_j))=\ph^{-1}(f_j\otimes 1) = e_j$, and for $j\geq 2$,
+		\begin{align*}
+		\ph^{-1}(\ph(e_j)) &= \ph^{-1}(f_1f_2\otimes g_{j-2})\\
+		&= \ph^{-1}(f_1\otimes 1)\ph^{-1}(f_2\otimes 1)\ph^{-1}(1\otimes g_{j-2})\\
+		&= e_1e_2\cdot -e_1e_2e_j\\
+		&= e_1^2e_2^2e_j\\
+		&= Q(e_1)Q(e_2)\cdot e_j\\
+		&= e_j.
+		\end{align*}
+		Again, this works for $Q=\pm 1$.
+	\end{proof}\\
+	
+	Using Lemma 2.2, we can see that 
+	$$
+	\Cl_3(-1) \cong \Cl_2(-1)\otimes \Cl_1(+1) \cong \HH\otimes \R^2 \cong \HH^2 
+	$$
+	and 
+	$$
+	\Cl_3(+1) \cong \Cl_2(+1)\otimes \Cl_1(-1) \cong \R(2)\otimes \C \cong \C(2).
+	$$
+	Then we can determine $\Cl_4(\pm 1)$ and so on, filling in the following table:
+	
+	\begin{figure}[h]
+	\begin{center}
+	{\tabulinesep=1mm
+	\begin{tabu}{|ccc||ccc|}
+		\hline
+		$\Cl_0(-1)$ & $\cong$ & $\R$ & $\Cl_0(+1)$ & $\cong$ & $\R$\\
+		\hline
+		$\Cl_1(-1)$ &$\cong$ & $\C$ & $\Cl_1(+1)$ &$\cong$ & $\R^2$\\
+		\hline
+		$\Cl_2(-1)$ &$\cong$ & $\HH$ & $\Cl_2(+1)$ &$\cong$ & $\R(2)$\\
+		\hline 
+		$\Cl_3(-1)$ &$\cong$ & $\HH^2$ & $\Cl_3(+1)$ &$\cong$ & $\C(2)$\\
+		\hline 
+		$\Cl_4(-1)$ &$\cong$ & $\HH(2)$ & $\Cl_4(+1)$ &$\cong$ & $\HH(2)$\\
+		\hline 
+		$\Cl_5(-1)$ &$\cong$ & $\C(4)$ & $\Cl_5(+1)$ &$\cong$ & $\HH(2)^2$\\
+		\hline 
+		$\Cl_6(-1)$ &$\cong$ & $\R(8)$ & $\Cl_6(+1)$ &$\cong$ & $\HH(4)$\\
+		\hline 
+		$\Cl_7(-1)$ &$\cong$ & $\R(8)^2$ & $\Cl_7(+1)$ &$\cong$ & $\C(8)$\\
+		\hline 
+		$\Cl_8(-1)$ &$\cong$ & $\R(16)$ & $\Cl_8(+1)$ &$\cong$ & $\R(16)$\\
+		\hline
+	\end{tabu}}
+	\end{center}
+	\caption{$\Cl_k(\pm 1)$ for $k\leq 8$.}
+\end{figure}
+
+Some of these isomorphisms are not immediate from lemma 2.2 and require some explanation:\\
+
+\noindent \textbf{Lemma 2.3}: The following is the $\otimes_{\R}$ multiplication table for $\C,\HH$:
+\begin{center}
+	{\tabulinesep=0.6mm
+\begin{tabu}{|c|c|c|}
+	\hline 
+	$\otimes_{\R}$ & $\C$ & $\HH$\\
+	\hline
+	$\C$ & $\C^2$ & $\C(2)$\\
+	\hline
+	$\HH$ & $\C(2)$ &$\R(4)$\\
+	\hline 
+\end{tabu}}
+\end{center}
+\begin{proof}
+	\textit{Forthcoming.}
+\end{proof}\\
+
+After $k\geq 8$, there is a repeating pattern with period 8:\\
+
+\noindent \textbf{Lemma 2.4}: $\Cl_k(\mp 1) \cong \Cl_{k-8}(\mp 1)(16)$ for all $k\geq 8$.
+\begin{proof}
+	Applying Lemma 2.2 four times and then Lemma 2.3,
+	\begin{align*}
+		\Cl_k(\mp 1) &\cong \Cl_2(\mp 1) \otimes \Cl_2(\pm 1) \otimes \Cl_2(\mp 1) \otimes \Cl_2(\pm 1) \otimes \Cl_{k-8}(\mp 1)\\
+		&\cong \HH \otimes \HH\otimes \R(2) \otimes \R(2) \otimes \Cl_{k-8}(\mp 1)\\
+		&\cong \R(4) \otimes \R(2) \otimes \R(2) \otimes \Cl_{k-8}(\mp 1)\\
+		&\cong \R(16) \otimes \Cl_{k-8}(\mp 1)\\
+		&\cong \Cl_{k-8}(\mp 1)(16).
+	\end{align*}
+\end{proof}\\
+
+Consequently we have a characterization of all $\Cl_k(-1)$: writing $k$ as $k=8a+b$ where $b<8$,
+$$
+\Cl_k(-1) \cong \Cl_b(-1)(2^{4a}).
+$$
+	
+%This is closely related to Bott Periodicity.
+
+\subsection{Computing $m(k)$}
+Now that we have $\Cl_k(-1)$ in a familiar form for all $k$, we can begin to compute $m(k)$, the minimal dimension of algebra representations of $\Cl_k(-1)$:
+
+\begin{itemize} 
+	\item $\R,\C,\HH$ are unique among the algebras $\Cl_k(-1)$ in the property that all of their elements are invertible; that is, they are \textit{division algebras}. Among $n\times n$ matrices, any $n+1$ that are linearly independent have a non-trivial linear combination which has top row 0 and is thus non-invertible yet nonzero. So if a division algebra $A$ embeds into $\GL_n(\R)$, $n$ must be at least $\dim(A)$. For $\Cl_k(-1)$ with $k\leq 3$, this implies that $2^k\leq n$, so in fact the lower and upper bounds are the same: $m(k)=2^k$.
+	\item For $\HH^2$, we find that $\HH^2$ has an action on $\HH$ as well, via
+	$$
+	(x,y)\cdot h = xh\bar{y}.
+	$$
+%	\textbf{show}
+	\item $\HH(2),\C(4),\R(8),\R(16)$ act on $\HH^2,\C^4,\R^8,\R^{16}$ in the usual way, and these are minimal.
+	\item $\R(8)^2$ acts on $\R(8)$ as well, via
+	$$
+	(x,y)\cdot v = xvy^{\top}.
+	$$
+%	\textbf{show}
+	\end{itemize}
+	
+With these representations, we have values of $m(k)$ for $k\leq 8$:
+
+%\noindent \textbf{Lemma 2.5}: If $A,A'$ are \textit{division algebras}, then the following hold:
+%\begin{enumerate}[(a)]
+%	\item The $A$-module of least dimension is $A$ itself (as an $\R$-vectorspace).
+%	\item The $A^2$-module of least dimension is also $A$.
+%	\item The $A(n)$-module of least dimension is $A^n$, with the usual action of matrices on vectors.
+%	\item The $(A\otimes A')$-module of least dimension is whichever of $A,A'$ has lower dimension.
+%\end{enumerate}
+%
+%\begin{proof}
+%	(a): In particular, every $A$-module contains $A$ as a submodule
+%\end{proof}
+
+\begin{figure}[h]
+	\begin{center}
+		{\tabulinesep=0.6mm
+			\begin{tabu}{|c||c|c|c|c|c|c|c|c|c|}
+				\hline 
+				$k$ & $0$& $1$& $2$& $3$& $4$& $5$& $6$ &$7$ & $8$\\
+				\hline
+				$\Cl_k(-1)$& $\R$& $\C$& $\HH$& $\HH^2$& $\HH(2)$& $\C(4)$ & $\R(8)$& $\R(8)^2$& $\R(16)$\\
+				\hline
+				$m(k)$& $1$& $2$& $4$& $4$& $8$& $8$& $8$& $8$& $16$\\
+				\hline
+				$m_2(k)$& $0$& $1$& $2$& $2$& $3$& $3$& $3$& $3$& $4$\\
+				\hline
+				\end{tabu}}
+	\end{center}
+	\caption{$m(k)$ for $k\leq 8$.}
+\end{figure}
+
+Observing that $m(k)$ is always a power of 2, we define $m_2(k)=\log_2(k)$. For $k\geq 8$, by applying Lemma 2.4 we have $m(k)=16\cdot m(k-8)$ and $m_2(k) = 4 + m_2(k-8)$.\\
+
+As shown in Lemma 2.1, $\Cl_k(-1)$ acts on $\R^{m(k)}$. But it also acts on $\R^{c\cdot m(k)}$ (by acting in the same way on each copy of $\R^{m(k)}$). So if $m(k)|n$, or equivalently $m_2(k)\leq \nu_2(n)$, then there is a $k$-frame on $S^{n-1}$. For each $n$, we pick the largest $k$ such that $m_2(k)\leq \nu_2(n)$, to yield the following lower-bounds on $\Span(S^{n-1})$:
+
+\begin{figure}[h]
+	\begin{center}
+		{\tabulinesep=0.6mm
+			\begin{tabu}{|c||c|c|c|c|c|c|c|c|c|}
+				\hline 
+				$\nu_2(n)$ & $0$& $1$& $2$& $3$& $4$& $5$& $6$ &$7$ & $8$\\
+				\hline
+				$k$ & $0$ & $1$ & $3$ & $7$ & $8$& $9$& $11$ & $15$ & $16$\\
+				\hline
+		\end{tabu}}
+	\end{center}
+	\caption{$\rho(n) - 1$ for $n\leq 8$.}
+\end{figure}
+These values are exactly $8a+2^b - 1$ for $\nu_2(n)=4a+b$, as stated in Theorem 2(a), so the lower bound is complete.\\
+
+\subsection{The Radon-Hurwitz Numbers}
+A little more can be said about this particular sequence. It is one less than $\rho(n)$, the sequence of \textit{Radon-Hurwitz} numbers, defined as
+$$
+\rho(n) := \max\{\dim(V) : V \text{ is a linear subspace of } \GL_n(\R)\}.
+$$
+This seems to suggest that there is a strong connection between sets of matrices whose span is entirely non-singular and sets of non-vanishing vector fields on $S^{n-1}$. And indeed there is.\\
+
+\textbf{Proposition 2.6}: 
+There exists a set of $n\times n$ matrices $M_1,\dots,M_p$ whose span is contained in $\GL_n(\R)$ if and only if there is a \textit{linear} $(p-1)$-frame on $S^{n-1}$. 
+
+\begin{proof}
+	Define the matrices
+	$$
+	B_j := M_1^{-1}M_p \;\; \text{for} \; 2\leq j\leq p.
+	$$
+	These $B_j$ have no real eigenvalues; this is because 
+	$$
+	\det(\lambda I + M_1^{-1}M_p) = 0 \implies \det(\lambda M_1 + M_p) = 0 \implies \lambda M_1 + M_p \not\in \GL_n(\R).
+	$$
+	Similarly, no nontrivial linear combination of the $B_j$ has any real eigenvalue either. That is, $\<B_2(v),B_3(v),\dots,B_p(v)\>$ does not contain $v$ for any $v\neq 0$. So if we orthographically project these vectors onto $T_vS^{n-1}$, we get $p-1$ linearly independent vectors. Thus, this is a $(p-1)$-frame.\\
+	
+	Conversely, suppose $A_1,\dots,A_{p-1}$ is a $(p-1)$-frame of matrices. Then any linear combination is non-singular, and moreover, linear combinations of $I,A_1,\dots,A_{p-1}$ are also non-singular, as these are linearly independent as well.
+\end{proof}\\
+
+This shows $\Span(S^{n-1})\geq \rho(n)-1$ but not the full converse, as we restricted to linear vector fields. To extend the converse to all smooth vector fields would require the more sophisticated tools of homotopy theory introduced by Frank Adams.\\
+
+It is also worth mentioning the other appearances of the ``exceptional numbers'' 1,2,4,8, in other areas of mathematics:\\
+
+\textbf{Proposition 2.7}: The following are equivalent properties of $n\in \N$:
+\begin{enumerate}[(i)]
+	\item There is a dimension-$n$ linear subspace of $\GL_n(\R)$.
+	\item There exists a division algebra structure on $\R^n$.
+	\item $S^{n-1}$ is parallelizable; that is, $\Span(S^{n-1})=n-1$.
+	\item There is a Hopf Fibration $S^{n-1}\to S^{2n-1}\to S^n$.
+	\item There are bilinear forms $z_1,\dots,z_n:\R^n\times \R^n \to \R$ such that
+	$$
+	(x_1^2+\cdots + x_n^2) \cdot (y_1^2+\cdots +y_n^2) = z_1(\vec{x},\vec{y})^2 + \cdots + z_n(\vec{x},\vec{y})^2.
+	$$
+\end{enumerate}
+
+These 
+
+	
+\end{document}

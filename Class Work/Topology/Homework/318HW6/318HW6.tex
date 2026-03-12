@@ -1,0 +1,105 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Math 318 HW 6}
+\author{Jalen Chrysos}
+
+\begin{document}
+	\maketitle
+	
+	\textbf{Problem 3.2}: Prove that the de Rham cohomology of $S^m$ is of dimension 2 with one generator in degree zero and another in degree $m$. How does $\OO(m+1)$ act on this vector space?\\
+	
+	\begin{proof}
+		Cover $S^m$ with two $m$-disks $A,B$ which intersect in $S^{m-1}$. Mayer-Vietoris gives 
+		$$
+		H^0(S^m)\to H^0(D^m)\oplus H^0(D^m)\to H^0(S^{m-1})\to H^1(S^m)\to \cdots 
+		$$
+		Since $D^m$ is simply-connected, its cohomology is 0 for $k>0$, which forces $H^k(S^{m-1})\cong H^{k+1}(S^{m})$ for $k>0$. Thus we can use induction to see that for $k>0$, $H^k(S^m)\cong H^1(S^{m-k+1})$, which is 0 unless $m=k$ (since we know $H^1(S^1)=\R$ and $H^1(S^n)=0$ for $n>1$ because $S^n$ is simply connected).
+		
+		And for $k=0$, $H^0(S^m)=\R$ for any $m$ because $S^m$ is connected.\\
+		
+%		Another way to see this is that if we have a closed $k$-form on $S^m$ where $0<k<m$, then because $S^m$ is closed and oriented,\\
+		
+		The de Rham cohomology of $S^m$ thus consists of constant 0-forms and constant multiples of the volume form on $S^m$. $\OO(m+1)$ acts on the volume forms as multiplication by $\pm 1$ depending on the determinant of the orthogonal matrix, and acts trivially on the 0-forms.
+	\end{proof}
+	
+	\newpage 
+	
+	\textbf{Problem 3.4}: Let $\CP^n$ be complex projective $n$-space. It contains $\CP^{n-1}$ as a hyperplane at infinity, so that $\C^n=\CP^n\setminus \CP^{n-1}$. Compute the de Rham cohomology of $\CP^n$.
+	\begin{proof}
+		Let $U= \C^n$ and $V=\CP^n\setminus \{0\}$ so that $U\cup V = \CP^n$ and $U\cap V = \C^n\setminus \{0\} \simeq S^{2n}$. Mayer-Vietoris gives
+		$$
+		H^0(\CP^n)\to H^0(\C^n)\oplus H^0(\CP^n-0)\to H^0(S^{2n})\to H^1(\CP^n)\to \cdots
+		$$
+		As shown in problem 3.2, $H^k(S^{2n})=\R$ for $k\in \{0,2n\}$ and $0$ otherwise, so this long exact sequence shows that $H^k(\CP^n)\cong H^k(\C^n)\oplus H^k(\CP^n-0) \cong H^k(\CP^n-0)$. One could proceed this way.\\
+		
+		A faster way to do this is just use cellular homology and the UCT, since de Rham cohomology is the same as cellular and singular cohomology. We know that the homology of $\CP^n$ is $(\Z,0,\Z,0,\dots)$ and these are all free Abelian groups so the cohomology is the same, giving $(\R,0,\R,0,\dots,\R,0,0,\dots)$ with all 0 after dimension $2n$.
+	\end{proof}
+	
+	\newpage 
+	
+	\textbf{Problem 3.5}: Compute the de Rham cohomology of $\RP^2$ and the Klein Bottle.
+	
+	\begin{proof}
+		Given theorem 3.8, it is equivalent to just compute the singular (or cellular, via last quarter) cohomology with real coefficients.\\
+		
+		For $\RP^2$, we have two 1-cells $\a,\b$ and one 2-cell attached via $\a\b\a\b$. Thus the cellular homology can be computed from the cellular chain complex
+		$$
+		\Z \xra{\d_2} \Z^2 \xra{\d_1} \Z \xra{\d_0} 0
+		$$
+		where the boundary maps are 
+		$$
+		\d_0 = \begin{pmatrix} 0
+		\end{pmatrix}, \;\;\; \d_1 = \begin{pmatrix}
+		0 & 0
+		\end{pmatrix}, \;\;\; \d_2 = \begin{pmatrix}
+		2 & 2
+		\end{pmatrix}
+		$$
+		because the boundary of the 2-cell is mapped to $\a + \b + \a + \b = 2\a + 2\b$. So we have the homology groups
+		$$
+		H_0 = \frac{\ker(\d_0)}{\im(\d_1)} = \ker(\d_0) = \Z, \;\; H_1 = \frac{\ker(\d_1)}{\im(\d_2)} = \frac{\Z^2}{\<(2,2)\>} = \Z\times \Z_2, \;\; H_2 = \frac{\ker(\d_2)}{\im(\d_3)} = \ker(\d_2) = 0.
+		$$
+		Then we can compute the cohomology with coefficients in $\R$ via the UCT:
+		$$
+		H^j(\RP^2;\R) = \Hom(H_j(\RP^2),\R) \oplus \Ext(H_{j-1}(\RP^2),\R).
+		$$
+		so 
+		$$
+		H^0(\RP^2;\R) = \R, \;\; H^1(\RP^2;\R) = \R, \;\; H^2(\RP^2;\R) = 0.
+		$$
+		
+		Now for $K$, we have a very similar computation except that $\d_2 = (0 \; 2)$ because the 2-cell is attached via $\a\b\a^{-1}\b$. But this actually gives the exact same homology:
+		$$
+		H_0 = \frac{\ker(\d_0)}{\im(\d_1)} = \ker(\d_0) = \Z, \;\; H_1 = \frac{\ker(\d_1)}{\im(\d_2)} = \frac{\Z^2}{\<(0,2)\>} = \Z\times \Z_2, \;\; H_2 = \frac{\ker(\d_2)}{\im(\d_3)} = \ker(\d_2) = 0.
+		$$
+		And likewise the same cohomology.
+	\end{proof} 
+	
+	\newpage 
+	
+	\textbf{Problem 3.6}: Let $S_g$ be the closed oriented surface of genus $g$, and fix some base point $o\in S_g$. For every  $p\in S_g$, choose a smooth path $\gamma_p:[0,1]\to S_g$ with $\gamma_p(0)=o$ and $\gamma_p(1)=p$.
+	\begin{enumerate}[(a)]
+		\item Show that the image of $\int_{\gamma_p}\pi_i^*\a_{\pm}$ in $\R/\Z$ only depends on $p$ and defines a smooth function $I_{\pm i}:S_g\to \R/\Z$.
+		\item Prove that the resulting map $(I_1,I_{-1},\dots,I_g,I_{-g}):S_g\to (\R/\Z)^{2g}$ induces an isomorphism on $H^1_{dR}$.
+		\item Prove that $H_{dR}^{\bullet}((\R/\Z)^{2g})$ is the exterior algebra of $H^1_{dR}((\R/\Z)^{2g})$. 
+	\end{enumerate}
+	\begin{proof}
+		(a): Taking two different paths $\gamma_p,\gamma_p'$, we have
+		$$
+		\int_{\gamma_p^{-1}\circ \gamma_p'} \pi_i^*\a_{\pm} \in \Z
+		$$
+		corresponding to the winding number, so
+		$$
+		\int_{\gamma_p} \pi_i^*\a_{\pm} \equiv \int_{\gamma_p'} \pi_i^*\a_{\pm} \pmod \Z
+		$$
+		This shows that $I_{\pm i}$ does not depend on $p$.\\
+		
+		(b): The basis elements of $H^1_{dR}(S_g)$, $a_{\pm i}$, are each mapped by $I_{\pm j}$ (for $j\neq i$) to $\int_{\gamma_p} \pi_j^* \a_i = 0$.\\
+		
+		(c): \\
+		
+		Sorry for the incomplete state of this question. I'd normally take an extra hour to do this problem but I have to turn the pset in now because of the late policy in this class.
+	\end{proof}
+	
+\end{document}

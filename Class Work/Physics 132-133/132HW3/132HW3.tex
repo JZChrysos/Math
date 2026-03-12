@@ -1,0 +1,133 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{132 HW \#3}
+\author{Jalen Chrysos}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Problem 18}:\\
+
+Using an equation obtained in chapter 22, the electric field distance $r$ away from a charged line of charge density $\lambda$ is $2k\lambda/r$, so
+$$
+840 = \frac{2k\lambda}{0.4} \implies \lambda = 1.87\cdot 10^{-8} C/m
+$$
+so in 2cm of wire there is
+$$
+1.87 \cdot 10^{-8} \cdot 0.02 = 3.7\cdot 10^{-10} C
+$$
+of charge.\\
+
+\textbf{Problem 24}:\\
+
+(a): Outside the solid sphere, electric field behaves just like a point charge $Q$, so 
+$$
+E = \frac{kQ}{r^2} \implies 940 = \frac{kQ}{0.08^2} \implies Q = 6.7 \cdot 10^{-10} C
+$$
+giving a charge density of 
+$$
+Q/V = \frac{6.7\cdot 10^{-10}}{\tfrac43\pi (0.04)^3} = 2.5 \cdot 10^{-6} C/m^3.
+$$
+
+(b): On the \textit{inside} of the sphere, the electric field is $kQr/R^3$, so
+$$
+E = \frac{kQr}{R^3} = \frac{kQ}{r^2} \cdot \Big(\frac{r}{R}\Big)^3 = 940 \cdot (1/2)^3 = 117.5 N/C.
+$$
+
+\textbf{Problem 40}:\\
+
+(a): The electric field magnitude at radius $r$ is 
+$$
+E(r) = 
+\begin{cases}
+	kqr/a^3 & r<a\\
+	kq/r^2 & a<r<b\\
+	0 & b<r<c\\
+	kq/r^2 & c<r
+\end{cases}
+$$
+and it is pointed outward everywhere it is nonzero
+
+(b): Here is the graph:
+\begin{center}
+	\includegraphics[width=8cm]{C:/Users/jzchr/MathDocuments/Class Work/Physics 132-133/132HW3/HW3_40.png}
+\end{center}
+Here I've set $a=4,b=8,c=12$.\\
+
+(c): $-q$\\
+
+(d): $q$\\
+
+(e): The field lines are pointed outward at every point $r<b$ and $r>c$, with magnitude according to the graph above.
+\\
+
+\textbf{Problem 43}:\\
+
+(a): 
+$$
+E(r) = \begin{cases}
+	0 & r<b\\
+	k(2q)/r^2 & b<r<c\\
+	0 & c<r<d\\
+	k(6q)/r^2 & d<r.
+\end{cases}
+$$
+oriented outward from the origin everywhere it is nonzero.\\
+
+(b): The charges at $r=a,b,c,d$ are $0,2q,-2q,6q$ respectively.\\
+
+\textbf{Problem 44}:\\
+
+(a): 
+$$
+E(r) = \begin{cases}
+	0 & r<b\\
+	k(2q)/r^2 & b<r<c\\
+	0 & c<r
+\end{cases}
+$$
+oriented outward from the origin everywhere it is nonzero.\\
+
+(b): The charges at $r=a,b,c,d$ are $0,2q,-2q,0$ respectively.\\
+
+\textbf{Problem 46}:\\
+
+(a): Because the electric field inside the solid sphere nucleus points outward everywhere except where it is 0 at the center, so an electron (because it is negatively charged) moves in the opposite direction of the field, toward the center, where it is fixed.\\
+
+(b): Simple harmonic motion occurs when the restoring force is proportional to the displacement from equilibrium. In this case, if the displacement is $r<R$, the electric field magnitude is $kQr/R^3$, and the force is $kr/R^3$ directed toward the center. This is proportional to $r$ with constant $k/R^3$ so it is SHM. The frequency of oscillation can be calculated by
+$$
+f = \frac{1}{2\pi} \sqrt{\frac{k_{spring}}{m}} = \frac{1}{2\pi} \sqrt{\frac{k}{R^3m}}.
+$$
+
+(c):
+$$
+4.57 \cdot 10^{14} = \frac{1}{2\pi} \sqrt{\frac{k}{R^3m}} \implies R = 9.4\cdot 10^{-4} m
+$$
+This is way larger than any atom's actual radius.\\
+
+(d): If the displacement was greater than $R$, it would be pulled into the nucleus, but the motion would not be simple harmonic while it was outside.\\
+
+\textbf{Problem 53}:\\
+
+(a): If $d$ is the distance from the center of the sphere, then the electric field at this distance is 
+$$
+kQ/d^2 = \frac{k(\tfrac43 \pi d^3)\rho}{d^2} = k\tfrac43 \pi d \rho = \frac{d\rho}{3\ep_0}
+$$
+and $d=|\vec{r}-\vec{b}|$ so this is the answer expected.\\
+
+(b): The electric field of the entire sphere of radius $R$ is $k\tfrac43 \pi \vec{r}\rho$, and the electric field of the little sphere of radius $a$ is $k\tfrac43 \pi (\vec{r}-\vec{b})\rho$ inside of it, so by superposition we can subtract to get the electric field of the sphere with the hole:
+$$
+k\tfrac43 \pi\vec{r}\rho - k\tfrac43 \pi(\vec{r}-\vec{b}) = k\tfrac43 \pi\vec{b}\rho 
+$$
+which does not depend on $\vec{r}$, thus it is uniform inside the hole.\\
+
+\textbf{Problem 56}:\\
+
+The electric field in an insulating sphere is $k\tfrac43 \pi r \rho$. So the slope wrt $r$ is $k\tfrac43 \pi \rho$, and in the graph this slope is $(3\cdot 10^4)/(4\cdot 10^{-3})$, so we have
+$$
+k\tfrac43 \pi \rho = \frac{3\cdot 10^4}{4\cdot 10^{-3}} \implies \rho = 2\cdot 10^{-4} C/m^3.
+$$
+
+\end{document}

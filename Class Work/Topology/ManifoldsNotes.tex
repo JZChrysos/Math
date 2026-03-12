@@ -10,6 +10,10 @@
 
 These are my notes for Topology II taught by Eduard Looijenga at UChicago in Winter 2026.
 
+\tableofcontents
+
+\newpage 
+
 \section{Basic Definitions}
 
 A \textit{topological manifold} of dimension $m$ is a topological space $M$ that is Hausdorff and locally homeomorphic to $\R^m$. Such an $M$ has an open covering $\A = \{U_{\a}\}$ called an \textit{atlas} with associated homeomorphisms (\textit{charts}) $\kappa_{\a}:U_{\a}\to \R^m$ which are compatible, meaning that in each intersection $U_{\a}\cap U_{\b}$, we have a homeomorphic coordinate change map:
@@ -39,7 +43,7 @@ Note that a local diffeomorphism need not be a diffeomorphism because though it 
 
 The image of a local diffeomorphism need not even be a manifold. Consider the map taking $S^1$ to a figure-eight. Locally, every section of the circle is sent to a segment of the figure-eight, yet near the crossing point there is no homeomorphism to $\R$, so the figure-eight isn't a manifold. Another way of looking at this is that the tangent space to the figure-eight at the crossing point is \textit{not} a vector-space. For a higher-dimensional example, take the Klein bottle. There is a local diffeomorphism to a ``fake Klein bottle'' in $\R^3$ which self-intersects in a circle.
 
-If an immersion is injective (so its image has no self-intersections), it is called an \textit{embedding}. The image of an embedding $f:M\to N$ is always a manifold, and is called a \textit{submanifold} of $N$. Submanifolds can be equivalently characterized in another way: a manifold $A\subset N$ is a submanifold of $N$ if the charts $\kappa:N\to \R^n$ send $A$ to a linear subspace $\R^k\subset \R^n$.\\
+If an immersion is injective \textit{and} homeomorphic onto its image, it is called an \textit{embedding}\footnote{The homeomorphism part is necessary because for example one can construct an injective immersion $(0,1)\to \R^2$ whose image is a figure-eight.}. The image of an embedding $f:M\to N$ is always a manifold, and is called a \textit{submanifold} of $N$. Submanifolds can be equivalently characterized in another way: a manifold $A\subset N$ is a submanifold of $N$ if the charts $\kappa:N\to \R^n$ send $A$ to a linear subspace $\R^k\subset \R^n$.\\
 
 Question: Can a given $N$ be realized as a submanifold of a given $M$ (especially when $M=\R^m$)? Or in another way, can we classify all submanifolds of a given $M$ up to diffeomorphism type?
 \begin{itemize}
@@ -116,39 +120,127 @@ $$
 \end{itemize}
 \end{itemize}
 
-One natural application of this concept is to describe the vector field $[V,W]$: if $V,W$ generate flows $H,I$, then we can write $[V,W]$ as a derivative in terms of these flows:
+One natural application of this concept is to describe the vector field $[V,W]$: if $V$ generates a flow $H$, then for any vector field $W$,
+$$
+\partial_t|_{t=0} H_t^*W = [V,W]
+$$
+where $H_t^*W$ is the vector field $W$ pulled back for time $t$ along $H$, i.e. $[V,W]$ is the direction and magnitude along which $W$ moves as you follow the flow of $V$.
+
+In another way, if $V,W$ generate flows $H,I$, then we can write $[V,W]$ as a derivative in terms of these flows:
 $$
 \partial_s\partial_t\big|_{s=t=0} I_tH_sI_t^{-1}H_s^{-1} = [V,W].
 $$
-Intuitively, $[V,W]$ measures the failure of $H$ and $I$ to commute. Conversely, if $[V,W]=0$, then $H_sI_t=I_tH_s$ (HW).
+Intuitively, $[V,W]$ measures the failure of $H$ and $I$ to commute. Conversely, if $[V,W]=0$, then $H_sI_t=I_tH_s$ (HW).\\
+
+\subsection{Vector Bundles}
+
+A \textit{vector bundle} over $M$ is type of projection map $\pi:E\to M$ from some ``total space'' $E$ such that the fibers $E_p:=\pi^{-1}(p)$ have the structure of $r$-dimensional vector spaces. This vector space identification must be smooth in $p$, meaning precisely that $M$ can be covered by open sets $U$ such that $E_U$ is \textit{locally trivial} via $\rho:E_U\to \R^r$, which satisfies the following properties:
+\begin{itemize}
+	\item Restricted to a single fiber, $\rho:E_p\to \R^r$ is a vector space isomorphism.
+	\item $E_U$ is diffeomorphic to $U\times \R^r$ via $(\pi,\rho):E_U\to U\times \R^r$.\\
+\end{itemize}
+
+Examples:
+\begin{itemize}
+	\item The trivial bundle $\R^r\times M$ with $E=\R^r$ and $\rho:\R^r\to \R^r$ the identity.
+	\item The tangent bundle $TM$. 
+	\item The ``tautological line bundle'' $\gamma_m^1$ over $\P^m$, where $E=\{(x,\ell):x\in \R^{m+1}\cap \ell, \ell\in \P^m\}$, and $\pi$ is the projection in the second element.\\
+\end{itemize}
+
+In each of the intersections $U_{\a}\cap U_{\b}$, at a point $p\in U_{\a}\cap U_{\b}$ there is a transition map 
+$$
+\rho_{\a,p}\circ \rho_{\b,p}^{-1} : \R^r\to E_{U\cap U'} \to \R^r
+$$
+which is an invertible linear map in $\GL_r(\R)$. Thus we have a \textit{transition function} $g_{\a,\b}:U_{\a}\cap U_{\b}\to \GL_r(\R)$ defined by $g_{\a,\b}(p) := \rho_{\a,p}\circ \rho_{\b,p}^{-1}$.\\
+
+If we want to take a map $E\to M$ with some atlas $U_{\a},\rho_{\a}$ and make it into a vector bundle, it suffices to know that these maps $g_{\a,\b}$ are smooth. We can use this fact to define duals, tensor products, direct sums, etc. of vector bundles.\\
+
+Some associated definitions:
+\begin{itemize}
+	\item A \textit{sub-bundle} of $E\to M$ is a subspace $E'\subseteq E$ for which $\rho_U(E_U\cap E')=\R^{r'}\times 0$.
+	\item There is a \textit{quotient bundle} $E/E'$ between a bundle $E$ and sub-bundle $E'$.
+	\item If $M\subset N$ is a submanifold, then $TM$ is a sub-bundle of $TN|_M$. The quotient bundle $\nu_{N,M}:=TN|_M/TM$ is called the \textit{normal bundle} of $M$ and $N$. 
+	\item A map $s:M\to E$ such that $\pi(s(m))=m$ is called a \textit{section} of $\pi$. The space of sections is $\EE(M)$. Within a chart $\rho:E_U\to U\times \R^r$, a section can be specified by a smooth map $U\to \R^r$.\\
+\end{itemize}
+
+Using this terminology, we can view vector fields on $M$ as sections of the tangent bundle on $M$.
 
 \newpage
 
 \section{Differential Forms}
 
+In this section we'll concretely define the notion of a differential (like $\d x$ or $x\d x$, etc.) using the language built up so far.\\
 
+The \textit{cotangent space} of $M$ at $p$ is the dual of the tangent space, $T_p^*M$. Similarly, the \textit{cotangent bundle} of $M$ is the dual of the tangent bundle, $\tau_M^*:T^*M\to M$.\\
 
+A \textit{differential} on $M$ is a section of the cotangent bundle, i.e. a map $M\to T^*M$. The basic example is $\d\ph:p\mapsto \d_p\ph$ where $\ph:M\to \R$ is some function. $\d_p\ph$ acts on a vector field $V:M\to TM$ by $\d_p(\ph)(V) = V(\ph)$. Locally (i.e. in some $U$ treated as a subset of $\R^m$),
+$$
+\d f = \sum_{i=1}^m \frac{\partial f}{\partial x_j} \d x_j\big|_{U}.
+$$
+This $\d$ is a linear map from functions on $U$ to sections of $\tau^*_M|_U$: 
+$$\d:\EE(U)\to \EE(\tau^*_M|_{U}) =: \EE^1(U).$$
 
-%A smooth map $f:E\to M$ is called a \textit{fiber bundle} if $f$ is locally ``projection-like,'' meaning that every $p\in M$ has an open neighborhood $U\subseteq M$ and a smooth retraction $r:f^{-1}(U)\to f^{-1}(p)$ such that
-%$$
-%(r,f): f^{-1}(U) \to f^{-1}(p)\times U
-%$$
-%is a diffeomorphism.\\
-%
-%The \textbf{Ehresmann Fibration Theorem} says that if $f$ is a \textit{proper submersion} (proper meaning that the inverse image of a compact set is compact), then $f$ is a fiber bundle. The proof of this fact uses vector fields in an essential way, though I won't reproduce it here.\\
+A \textit{differential} $k$-\textit{form} is a section of $\wedge^k\tau_M^*$. So the differential defined previously is a 1-form. We can think of a $k$-form on $M$ as a thing which can (skew-linearly) extract a real value at each point of $M$ from a $k$-tuple of $m$-dimensional vector fields.\\
 
+The space of $k$-forms on a given chart $M\supset U\to \R^m$ is denoted $\EE^k(U)$, and we have the exterior derivative
+$$
+\d : \EE^k(U)\to \EE^{k+1}(U)
+$$
+for all $k\geq 0$. This $\d$ in general has some properties:
+\begin{itemize}
+	\item $\R$-linearity.
+	\item \textit{Flatness}: $\d\d(\a)=0$ for all $\a$.
+	\item \textit{Leibniz Rule}: $\d(\a\wedge \b) = \d\a \wedge \b + (-1)^k \a \d \b$.
+	\item \textit{Pullback-Commuting}: $\d f^*(\a) = f^*(\d \a)$ for $f:M\to N$ and $\a$ a form on $N$. 
+\end{itemize}
 
+The space of all $k\leq m$ forms on $M$ at $U$, denoted $\EE^{\bullet}(U)$, is a graded-commutative $\R$-algebra with product $\wedge$.\\
 
+Relative to a vector field $V$ on $M$, we have an ``inner contraction'' map
+$$\iota_V:\EE^{k}(M)\to \EE^{k - 1}(M).$$
+$\iota_V$ is defined by
+$$
+(\iota_V \a )(W_1,\dots,W_{K-1}) = \a(V,W_1,\dots,W_{k-1})
+$$ 
+where $W_1,\dots,W_{k-1}$ are other vector fields.\\
 
-%\textbf{Lemma}: Given two $C^k$ atlases $\{U_{\a},\kappa_{\a}\}$ and $\{V_{\b},\lambda_{\b}\}$ of the same manifold $M$, the following are equivalent:
-%\begin{enumerate}[(i)]
-%	\item The two atlases define the same notion of a $C^k$ function.
-%	\item $\{U_{\a}\} \cup \{V_{\a}\}$ is a $C^k$ atlas.
-%\end{enumerate}
-%\begin{proof}
-%	$(i)\implies (ii)$: It suffices to show that the coordinate change maps $\kappa_{\a}\lambda_{\b}^{-1}$ are all $C^k$. do later
-%\end{proof}\\
-%
-%This result implies that all atlases giving the same notion of a $C^k$ function can be combined into a maximal atlas. Such an atlas is called a ``$C^k$ structure'' on $M$.\\
+Using both $\iota_V$ and $\d$, we define the \textit{Lie Derivative} $$\LL_V = \iota_V\d + \d \iota_V : \EE^k(M)\to \EE^k(M).$$
+This $\LL_V$ captures the change in a form as it flows along $V$; i.e.
+$$
+\frac{\d}{\d t}\Big|_{t=0} H_t^*\a = \LL_V(\a).
+$$
+
+\subsection{De Rham Cohomology} The exterior derivative yields a sequence
+$$
+\EE^0(M) \xra{\d} \EE^{1}(M)\xra{\d} \EE^{2}(M)\to \dots
+$$
+which has $\d^2=0$, so it has a defined homology and cohomology. This cohomology $$H^k_{dR}(M) := \frac{\ker(\d)}{\im(\d)}$$
+is called the De Rham Cohomology. The Poincar\'e Lemma says
+$$
+H^k_{dR}(\R^m) = \begin{cases}
+	\R& k=0\\
+	0 & k>0
+\end{cases}
+$$
+i.e. that every closed $k>0$ form on $\R^m$ is exact. And in general if $\pi:M\times \R\to M$ is the projection map, then the induced map $$H^k_{dR}(M) \xra{\pi^*} H^{k}_{dR}(M\times \R)$$
+is an isomorphism. To prove this, we can show that $\d\EE^{k+1}(M\times \R)$ and $\EE^k(M)$ span $\EE^k(M\times \R)$.\\
+
+\subsection{Stokes' Theorem} Let $\a\in \EE^m(\R^m)$ with compact support, so 
+$$
+\a = f(x) \d x_1 \wedge \cdots \wedge \d x_m
+$$
+for some compactly supported function $f:\R^m\to \R$. We define the integral of $\a$ over $\R^m$ to be 
+$$
+\int_{\R^m} \a := \int_{\R^m}f(x) \; \d x_1\wedge\cdots\wedge \d x_m.
+$$
+If we change coordinates $(x_1,\dots,x_m)\to (y_1,\dots,y_n)$ via some smooth map $h: \R^m\to \R^m$, we might integrate $h^*(\a)$, which gives
+\begin{align*}
+\int_{\R^m}h^*(\a) &:= \int_{\R^m} f(h(x)) \; \d h_1 \wedge \cdots \wedge \d h_m\\
+&= \int_{\R^m} f(y) \cdot |\det(h)(x)|\; \d y_1\wedge \cdots \wedge \d y_m.
+\end{align*}
+$\det(h)$ is everywhere nonzero because it is smooth. If in addition it is positive everywhere (which we can assume as long as the support of $f$ is connected), then 
+$$
+\int h^*(\a) = \int \a.
+$$
 
 \end{document}

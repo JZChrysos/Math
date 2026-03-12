@@ -1,0 +1,98 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{PHYS 13200 HW \#6}
+\author{Jalen Chrysos}
+
+\begin{document}
+	\maketitle
+	\textbf{Problem 2}:\\
+	
+	Using the rule for resistors in parallel, we have
+	$$
+	\frac{1}{X} + \frac{1}{15} + \frac{1}{5} + \frac{1}{10} = \frac{1}{2} \implies X = \frac{15}{2}.
+	$$
+	
+	\textbf{Problem 10}:\\
+	
+	(a): First we compute the maximal allowable current:
+	$$V=P/I = IR \implies I^2 = P/R = 5 W/15000 \Omega \implies I \approx 0.02 A$$
+	from which we can compute the maximal voltage
+	$$
+	V = IR \approx 274 V.
+	$$
+	
+	(b): 
+	$$
+	P = IV = V^2/R = (120)^2/(9000) = 1.6 W.
+	$$
+	
+	(c): Together they act as a 
+	$$
+	\frac{1}{\frac{1}{100}+\frac{1}{150}} = 60 \Omega 
+	$$
+	resistor. The $100\Omega$ resistor can handle a voltage as great as $\sqrt{PR} = \sqrt{2\cdot 100} \approx 14.1 V$, and the $150\Omega$ resistor can handle more, so $14.1$ is the maximum while keeping both from overheating. On the $100\Omega$ resistor the power dissipated is $2W$, and the other resistor has $P= V^2/R = 200/150 = 1.33 W$.\\
+	
+	\textbf{Problem 24}:\\
+	
+	The middle current $b\to a$ is $1A$ by the junction rule. So the total potential difference around the top loop (which is 0 by the loop rule) can be computed as
+	$$
+	-6 + 20 - 1 + 4 + 1 - \EE_1 = 0 \implies \EE_1 = 18 V.
+	$$
+	Similarly the bottom loop is
+	$$
+	-2 - \EE_2 - 4 + \EE_1 - 1 - 4 = 0 \implies \EE_2 = 7 V.
+	$$
+	The potential difference across $b$ to $a$ is 
+	$$
+	\EE_1 - 1 - 4 = 13 V.
+	$$
+	
+	\textbf{Problem 30}:\\
+	
+	Using the loop rule on the left loop, the potential difference around the loop is 
+	$$
+	75V - 12(1.5) - 48(x)
+	$$
+	where $x$ is the current down the middle wire. The loop rule yields $x=1.19A$, which in turn gives that the current around the right wire is $0.31 A$. Using the loop rule on that loop gives
+	$$
+	-\EE - 15(0.31) + 48(1.19) = 0 \implies \EE = 52.3 V
+	$$
+	so the given direction of the battery is correct.\\
+	
+	\textbf{Problem 43}:\\
+	
+	By the loop rule we have
+	$$
+	0 = 120 - 80(0.9) - \frac{Q}{4\cdot 10^{-6}} \implies Q = 192 \mu C.
+	$$
+	
+	\textbf{Problem 47}:\\
+	
+	(a): At the moment the switch is flipped, the capacitors are all uncharged so they provide no resistance and we can ignore them. Using the in series and in parallel rules for combining resistors, and noting that two of the resistors will have no current going through them because the current will just go around, the whole circuit has a resistance of 
+	$$
+	75 + \frac{1}{\frac{1}{50}+\frac{1}{25}} + 15 = 106.66 \Omega
+	$$
+	so the current is $I=V/R = 100/106.66 = 0.94 A$.\\
+	
+	(b): As the capacitors approach their maximum possible charge, the current through them goes to 0, resulting in a circuit with total resistance
+	$$
+	25 + 75 + 25 + 25 + 15 = 165 \Omega 
+	$$
+	so the current is $I=V/R = 100/165 = 0.61 A$.\\
+	
+	\textbf{Problem 50}:\\
+	
+	(a): The loop rule gives 
+	$$q/C = V = IR = 0.18 \cdot 185 \implies q = 0.18 \cdot 185 \cdot 6 \cdot 10^{-6} = 200 \mu C.$$ 
+	
+	(b): Initially the current is $I=V/R = 50/185 = 0.27 A$, and at time $t$ the current is $0.18 A$, so we have $$0.18 = 0.27 \cdot e^{-t/RC} \implies t = -185\cdot 6 \cdot 10^{-6} \cdot \ln(0.18/0.27) = 450 s.$$
+	
+	\textbf{Problem 54}:\\
+	
+	If the energy dissipated is $295 W$ then $295 = IV = V^2/R \implies R = 48^2/295 = 7.8 \Omega$. Then we can use series and parallel rules to determine $R_3$:
+	$$
+	7.8 = \frac{1}{\frac{1}{8}+\frac{1}{R_3}} + 3 \implies R_3 = 21.1 \Omega.
+	$$
+
+\end{document}

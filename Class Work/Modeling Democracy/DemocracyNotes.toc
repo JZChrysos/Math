@@ -1,0 +1,11 @@
+\contentsline {section}{\tocsection {}{1}{Voting Systems}}{2}{section.1}%
+\contentsline {section}{\tocsection {}{2}{Criteria for Fairness}}{4}{section.2}%
+\contentsline {subsection}{\tocsubsection {}{2.1}{Relationships Between Fairness Criteria}}{5}{subsection.2.1}%
+\contentsline {subsection}{\tocsubsection {}{2.2}{Voting Rules Compared by Fairness Criteria}}{6}{subsection.2.2}%
+\contentsline {section}{\tocsection {}{3}{Impossibility Results}}{7}{section.3}%
+\contentsline {section}{\tocsection {}{4}{Representation}}{9}{section.4}%
+\contentsline {subsection}{\tocsubsection {}{4.1}{Apportionment}}{9}{subsection.4.1}%
+\contentsline {subsection}{\tocsubsection {}{4.2}{Weighted Voting}}{9}{subsection.4.2}%
+\contentsline {section}{\tocsection {}{5}{Modeling Elections and Voter Behavior}}{10}{section.5}%
+\contentsline {subsection}{\tocsubsection {}{5.1}{Computing Distortion}}{10}{subsection.5.1}%
+\contentsline {section}{\tocsection {}{6}{Project}}{12}{section.6}%

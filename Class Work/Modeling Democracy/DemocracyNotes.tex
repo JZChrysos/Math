@@ -11,6 +11,9 @@
 \DeclareMathOperator{\SM}{\sf{SM}}
 \DeclareMathOperator{\NS}{\sf{NS}}
 \DeclareMathOperator{\NWS}{\sf{NWS}}
+\DeclareMathOperator{\cost}{\rm{cost}}
+\DeclareMathOperator{\dist}{\rm{dist}}
+\DeclareMathOperator{\MD}{\sf{MD}}
 
 \usepackage[table]{xcolor}
 %
@@ -26,15 +29,9 @@
 	
 \maketitle
 
-\section{About the Class}
+These are my notes from CMSC 32255, ``Modeling Democracy,'' taught in Winter 2026 at UChicago by Moon Duchin.
 
-\begin{itemize}
-	\item Professor is Moon Duchin, who we should address as Moon.
-	\item This is an ``interdisciplinary PhD class.''
-	\item There will be Problem Sets. There will be Proofs.
-	\item There is an option to give a presentation.\footnote{``For those of you looking to do anything later in life, this is good practice."} Past projects have turned into publications.
-	\item No laptops (oops).
-\end{itemize}
+\tableofcontents
 
 \newpage 
 
@@ -142,11 +139,12 @@ Then there are criteria restricting the effect that given changes to the candida
 	\item \textit{Candidate Anonymity}: The voting rule does not depend on the order of candidates.\\
 \end{itemize}
 
-And finally, here is one important criterion which requires robustness in both senses:\\
+And finally, here is one quite strong criterion which requires robustness in both senses:\\
 
 \noindent \underline{General Robustness Criteria}:
 \begin{itemize}
-	\item \textit{Independence of Irrelevant Alternatives}: The relative outcome of candidates $A$ and $B$ cannot be affected by swapping any two candidates other than $A$ and $B$ on a given ballot \textit{or} by adding or subtracting other candidates. In other words, whether $A<B$ in the outcome depends only on how each voter ranked $A$ relative to $B$\footnote{If one assumes Voter Anonymity, $\IIA$ implies that whether $A\succ B$ depends only on the \textit{number} of ballots preferring $A>B$ vs $B>A$, so the voting rule must be determined from the PWCG alone.}.\\
+	\item \textit{Independence of Irrelevant Alternatives}: The relative outcome of candidates $A$ and $B$ cannot be affected by swapping any two candidates other than $A$ and $B$ on a given ballot \textit{or} by adding or subtracting other candidates. In other words, whether $A<B$ in the outcome depends only on how each voter ranked $A$ relative to $B$\footnote{If one assumes Voter Anonymity, $\IIA$ implies that whether $A\succ B$ depends only on the \textit{number} of ballots preferring $A>B$ vs $B>A$, so the voting rule must be determined from the PWCG alone.}.
+	\item \textit{Modified IIA}: Whether $A<B$ in the outcome depends only on how each ballot ranked $A$ relative to $B$ \textit{and} the distance between $A$ and $B$ (i.e. the number of candidates ranked between them) on each ballot.\\
 \end{itemize}
 
 \subsection{Relationships Between Fairness Criteria} To understand these criteria better, one should see how they relate, which are stronger and weaker, and so on. To begin with, here is a diagram of all the direct implications (a non-arrow indicates independence):
@@ -193,12 +191,12 @@ Most of these implications are trivial, with the one nontrivial fact being that 
 
 There are a few more relations between combinations of these criteria:
 \begin{itemize}
-	\item $\PE + \SM/\SP \implies \UF$: if every ballot has $A>B$ yet $B$ is winning, then one can (neutrally to $B$) move $A$ to the top of every ballot, which by $\PE$ makes $A$ the winner but by $\SM$ shouldn't change the winner from $B$, a contradiction.
+	\item $\PE + \SM \implies \UF$: if every ballot has $A>B$ yet $B$ is winning, then one can (neutrally to $B$) move $A$ to the top of every ballot, which by $\PE$ makes $A$ the winner but by $\SM$ shouldn't change the winner from $B$, a contradiction.
+	\item $\sf{M} + \IIA \implies \SM$: $\IIA$ implies that if a swap changes the winner from $A$ to $B$, then it must be between $A$ and $B$, but does not forbid that the swap could be ${B\choose A}\to {A\choose B}$; $\sf{M}$ removes this possibility because it is strictly positive for $A$, which forces the swap to be ${A\choose B}\to {B\choose A}$.
+	\item \textbf{add more}\\
 \end{itemize}
 
-\newpage
-
-\section{Comparing Voting Rules}
+\subsection{Voting Rules Compared by Fairness Criteria}
 
 \begin{center}
 	
@@ -234,7 +232,7 @@ There are a few more relations between combinations of these criteria:
 
 \section{Impossibility Results}
 
-Having established some desirable fairness properties, we're forced to bite the bullet: many of them can never coexist in one voting rule.\\
+Having established some desirable fairness properties, we're forced to bite the bullet: many of them can never coexist in one voting rule. \\
 
 \underline{Incompatible Fairness Criteria}:
 \begin{itemize}
@@ -255,11 +253,14 @@ Having established some desirable fairness properties, we're forced to bite the 
 		In principle, it should be difficult to name a winner here due to the symmetry. Indeed, by Majority fairness, $A$ would lose if $B$ were removed, $B$ would lose if $C$ were removed, and $C$ would lose if $A$ were removed. Thus if any of $A,B,C$ were winning, they could be made to lose by removing a candidate, making the removed candidate a spoiler. So there are either spoilers or the system declares no winner.
 	\end{proof}\\
 	
-	\item (\textbf{Arrow}) \textit{Unanimity Fair}, \textit{Independence of Irrelevant Alternatives} and \textit{Non-Dictatorship}:
+	\item (\textbf{Arrow}) $\UF+\IIA\implies$ Dictatorship:
 	\begin{proof}
+		Call a set $S$ of voters $A$-\textit{decisive} if, whenever all of $S$ ranks $A$ first, $A$ wins, and \textit{decisive} if it is $A$-decisive for every candidate $A$. $\PE$ implies that the set of all voters is decisive, for instance. We can show using $\UF$ and $\IIA$ that for any decisive set $S$, if we break off one voter $v\in S$ to form $S=T\setminus\{v\}$, then either $T$ is decisive or $v$ is a dictator. By repeatedly doing this, we are guaranteed to find a dictator.\\
 		
-	\end{proof}
-	\item  (\textbf{Muller-Satterthwaite}) \textit{Pareto Efficient}, \textit{Strictly Monotonic} and \textit{Non-Dictatorship}:
+		Now suppose $S$ is decisive, $v\in S$, and $T=S\setminus \{v\}$. Suppose that $T$ is not decisive, so there is a profile for which $T$ ranks $A$ first, $v$ does not, and some other candidate $B$ wins. \textbf{not done}
+	\end{proof}\\
+	
+	\item  (\textbf{Muller-Satterthwaite}) $\PE+\SM\implies$ Dictatorship:
 	\begin{proof}
 		This only fails at 3 candidates or more (with 2, plurality works just fine).\\
 		
@@ -296,7 +297,8 @@ Having established some desirable fairness properties, we're forced to bite the 
 		\end{tikzcd}
 		$$
 		
-		Now using these consequences of $\SM$, we can establish dictatorship fairly easily: take a profile that is on the $(A,B)$-boundary for some $A,B$, and suppose that $v$ is a ballot which has a pivotal swap available. Then without making any swaps of $(A,B)$ one can elevate another candidate $C$ to the top of every ballot other than $v$, leaving the profile still on the $(A,B)$-boundary. Then elevate $C$ in $v$ until it is between $A$ and $B$. This pushes the profile out of the $(A,B)$-boundary, but the winner is still $A$ because this is neutral to $A$. But now, $C$ is unanimously preferred to $B$, \\
+		Now using these consequences of $\SM$, we can establish dictatorship fairly easily: take a profile that is on the $(A,B)$-boundary for some $A,B$, and suppose that $v$ is a ballot which has a pivotal swap available. Then without making any swaps of $(A,B)$ one can elevate another candidate $C$ to the top of every ballot other than $v$, leaving the profile still on the $(A,B)$-boundary. Then elevate $C$ in $v$ until it is between $A$ and $B$. This pushes the profile out of the $(A,B)$-boundary, but the winner is still $A$ because this is neutral to $A$. But now, $C$ is unanimously preferred to $B$, \textbf{not done}
+		
 	\end{proof}
 	\item (\textbf{Gibbard-Satterthwaite}) \textit{Pareto Efficient}, \textit{Strategy-Proof} and \textit{Non-Dictatorship}:
 	\begin{proof}
@@ -304,9 +306,260 @@ Having established some desirable fairness properties, we're forced to bite the 
 	\end{proof}\\
 \end{itemize}
 
-If one considers Monotonicity, Unanimity-fairness, Pareto Efficiency, and Non-Dictatorship to be essential requirements of a fair voting system (and they do seem like reasonable requests), then these impossibility theorems can be interpreted as saying that the properties \textit{No Spoilers}, \textit{Independence of Irrelevant Alternatives}, \textit{Strongly Monotonic}, and \textit{Strategy-Proof} can never be achieved in any fair ranking-based voting system.
+%If one considers Monotonicity, Unanimity-fairness, Pareto Efficiency, and Non-Dictatorship to be essential requirements of a fair voting system (and they do seem like reasonable requests), then these impossibility theorems can be interpreted as saying that the properties \textit{No Spoilers}, \textit{Independence of Irrelevant Alternatives}, \textit{Strongly Monotonic}, and \textit{Strategy-Proof} can never be achieved in any fair ranking-based voting system.
+
+\newpage 
+
+\section{Representation}
+
+In representative democracies, elected representatives of different districts are empowered to vote on their constituents' behalf. In some places, like the U.S. Senate, each of these districts (states) is given equal voting power as a way to intentionally increase the power of lower-population states. But in most cases, it is desirable to make some districts more powerful to account for their larger population or importance. There are two main ways to do this: either districts appoint multiple representatives (\textit{apportionment}), with more being given to larger districts, or representatives of larger districts are given more weight in voting (\textit{weighted voting}).\\
+
+\subsection{Apportionment} Suppose a population has size $M$, split among districts of populations $M_1,M_2,\dots$, and the legislature has $m$ seats. We'd like to use these population values to come up with a number of seats $m_i$ for each district\footnote{This was a big question in the early days of American democracy, hence the names of these methods}. There are many different ways to do this:\\
+
+\underline{Apportionment Methods}:
+\begin{enumerate}[(I)]
+	\item \textit{Quota Methods}: A natural first idea is to define \textit{quotas} $q_i := m\cdot (M_i/M)$. Ideally $m_i$ should be near $q_i$, but $m_i$ must be a natural number.
+		\begin{itemize}
+			\item \textit{Hamilton}: Begin with $m_i = \lfloor q_i \rfloor$. If there have not yet been $m$ seats filled, add seats to districts in order of $q_i-m_i$.
+		\end{itemize}
+	\item \textit{Divisor Methods}: Another idea is to increase or decrease $M$ until the quotas naturally add up to $m$.
+	\begin{itemize}
+		\item \textit{Jefferson}: 
+		\item \textit{Adams}:
+		\item \textit{Webster}:
+		\item \textit{Huntington-Hill}: \footnote{This is what the U.S. house of representatives actually currently uses!}\\
+	\end{itemize}
+\end{enumerate}
+
+But all of these methods have issues:\\
+
+\underline{Apportionment Paradoxes}:
+\begin{itemize}
+	\item \textit{Alabama Paradox}: When the total number of seats $m$ is increased, and a district \textit{loses} a seat as a result.
+	\item \textit{Population Paradox}: When one district's population share grows compared to another, yet it loses a seat to the other.
+	\item \textit{Quota Violation}: When a district ends up with a number of representatives that differs from its quota by more than 1.\\
+\end{itemize}
+
+Balinsky and Young showed that either population paradoxes or quota violations are inevitable in a deterministic apportionment method (though by using random chance we can get around this).\\
+
+\subsection{Weighted Voting} Suppose each district instead sends a single representative, and that representative is given voting weight $w_i$ (normalized so that $\sum_i w_i=1$). When representatives vote on a measure, we can say that it passes if the total weight of members voting for the measure is at least $\tfrac12$ or some other threshold $T$. How should the weights be determined?\\
+
+\textbf{not done}
 
 \newpage 
 
 \section{Modeling Elections and Voter Behavior}
+
+All of the previously discussed results assume that voters can rank candidates in any order, but in reality most rankings would be nonsensical, and few voters would actually vote that way. How likely is it that these paradoxical situations---spoiler effects, Condorcet cycles, etc.---actually arise in practice? One mechanism might be optimal in theory, but do worse in the distribution of real elections. We need a way to model elections with more fidelity to the real world.\\
+
+One traditional model for voter preferences is within a \textit{metric space}. If we assume that there is some finite number $N$ of relevant continuous attributes (e.g. age, charisma, intelligence, support of a given social group, etc.) that a candidate can have, then we can model the space of candidates as $\R^N$ and place each candidate within that space accordingly. Then we can model a voter's preferences as a point in this space representing their ideal candidate, and their ranking can be obtained from the distances of the available candidates to this ideal.
+
+Given a metric embedding into a space $(X,d)$ of voters and candidates in a profile $P$, one can determine the \textit{cost} of a candidate $C$ as the total distance to $C$ over all voters:
+$$
+\cost(C) := \sum_{v\in V} d(v,C).
+$$ 
+It stands to reason that if a metric embedding truly represents the positions of voters and candidates in some sense, then the ideal candidate would be one which minimizes the cost. One could try to obtain metric information from voters, but self-reported data of this kind is highly unreliable (as well as being subject to strategic voting and so on). And rankings are not enough to determine who the lowest-cost candidate is. 
+$$
+\textbf{Diagram}
+$$
+The natural next idea is to evaluate a voting rule $f$ by worst-case cost (as a ratio of the optimal cost) over all possible profiles and embeddings; this is the \textit{distortion} of $f$, denoted $\dist(f)$:
+$$
+\dist(f) := \sup_{X,P} \frac{\cost_X(f(P))}{\cost_X(P_{optimal})}.
+$$ 
+
+\subsection{Computing Distortion}
+The distortion is typically difficult to compute, as the space of all metric spaces and all profiles is so large. But it is not too hard to at least give lower bounds by exhibiting particularly difficult profiles. \\
+
+\underline{Distortion Results:}
+\begin{itemize}
+	\item $\dist(f)\geq 3$ for all $f$.
+	\begin{itemize}
+		\item To show this, consider a 2-voter 2-candidate profile in which the two voters have opposite preferences. Assume wlog that $f$ selects $A$. It is possible to embed this profile into a metric space so that $B$ is optimal and $\cost(A)/\cost(B)$ approaching 3:
+		$$
+		\textbf{Diagram}
+		$$
+		This can occur in any voting rule, so no voting rule can have distortion less than 3.
+	\end{itemize}
+	\item If there is a Condorcet winner $c$, then $\cost(c)\leq 3\cost(a)$ for any other candidate $a$.
+	\begin{itemize}
+		\item Because $c$ is Condorcet, at least half of voters (say $n$) prefer $c$ to $a$, and the other $m$ prefer $a$ to $c$. For voters among the $n$, 
+		$$
+		d(v,c) \leq d(v,a)
+		$$
+		and for voters in the $m$, triangle inequality yields 
+		$$
+		d(v,c) \leq d(v,a) + d(a,c).
+		$$
+		Combining these,
+		$$
+			\cost(c) \leq \cost(a) + m \cdot d(a,c).
+		$$
+		On the other hand, among the $n$ which prefer $c$, 
+		$$
+		d(v,a) \geq \tfrac12 \big(d(v,a) + d(v,c)\big) \geq \tfrac12 d(a,c) 
+		$$
+		which yields a lower bound on $\cost(a)$ in terms of $d(a,c)$:
+		$$\cost(a) \geq n \cdot \tfrac12 d(a,c) \implies 2\cost(a) \geq n\cdot d(a,c) \geq m\cdot d(a,c).$$
+		Combining with the previous upper bound on $\cost(c)$ gives
+		$$
+		\cost(c) \leq \cost(a) + m\cdot d(a,c) \leq 3\cdot \cost(a).
+		$$
+		\item In general, if a portion $\b$ of voters prefer $c$ to $a$, then 
+		$$
+		\frac{\cost(c)}{\cost(a)} \in \Bigg[\frac{2}{\b+1} - 1,\frac{2}{\b}-1\Bigg].
+		$$ 
+		
+	\end{itemize}
+	\item $\dist(\rm{Plurality}) = \infty$:
+		\begin{itemize}
+		\item In a scenario with $d$ candidates, consider a metric embedding in which one candidate $A$ is at the origin and the other $d-1$ candidates are very near $(2,0)$. Distribute the voters with $\tfrac1d + \ep$ at $(1 - \ep,0)$ and split the remaining voters evenly at the positions of the other candidates.
+		$$ \textbf{Diagram}$$
+		As $\ep\to 0$, $\cost(A)$ approaches $\tfrac1d + 2\cdot (1-\tfrac1d)$ whereas the cost of any other candidate approaches $\tfrac1d$, giving a ratio of 
+		$$
+		\frac{\cost(A)}{\cost(B)}\to 2d-1.
+		$$
+		\end{itemize}
+	\item $\dist(\rm{Plurality Veto}) = 3$:
+	\begin{itemize}
+		\item Suppose each voter $v$ vetoes candidate $j_v$, and let the overall winner be $j^*$. PV has the property that $d(v,j_v)\geq d(v,j^*)$. This immediately gives
+		$$
+		\cost(j^*) \leq \sum_v d(v,j_v) \leq \sum_v d(v,i) + d(i,j_v) = \cost(i) + \sum_v d(i,j_v)
+		$$
+		for any other candidate $i$. \textbf{not done}
+	\end{itemize}
+	\item $\dist(\rm{Plurality Matching})=3$:\\
+\end{itemize}
+
+A D3 voting rule minimizes distortion over all possible profiles, but for some profiles one can guarantee a better worst-case distortion (for example, if there is a Pareto winner then they are guaranteed to be metric-optimal, so minimality would require that the rule choose them). So let the condition \textit{Minimal Distortion} mean that $f$ minimizes worst-case distortion on every profile.\\
+
+Question: For which profiles is the worst-case metric distortion less than 3?
+\begin{itemize}
+	\item If $C$ is Condorcet and receives at least $\b$ proportion of voters' support in all head-to-heads (so $\b > \tfrac12$) then $C$ has distortion at most
+	$$
+	\dist(C)\leq \frac{2}{\b} - 1 < 3.
+	$$
+	This does not imply that $C$ is optimal. However, for every other candidate $A$, the worst-case distortion of $A$ is at least\\
+\end{itemize}
+
+\newpage
+
+\section{Project}
+
+%\textbf{Proposition}: $D3\implies \MF$. 
+%\begin{proof}
+%	 Let $P$ be a profile with majority candidate $M$ and let $A$ be any other candidate. It suffices to show that $\dist(A)>3$, which we can do by exhibiting a sufficiently bad embedding for $A$. First, embed $P^M$ (the profile with $M$ removed) into some $(X,d)$ via $f$, and shrink $X$ so that the maximum distance between any two candidates is less than $\ep$. Now we can extend this to an embedding $(X',d')$ of $P$ in the following way:\\
+%	
+%	Let 
+%	$$
+%	X' := \{(x,t): x\in X, t\in [0,1]\}
+%	$$
+%	with the metric
+%	$$
+%	d'((x_1,t_1),(x_2,t_2)) := d(x_1,x_2) + |t_1-t_2|.
+%	$$
+%	In other words, we just add on an orthogonal dimension to $X$. We now specify the embedding $g$ of candidates and voters into $X'$:\\
+%	
+%	We embed the candidates via
+%	$$g(B) = (f(B),0) \;\; \text{for } B\neq M, \;\;\;\;\; g(M)=(f(A),1).$$
+%	For the voters, if $v$ has $M$ as her first choice (as most do), then embed $v$ as $g(v)=(f(v),1)$. Otherwise there is some $t\in [0,\tfrac12)$ such that $(f(v),t)$ is an appropriate embedding for $v$; at $t=0$, $M$ will be the furthest point from $g(v)$ and at $t>\tfrac12$, $M$ will be the closest, and as the relative distances of other candidates are unaffected by $t$, $M$ must be in the correct rank at some $t<\tfrac12$. 
+%	
+%	And moreover, $d'((f(v),t),g(M)) > 1-t$ and $d'((f(v),t),g(B))< \ep + t$ for all other candidates $B$, so $M$ is the most distant candidate for $t< \tfrac12 - \tfrac{\ep}{2}$. Thus we can choose $t$ to be at least $\tfrac12 - \ep$.\\
+%	
+%	Suppose that $\b$ is the proportion of voters preferring $M$. Then we can get the following lower bound on $\dist(A)$:
+%	$$
+%	\frac{\cost(A)}{\cost(M)} \geq \frac{\b + (1-\b)(\tfrac12 - \ep)}{\b \ep + (1-\b)(\tfrac12 + 2\ep)} 
+%	$$
+%	As $\ep\to 0$, the limit is $(1+\b)/(1-\b) > 3$.
+%	
+%%	\begin{align*}
+%%	d'((f(v),t),g(M)) &= d(f(v),f(A)) + (1-t) \\
+%%	&> 1-t \\
+%%	&> 1 - (\tfrac12 - \tfrac{\ep}{2})\\
+%%	&= \tfrac12 + \tfrac{\ep}{2}\\
+%%	&> t + \tfrac{\ep}{2}
+%%	\end{align*}
+%	
+%\end{proof}\\
+
+Let the \textit{biased metric} corresponding to the $\CC$-indexed vector $(x_1,\dots,x_m)$ be defined 
+$$\textbf{define here}$$
+Ramakrishnan et al 2021 showed that within a given profile, the metrics with the greatest distortion for any candidate are all of this form.\\
+
+Let $A,B$ be two candidates in a profile $P$. We will use biased metrics to derive an upper bound on $\cost(A)/\cost(B)$ in embeddings where $B$ is optimal. By Ramakrishnan 2021, we only need to consider biased metrics with $x_B=0$, and we can normalize $x_A$ to be 2. The biased metric $d$ corresponding to $\vec{x}$ gives the following value for $\cost(A)/\cost(B)$:
+\begin{align*}
+\frac{\cost(A)}{\cost(B)} &= \frac{\sum_{v\in V} d(v,A)}{\sum_{v\in V} d(v,B)}\\
+&= \frac{\sum_{v\in V} y_v + \min_{j:A\leq_v j} x_j}{\sum_{v\in V} y_v + \min_{j:B\leq_v j} x_j}
+\end{align*}
+Note that $\min_{j:B\geq_v j}x_j \leq x_B = 0$. Moreover, for voters who prefer $A$ over $B$, $\min_{j:A\geq_v j} \leq x_B = 0$. Letting $[B>A] := \{v\in V: B\geq_v A\}$, we have the simplification
+\begin{align*}
+	\frac{\cost(A)}{\cost(B)}
+	&= \frac{\sum_{v\in V} y_v + \min_{j:A\leq_v j} x_j}{\sum_{v\in V} y_v + \min_{j:B\leq_v j} x_j}\\
+	&= \frac{\sum_V y_v + \sum_{[B>A]} \min_{j:A\geq_v j} x_j}{\sum_V y_v}\\
+	&= 1 + \frac{\sum_{[B>A]}\min_{j:A\geq_v j}x_j}{\sum_V y_v}.
+\end{align*}
+In producing an upper bound, it suffices to only consider biased metrics for which $0\leq x_j \leq 2$ for all $j$; to see this, note that reducing each $x_j>2$ to 2 can only decrease the denominator of the above fraction, and cannot affect the numerator. With that adjustment, $y_v=1$ for all $v\in [A>B]$, so
+$$
+\frac{\cost(A)}{\cost(B)} = 1 + \frac{\sum_{[B>A]} \min_{j:A\geq_v j} x_j}{ \b |V| + \sum_{[B>A]} y_v}
+$$
+(where $\b$ is the proportion of voters who prefer $A$ to $B$). This yields the interesting observation that the worst-case $\cost(A)/\cost(B)$ only depends on the ballots in $[B>A]$.\\
+
+In the worst case, the highest $\cost(A)/\cost(B)$ can be is 
+\begin{align*}
+\frac{\cost(A)}{\cost(B)} &= 1 + \frac{\sum_{[B>A]} \min_{j:A\geq_v j} x_j}{ \b |V| + \sum_{[B>A]} y_v} \\
+&\leq 1 + \frac{\sum_{[B>A]} \min_{j:A\geq_v j} x_j}{ \b |V|} \\
+&\leq  1 + \frac{\sum_{[B>A]} 2}{ \b |V|} \\
+&= 1 + \frac{2(1-\b)}{\b}\\
+&= \frac{2}{\b} - 1.
+\end{align*}
+This agrees with the simple bound we arrived at first. This bound can be tight, though only for certain profiles. For this bound to be achieved, it must be that 
+\begin{equation}
+	\tag{$\ast$}
+	\text{For some $(x_i)$}, \;\; y_v = 0 \;\; \forall v\in [B>A], \;\;\; \text{or equivalently,} \;\;\; x_i \leq x_j \;\; \forall i \geq_v j, \; v\in [B,A].
+\end{equation}
+And conversely $(\ast)$ forces $x_A \leq x_i$ whenever $A\geq_v i$ for $v\in [B>A]$, which implies that $\min_{j:A\geq_v j} x_j = 2$, showing that $(x_i)$ achieves the bound. So $(\ast)$ is equivalent to $2/\b - 1$ being tight.\\
+
+%\textbf{Proposition}: The bound $2/\b - 1$ is tight iff $(\ast)$ holds.
+%\begin{proof}
+%	One direction is already shown. For the reverse, suppose $(\ast)$ holds in $P$, and consider a biased metric corresponding to $(x_i)$ given by $(\ast)$. Then 
+%	$$
+%	\sum_V y_v = \sum_{[A>B]} y_v = |[A>B]|
+%	$$
+%	because $y_v=1$ for voters in $[A>B]$, using the assumption that $x_i\leq 2$. Also
+%	$$
+%	\min_{j:A\geq_v j}x_j = 2,
+%	$$
+%	using the fact that $x_A\leq x_j$ for any such $j$. Thus the inequality given by the bound is an equality.
+%\end{proof}\\
+%
+%An equivalent condition to $(\ast)$:\\
+
+\textbf{Proposition}: $(\ast)$ holds iff there is no chain of candidates 
+$$
+A = C_0\geq_{v_1} C_1 \geq_{v_2} C_2 \geq_{v_3} \cdots \geq_{v_{k}} C_{k} = B
+$$
+where $v_1,\dots,v_k\in [B>A]$.
+\begin{proof}
+	Define $B^*$ to be the smallest set of candidates which contains $B$ and is ``upward closed'' with respect to voters in $[B>A]$; that is, if $i\geq_v j$ for any $v\in[B>A]$ and $j\in B^*$ then $i\in B^*$. Similarly, define $A_*$ to be the set of candidates generated downwards from $A$ in the same manner.
+	
+	$(\ast)$ implies that any $i\in B^*$ has $x_i=0$, and any $j\in A_*$ has $x_j=2$. In particular, $A_*\cap B^*=\emptyset$. This shows that no such chain can exist.\\
+	
+	Conversely, if a chain does exist then at some point $x_{C_{i+1}} - x_{C_i}$ must be positive, because the sum of all of them is 2. This contradicts $(\ast)$. 
+\end{proof}\\
+
+We can weaken $(\ast)$ to $(\ast \gamma)$, which says that excluding some subset $S$ of voters with $|S|/|V| \leq \gamma$, no chain 
+$$
+A = C_0\geq_{v_1} C_1 \geq_{v_2} C_2 \geq_{v_3} \cdots \geq_{v_{k}} C_{k} = B
+$$
+exists for $v_1,\dots,v_k\in [B>A]\setminus S$. If $(\ast \gamma)$ holds, then we can take a metric $(x_i)$ where 
+$$
+\sum_{[B>A]} y_v \leq \gamma|V|, \;\;\;\; \text{and} \;\;\;\; \sum_{[B>A]} \min_{j:A\geq_v j} x_j \geq 2(1-\b -\gamma)
+$$
+which shows that it is possible to achieve
+$$
+\frac{\cost(A)}{\cost(B)} = 1 + \frac{\sum_{[B>A]} \min_{j:A\geq_v j} x_j}{ \b |V| + \sum_{[B>A]} y_v} \geq 1 + \frac{2(1-\b - \gamma)}{\b + \gamma} = \frac{2}{\b + \gamma} - 1.
+$$
+One can think of $1-\b + \gamma$ as a proportion of voters who agree $B>A$ and have basically compatible preferences.\\
+
+The more interesting question is how to best reconcile the preferences of voters who are incompatible.
+
 \end{document}

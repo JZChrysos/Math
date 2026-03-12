@@ -7,4 +7,4 @@
 \contentsline {section}{\tocsection {}{7}{Existence Results}}{11}{section.7}%
 \contentsline {section}{\tocsection {}{8}{Worked Examples}}{13}{section.8}%
 \contentsline {section}{\tocsection {}{9}{A Couple of Important Results Proved via These Techniques}}{15}{section.9}%
-\contentsline {section}{\tocsection {}{10}{Table of Homology and Homotopy for common spaces.}}{15}{section.10}%
+\contentsline {section}{\tocsection {}{10}{Table of Homology and Homotopy for common spaces.}}{16}{section.10}%

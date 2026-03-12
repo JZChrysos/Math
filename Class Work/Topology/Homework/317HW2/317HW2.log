@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  16 OCT 2025 15:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  8 MAR 2026 23:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -361,6 +361,12 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layoutvoffset=\dimen184
 \Gm@dimlist=\toks32
 )
+(c:/texlive/2025/texmf-dist/tex/latex/stmaryrd/stmaryrd.sty
+Package: stmaryrd 1994/03/03 St Mary's Road symbol package
+\symstmry=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
+(Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
+)
 (c:/texlive/2025/texmf-dist/tex/latex/tikz-cd/tikz-cd.sty
 Package: tikz-cd 2021/05/04 v1.0 Commutative diagrams with TikZ
 
@@ -654,28 +660,7 @@ File: pgflibraryarrows.meta.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfarrowlength=\dimen292
 \pgfarrowwidth=\dimen293
 \pgfarrowlinewidth=\dimen294
-))) (c:/texlive/2025/texmf-dist/tex/latex/ytableau/ytableau.sty
-Package: ytableau 2021/06/12 v1.4 Many-featured Young tableaux and Young diagra
-ms
-\tableaux@YT=\box69
-\thistableau@YT=\box70
-\refhtdp@YT=\box71
-\toks@YT=\toks45
-\opttoksa@YT=\toks46
-\opttoksb@YT=\toks47
-\boxdim@YT=\dimen295
-\tableauwd@YT=\dimen296
-\count@YT=\count336
-
-(c:/texlive/2025/texmf-dist/tex/latex/pgfopts/pgfopts.sty
-Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
-\pgfopts@list@add@a@toks=\toks48
-\pgfopts@list@add@b@toks=\toks49
-))
-\c@count=\count337
-Package hyperref Info: Option `colorlinks' set `true' on input line 26.
-)
-(c:/texlive/2025/texmf-dist/tex/latex/quiver/quiver.sty
+))) (c:/texlive/2025/texmf-dist/tex/latex/quiver/quiver.sty
 Package: quiver 2025/06/24 quiver
 
 (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
@@ -688,16 +673,16 @@ brarydecorations.pathmorphing.code.tex
 brarydecorations.code.tex
 (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.t
 ex
-\pgfdecoratedcompleteddistance=\dimen297
-\pgfdecoratedremainingdistance=\dimen298
-\pgfdecoratedinputsegmentcompleteddistance=\dimen299
-\pgfdecoratedinputsegmentremainingdistance=\dimen300
-\pgf@decorate@distancetomove=\dimen301
-\pgf@decorate@repeatstate=\count338
-\pgfdecorationsegmentamplitude=\dimen302
-\pgfdecorationsegmentlength=\dimen303
+\pgfdecoratedcompleteddistance=\dimen295
+\pgfdecoratedremainingdistance=\dimen296
+\pgfdecoratedinputsegmentcompleteddistance=\dimen297
+\pgfdecoratedinputsegmentremainingdistance=\dimen298
+\pgf@decorate@distancetomove=\dimen299
+\pgf@decorate@repeatstate=\count336
+\pgfdecorationsegmentamplitude=\dimen300
+\pgfdecorationsegmentlength=\dimen301
 )
-\tikz@lib@dec@box=\box72
+\tikz@lib@dec@box=\box69
 )
 (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydec
 orations.pathmorphing.code.tex))
@@ -708,27 +693,47 @@ Package: expl3 2025-09-02 L3 programming layer (loader)
 
 (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count339
+\l__color_backend_stack_int=\count337
 ))
 Package: spath3 2024/05/31 v2.8 Functions for manipulating PGF soft paths
 
 (c:/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 Package: xparse 2024-08-16 L3 Experimental document command parser
 )
-\g__spath_output_int=\count340
-\l__spath_tmpa_dim=\dimen304
-\l__spath_tmpb_dim=\dimen305
-\l__spath_tmpa_int=\count341
-\l__spath_tmpb_int=\count342
-\l__spath_move_x_dim=\dimen306
-\l__spath_move_y_dim=\dimen307
-\l__spath_rectx_dim=\dimen308
-\l__spath_recty_dim=\dimen309
-\g__spath_anon_int=\count343
+\g__spath_output_int=\count338
+\l__spath_tmpa_dim=\dimen302
+\l__spath_tmpb_dim=\dimen303
+\l__spath_tmpa_int=\count339
+\l__spath_tmpb_int=\count340
+\l__spath_move_x_dim=\dimen304
+\l__spath_move_y_dim=\dimen305
+\l__spath_rectx_dim=\dimen306
+\l__spath_recty_dim=\dimen307
+\g__spath_anon_int=\count341
 )
-\l__tikzspath_tmpa_int=\count344
+\l__tikzspath_tmpa_int=\count342
 ))
-(./317HW2.aux)
+(c:/texlive/2025/texmf-dist/tex/latex/ytableau/ytableau.sty
+Package: ytableau 2021/06/12 v1.4 Many-featured Young tableaux and Young diagra
+ms
+\tableaux@YT=\box70
+\thistableau@YT=\box71
+\refhtdp@YT=\box72
+\toks@YT=\toks45
+\opttoksa@YT=\toks46
+\opttoksb@YT=\toks47
+\boxdim@YT=\dimen308
+\tableauwd@YT=\dimen309
+\count@YT=\count343
+
+(c:/texlive/2025/texmf-dist/tex/latex/pgfopts/pgfopts.sty
+Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
+\pgfopts@list@add@a@toks=\toks48
+\pgfopts@list@add@b@toks=\toks49
+))
+\c@count=\count344
+Package hyperref Info: Option `colorlinks' set `true' on input line 28.
+) (./317HW2.aux)
 \openout1 = `317HW2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
@@ -750,7 +755,8 @@ LaTeX Font Info:    ... okay on input line 9.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 9.
 LaTeX Font Info:    ... okay on input line 9.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 9.
- (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+
+(c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 9.
@@ -758,6 +764,10 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 9.
 (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 9
+.
+
+(c:/texlive/2025/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 (c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count345
@@ -826,17 +836,19 @@ Package hyperref Info: Link coloring ON on input line 9.
 [1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
 [2]
-<C:/Users/jzchr/MathDocuments/Class Work/Topology/Homework/317HW2P3.pdf, id=24,
- 285.30893pt x 277.31305pt>
-File: C:/Users/jzchr/MathDocuments/Class Work/Topology/Homework/317HW2P3.pdf Gr
-aphic file (type pdf)
-<use C:/Users/jzchr/MathDocuments/Class Work/Topology/Homework/317HW2P3.pdf>
+<C:/Users/jzchr/MathDocuments/Class Work/Topology/Homework/317HW2/317HW2P3.pdf,
+ id=24, 285.30893pt x 277.31305pt>
+File: C:/Users/jzchr/MathDocuments/Class Work/Topology/Homework/317HW2/317HW2P3
+.pdf Graphic file (type pdf)
+<use C:/Users/jzchr/MathDocuments/Class Work/Topology/Homework/317HW2/317HW2P3.
+pdf>
 Package pdftex.def Info: C:/Users/jzchr/MathDocuments/Class Work/Topology/Homew
-ork/317HW2P3.pdf  used on input line 133.
+ork/317HW2/317HW2P3.pdf  used on input line 133.
 (pdftex.def)             Requested size: 285.30823pt x 277.31236pt.
 
 
-[3 <c:/Users/jzchr/MathDocuments/Class Work/Topology/Homework/317HW2P3.pdf>]
+[3 <c:/Users/jzchr/MathDocuments/Class Work/Topology/Homework/317HW2/317HW2P3.p
+df>]
 
 [4]
 
@@ -870,11 +882,11 @@ Package rerunfilecheck Info: File `317HW2.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 26078 strings out of 467748
- 514597 string characters out of 5431138
- 919169 words of memory out of 5000000
- 54185 multiletter control sequences out of 15000+600000
- 633174 words of font info for 62 fonts, out of 8000000 for 9000
+ 26375 strings out of 467748
+ 518026 string characters out of 5431138
+ 920504 words of memory out of 5000000
+ 54469 multiletter control sequences out of 15000+600000
+ 634194 words of font info for 67 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  103i,15n,108p,613b,1034s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
@@ -887,7 +899,7 @@ cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
 pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/
 texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on 317HW2.pdf (8 pages, 144294 bytes).
+Output written on 317HW2.pdf (8 pages, 144296 bytes).
 PDF statistics:
  108 PDF objects out of 1000 (max. 8388607)
  73 compressed objects within 1 object stream

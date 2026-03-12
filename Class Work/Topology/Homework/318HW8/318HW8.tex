@@ -1,0 +1,118 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\DeclareMathOperator{\Cr}{\mathrm{Cr}}
+
+\title{Math 318 HW 8}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+	\maketitle
+	
+	\textbf{Problem 4.6}: Let $M$ be compact oriented $m$-manifold and give $M\times M$ the product orientation. We identify $H^{\bullet}(M\times M)$ with $H^{\bullet}(M)\otimes H^{\bullet}(M)$ (following from Kunneth Formula). Let $\Delta:M\to M\times M$ be the diagonal embedding. In this problem we determine $\Delta_!(1)\in H^m(M\times M)$.
+	\begin{enumerate}[(a)]
+		\item Show that the normal bundle of $\Delta$ is naturally isomorphic to the tangent bundle of $M$. Show also that with the usual orientation of the normal bundle, this isomorphism is orientation preserving.
+		\item Let $a\in H^k(M)$ and $a'\in H^{k'}(M)$. Prove that 
+		$$
+		\int_{M\times M} \Delta_!(1)\wedge (a\otimes a') = \begin{cases}
+			\int_M a\wedge a' & \text{if } k+k'=m,\\
+			0 & \text{otherwise}
+		\end{cases}
+		$$
+		\item Prove that for $a\in H^k(M), a'\in H^{k'}(M), b\in H^l(M), b'\in H^{l'}(M)$, 
+		$$
+		\int_{M\times M} (a\otimes b)\wedge (a'\otimes b') = \begin{cases}
+			(-1)^{k'l} \int_Ma\wedge a' \cdot \int_M b\wedge b' & \text{if }k+k' = l+l'=m,\\
+			0 & \text{otherwise}
+		\end{cases}
+		$$
+		\item Given $k=0,\dots,m$, a basis $(e_1,\dots,e_d)$ of $H^{m-k}(M)$ determines a basis $(f_1,\dots,f_d)$ of $H^k(M)$ characterized by $\int_M e_i\wedge f_j=\de_{ij}$. The tensor 
+		$$
+		I_k^{\vee} := \sum_{i=1}^d e_i\otimes f_i \in H^{m-k}(M)\otimes H^k(M) \subset H^m(M\times M)
+		$$
+		is independent of the choice of basis. Prove that $\Delta_!(1)=\sum_{k=0}^m (-1)^k I_k^{\vee}$.
+	\end{enumerate}
+	
+	\begin{proof}
+		(a): The normal bundle of $\Delta$ is $\nu_{\Delta} = \tau_{M\times M}|_{\Delta(M)}/\tau_{\Delta(M)}$. By modding out $T_p(\Delta(M))$, tangent vectors $(v_1,v_2)$ in $T_p(M\times M)$ can be written uniquely as $(v_1-v_2,0)$, and the map $[(v_1,v_2)]\mapsto v_1-v_2$ is an isomorphism of vector bundles.\\
+		
+		(b): By corollary 4.8, if $(a\otimes a')\in H^{m}(M\times M)$ (equivalently, if $k+k'=m$) then
+		$$
+		\int_{M\times M} \Delta_!(1) \wedge (a\otimes a') = \int_M 1\wedge \Delta^*(a\otimes a') = \int_M\Delta^*(a\otimes a') = \int_M a\wedge a'
+		$$
+		if $(a\otimes a')\not\in H^m(M\times M)$ then the integral is just 0 because integrating a form of a different dimension than the manifold yields 0.\\
+		
+		(c): Using anti-commutativity of wedge product,
+		$$(a\otimes b) \wedge (a'\otimes b') = a\otimes (b \wedge a') \otimes b' = (-1)^{k'l}a\otimes a' \wedge b\otimes b'$$
+		and the result follows using Fubini:
+		$$
+		\int_{M\times M} (-1)^{kl}a\otimes a' \wedge b\otimes b' = (-1)^{k'l} \int_M \Delta^*(a\otimes a') \cdot \int_M \Delta^*(b\otimes b') = (-1)^{k'l} \int_M a\wedge a' \cdot \int_M b\wedge b'.
+		$$
+		Similarly to before if $k+k'\neq m$ or $l+l'\neq m$ then one of the integrals is 0.\\
+		
+		(d): It suffices to check how this sum acts on basis elements $f_p\otimes e_q$ (where $f_p\in H^{k}(M)$ and $e_q\in H^{m-k}(M)$), and see that this aligns with the result of (b). Then $(a\otimes a')$ can be represented as a sum of such elements and the result will follow by linearity. Note that we only have to consider the $k$th term of the sum since in other cases the integral is 0 by (b).
+		\begin{align*}
+			\int_{M\times M} \bigg(\sum_k (-1)^k I_k^{\vee}\bigg) \wedge (f_p\otimes e_q) &= (-1)^k \int_{M\times M} \bigg(\sum_i e_i\otimes f_i\bigg) \wedge (f_p\otimes e_q)\\
+			&= (-1)^k \sum_i \int_{M\times M} (e_i\otimes f_i) \wedge (f_p\otimes e_q)\\
+			&= (-1)^k \sum_i (-1)^{k^2} \int_M e_i\wedge f_p \cdot \int_M f_i\wedge e_q\\
+			&= \sum_i  \int_M e_i\wedge f_p \cdot \int_M f_i\wedge e_q\\
+			&= \int_M e_p\wedge f_p \cdot \int_M f_p \wedge e_q\\
+			&= \bigg(\int_M 1\bigg)^2
+		\end{align*}
+		(if $p\neq q$ then the integral is 0).\\
+		
+	\end{proof}
+	
+	\newpage 
+	
+	\textbf{Problem 4.8}: 
+	\begin{enumerate}[(a)]
+		\item Produce a nonzero vector field on an odd dimensional sphere and conclude that such a sphere has 0 Euler number.
+		\item Let $V$ be the vector field on $S^n$ such that $V(p)$ is obtained by orthogonal projection of the north pole onto $T_pS^n$. Show that this is a smooth vector field and compute the signs of the determinant.
+	\end{enumerate}
+	\begin{proof}
+		(a): Consider the vector field
+		$$
+		V: (x_1,\dots,x_{2m}) \mapsto (x_2,-x_1,x_4,-x_3,\dots,x_{2m},-x_{2m-1}).
+		$$
+		One can see that $V(x)\in T_x(S^{2m-1})$, as 
+		$$
+		\<x,V(x)\> = x_1x_2 + x_2(-x_1) + x_3x_4 + x_4(-x_3) + \cdots = 0.
+		$$
+		Moreover, $||V(x)||=1$ for all $x$, so $V$ is nonzero on $S^{2m-1}$. Thus the sum of the indices of zeros is 0 because there are none, i.e. $e(S^{2m-1})=0$.\\
+		
+		(b): The magnitude of the vector field at $p$ is $\sin(\theta)$ where $\theta$ is the angle between the north pole $N$ of $S^n$ and $p$. Specifically, the vector is $N - p\cos(\theta)$, which is clearly smooth in $p$ because $\theta$ is.\\
+		
+		$V$ only vanishes where $\sin(\theta)=0$, so at $N$ and $-N$. At $N$, the vector field is pointing inward, i.e. every eigenvalue is $-1$, giving a determinant of $(-1)^n$. At $-N$, the vector field is pointing outward, every eigenvalue is $1$, and the determinant is $1$. This matches the expected result, as it shows 
+		$$
+		e(S^n) = (-1)^n + 1 = \begin{cases}
+			0 & n \text{ odd}\\
+			2 & n \text{ even}.
+		\end{cases}
+		$$
+	\end{proof}
+	
+	\newpage 
+	
+	\textbf{Problem 5.1}: Let $f:M\to \R$ be a smooth function whose critical points $\Cr(f)$ are all non-degenerate. Given that the chain complex
+	$$
+	C(f): 0 \to \Z^{\Cr_m(f)} \xra{\partial_m} \cdots \xra{\partial_1} \Z^{\Cr_0(f)}\to 0
+	$$
+	has the property that the homology of this complex in degree $k$ is $H_k(M)$ for all $k$, show that 
+	$$
+	e(M) = \sum_{p\in \Cr(f)}(-1)^{\Ind_p(f)}.
+	$$
+	
+	\begin{proof} Assuming this chain complex has the same homology groups as singular homology, 
+		\begin{align*}
+			\chi(M) &= \sum_k (-1)^k\dim H_k\\
+					&= \sum_k (-1)^k \big(\dim(\ker\partial_k) - \dim(\im\partial_{k-1})\big)\\
+					&= \sum_k (-1)^k \big(\dim(\ker\partial_{k}) + \dim(\im(\partial_k))\big)\\
+					&= \sum_k (-1)^k \dim( \Z^{\Cr_k(f)})\\
+					&= \sum_k (-1)^k |\Cr_k(f)|\\
+					&= \sum_{p\in \Cr(f)} (-1)^{\Ind_p(f)}
+		\end{align*}
+		and by the Poincar\'e-Hopf Theorem, $\chi(M)=e(M)$, so this yields the desired result.
+	\end{proof}
+\end{document}

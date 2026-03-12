@@ -1,0 +1,80 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\DeclareMathOperator{\lk}{\mathrm{lk}}
+
+\title{Math 318 HW 7}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+	\textbf{Problem 4.1}: Let $f:\C\to \C$ be a complex polynomial of degree $d$. Prove that $f$ is proper and of degree $d$.
+	\begin{proof}
+		$f$ would not be proper if it was a constant map, so I assume that $d\geq 1$.\\
+		
+		$\C$ has the same topology as $\R^2$, so compact is equivalent to closed and bounded. Polynomials are continuous, so the preimages of closed sets are certainly closed. And preimages of bounded sets are also bounded: it suffices to show that for any $r$ there is some $r'$ for which $f^{-1}(B_{r}(0))\subseteq B_{r'}(0)$, which follows because for sufficiently large $r'$, $f$ is dominated by the $z^d$ term, which is unbounded. Thus, $f$ is proper.\\
+		
+		Now to show that $\deg(f)=d$. Take a regular value $y$ of $f$. Since $f$ is of degree $d$ and $y$ is regular, $f^{-1}(y)$ consists of exactly $d$ points in $\C$. And $f$ preserves orientation at all regular points of $\C$ because it is a polynomial and thus holomorphic; its derivative is just multiplication by a complex scalar, which does not change the orientation. Thus 
+		$$
+		\deg(f) = \sum_{p\in f^{-1}(y)} \de(p) = |f^{-1}(y)| = d.
+		$$
+	\end{proof}
+	
+	\newpage
+	\textbf{Problem 4.2}: Let $M$ be a compact connected $m$-manifold with boundary. Assume $M$ is oriented and give $\partial M$ the induced orientation. Let $N$ be an oriented connected $(m-1)$-manifold. Prove that any smooth map $f:\partial M\to N$ has degree 0 if it extends smoothly to $M$.
+	
+	\begin{proof}
+		Let $F: M\to N$ be a smooth extension of $f$, and let $y\in N$ be a regular value of $F$. Then $F^{-1}(y)$ is a 1-dimensional submanifold of $M$. More specifically, it is the union of finitely-many arcs whose endpoints are on $\partial M$; $f^{-1}(y)$ consists exactly of these pairs of endpoints. Moreover, for any one of these arcs $\gamma$ with endpoints $a,b$, $\de(a)=-\de(b)$, following from the fact that $a$ and $b$ are oriented oppositely in the induced orientation of $\partial \gamma$. Thus, pairing up these endpoints, $\deg(f)=0$.\\
+		
+		A simpler way: by Stokes' theorem, for any exact form $\omega$ on $N$ we have
+		$$
+		\deg f \cdot \int_N\omega = \int_{\partial M}f^*\omega = \int_M \d f^*\omega = \int_M f^*\d \omega = \int_M 0 = 0.
+		$$
+		Thus if $\deg f \neq 0$, then the integral of any exact form on $N$ is 0. But by Poincar\'e Duality, integrating over $N$ is an isomorphism $\EE^{m-1}(N)\to \R$ since $N$ is oriented, so this is impossible hence $\deg(f)=0$.
+	\end{proof}
+	
+	\newpage 
+	
+	\textbf{Problem 4.3}: Let $N$ and $N'$ be compact, disjoint oriented submanifolds of $\R^m$ of dimensions $n,n'$, where $m=n+n'+1$. The \textit{linking number} of $(N,N')$, denoted $\lk(N,N')$, is the degree of the map
+	$$
+	\ph: N\times N' \to S^{n+n'}, \;\; \ph:(p,p')\mapsto \frac{p-p'}{||p-p'||}
+	$$
+	where $N\times N'$ is given the product orientation.
+	
+	\begin{enumerate}[(a)]
+		\item Prove that $\lk$ is additive (in the sense that $\lk(A\coprod B,C) = \lk(A,B) + \lk(B,C)$) and $\lk(N,N') = (-1)^{(n+1)(n'+1)}\lk(N',N)$.
+		\item Show that if $N$ is the boundary of an oriented compact submanifold of $\R^m\setminus N'$, then $\lk(N,N')=0$.
+		\item Compute the linking number of two interlocking circles.
+	\end{enumerate}
+	
+	\begin{proof}
+		(a): Additivity follows from the local definition of degree; the degree of $\ph$ is
+		$$
+		\sum_{(p,p')\in \ph^{-1}(z)} \de(p,p') = \sum_{(p,p')\in \ph^{-1}(z) \cap A\times C}\de(p,p') + \sum_{(p,p')\in \ph^{-1}(z) \cap B\times C}\de(p,p') = \lk(A,C) + \lk(B,C).
+		$$
+		To compute $\lk(N',N)$, we can also use the local definition, noting that 
+		$$
+		\de(p,p') = (-1)^{(n+1)(n'+1)}\de(p',p)
+		$$
+		due to the product orientation of $N\times N'$.\\
+		
+		(b): Suppose $N=\partial M$. The map $\ph$ can be applied to all of $M\times N'$, since $M$ is disjoint from $N'$. And $\partial(M\times N')=N\times N'$, assuming that $N'$ is closed. Now it follows from problem 4.2 that $\deg(\ph)=0$, and hence that $\lk(N,N')=0$.\\
+		
+		(c): Let the rings be positioned in $\R^3$ so that $$C_1 = \{(0,y,z) : y^2+z^2=1\}, \;\;\; C_2 = \{(x,0,z): x^2+(z-1)^2=1\}$$
+		as depicted below:
+		\begin{center}
+		\includegraphics[width=6cm]{"C:/Users/jzchr/MathDocuments/Class Work/Topology/Homework/318HW7/HW7P4.3Fig.png"}
+	\end{center}
+	
+		The precise positioning of the circles does not matter, since they can be moved by homotopy without affecting the degree of any maps.
+		
+		Now consider the point $z=(0,0,1)\in S^2$. The preimage $\ph^{-1}(z)$ consists of the pairs $(p,p')$ such that $p$ is directly above $p'$ (in the $z$ direction), and there is only one such pair: $((0,0,1),(0,0,0))$. This pair of points is colored green in the above diagram.
+		
+		The degree of $\ph$ is equal to the local degree at this pair of points. This depends on the orientations of the two circles, so suppose that $C_1$ is oriented in the $+y$ direction at $p$ and $C_2$ is oriented in the $+x$ direction at $p'$ (in accordance with the picture given in the problem). Using these coordinates,
+		$$D_{(p,p')}\ph = \begin{pmatrix}
+		1 & 0 \\ 0 & -1
+		\end{pmatrix}$$
+		which has determinant $-1$. Thus $\de(p,p')=-1$ and $\lk(C_1,C_2)=-1$.
+	\end{proof}
+	
+\end{document}

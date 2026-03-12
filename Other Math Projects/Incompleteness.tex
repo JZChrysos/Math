@@ -1,6 +1,8 @@
 \documentclass{amsart}
 \input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
 
+\newcommand{\imp}{\Rightarrow}
+
 \title{Incompleteness}
 \author{Jalen Chrysos}
 
@@ -11,24 +13,118 @@
 		``Everything possible to be believed is an image of truth." -- William Blake
 	\end{center}
 	
-	\section{Introduction} David Hilbert believed (or at least hoped) that mathematics might produce an algorithm for determining whether a given statement was true or false. For example, one could feed in the statement
-	$$
-	\forall n \geq 3,\,  a,b,c\geq 1: \; a^n + b^n \neq c^n
-	$$
-	and out would come ``True.'' Such an algorithm would probably be horribly slow, but its existence is more important than its efficiency. 
+	\tableofcontents
 	
-	A stronger claim would be that there exists some reasonable\footnote{That is to say, consistent and \textit{computably enumerable}.} set of axioms from which any statement can be proven either true or false. If this were true, then the algorithm could be written in the following way: to decide a statement $\ph$, list every possible string of characters, checking each to see if it is a proof of $\ph$ or $\neg \ph$ (checking the correctness of a proof is certainly possible).
+	\section{Definitions}
 	
-	G\"odel showed that neither of these is true in general. There is no algorithm to determine the truth of a statement of number theory, for example. Consequently, there is no reasonable set of axioms that can decide all statements of number theory. There are multi-variable polynomials $P(x_1,x_2,\dots,x_n)$ for which the statement
-	$$
-	\exists x_1,x_2,\dots,x_n\in \N^n : P(x_1,\dots,x_n) = 0
-	$$
-	cannot be proven or disproven from the axioms of arithmetic (some such polynomials are known)\footnote{What a relief that Fermat's Last Theorem was not one of this type!}. 
+	\subsection{Introduction and Guiding Questions} 
+%	David Hilbert believed (or at least hoped) that mathematics might produce an algorithm for determining whether a given statement was true or false. For example, one could feed in the statement
+%	$$
+%	\forall n \geq 3,\,  a,b,c\geq 1: \; a^n + b^n \neq c^n
+%	$$
+%	and out would come ``True.'' Such an algorithm would probably be horribly slow, but its existence is more important than its efficiency. 
+%	
+%	A stronger claim would be that there exists some reasonable\footnote{That is to say, consistent and \textit{computably enumerable}.} set of axioms from which any statement can be proven either true or false. If this were true, then the algorithm could be written in the following way: to decide a statement $\ph$, list every possible string of characters, checking each to see if it is a proof of $\ph$ or $\neg \ph$ (checking the correctness of a proof is certainly possible).
+%	
+%	G\"odel showed that neither of these is true in general. There is no algorithm to determine the truth of a statement of number theory, for example. Consequently, there is no reasonable set of axioms that can decide all statements of number theory. There are multi-variable polynomials $P(x_1,x_2,\dots,x_n)$ for which the statement
+%	$$
+%	\exists x_1,x_2,\dots,x_n\in \N^n : P(x_1,\dots,x_n) = 0
+%	$$
+%	cannot be proven or disproven from the axioms of arithmetic (some such polynomials are known)\footnote{What a relief that Fermat's Last Theorem was not one of this type!}. 
+
+	Broadly, the questions we're interested in are:\\
+	\begin{enumerate}[(A)]
+		\item How can we tell whether a theory is complete or incomplete?
+		\item If a theory is incomplete, how can we tell which statements it fails to decide?
+	\end{enumerate}
 	
+	\newpage 
+	
+%	\subsection{First-Order Logic}
+%	
+%	\newpage
+	
+	\subsection{Languages, Theories, and Structures} We need a way to formally talk about statements.\\
+	
+	\underline{Examples of Theories}:
+	\begin{itemize}
+		\item \textit{The Theory of Graphs}: 
+		\begin{itemize}
+			\item Language: $\sim,=$
+			\item Axioms: 
+			\begin{itemize}
+				\item Axioms of $=$,
+				\item Simplicity: $\forall x: \neg (x\sim x)$.
+			\end{itemize}
+		\end{itemize}
+		\item \textit{The Theory of Dense Linear Orders}:
+		\begin{itemize}
+			\item Language: $<,=$
+			\item Axioms: 
+			\begin{itemize}
+				\item Axioms of $=$,
+				\item Axioms of $<$,
+				\item Density: $\forall x,y: x<y \imp \exists z: (x< z) \^ (y<z)$.
+			\end{itemize}
+		\end{itemize}
+		\item \textit{The Theory of 2-D Geometry}:
+		\begin{itemize}
+			\item Language: $=,B,C$.
+			\item Axioms:
+			\begin{itemize}
+				\item Axioms of $=$,
+				\item $C(a,b;b,a)$,
+				\item $C(a,b;c,c)\imp a=b$,
+				\item $C(a,b;c,d) \^ C(c,d;e,f) \imp C(a,b;e,f)$,
+				\item $B(a,b,a) \imp a=b$,
+				\item Pasch's Axiom: $B(a,b,c) \^ B(a,d,e) \imp \exists x: B(b,x,e) \^ B(c,x,d)$,
+				\item $\ph,\psi$-Continuity: $(\exists a: \forall x,y: (\ph(x) \^ \psi(y)) \imp B(a,x,y))\imp (\exists b: \forall x,y: (\ph(x)\^ \psi(y)) \imp B(x,b,y))$
+				\item Dimension $\geq 2$: $\exists a,b,c: (\neg B(a,b,c) \^ \neg B(b,c,a) \^ \neg B(c,a,b))$,
+				\item Dimension $\leq 2$: $\neg (\text{Dimension} \geq 3)$,
+				\item Parallel Postulate: \textbf{not done},
+				\item 
+			\end{itemize}
+		\end{itemize}
+		\item \textit{ZFC Set Theory}
+		\begin{itemize}
+			\item Language: $\in, =$
+			\item Axioms:
+			\begin{itemize}
+				\item Axioms of $=$,
+				\item Existence: $\exists A: A=A$,
+				\item Extensionality: $\forall A,B: (\forall C: C\in A \iff C\in B)\imp A=B$,
+				\item Foundation: $\forall A: (\exists B: B \in A) \imp (\exists C: C\in A \^ \neg (\exists D: D\in C \^ D\in A))$,
+				\item Union: $\forall A: \exists B: \forall C,D: (C\in A \^ D\in C) \imp D\in B$,
+				\item Pairing: $\forall A,B: \exists C: A\in C \^ B\in C$,
+				\item Powerset: $\forall A: \exists B: \forall C: C\subseteq A \imp C\in B$,
+				\item Infinity: $\exists A: \emptyset \in A \^ \forall B: B\in A \imp B\cup \{B\} \in A$,
+				\item $\ph$-Comprehension: $\forall A: \exists B: (C\in B) \iff (C\in A \^\ph(C))$,
+				\item $f$-Replacement: $\forall A: \exists B: \forall C: C\in B \iff \exists D: D\in A \^ f(D) = C$,
+				\item Choice: $\forall A: \exists B: \forall C: C\in A \imp \exists D: D\in C \^ D\in B$.
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+
+	
+	\newpage 
+	
+	\subsection{Provability versus Truth}
 	
 	\newpage
 	
-	\section{Chaitin's Method} One type of statement that a theory fails to prove in general is lower bounds on the \textit{complexity} of numbers. \\
+	\subsection{Completeness and Compactness}
+	
+	\newpage 
+	
+	\subsection{Algorithms}
+	
+	\newpage
+	
+	\section{Proofs of Incompleteness}
+	
+	\subsection{G\"odel's Method}
+	
+	\subsection{Chaitin's Method} One type of statement that a theory fails to prove in general is lower bounds on the \textit{complexity} of numbers. \\
 	
 	Fixing a ``programming language'' in advance, the \textit{Kolmogorov Complexity} of a number $n\in \N$, which we denote $K(n)$, is the length of the shortest program whose output is $n$.\\
 	

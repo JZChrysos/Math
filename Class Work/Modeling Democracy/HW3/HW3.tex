@@ -1,0 +1,103 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{33255 HW \#3}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+	\maketitle
+	
+	\textbf{Problem 1}: Let $N$ be the number of voters, $n(Y)$ be the number of first-place votes for $Y$, $c(Y)$ be the cost of $Y$, and $X$ be the optimal candidate in some embedding.
+	\begin{enumerate}[(a)]
+		\item Show that for a random dictator winner $Y\neq X$,
+		$$
+		c(Y)\leq c(X) + (N-1)\cdot \d(X,Y)
+		$$
+		\item Show that $c(X)\geq \tfrac12 \sum_Yn(Y) \cdot \d(X,Y)$.
+		\item Let $p(Y)$ be the probability that random dictatorship gives $Y$ as the winner. Show that the distortion of random dictatorship is at most
+		$$
+		1 + \frac{\sum_Yp(Y) \cdot (N-1) \cdot \d(X,Y)}{\tfrac12 \sum_ n(Y) \cdot \d(X,Y)}
+		$$
+		\item Show that the distortion is at most $3-2/N$.
+	\end{enumerate}
+	
+	\begin{proof}
+		(a): If $Y$ is a random dictator winner then at least one voter $u$ has $Y$ as the first choice and thus $\d(u,Y)\leq \d(u,X)$. Then
+		\begin{align*}
+		c(Y) &= \sum_v \d(v,Y) \\
+		&\leq \d(u,X) + \sum_{v\neq u} \d(v,Y) \\
+		&\leq \d(u,X) + \sum_{v\neq u} \d(v,X) + \d(X,Y)\\
+		&= c(X) + (N-1)\cdot \d(X,Y).
+		\end{align*}
+		
+		(b): For each voter $v$ who ranks $Y$ first, 
+		$$\d(v,X) \geq \d(X,Y) - \d(v,Y) \geq \d(X,Y) - \d(v,X) \implies \d(v,X) \geq \tfrac12 \d(X,Y).$$
+		Summing over all candidates and grouping together the $n(Y)$ voters who rank $Y$ first,
+		$$
+		c(X) \geq \sum_Y \tfrac12 n(Y) \cdot \d(X,Y).
+		$$
+		
+		(c): From parts (a) and (b) we have
+		\begin{align*}
+		\frac{c(Y)}{c(X)} &\leq \frac{c(X) + (N-1)\cdot \d(X,Y)}{c(X)}\\
+		&= 1 + \frac{(N-1)\cdot \d(X,Y)}{c(X)}\\
+		&\leq 1 + \frac{(N-1)\cdot \d(X,Y)}{\tfrac12 \sum_Yn(Y) \cdot \d(X,Y)}
+		\end{align*}
+		for any given $Y$, and then giving an average weighted by $p(Y)$ yields the desired result.\\
+		
+		(d): Note that $p(Y) = n(Y)/N$, since the probability of $Y$ winning RD is exactly the probability of selecting one of the $n(Y)$ voters who rank $Y$ first. This makes the fraction simplify to
+		$$
+		1 + \frac{\sum_Y p(Y) \cdot (N-1) \cdot \d(X,Y)}{\tfrac12 \sum_Y n(Y) \cdot \d(X,Y)} = 1 + \frac{(N-1)/N}{1/2} = 3-2/N
+		$$
+		as expected.
+	\end{proof}\\
+	
+	\textbf{Problem 2}: In Elgin City South (Moray Ward 7) in 2017, the election had four candidates for three seats. Use VoteKit to create the pairwise comparison graph. Was there a Condorcet candidate? Who would have been the winner under Borda, Plurality, and IRV?
+	
+	\begin{proof}
+	I had problems getting this to work in votekit sorry.
+	\end{proof}\\
+	
+	\textbf{Problem 3}:\\
+	
+	(a): In PL, the odds that $A$ is first is $0.6$. In BT it is the odds of $a>b$ and $a>c$, which is $(0.6/0.85) \cdot (0.6/0.75) \approx 0.56$.\\
+	
+	In PL the odds of $A>B>C$ are (proportional to) $0.6\cdot (0.25/0.4) = 0.375$, whereas the odds of $C>B>A$ are $0.15 \cdot (0.25/0.85) \approx 0.044$, making the modal ballot about $8.5$ times as likely. For BT, the odds of $A>B>C$ are proportional to $(0.6/0.85)\cdot (0.25/0.4)\cdot (0.6/0.75) \approx 0.353$, and the odds of $C>B>A$ are $(0.15/0.4)\cdot (0.15/0.75)\cdot (0.25/0.85) \approx 0.022 $, making the modal ballot about $16$ times as likely.\\
+	
+	(b): In general PL chooses the modal ballot over its reverse with relative probability
+	$$
+	\frac{a_1 \cdot \frac{a_2}{a_2+\cdots+a_m}\cdots \frac{a_m}{a_m}}{a_m \cdot \frac{a_{m-1}}{a_1+\cdots + a_{m-1}} \cdots \frac{a_1}{a_1}} = \frac{a_1\cdot (a_1+a_2)\cdots (a_1+\cdots+a_m)}{a_m \cdot (a_m+a_{m-1})\cdots (a_m+\cdots +a_1)}
+	$$
+	whereas BT has
+	$$
+	\frac{\prod_{i<j} \frac{a_i}{a_i+a_j}}{\prod_{i<j} \frac{a_j}{a_i+a_j}} = \prod_{i<j}\frac{a_i}{a_j} = \prod_{i} a_i^{(m-i) - (i-1)} = \prod_i a_i^{m-2i+1}.
+	$$
+	In comparing these,
+	$$
+	\frac{a_1\cdot (a_1+a_2)\cdots (a_1+\cdots+a_m)}{a_m \cdot (a_m+a_{m-1})\cdots (a_m+\cdots +a_1)} \leq \frac{a_1\cdot (2a_1)\cdot (3a_1)\cdots 1}{a_m\cdot (2a_{m-1}) \cdot (3a_{m-2})\cdots 1} = \prod_{1<j} \frac{a_1}{a_j} \leq \prod_{i<j}\frac{a_i}{a_j}
+	$$
+	as expected.\\
+	
+	\textbf{Problem 4}:\\
+	
+	(a): 
+	\begin{center}
+	\includegraphics[width=4cm]{"C:/Users/jzchr/MathDocuments/Class Work/Modeling Democracy/HW3/Fig4a.png"}
+	\end{center}
+	(b): 
+	\begin{center}
+		\includegraphics[width=4cm]{"C:/Users/jzchr/MathDocuments/Class Work/Modeling Democracy/HW3/Fig4b.png"}
+	\end{center}
+	(c): 
+	\begin{center}
+		\includegraphics[width=4cm]{"C:/Users/jzchr/MathDocuments/Class Work/Modeling Democracy/HW3/Fig4c.png"}
+	\end{center}
+	(d): I got these results by in the first case increasing the number of voters to 500, and in the second increasing to 300 and decreasing the number of candidates to 6. Both have polarization around 0.5 
+	\begin{center}
+		\includegraphics[width=4cm]{"C:/Users/jzchr/MathDocuments/Class Work/Modeling Democracy/HW3/Fig4d1.png"}
+	\end{center}
+	\begin{center}
+		\includegraphics[width=4cm]{"C:/Users/jzchr/MathDocuments/Class Work/Modeling Democracy/HW3/Fig4d2.png"}
+	\end{center}
+\end{document}

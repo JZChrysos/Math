@@ -1,0 +1,109 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{132 HW \#4}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+	\maketitle
+
+	\textbf{Problem 3}: \\
+	Each of the three sides requires work $kq_1q_2/r$ to put into place, so the total work required is 
+	$$
+	\frac{3kq_1q_2}{r} = \frac{3(9\cdot 10^9)(1.6\cdot 10^{-19})^2}{(2\cdot 10^{-15})} \approx 3.5\cdot 10^{-13} J.
+	$$
+	
+	\textbf{Problem 9}:\\
+	
+	(a): When all of the potential energy between the protons has converted into kinetic energy (i.e. when the protons are infinitely far apart), we will have $E=\tfrac12mv^2$ (where $m$ is the combined mass of the protons) so $v=\sqrt{2E/m}$. At the beginning they are at rest so $E$ is just the potential energy of the two protons, which we can calculate as 
+	$$
+	E = \frac{kq_1q_2}{r} = \frac{(9\cdot 10^9)(1.6\cdot 10^{-19})^2}{0.75 \cdot 10^{-9}} \approx 3.1 \cdot 10^{-19} J
+	$$
+	hence 
+	$$
+	v = \sqrt{2E/m} = \sqrt{\frac{2 \cdot (3.1\cdot 10^{-19})}{2\cdot 1.67 \cdot 10^{-27}}} \approx 1.4 \cdot 10^4 m/s
+	$$
+	and this velocity is approached as the protons get further away.\\
+	
+	(b): The acceleration depends only on the distance, so it will be greatest when $r$ is least, i.e. at the moment when the protons are released. And its value can be computed by Coulomb's law:
+	$$
+	a = F/m = \frac{kq_1q_2}{r^2m} = \frac{(9\cdot 10^9)(1.6\cdot 10^{-19})^2}{(0.75\cdot 10^{-9})^2(1.67 \cdot 10^{-27})} = 2.45 \cdot 10^{17} m/s^2.
+	$$
+	
+	\textbf{Problem 19}:\\
+	
+	(a): The potential at $A$ is 
+	$$
+	V = \frac{kq_1}{r_1} + \frac{kq_2}{r_2} = \frac{(9\cdot 10^9)(2.4\cdot 10^{-9})}{0.05} + \frac{(9\cdot 10^9)(-6.5\cdot 10^{-9})}{0.05} = -737 V
+	$$
+	
+	(b): The potential at $B$ is
+	$$
+	V = \frac{kq_1}{r_1} + \frac{kq_2}{r_2} = \frac{(9\cdot 10^9)(2.4\cdot 10^{-9})}{0.08} + \frac{(9\cdot 10^9)(-6.5\cdot 10^{-9})}{0.06} = -704 \cdot 10^2 V
+	$$
+	
+	(c): Moving from $B$ to $A$, the potential decreases by 33 V, so the work done is 
+	$$
+	-33\cdot 2.5 \cdot 10^{-9} = -8.25 \cdot 10^{-8} J
+	$$
+	
+	\textbf{Problem 32}:\\
+	
+	(a): Initial kinetic energy is $\tfrac12 mv^2$, which is
+	$$
+	\tfrac12 (1.67\cdot 10^{-27})(3.5\cdot 10^3)^2 = 2.9 \cdot 10^{-21} J
+	$$
+	
+	(b): The proton will stop when its kinetic energy is entirely converted into potential energy, i.e. expended as work. Work is the integral of electric field, which is
+	$$
+	\int_{r_a}^{r_b} E = \int_{r_a}^{r_b} \frac{2kq\lambda}{r} = 2kq\lambda \int_{r_a}^{r_b}\frac{1}{r} = 2kq\lambda\ln(r_b/r_a)
+	$$
+	so we can solve for $r_b$:
+	$$
+	-2.9\cdot 10^{-21} = 2kq\lambda \ln(r_b/0.18) \implies r_b = 14.7 cm.
+	$$
+	
+	\textbf{Problem 43}:\\
+	
+	(a): The electric field is the gradient of $V$:
+	$$
+	E = \nabla V = (Ay-2Bx,Ax + C,0)
+	$$
+	
+	(b): If this field is 0, then $Ay=2Bx$ and $Ax=-C$. Thus $x=-C/A$ and $y=2Bx/A = -2BC/A^2$. So the field is 0 at points
+	$$
+	(-C/A,-2BC/A^2,z)
+	$$
+	for all $z$.\\
+	
+	\textbf{Problem 45}:\\
+	
+	(a): Exercise 23.41(b) showed that the potential difference is $kq(r_a^{-1}-r_b^{-1})$, so
+	$$
+	500V = (9\cdot 10^9)q(\frac{1}{0.012} - \frac{1}{0.096}) \implies q = 7.6 \cdot 10^{-10} C
+	$$
+	
+	(b): They should be shells concentric around the inner shell.\\
+	
+	(c): Electric field lines are perpendicular to equipotential lines. They are closer together when the magnitude of $E$ is largest.\\
+	
+	\textbf{Problem 48}:\\
+	
+	(a): Setting the electric fields induced by the two points to be opposite at a point $(x,0)$, we get the relation $2=(x+0.2)^2/(x-0.2)^2$ which results in a quadratic with the solutions $x\approx 1.17m$ and $x\approx 0.03m$.\\
+	
+	(b): For voltage, we instead get $2=|x+0.2|/|x-0.2|$ which has solutions at $x=0.6$ and $x\approx 0.07$.\\
+	
+	(c): No. We wouldn't expect them to be at the same places because electric field is the derivative of voltage.\\
+	
+	\textbf{Problem 59}:\\
+	
+	If the pendulum is in this position at rest, then the forces must all cancel out. In particular, the electric force $F$ on the charge cancels with the horizontal component of the tension, $\tfrac12 T$. And the weight force $mg$ cancels with the vertical tension $\tfrac12 \sqrt{3}T$. So we have
+	$$
+	F = \frac{mg}{\sqrt{3}} = \frac{(1.5\cdot 10^{-3})(9.8)}{\sqrt{3}} = 8.5\cdot 10^{-3} N.
+	$$
+	From this we can get the electric field $E=F/q = 955 N/C$, and the voltage difference across the capacitor is given by $V=Ed$, so
+	$$
+	V = (955)(0.05) = 47.8 V.
+	$$
+\end{document}

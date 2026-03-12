@@ -1,0 +1,71 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Math 318 HW 5}
+\author{Jalen Chrysos}
+
+\begin{document}
+	\maketitle
+	
+	\textbf{Problem 2.2:} A 1-form on $\R^2\setminus \{0\}$ is defined by $\omega := (x^2+y^2)^{-1}(x\d y - y \d x)$. Show that $\omega$ can be locally written as the differential of a function, but not of a function defined on all of $\R^2\setminus \{0\}$.
+	
+	\begin{proof}
+%		If $\omega = \d f = \partial_xf \d x + \partial_y f \d y$ then 
+%		$$
+%		\partial_x f = -(x^2+y^2)^{-1} y, \;\; \partial_y f = (x^2+y^2)^{-1} x.
+%		$$ 
+%		But this is impossible because it implies two distinct values for $\partial_{x}\partial_{y}f$:
+%		$$
+%		\partial_y\partial_x f = \partial_y (-(x^2+y^2)^{-1}y) = -(x^2+y^2)^{-1} + 2y^2(x^2+y^2)^{-2},
+%		$$
+%		$$
+%		\partial_x \partial_y f = \partial_x (x^2+y^2)^{-1}x = (x^2+y^2)^{-1} - 2x^2(x^2+y^2)^{-2}.
+%		$$
+%		Since $\partial_x\partial_y f = \partial_y\partial_x f$, this is a contradiction, so $\omega$ cannot be exact.\\
+%		
+%		Locally, we can take the function $f(x,y)=(x^2+y^2)^{-1} \theta$ (where $\theta = \arctan(y/x)$). There is a discontinuity at $x=0$, but except for this line, $f$ is differentiable and its differential is $\omega$:
+%		$$
+%		\d f = (x^2+y^2)^{-1}\arctan(y/x) = (x^2+y^2)^{-1}
+%		$$
+
+Over the unit circle (oriented counterclockwise) the integral of $\omega$ is $2\pi$, since $\omega$ is tangent to the unit circle with magnitude 1 at every point on the circle. If $\omega=\d f$ for some $f$ then it should be 0 by Stokes' theorem, as $S^1$ has no boundary. Thus $\omega$ cannot be exact.\\
+
+But locally it is a differential. We can check this by confirming that $\partial_x$ of the $\d y$ component and $\partial_y$ of the $\d x$ component are equal:
+$$
+\partial_x (x^2+y^2)^{-1}x = (x^2+y^2)^{-1} - x\cdot (x^2+y^2)^{-2}\cdot 2x = \frac{y^2-x^2}{(x^2+y^2)^2}
+$$
+and symmetrically 
+$$
+\partial_y (-(x^2+y^2)^{-1}y) = -(x^2+y^2)^{-1} + y\cdot (x^2+y^2)^{-2}\cdot 2y = \frac{y^2-x^2}{(x^2+y^2)^2}.
+$$
+Then $\omega$ is locally a differential, following from exercise 2.1.
+\end{proof}
+	
+	\newpage 
+	
+	\textbf{Problem 1.1:} Prove that for a connected manifold $M$, $H^0_{dR}(M)=\R$.
+	
+	\begin{proof}
+		$H_{dR}^0(M)$ is the quotient of closed $0$-forms (functions) by exact $0$-forms. Closed 0-forms have derivative 0 everywhere so they are locally constant. Since $M$ is connected, closed 0-forms must be constant on all of $M$. Thus, there is an isomorphism between the vector space of closed 0-forms and $\R$ by taking $f$ to the constant value of $f$. And there are no exact 0-forms, so the space of closed 0-forms is $H_{dR}^0(M)$.
+	\end{proof}
+	
+	\newpage 
+	
+	\textbf{Problem 1.2:} Prove that $\R^{m+1}\setminus \{0\}$ and $S^m$ have the same de Rham cohomology.
+	
+	\begin{proof}
+		There is a homotopy equivalence between $\R^{m+1}\setminus \{0\}$ and $S^m$ given by projection onto the unit sphere. Because de Rham cohomology is invariant to homotopy equivalence, this implies that the two spaces have the same de Rham cohomology.
+	\end{proof}
+	
+	\newpage 
+	
+	\textbf{Problem 2.2:} For which $m$ is $\P^m$ orientable?
+	\begin{proof}
+		Only for odd $m$.\\
+		
+		When $m$ is even, the projection $\pi:S^m\to \P^m$ associates two points with opposite orientations, since the antipodal map on $S^m$ is $-I_{m+1}$ which has determinant $(-1)^{m+1}=-1$. Given an orientation of $\P^m$, we could map each $\ell \in \P^m$ continuously to whichever of $\pm p$ is oriented the same way (i.e. the one for which the induced map between tangent spaces $T_{\ell}\P^m\to T_p S^m$ preserves orientation). Call this map $f$. The image of $f$ in $S^m$ consists of exactly one of every antipodal pair, so its complement is also open. $\im(f)$ and $\im(f)^c$ are two open sets that cover $S^m$, contradicting the fact that $S^m$ is connected. \\
+		
+		When $m$ is odd, $\P^m$ inherits an orientation from $S^m$ via $\pi$, since $\pm p$ now have the same orientation as $\det -I_{m+1} = (-1)^{m+1}=1$.
+	\end{proof}
+	
+\end{document}

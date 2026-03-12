@@ -1,8 +1,9 @@
 if(!settings.multipleView) settings.batchView=false;
 settings.tex="pdflatex";
-defaultfilename="asyfig3";
+defaultfilename="ForcingComparison";
 if(settings.render < 0) settings.render=4;
-settings.outformat="pdf";
+settings.render=16;
+settings.outformat="png";
 settings.inlineimage=true;
 settings.embed=true;
 settings.toolbar=false;
@@ -137,7 +138,7 @@ branch(new int[]{0,1,0,0,1,0,0,1},start=(0,-120));
 branch(new int[]{0,1,0,0,0,0,1,1},start=(0,-120));
 branch(new int[]{0,1,0,0,0,0,0,1},start=(0,-120));
 
-draw((175.9,15)--(175.9,-160),white+linewidth(2.4));
+draw((175.9,15)--(175.9,-160),white+linewidth(3));
 
 label("Cohen forcing with $p=(0,1,0)$:", (0,10),align=right,fontsize(10pt));
 label(minipage("Jockusch-Soare forcing with $p=$ the black-outlined tree:",width=130pt), (0,-50),align=right,fontsize(10pt));

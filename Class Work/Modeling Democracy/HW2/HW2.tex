@@ -1,0 +1,84 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{33255 HW \#2}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+	\maketitle
+	\textbf{Problem 1}: Suppose districts $B,P,R$ have populations $(M_B,M_P,M_R)=(54,243,703)$. Apportion the seats by Hamilton's method with $m=10$ and $m=11$ seats, with no requirement that everyone get a seat. Then consider $(M_B',M_P',M_R')=(56,255,789)$ at $m\in \{10,11\}$. Which combinations produce apportionment paradoxes?
+	\begin{proof}
+		\begin{enumerate}[(1)]
+			\item $(M_B,M_P,M_R)$ and $m=10$: the quotas are $(0.54,2.43,7.03)$. Hamilton's method gives $(0,2,7)$ at first, and the final seat goes to the first district, giving $(1,2,7)$.
+			\item $(M_B,M_P,M_R)$ and  $m=11$: the quotas are $(0.594,2.673,7.733)$, with which Hamilton's method gives $(0,2,7)$ initially and the two additional seats are given to the second and third districts, resulting in $(0,3,8)$.
+			\item $(M_B',M_P',M_R')$ and $m=10$: the quotas are $(0.50,2.31,7.17)$. Hamilton's method gives $(0,2,7)\to (1,2,7)$.
+			\item $(M_B',M_P',M_R')$ and $m=11$: the quotas are $(0.56,2.55,7.89)$. Hamilton's method gives $(0,2,7)\to (1,2,8)$.
+		\end{enumerate}
+		
+		(1)$\to$(2) exhibits the Alabama paradox, as increasing the size of the legislature resulting in the first district losing a seat (its only seat!). 
+		
+		(2)$\to$(4) shows the population paradox: the first district grew by $3\%$ and the second by $5\%$, but the first district essentially took a seat from the second.
+	\end{proof}
+	
+	\newpage 
+	
+	\textbf{Problem 2}: The Balinski-Young impossibility result applies to deterministic apportionment methods, but not necessarily for probabilistic ones. Consider the following random method: give each state its lower quota, and let the fractional parts remaining be $\de_1,\de_2,\dots,\de_n\in [0,1)$. The number of seats not yet awarded is equal to the sum of these $\de_j$; denote this sum $k$. Line up the $n$ intervals together to cover $[0,k]$. Select $u\in [0,1)$ uniformly at random, and shift everything to the right by $u$ to cover $[u,u+k]$, and then give an extra seat to every $j$ for which $\de_j+u$ contains an integer.
+	
+	For a state with quota $q+\de$, what is the probability that this process will round them up or down?
+	\begin{proof}
+		The probability that they are rounded up is $\de$. The interval representing this state is initially $[x,x+\de]$ for some $x\in \R$. The fractional part of $x+u$ is uniformly random in $[0,1]$, as is $x+u+\de$. Thus, the odds that an integer is in the interval $[x+u,x+u+\de]$, or equivalently that the fractional part of $x+u+\de$ is in $[0,\de]$, is $\de$.\\
+		
+		The expected number of seats is therefore $q+\de$, which is exactly the quota, thus there can be no (probabilistic) population paradox; the expected number of seats always grows in proportion with the population. And there are no quota violations because the number of seats is either $q$ or $q+1$ in any case.
+	\end{proof}
+	
+	\newpage 
+	
+	\textbf{Problem 3}: Let $n=(n_1,\dots,n_r)$ be the populations of $r$ towns, $w$ the vector of voting weights, $T$ is a strict threshold for the vote, and $\b$ is the vector of Banzhaf powers. Assume all vectors are normalized to have sum 1. Let $f(w)=|n-\b|_1$ be the Banzhaf objective that we seek to minimize.
+	\begin{enumerate}[(a)]
+		\item Prove that if $n_i\geq n_j$, then optimal discrepancy can be achieved with weights $w_i\geq w_j$.
+		\item Show that if $n_i=n_j$, then there may be no optimum with $w_i=w_j$.
+		\item BONUS: Can a four-player game have the symmetry-breaking property at $T=1/2$? Can any three-player game have the symmetry breaking property at any $T$?\\
+	\end{enumerate}
+	\begin{proof}
+		(a): Suppose $w_i<w_j$. If we swap $w_i$ and $w_j$, then all Banzhaf powers will remain fixed (coalitions with $i$ and not $j$ will be replaced by coalitions with $j$ and not $i$, etc.) except those of $i,j$, which will be swapped. If $\b_i=\b_j$ initially, then this weight swap does not affect the discrepancy, so we can achieve optimum either way. Otherwise, it must be that $\b_i<\b_j$ initially, in which case $\b_i>\b_j$ after the swap, which will always decrease the discrepancy since $n_i\geq n_j$ (it is slightly a pain to prove this, but drawing pictures of the few cases makes it clear).\\
+		
+		(b): No idea how to do this. Tried a lot of stuff but it didn't work.
+		
+%		Consider a four player game with $n=(x,x,y,y)$ where $0<x<y$, and $T=1/4$. If weights of equal populations must be equal, we will get weights $w=(a,a,b,b)$ where $0\leq a \leq b$. Since $b\geq 1/4$, we see that each of the $b$-weight districts is a veto player.\\
+%		
+%%		$2a<a+b<2b$, so the only coalitions $1$ and $2$ can tip are $\{3\}$ and $\{4\}$, whereas $3$ and $4$ can tip $\{1\},\{2\},\{1,2\},\{3\},\{4\}$. Banzhaf powers are $\b=(2,2,5,5) \propto (\tfrac{2}{14},\tfrac{2}{14},\tfrac{5}{14},\tfrac{5}{14})\approx (0.14,0.14,0.36,0.36)$. This has $f(w)\approx 0.53$. Since $a,b$ were not specified, this is the best (and only) error we can get with equal weights for equal populations.
+%		
+%		Now, I claim that we can improve upon this by breaking symmetry.
+%		
+%		(c):
+	\end{proof}
+	
+	\newpage 
+	
+	\textbf{Problem 4}:
+	\begin{enumerate}[(a)]
+		\item Show that not every 4-candidate preference profile has a planar embedding.
+		\item Show that every finite preference profile admits a metric embedding.
+	\end{enumerate}
+	\begin{proof}
+		(a): I claim that for four points $A,B,C,D\in \R^2$, there are at most 18 regions cut out by the six perpendicular bisectors of these points. Since the preference ranking of a point is determined by which side of each perpendicular bisector it is on, this means there can be at most 18 different preference rankings in this space, and hence a profile which contains all 24 could not be embedded.
+		
+		Now to show the claim. Let the six perpendicular bisectors be $\ell_{AB},\ell_{AC},\ell_{AD},\ell_{BC},\ell_{BD},\ell_{CD}$. The triple of bisectors not involving $A$ (i.e. $\ell_{BC},\ell_{CD},\ell_{BD}$) intersect in the circumcenter of $BCD$, so let this point be $A'$, and similarly $B',C',D'$. Then these six lines are exactly the ones pairwise connecting $A',B',C',D'$. There are two cases that can happen: either $A'B'C'D'$ is a convex quadrilateral, or one of these points is inside the triangle made by the other three. In either case we can count the number of regions as 18 (the first case pictured below):
+		\begin{center}
+			\includegraphics[width=10cm]{C:/Users/jzchr/MathDocuments/Class Work/Modeling Democracy/HW2/HW2P4.png}
+		\end{center}
+		
+		(b): We can embed an $n$-candidate profile in $\R^n$ as follows: candidate $j$ is embedded as the point $(0,0,\dots,0,n,0,\dots,0)$, where the $n$ is in the $j$th place. A voter is embedded as $(r(1),r(2),\dots,r(n))$ where $r(j)$ is $n$ - the place they ranked $j$; so for example, a voter with ranking $3>1>2>4$ would be embedded as $(2,1,3,0)$. It is not too hard to see that the distances (with either a Euclidean or $L^1$ metric) to candidates agrees with the voter's ranking.
+	\end{proof}
+	
+	\newpage 
+	
+	\textbf{Problem 5}: Check out the DW-Nominate visualization of congress \href{https://datarepository.wolframcloud.com/resources/DW-NOMINATE-for-US-Congress/}{here}. The $x$ axis corresponds fairly well with party alignment. What would you guess the $y$ axis corresponds to? \\
+	
+	I notice that all of the ``Squad'' Democratic house members are near the lower $y$ axis, and on the Republican side we have black sheep Thomas Massie and Matt Gaetz. I would guess that the $y$ axis roughly represents some issues that are not purely partisan, with my reasoning being that Massie and the Squad break from their parties but not because they're more sympathetic to the \textit{other} party, whereas Manchin and Sinema break from the Democrats because they are basically Republicans.\\
+	
+	These nebulous ``other issues'' could include things like support of Israel, for instance. Criticism of Israel is something that the squad, Massie, and Gaetz all have in common, whereas democrats like Slotkin and Republicans like Cheney (both on the other end of the $y$ axis) have historically been supporters of Israel. This isn't a perfect match, though, which is why I suspect that the $y$ axis may be a catchall for generally non-partisan issues. If I had to identify a unifying factor for the positions that $-y$ politicians take on non-partisan issues, I might say that $-y$ indicates voting with the preferences of younger people whereas $+y$ indicates voting with the preferences of older people.
+	
+	
+\end{document}
