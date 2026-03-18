@@ -1,0 +1,20 @@
+[0] Config.pm:328> INFO - This is Biber 2.21
+[0] Config.pm:331> INFO - Logfile is 'VectorFieldsOnSpheres.blg'
+[175] biber-MSWIN64:342> INFO - === 
+[225] Biber.pm:421> INFO - Reading 'VectorFieldsOnSpheres.bcf'
+[378] Biber.pm:999> INFO - Using all citekeys in bib section 0
+[397] Biber.pm:4487> INFO - Processing section 0
+[413] Biber.pm:4678> INFO - Looking for bibtex file 'References.bib' for section 0
+[490] bibtex.pm:1713> INFO - LaTeX decoding ...
+[521] bibtex.pm:1519> INFO - Found BibTeX data source 'References.bib'
+[597] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[597] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[598] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[598] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-US'
+[610] bbl.pm:676> INFO - Writing 'VectorFieldsOnSpheres.bbl' with encoding 'UTF-8'
+[614] bbl.pm:779> INFO - Output to VectorFieldsOnSpheres.bbl
+[614] Biber.pm:132> WARN - article entry 'OT16' (References.bib): Invalid format 'June 2016' of date field 'date' - ignoring
+[614] Biber.pm:132> WARN - online entry 'HM89' (References.bib): Invalid format 'Spring 1989' of date field 'date' - ignoring
+[614] Biber.pm:132> WARN - article entry 'AD62' (References.bib): Invalid format 'May 1962' of date field 'date' - ignoring
+[615] Biber.pm:132> WARN - article entry 'AD60' (References.bib): Invalid format 'July 1960' of date field 'date' - ignoring
+[615] Biber.pm:134> INFO - WARNINGS: 4

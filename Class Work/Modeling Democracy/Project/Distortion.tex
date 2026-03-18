@@ -1,0 +1,449 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\DeclareMathOperator{\SF}{\sf{SF}}
+\DeclareMathOperator{\CF}{\sf{CF}}
+\DeclareMathOperator{\MF}{\sf{MF}}
+\DeclareMathOperator{\PE}{\sf{PE}}
+\DeclareMathOperator{\UF}{\sf{UF}}
+\DeclareMathOperator{\IIA}{\sf{IIA}}
+\DeclareMathOperator{\SP}{\sf{SP}}
+\DeclareMathOperator{\SM}{\sf{SM}}
+\DeclareMathOperator{\NS}{\sf{NS}}
+\DeclareMathOperator{\NWS}{\sf{NWS}}
+\DeclareMathOperator{\cost}{\rm{cost}}
+\DeclareMathOperator{\dist}{\rm{dist}}
+\DeclareMathOperator{\MD}{\sf{MD}}
+
+\usepackage[backend=biber]{biblatex}
+\addbibresource{References.bib}
+
+\title{Bounding Metric Distortion in Voting Rules}
+\author{Jalen Chrysos}
+
+\begin{document}
+
+\maketitle
+
+\nocite{*}
+
+\begin{abstract}
+	
+\end{abstract}
+
+\tableofcontents
+
+\newpage 
+
+\section{Introduction}
+
+When deciding ``who should win'' a single-winner election, it often seems that voters' rankings alone are not enough. For example, consider the following election:
+
+\begin{center}
+\begin{tabular}{|c|c|}
+	\hline 
+	x3 & x2\\
+	\hline 
+	$A$ & $B$\\
+	\hline
+	$B$ & $A$\\
+	\hline
+\end{tabular}
+\end{center}
+
+In any voting rule whose only information was this ranking, there seems no justification for electing $B$ over $A$. But now suppose a group of five friends is deciding where to eat lunch. The options are Andy's Steakhouse and Beth's Vegan Location. Three friends are more-or-less indifferent but would slightly prefer Andy's. The other two are vegan. In this scenario, I think anyone would choose $B$. This example illustrates that some basic fairness criteria can be reasonably violated if one knows something about voters' ``preference strength.''\\
+
+Of course, in a real voting system one cannot ask voters to indicate their level of enthusiasm about each candidate, so in that sense this example seems somewhat artificial. However, rankings alone can yield some information about the strengths of preferences. Consider this second example in which a spoiler candidate $C$ is added to a race:
+
+\begin{figure}[h]
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		x10 & x9\\
+		\hline
+		$A$ & $B$\\
+		\hline
+		$B$ & $A$\\
+		\hline
+	\end{tabular}
+	$\implies$ 
+	\begin{tabular}{|c|c|c|}
+		\hline
+		x5 & x5 & x9\\
+		\hline
+		$C$ & $A$ & $B$\\
+		\hline
+		$A$ & $B$ & $A$\\
+		\hline
+		$B$ & $C$ & $C$\\
+		\hline 
+	\end{tabular}
+\end{center}
+\caption{A spoiler enters the race}
+\end{figure}
+
+Under any reasonable voting rule, $A$ should win before $C$ is added, and $C$ should not win after it is added. But after $C$ is added, $A$'s position looks a lot weaker. It still has some justification to win---it is Condorcet, for example. On the other hand, the addition of $C$ has revealed something about the voters' preference strengths: $A$'s coalition is split by their opinion about $C$, making their preference of $A$ over $B$ appear weaker.\\
+
+This is all very vague, so let us be concrete now. A \textit{metric embedding} of an election is a metric space $(X,d)$ along with an assignment of every voter and candidate in the election such that $d(v,A)\geq d(v,B)$ if and only if $B\geq_v A$ for each voter $v$ and pair of candidates $A,B$. The distance from a voter to a candidate is meant to correspond to their level of disapproval of that candidate. There is a philosophical debate to be had about whether this model represents reality, but for mathematical purposes it is convenient, and I find it plausible enough.
+
+Given a metric embedding into a space $(X,d)$ of voters and candidates in a profile $P$, one can determine the \textit{cost} of a candidate $C$ as the total distance to $C$ over all voters:
+$$
+\cost(C) := \sum_{v\in V} d(v,C).
+$$ 
+If we accept that there is some ``true'' metric embedding of voters' positions relative to candidates, it stands to reason that the ideal candidate would the one whose cost is least. Of course, we must make a decision based on the rankings alone, so we cannot compute this cost. The natural next idea is to evaluate a candidate $A$ by its worst-case cost (as a ratio of the optimal cost) over all possible embeddings; this is the \textit{distortion} of $A$ in profile $P$, denoted $\dist_P(A)$:
+$$
+\dist_P(A) := \sup_{X} \frac{\cost_X(A)}{\cost_X(P_{optimal})}.
+$$ 
+The distortion of a voting rule $f$ is the worst-case distortion of any candidate it picks over all profiles $P$. The lowest distortion a voting rule can have is $3$, which is achieved by some rules. But in a particular profile, it may be that many candidates have distortion below $3$, and among these there is a subset of candidates whose distortion is minimal. Let \textbf{Minimal Distortion} ($\MD$) be the voting rule which selects these candidates as its winner-set.\\
+
+Now let's come back to the scenario in Figure 1. How did the addition of $C$ change this election? In terms of metric embeddings, there is a precise answer: it made the most $A$-favorable $B$-unfavorable embeddings impossible. Before $C$ is added, the following embedding is possible:
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.4\linewidth]{C:/Users/jzchr/MathDocuments/Class Work/Modeling Democracy/Project/Figures/Fig1.png}
+	\caption{$\dist(B) = 29/9 \approx 3.22$}
+\end{figure}
+
+\noindent But if this were the ``true'' representation of voters' preferences, then the preferences exhibited in the expanded election could not occur. There is no candidate which would be worse than $B$ to some $A$-voters but better than $A$ to others. Given the new information in the expanded election, this is the most $(A>B)$-biased embedding\footnote{The fact that this embedding is optimal will be proven later.}:
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.4\linewidth]{C:/Users/jzchr/MathDocuments/Class Work/Modeling Democracy/Project/Figures/Fig2.png}
+	\caption{$\dist(B) = 34/14 \approx 2.43$}
+\end{figure}
+
+\noindent On the other hand, the most $(B>A)$-biased embedding from before $C$ was added is still possible:
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.4\linewidth]{C:/Users/jzchr/MathDocuments/Class Work/Modeling Democracy/Project/Figures/Fig3.png}
+	\caption{$\dist(A) = 28/10 = 2.8$}
+\end{figure}
+
+\noindent This example presents a strong case for the acceptability of spoilers\footnote{And \textit{weak spoilers} as well, seeing as $A$ is Condorcet here.}: $C$'s presence on the ballot yielded information about voters' true preferences even though $C$ didn't get much support. As a result of this new information, it is completely reasonable that the outcome should change. In this case, the voting rule $\MD$ chooses $A$ at first, but then switches to $B$ after $C$ is added.\\
+
+My long-term goal in this ongoing project is to determine which fairness criteria $\MD$ obeys and which it violates. My personal opinion is that $\MD$ is such a compelling voting rule that its violation of a criterion is grounds to reconsider the necessity of that criterion. On the other hand, criteria that it upholds seem all the more natural.
+
+In order to do this, it would be ideal to have an algorithm which can compute $\MD$. I've made some partial progress toward this.
+
+\newpage 
+
+%\section{Preliminary Results}
+%The distortion is typically difficult to compute, as the space of all metric spaces and all profiles is so large. But it is not too hard to at least give lower bounds by exhibiting particularly difficult profiles. \\
+%
+%\underline{Distortion Results:}
+%\begin{itemize}
+%	\item $\dist(f)\geq 3$ for all $f$.
+%	\begin{itemize}
+%		\item To show this, consider a 2-voter 2-candidate profile in which the two voters have opposite preferences. Assume wlog that $f$ selects $A$. It is possible to embed this profile into a metric space so that $B$ is optimal and $\cost(A)/\cost(B)$ approaching 3:
+%		$$
+%		\textbf{Diagram}
+%		$$
+%		This can occur in any voting rule, so no voting rule can have distortion less than 3.
+%	\end{itemize}
+%	\item If there is a Condorcet winner $c$, then $\cost(c)\leq 3\cost(a)$ for any other candidate $a$.
+%	\begin{itemize}
+%		\item Because $c$ is Condorcet, at least half of voters (say $n$) prefer $c$ to $a$, and the other $m$ prefer $a$ to $c$. For voters among the $n$, 
+%		$$
+%		d(v,c) \leq d(v,a)
+%		$$
+%		and for voters in the $m$, triangle inequality yields 
+%		$$
+%		d(v,c) \leq d(v,a) + d(a,c).
+%		$$
+%		Combining these,
+%		$$
+%		\cost(c) \leq \cost(a) + m \cdot d(a,c).
+%		$$
+%		On the other hand, among the $n$ which prefer $c$, 
+%		$$
+%		d(v,a) \geq \tfrac12 \big(d(v,a) + d(v,c)\big) \geq \tfrac12 d(a,c) 
+%		$$
+%		which yields a lower bound on $\cost(a)$ in terms of $d(a,c)$:
+%		$$\cost(a) \geq n \cdot \tfrac12 d(a,c) \implies 2\cost(a) \geq n\cdot d(a,c) \geq m\cdot d(a,c).$$
+%		Combining with the previous upper bound on $\cost(c)$ gives
+%		$$
+%		\cost(c) \leq \cost(a) + m\cdot d(a,c) \leq 3\cdot \cost(a).
+%		$$
+%		\item In general, if a portion $\b$ of voters prefer $c$ to $a$, then 
+%		$$
+%		\frac{\cost(c)}{\cost(a)} \in \Bigg[\frac{2}{\b+1} - 1,\frac{2}{\b}-1\Bigg].
+%		$$ 
+%		
+%	\end{itemize}
+%	\item $\dist(\rm{Plurality}) = \infty$:
+%	\begin{itemize}
+%		\item In a scenario with $d$ candidates, consider a metric embedding in which one candidate $A$ is at the origin and the other $d-1$ candidates are very near $(2,0)$. Distribute the voters with $\tfrac1d + \ep$ at $(1 - \ep,0)$ and split the remaining voters evenly at the positions of the other candidates.
+%		$$ \textbf{Diagram}$$
+%		As $\ep\to 0$, $\cost(A)$ approaches $\tfrac1d + 2\cdot (1-\tfrac1d)$ whereas the cost of any other candidate approaches $\tfrac1d$, giving a ratio of 
+%		$$
+%		\frac{\cost(A)}{\cost(B)}\to 2d-1.
+%		$$
+%	\end{itemize}
+%	\item $\dist(\rm{Plurality Veto}) = 3$:
+%	\begin{itemize}
+%		\item Suppose each voter $v$ vetoes candidate $j_v$, and let the overall winner be $j^*$. PV has the property that $d(v,j_v)\geq d(v,j^*)$. This immediately gives
+%		$$
+%		\cost(j^*) \leq \sum_v d(v,j_v) \leq \sum_v d(v,i) + d(i,j_v) = \cost(i) + \sum_v d(i,j_v)
+%		$$
+%		for any other candidate $i$. \textbf{not done}
+%	\end{itemize}
+%	\item $\dist(\rm{Plurality Matching})=3$:\\
+%\end{itemize}
+%
+%A D3 voting rule minimizes distortion over all possible profiles, but for some profiles one can guarantee a better worst-case distortion (for example, if there is a Pareto winner then they are guaranteed to be metric-optimal, so minimality would require that the rule choose them). So let the condition \textit{Minimal Distortion} mean that $f$ minimizes worst-case distortion on every profile.\\
+%
+%Question: For which profiles is the worst-case metric distortion less than 3?
+%\begin{itemize}
+%	\item If $C$ is Condorcet and receives at least $\b$ proportion of voters' support in all head-to-heads (so $\b > \tfrac12$) then $C$ has distortion at most
+%	$$
+%	\dist(C)\leq \frac{2}{\b} - 1 < 3.
+%	$$
+%	This does not imply that $C$ is optimal. However, for every other candidate $A$, the worst-case distortion of $A$ is at least\\
+%\end{itemize}
+%
+%\newpage
+
+\section{Bounds}
+
+%\textbf{Proposition}: $D3\implies \MF$. 
+%\begin{proof}
+%	 Let $P$ be a profile with majority candidate $M$ and let $A$ be any other candidate. It suffices to show that $\dist(A)>3$, which we can do by exhibiting a sufficiently bad embedding for $A$. First, embed $P^M$ (the profile with $M$ removed) into some $(X,d)$ via $f$, and shrink $X$ so that the maximum distance between any two candidates is less than $\ep$. Now we can extend this to an embedding $(X',d')$ of $P$ in the following way:\\
+%	
+%	Let 
+%	$$
+%	X' := \{(x,t): x\in X, t\in [0,1]\}
+%	$$
+%	with the metric
+%	$$
+%	d'((x_1,t_1),(x_2,t_2)) := d(x_1,x_2) + |t_1-t_2|.
+%	$$
+%	In other words, we just add on an orthogonal dimension to $X$. We now specify the embedding $g$ of candidates and voters into $X'$:\\
+%	
+%	We embed the candidates via
+%	$$g(B) = (f(B),0) \;\; \text{for } B\neq M, \;\;\;\;\; g(M)=(f(A),1).$$
+%	For the voters, if $v$ has $M$ as her first choice (as most do), then embed $v$ as $g(v)=(f(v),1)$. Otherwise there is some $t\in [0,\tfrac12)$ such that $(f(v),t)$ is an appropriate embedding for $v$; at $t=0$, $M$ will be the furthest point from $g(v)$ and at $t>\tfrac12$, $M$ will be the closest, and as the relative distances of other candidates are unaffected by $t$, $M$ must be in the correct rank at some $t<\tfrac12$. 
+%	
+%	And moreover, $d'((f(v),t),g(M)) > 1-t$ and $d'((f(v),t),g(B))< \ep + t$ for all other candidates $B$, so $M$ is the most distant candidate for $t< \tfrac12 - \tfrac{\ep}{2}$. Thus we can choose $t$ to be at least $\tfrac12 - \ep$.\\
+%	
+%	Suppose that $\b$ is the proportion of voters preferring $M$. Then we can get the following lower bound on $\dist(A)$:
+%	$$
+%	\frac{\cost(A)}{\cost(M)} \geq \frac{\b + (1-\b)(\tfrac12 - \ep)}{\b \ep + (1-\b)(\tfrac12 + 2\ep)} 
+%	$$
+%	As $\ep\to 0$, the limit is $(1+\b)/(1-\b) > 3$.
+%	
+%%	\begin{align*}
+	%%	d'((f(v),t),g(M)) &= d(f(v),f(A)) + (1-t) \\
+	%%	&> 1-t \\
+	%%	&> 1 - (\tfrac12 - \tfrac{\ep}{2})\\
+	%%	&= \tfrac12 + \tfrac{\ep}{2}\\
+	%%	&> t + \tfrac{\ep}{2}
+	%%	\end{align*}
+%	
+%\end{proof}\\
+
+In \cite{CP2022}, Charikar and Ramakrishnan introduced ``biased metrics.'' Given candidates $1,2,\dots,m$, suppose we fix a distance $x_j$ from $j$ to the optimal candidate (so $x_i=0$ for some $i$, which will be optimal). Then the biased metric corresponding to $(x_1,\dots,x_m)$ is the worst-case metric (for the distortion of non-optimal candidates) in which these distances hold. Specifically, the metric is defined
+$$
+d(v,j) := \min_{a\leq_v j} x_a + \underbrace{\tfrac12 \max_{b\leq_v c} (x_c - x_b)}_{y_v}.
+$$
+Note that the second part, which we call $y_v$, does not depend on $j$. This roughly measures the extent to which $v$ disagrees with the optimal candidate. Voters whose opinions are most incongruous need to be pushed further away from everyone to prevent violations of the triangle inequality.\\
+
+Let $A,B$ be two candidates in a profile $P$. Let $\dist(A;B)$ be the worst-case distortion of $A$ among embeddings where $B$ is optimal. Using biased metrics, we can get some bounds on $\dist(A;B)$. Ultimately, $\dist(A)$ is the maximum over $\dist(A;B)$ for all other candidates $B$, so determining this is enough. We only need to consider biased metrics with $x_B=0$, and we can normalize $x_A$ to be 2. The biased metric $d$ corresponding to $\vec{x}$ gives the following value for $\cost(A)/\cost(B)$:
+\begin{align*}
+	\frac{\cost(A)}{\cost(B)} &= \frac{\sum_{v\in V} d(v,A)}{\sum_{v\in V} d(v,B)}\\
+	&= \frac{\sum_{v\in V} y_v + \min_{j:A\leq_v j} x_j}{\sum_{v\in V} y_v + \min_{j:B\leq_v j} x_j}
+\end{align*}
+Note that $\min_{j:B\geq_v j}x_j \leq x_B = 0$. Moreover, for voters who prefer $A$ over $B$, $\min_{j:A\geq_v j} \leq x_B = 0$. Letting $[B>A] := \{v\in V: B\geq_v A\}$, we have the simplification
+\begin{align*}
+	\frac{\cost(A)}{\cost(B)}
+	&= \frac{\sum_{v\in V} y_v + \min_{j:A\leq_v j} x_j}{\sum_{v\in V} y_v + \min_{j:B\leq_v j} x_j}\\
+	&= \frac{\sum_V y_v + \sum_{[B>A]} \min_{j:A\geq_v j} x_j}{\sum_V y_v}\\
+	&= 1 + \frac{\sum_{[B>A]}\min_{j:A\geq_v j}x_j}{\sum_V y_v}.
+\end{align*}
+In producing an upper bound, it suffices to only consider biased metrics for which $0\leq x_j \leq 2$ for all $j$; to see this, note that reducing each $x_j>2$ to 2 can only decrease the denominator of the above fraction, and cannot affect the numerator. With that adjustment, $y_v=1$ for all $v\in [A>B]$, so
+\begin{equation}
+\tag{$1$}
+\frac{\cost(A)}{\cost(B)} = 1 + \frac{\sum_{[B>A]} \min_{j:A\geq_v j} x_j}{ \b |V| + \sum_{[B>A]} y_v}
+\end{equation}
+(where $\b$ is the proportion of voters who prefer $A$ to $B$). This yields the non-obvious fact that $\dist(A;B)$ only depends on the ballots in $[B>A]$.\\
+
+Now we can use this formula to bound $\dist(A;B)$ above,
+\begin{align*}
+	\dist(A;B) &\leq 1 + \frac{\sum_{[B>A]} \min_{j:A\geq_v j} x_j}{ \b |V| + \sum_{[B>A]} y_v} \\
+	&\leq 1 + \frac{\sum_{[B>A]} \min_{j:A\geq_v j} x_j}{ \b |V|} \\
+	&\leq  1 + \frac{\sum_{[B>A]} 2}{ \b |V|} \\
+	&= 1 + \frac{2(1-\b)}{\b}\\
+	&= \frac{2}{\b} - 1.
+\end{align*}
+This is the simple bound one can get from just the 2-candidate case. This bound can be tight, though only for certain profiles. For this bound to be achieved, it must be that 
+\begin{equation}
+	\tag{$\ast$}
+	\text{For some $(x_i)$}, \;\; y_v = 0 \;\; \forall v\in [B>A], \;\;\; \text{or equivalently,} \;\;\; x_i \leq x_j \;\; \forall i \geq_v j, \; v\in [B,A].
+\end{equation}
+And conversely $(\ast)$ forces $x_A \leq x_i$ whenever $A\geq_v i$ for $v\in [B>A]$, which implies that $\min_{j:A\geq_v j} x_j = 2$, showing that $(x_i)$ achieves the bound. So $(\ast)$ is equivalent to $2/\b - 1$ being tight.\\
+
+%\textbf{Proposition}: The bound $2/\b - 1$ is tight iff $(\ast)$ holds.
+%\begin{proof}
+%	One direction is already shown. For the reverse, suppose $(\ast)$ holds in $P$, and consider a biased metric corresponding to $(x_i)$ given by $(\ast)$. Then 
+%	$$
+%	\sum_V y_v = \sum_{[A>B]} y_v = |[A>B]|
+%	$$
+%	because $y_v=1$ for voters in $[A>B]$, using the assumption that $x_i\leq 2$. Also
+%	$$
+%	\min_{j:A\geq_v j}x_j = 2,
+%	$$
+%	using the fact that $x_A\leq x_j$ for any such $j$. Thus the inequality given by the bound is an equality.
+%\end{proof}\\
+%
+%An equivalent condition to $(\ast)$:\\
+
+\textbf{Proposition}: $(\ast)$ holds iff there is no chain of candidates 
+$$
+A = C_0\geq_{v_1} C_1 \geq_{v_2} C_2 \geq_{v_3} \cdots \geq_{v_{k}} C_{k} = B
+$$
+where $v_1,\dots,v_k\in [B>A]$.
+\begin{proof}
+	Define $B^*$ to be the smallest set of candidates which contains $B$ and is ``upward closed'' with respect to voters in $[B>A]$; that is, if $i\geq_v j$ for any $v\in[B>A]$ and $j\in B^*$ then $i\in B^*$. Similarly, define $A_*$ to be the set of candidates generated downwards from $A$ in the same manner.
+	
+	$(\ast)$ implies that any $i\in B^*$ has $x_i=0$, and any $j\in A_*$ has $x_j=2$. In particular, $A_*\cap B^*=\emptyset$. This shows that no such chain can exist.\\
+	
+	Conversely, if a chain does exist then at some point $x_{C_{i+1}} - x_{C_i}$ must be positive, because the sum of all of them is 2. This contradicts $(\ast)$. 
+\end{proof}\\
+
+We can weaken $(\ast)$ to $(\ast \gamma)$, which says that excluding some subset $S$ of voters with $|S|/|V| \leq \gamma$, no chain 
+$$
+A = C_0\geq_{v_1} C_1 \geq_{v_2} C_2 \geq_{v_3} \cdots \geq_{v_{k}} C_{k} = B
+$$
+exists for $v_1,\dots,v_k\in [B>A]\setminus S$. If $(\ast \gamma)$ holds, then we can take a metric $(x_i)$ where 
+$$
+\sum_{[B>A]} y_v \leq \gamma|V|, \;\;\;\; \text{and} \;\;\;\; \sum_{[B>A]} \min_{j:A\geq_v j} x_j \geq 2(1-\b -\gamma)
+$$
+which shows that it is possible to achieve
+$$
+\dist(A;B) = 1 + \frac{\sum_{[B>A]} \min_{j:A\geq_v j} x_j}{ \b |V| + \sum_{[B>A]} y_v} \geq 1 + \frac{2(1-\b - \gamma)}{\b + \gamma} = \frac{2}{\b + \gamma} - 1.
+$$
+One can think of $1-\b - \gamma$ as a proportion of voters who agree $B>A$ and have basically compatible preferences. In particular, the subset of $[B>A]$ for which $B$ is the \textit{first choice} satisfies $(\ast)$, so if the proportion of first-choice $B$ voters is $f_B$ then we get
+\begin{equation}
+	\tag{$2$}
+\dist(A;B) \geq 1 + \frac{2(1-\b)}{1-f_B} \geq 3-2\b.
+\end{equation}
+This comes from taking $x_B=0$ and $x_j=2$ for $j\neq B$. This is a very basic bound; in general the best metrics may have $x_j \in (0,2)$ for many $j$.\\
+
+%On the other end, in even the most incongruous profiles we have the following lower bound from setting all $x_i$ to 2 except for $x_B=0$:
+%\begin{align*}
+%	\dist(A;B) &\geq 1 + \frac{\sum_{[B>A]} \min_{j:A\geq_v j} 2}{ \b |V| + (1-\b)|V|} \\
+%	&= 1 + 2(1-\b) \\
+%	&= 3 - 2\b.
+%\end{align*}
+%This could be sharpened if, for example, we had any candidates $C$ which never appear in order $B>A>C$ in any ballot---then $x_C$ could be set to 0 without affecting the numerator.\\
+
+Putting these basic bounds together, we have:\\
+
+\noindent \textbf{Lemma 1}: If $\b$ is the proportion of voters who prefer $A$ to $B$, then
+$$
+3-2\b \leq 1 + \frac{2(1-\b)}{1-f_B} \leq \dist(A;B) \leq \frac{2}{\b} - 1.
+$$
+
+\newpage 
+
+\section{A Few Results}
+
+Now for some applications of the previous section, some easier than others.\\
+
+\noindent \textbf{Proposition 1}: Any Condorcet candidate has distortion at most 3.
+\begin{proof}
+	By Lemma 1, if $A$ is Condorcet then $\b > \tfrac12$ so 
+	$$
+	\dist(A;B) \leq \frac{2}{1/2} - 1 = 3
+	$$
+	for all $B$, hence $\dist(A)\leq 3$.
+\end{proof}\\
+
+On the other hand, Condorcet candidates are \textit{not} always minimal distortion (as in Fig 1). But they are if their margins are big enough:\\
+
+\noindent \textbf{Proposition 2}: A Condorcet candidate whose proportion of support is at least $\b = \ph^{-1} \approx 0.618$ (where $\ph$ is the golden ratio) in every head-to-head will always be minimal-distortion.
+\begin{proof}
+	If $\b$ is such that
+	$$
+	\frac{2}{\b} - 1 < 3 - 2(1-\b)
+	$$
+	then $\dist(A) < \dist(B;A) \leq \dist(B)$ for all $B$. The $\b$ where this happens can be computed by solving the quadratic:
+	$$
+	\frac{2}{\b} - 1 < 3 - 2(1-\b) \iff \b > \frac{\sqrt{5}-1}{2} = \ph^{-1}.
+	$$
+\end{proof}\\
+
+This bound can be tight when $A$ has no first-choice support and condition $(\ast)$ is met. Taking into account first-choice support, we have:\\
+
+\noindent \textbf{Proposition 3}: A Condorcet candidate with $f_A$ proportion of first-place votes and margin $\b$ will be minimal distortion when
+$$
+\b > \frac{\sqrt{(1-f_A)(5-f_A)} - (1-f_A)}{2}
+$$
+\begin{proof}
+	Similarly to proposition 2, this results from solving the quadratic
+		$$
+	\frac{2}{\b} - 1 < 1 + \frac{2\b}{1-f_A}.
+	$$
+\end{proof}\\
+
+Notably, this is $\ph^{-1}$ when $f_A=0$ and $\tfrac12$ when $f_A=\tfrac12$. But of course, if $f_A> \tfrac12$ then $\b>f_A>\tfrac12$, so if $A$ is the majority winner then it is guaranteed to have minimal distortion. In fact, it is guaranteed to be the \textit{only} distortion-3 candidate in this case:\\
+
+\noindent \textbf{Proposition 4}: Any distortion 3 voting rule is majority fair.
+\begin{proof}
+	If $A$ is the majority candidate, then for any $B$
+	$$
+	\dist(B;A) \geq 1 + \frac{2(1-\b)}{1-f_A} > 1 + 4(1-\b) > 3
+	$$
+	following from Lemma 1.
+\end{proof}\\
+
+In Fig 1, I claimed $B$ was the minimal distortion winner after $C$ was added---here's the proof:\\
+
+\noindent \textbf{Proposition 5}: In the following profile, $B$ is the candidate with minimal distortion.
+
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+	\hline
+	x5 & x5 & x9\\
+	\hline
+	$C$ & $A$ & $B$\\
+	\hline
+	$A$ & $B$ & $A$\\
+	\hline
+	$B$ & $C$ & $C$\\
+	\hline 
+\end{tabular}
+\end{center}
+
+\begin{proof}
+	From Lemma 1, $\dist(A;B)\leq 2/\b - 1 = 2/\tfrac{10}{19} - 1 = 2.8$, and this is achieved with the metric $(x_A,x_B,x_C)=(2,0,2)$.\\
+	
+	On the other hand, using equation (1), 
+	$$
+	\dist(B;A) = 1 + \frac{\sum_{[A>B]} \min_{j:B\geq_v j} x_j}{ \b |V| + \sum_{[A>B]} y_v} = 1+ \frac{5\cdot 2 + 5\cdot x_C}{9 + 5\cdot \tfrac12 x_C + 5\cdot \tfrac12(2-x_C)} = \frac{24+5\cdot x_C}{14}
+	$$ 
+	This is maximized when $x_C=2$ (recall that this formula only holds for $x_j\leq 2$) thus
+	$$
+	\dist(B;A) = \frac{34}{14} \approx 2.43
+	$$
+	And $\dist(B;C) \leq 2/\tfrac{14}{19} - 1 = 12/7$, so $\dist(B)\approx 2.43 < 2.8 = \dist(A)$.
+\end{proof}\\
+
+This demonstrates that $\MD$ is not Condorcet fair, and it admits spoilers (and weak spoilers). 
+
+
+\section{Questions and Future Directions}
+
+\begin{enumerate}[(I)]
+	\item Conjecture: $\MD$ is monotonic.
+	\item Under various ballot-generation models, what can we say about the expected number of distortion $\leq 3$ candidates, or the expected minimal distortion?
+	\begin{itemize}
+		\item How do various voting rules do in terms of average distortion of the candidates they select?
+	\end{itemize}
+	\item Conjecture: The expected number of distortion $\leq 3$ candidates should actually be rather large, perhaps around half of the candidates (it has been shown for the uniform veto core).
+	\item Can we state a simple algorithm for determining $\dist(A;B)$?
+	\item How does $\MD$ interact with other fairness criteria?
+\end{enumerate}
+ 
+\printbibliography
+\end{document}

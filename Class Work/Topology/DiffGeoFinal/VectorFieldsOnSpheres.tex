@@ -5,15 +5,21 @@
 \usepackage{subcaption}
 \usepackage{tabu}
 
+\usepackage[backend=biber]{biblatex}
+\addbibresource{References.bib}
+
 \DeclareMathOperator{\Cl}{\mathrm{Cl}}
 
 \title{How Many Vector Fields Can Fit on a Sphere?}
 \author{Jalen Chrysos}
 \begin{document}
 	\begin{abstract}
-		This is my final project for Topology II (MATH 318) at UChicago in Winter 2026, taught by Eduard Looijenga.
+		In this paper I introduce the ``Vector Fields on Spheres'' problem of determining how many mutually orthogonal vector fields can be put on $S^n$. The lower bound was established by Hurwitz Radon and Eckmann, and the upper bound by Adams \cite{AD62}. I show the lower bound using the theory of Clifford algebra representations, and briefly discuss the many equivalent definitions of the Hurwitz-Radon numbers $\rho(n)$.
+%		This is my final project for Topology II (MATH 318) at UChicago in Winter 2026, taught by Eduard Looijenga.
 	\end{abstract}
 	\maketitle
+	
+	\nocite{*}
 	
 	\tableofcontents
 	
@@ -60,14 +66,15 @@
 		\sum_{p\in Z(V)} \Ind_p(V) = \chi(M),
 		$$ 
 		where $Z(V)$ is the set of zeros (or ``stationary points'') of $V$, $\Ind_p(V) \in \{\pm 1\}$ is the \textit{index} of the stationary point $p$, and $\chi(M)$ is the Euler characteristic of $M$. In the case where $V$ has no zeros, the sum is empty, so $\chi(M)=0$.
-		$$\textbf{Picture illustrating Poincar\'e-Hopf Theorem}$$
+		
+%		$$\textbf{Picture illustrating Poincar\'e-Hopf Theorem}$$
 		In the particular case $M=S^2$, with $\chi(S^2)=2$, this shows that there are at least \textit{two} zeros of any vector field on $S^2$, as reflected in Fig 1(B).\\
 		
 		Now for the converse direction, we'll show that if $\chi(M)=0$ then it is possible to construct a non-vanishing vector field on $M$.
 		
 		Take for granted that there is some $V$ on $M$ with finitely many stationary points (this can be done by triangulating $M$ and constructing a vector field on $M$ as in the proof of the Poincar\'e-Hopf Theorem). Because $\chi(M)=0$, Poincar\'e-Hopf implies that the zeros of $V$ have indices summing to 0. Take a sphere $S^{m-1}$ (or something homeomorphic to it) that does not contain any zeros of $V$ but encloses all of them in its interior $D^{m}$. We will construct another smooth vector field $V'$ that is equal to $V$ outside of $D^m$ but is non-vanishing inside of $D^m$, hence non-vanishing on $M$.\\
 		
-		$$\textbf{Picture of this proof}$$
+%		$$\textbf{Picture of this proof}$$
 		
 		The key is that when we restrict $V$ to $S^{m-1}$, since it is nonzero, it induces the map $\hat{V}:S^{m-1}\to S^{m-1}$ given by
 		$$\hat{V}: x \mapsto \frac{V(x)}{||V(x)||}$$
@@ -80,12 +87,12 @@
 	\end{proof}
 	
 	
-	
-	\newpage
+%	
+%	\newpage
 	
 	\section{Frames}
 	
-	A $k$-\textit{frame} on $M$ is a collection of $k$ vector fields $V_1,V_2,\dots,V_k$ with the property that $V_1(p),\dots,V_k(p)$ are linearly independent for all $p\in M$. A 1-frame is thus a non-vanishing vector field.
+	A $k$-\textit{frame} on $M$ is a collection of $k$ vector fields $V_1,V_2,\dots,V_k$ such that $V_1(p),\dots,V_k(p)$ are linearly independent for all $p\in M$. A 1-frame is thus a non-vanishing vector field.
 	
 	\begin{figure}[h]
 		\centering
@@ -109,9 +116,10 @@
 	\noindent Note that this agrees with Theorem 1; $\Span(S^{2m})=0$ for all $m$, as $\chi(S^{2m})=2$. In this section, I'll show Theorem 2(a) by constructing a frame on $S^{n-1}$ of the desired dimension.
 	
 	\subsection{Small Cases} Before going into the general construction, it will be useful to see how this is done in a few small cases. In the case of $S^1$, it is not hard to see that taking tangent vectors obtained by a 90-degree rotation yields a non-vanishing vector field, showing that $\Span(S^1)=1$. Viewing $S^1$ as $\C^{\times}$, this vector field can be written as $V:x\mapsto i\cdot x$.
-	$$
-	\textbf{Picture of $S^1$ and $S^3$ cases}
-	$$
+	
+%	$$
+%	\textbf{Picture of $S^1$ and $S^3$ cases}
+%	$$
 	We can extend this idea to $S^3$ by identifying it with $\HH^{\times}$ with the usual inner product and taking vector fields $V_1:x\mapsto i\cdot x$, $V_2:x\mapsto j\cdot x$, and $V_3:x\mapsto k \cdot x$. The elements $i,j,k$ act on $S^3$ as
 	$$
 %	1 = \begin{pmatrix}
@@ -178,13 +186,15 @@
 	
 	Having seen that $\Cl_k(-1)$ generalizes $\C$ and $\HH$, the next thing one might try is to use $\Cl_k(-1)$ in the same way, but the proof method does not carry over to general $k$. The issue is that we cannot say $\<g\cdot x,x\>=0$ for all $g\in G_k$; that only follows when $g^2=-1$, which holds for terms $e_j$ but not for products, e.g. $(e_1e_2e_3)^2=1$.
 	
-	But the fact that multiplication by the $e_j$ \textit{does} produce tangent vectors yields a path toward generality: $\Cl_k(-1)$ does not always produce $2^k$-frames, but it at least produces $k$-frames, both on itself as a vector space \textit{and} on smaller spaces it acts upon.\\
+	But the fact that multiplication by the $e_j$ \textit{does} produce tangent vectors yields a path toward generality: $\Cl_k(-1)$ does not always produce $2^k$-frames, but it at least produces $k$-frames, both on itself as a vector space \textit{and} on smaller spaces it acts upon. The action of each $e_i$ is like a 90 degree rotation along a different axis--repeat it twice and you have a 180 degree rotation, i.e. a multiplication by $-1$.\\
 	
 	\noindent \textbf{Lemma 2.1}: If $\R^n$ is a representation of $\Cl_k(-1)$, then there is a $k$-frame on $S^{n-1}$. In particular,
 	$$
 	\{V_i: x\mapsto e_i\cdot x\}_{1\leq i \leq k}
 	$$
 	is a $k$-frame on $S^{n-1}$.
+%	
+%	As a partial converse\footnote{In fact, the full converse is true, but this is equivalent to Adam's result, Theorem 2(b).}, if there is a \textit{linear} $k$-frame on $S^{n-1}$ (i.e. the vector fields are given as matrices) then $\Cl_k(-1)$ acts on $\R^{n}$.
 	\begin{proof}
 		We can endow $\R^n$ with the inner product
 		$$
@@ -205,6 +215,20 @@
 		\<e_i\cdot x,e_j\cdot x\>&=0.
 		\end{align*}
 		Thus, $V_1,\dots,V_k$ are $k$ mutually orthogonal vector fields on $S^{n-1}$.
+%		\\
+%		Now for the partial converse. Take a $k$-frame of $n\times n$ matrices $M_1,\dots,M_k$. These matrices are guaranteed to be skew symmetric: for each $M$, $\<\vec{x},M(\vec{x})\>=0$ for all $\vec{x}\in \R^n$ implies
+%		$$
+%		0=\<\vec{x},M(\vec{x})\>= \sum_{i\leq j} x_ix_j(m_{ij} + m_{ji}) \; \iff \; m_{ij} + m_{ji} = 0.
+%		$$
+%%		Then one can embed $\Cl_k(-1)$ into $M_{n\times n}(\R)$ via $e_j\mapsto M_j$. All that must be proven is that $M_j^2=-I$ and $M_iM_j=-M_jM_i$.
+%		The matrices are also non-singular; in fact, non-singular and skew-symmetric exactly characterize the space of matrices that are vector fields on $S^{n-1}$. Now  
+%		
+%		For each such $M$, the fact that 
+%		That is, $M$ is skew-symmetric. So as a result
+%		$$
+%		M^2(e_i) = M\Big(\sum_j m_{ij}e_j\Big) = \sum_{j,\ell} m_{ij}m_{j\ell} e_{\ell} = -\sum_{j,\ell} m_{ji}m_{j\ell} e_{\ell} = -\sum_{\ell} \<m_{\bullet,i},m_{\bullet,\ell}\> e_{\ell} = -e_{i}.
+%		$$
+%		Thus $M^2=-I$. Similarly
 	\end{proof}\\
 	
 	With Lemma 2.1, the question becomes ``what is the largest $k$ such that $\Cl_k(-1)$ is represented in $\R^n$?'' or in other words, ``what is the largest $k$ such that $\Cl_k(-1)$ embeds into $\GL_n(\R)$?'' There is also the inverse question: ``what is the smallest $n$ such that $\Cl_k(-1)$ embeds into $\GL_n(\R)$?'' Let this minimal dimension be $m(k)$. Immediately we can say that $m(k)\leq 2^k$, as $\Cl_k(-1)$ acts on itself by multiplication. But in general, it is possible to do better than this. For example, when $k=3$, $\Cl_3(-1)$ can be made to act on $\HH$, as we will see, yielding $m(3)\leq 4$.\\
@@ -348,7 +372,7 @@
 	\caption{$\Cl_k(\pm 1)$ for $k\leq 8$.}
 \end{figure}
 
-Some of these isomorphisms are not immediate from lemma 2.2 and require some explanation:\\
+Some of these isomorphisms are not immediate from lemma 2.2 and require the following algebraic fact whose proof I omit:\\
 
 \noindent \textbf{Lemma 2.3}: The following is the $\otimes_{\R}$ multiplication table for $\C,\HH$:
 \begin{center}
@@ -363,9 +387,11 @@ Some of these isomorphisms are not immediate from lemma 2.2 and require some exp
 	\hline 
 \end{tabu}}
 \end{center}
-\begin{proof}
-	\textit{Forthcoming.}
-\end{proof}\\
+%\vspace{2cm}
+%\begin{proof}
+%	\textit{Forthcoming.}
+%\end{proof}\\
+\newpage
 
 After $k\geq 8$, there is a repeating pattern with period 8:\\
 
@@ -455,20 +481,27 @@ As shown in Lemma 2.1, $\Cl_k(-1)$ acts on $\R^{m(k)}$. But it also acts on $\R^
 	\end{center}
 	\caption{$\rho(n) - 1$ for $n\leq 8$.}
 \end{figure}
-These values are exactly $8a+2^b - 1$ for $\nu_2(n)=4a+b$, as stated in Theorem 2(a), so the lower bound is complete.\\
+These values are exactly $8a+2^b - 1$ for $\nu_2(n)=4a+b$, as stated in Theorem 2(a), so the lower bound is complete!\\
 
 \subsection{The Radon-Hurwitz Numbers}
-A little more can be said about this particular sequence. It is one less than $\rho(n)$, the sequence of \textit{Radon-Hurwitz} numbers, defined as
-$$
-\rho(n) := \max\{\dim(V) : V \text{ is a linear subspace of } \GL_n(\R)\}.
-$$
-This seems to suggest that there is a strong connection between sets of matrices whose span is entirely non-singular and sets of non-vanishing vector fields on $S^{n-1}$. And indeed there is.\\
+A lot more can be said about this particular sequence. It is one less than $\rho(n)$, the sequence of \textit{Radon-Hurwitz} numbers, which has a couple of well-known alternate definitions:\\
+%$$
+%\rho(n) := \max\{\dim(V) : V \text{ is a linear subspace of } \GL_n(\R)\}.
+%$$
+%This seems to suggest that there is a strong connection between sets of matrices whose span is entirely non-singular and sets of non-vanishing vector fields on $S^{n-1}$. And indeed there is.\\
 
-\textbf{Proposition 2.6}: 
-There exists a set of $n\times n$ matrices $M_1,\dots,M_p$ whose span is contained in $\GL_n(\R)$ if and only if there is a \textit{linear} $(p-1)$-frame on $S^{n-1}$. 
-
+\noindent \textbf{Proposition 2.6 (Alternate definitions of $\rho(n)$)}: The following are equivalent for $p\in \N$:
+\begin{enumerate}[(i)]
+	\item There exists $p$-dimensional linear subspace of matrices in $\GL_n(\R)$.
+	\item There is a \textit{linear} $(p-1)$-frame on $S^{n-1}$ (one whose vector fields are linear transformations).
+	\item There are bilinear forms $z_1,\dots,z_n:\R^p\times \R^n \to \R$ such that for all $\vec{x},\vec{y}\in \R^p\times \R^n$,
+	$$
+	(x_1^2+\cdots + x_p^2) \cdot (y_1^2+\cdots +y_n^2) = z_1(\vec{x},\vec{y})^2 + \cdots + z_n(\vec{x},\vec{y})^2.
+	$$
+\end{enumerate}
+Thus we may define $\rho(n)$ to be the maximal $p$ such that these equivalent conditions hold.
 \begin{proof}
-	Define the matrices
+	$\textbf{(i)}\implies \textbf{(ii)}$: Let $M_1,\dots,M_p$ be linearly independent such that their span is contained in $\GL_n(\R)$. Define the matrices
 	$$
 	B_j := M_1^{-1}M_p \;\; \text{for} \; 2\leq j\leq p.
 	$$
@@ -478,14 +511,31 @@ There exists a set of $n\times n$ matrices $M_1,\dots,M_p$ whose span is contain
 	$$
 	Similarly, no nontrivial linear combination of the $B_j$ has any real eigenvalue either. That is, $\<B_2(v),B_3(v),\dots,B_p(v)\>$ does not contain $v$ for any $v\neq 0$. So if we orthographically project these vectors onto $T_vS^{n-1}$, we get $p-1$ linearly independent vectors. Thus, this is a $(p-1)$-frame.\\
 	
-	Conversely, suppose $A_1,\dots,A_{p-1}$ is a $(p-1)$-frame of matrices. Then any linear combination is non-singular, and moreover, linear combinations of $I,A_1,\dots,A_{p-1}$ are also non-singular, as these are linearly independent as well.
+	$\textbf{(ii)}\implies \textbf{(i)}$: Suppose $A_1,\dots,A_{p-1}$ is a $(p-1)$-frame of matrices. Then $A_1(v),\dots,A_{p-1}(v)$ are linearly independent at every $v\in S^{n-1}$, and $I(v)=v$ is orthogonal to all of them. Thus, no nontrivial linear combination of $I,A_1,\dots,A_{p-1}$ maps $v$ to $0$, so every linear combination is in $\GL_n(\R)$.\\
+	
+	$\textbf{(iii)}\implies \textbf{(i)}$: Such $z_i$ as described in (iii) correspond to some matrix equation
+	$$
+	\vec{z}(\vec{x},\vec{y}) = (x_1 Z_1 +\cdots + x_p Z_p)(\vec{y})
+	$$
+	where $Z_1,\dots,Z_p\in M_{N\times N}(\R)$. From (iii), if $\vec{x},\vec{y}$ are nonzero then $\vec{z}\neq 0$ as well, which implies that any nontrivial linear combination $x_1Z_1+\cdots + x_pZ_p$ is non-singular.\\
+	
+	$\textbf{(ii)}\implies \textbf{(iii)}$: Omitted. As far as I can tell, this requires a partial converse to Lemma 2.1, which I have been unsuccessful in proving, though it seems like there should be a simple proof.
+%	A linear $(p-1)$-frame on $S^{n-1}$ implies that $\Cl_{p-1}(-1)$ acts on $\R^n$. Then we may take generators $Z_1,\dots,Z_{p-1}$ of $\Cl_{p-1}(-1)\subset \GL_n(\R)$ corresponding to $e_1,\dots,e_{p-1}$. Then we have
+%	$$
+%	(x_1Z_1 + \cdots + x_{p-1}Z_{p-1})^2 = -x_1^2-\cdots-x_{p-1}^2 = -||\vec{x}||^2
+%	$$
+%	so 
+	
+%	note to self: I did not actually prove the partial converse of Lemma 2.1 but I think it's doable.
 \end{proof}\\
 
-This shows $\Span(S^{n-1})\geq \rho(n)-1$ but not the full converse, as we restricted to linear vector fields. To extend the converse to all smooth vector fields would require the more sophisticated tools of homotopy theory introduced by Frank Adams.\\
+%This shows $\Span(S^{n-1})\geq \rho(n)-1$ but not the full converse, as we restricted to linear vector fields. To extend the converse to all smooth vector fields would require the more sophisticated tools of homotopy theory introduced by Frank Adams.\\
 
-It is also worth mentioning the other appearances of the ``exceptional numbers'' 1,2,4,8, in other areas of mathematics:\\
+Hurwitz and Radon independently proved the values for $\rho(n)$ defined by the existence of bilinear forms as in (iii).\\
 
-\textbf{Proposition 2.7}: The following are equivalent properties of $n\in \N$:
+It is also worth mentioning the  ``exceptional numbers'' $\{1,2,4,8\}$, where $\rho(n)=n$, which appear in many places all over algebra and topology:\\
+
+\noindent \textbf{Proposition 2.7}: The following are equivalent properties of $n\in \N$:
 \begin{enumerate}[(i)]
 	\item There is a dimension-$n$ linear subspace of $\GL_n(\R)$.
 	\item There exists a division algebra structure on $\R^n$.
@@ -496,8 +546,13 @@ It is also worth mentioning the other appearances of the ``exceptional numbers''
 	(x_1^2+\cdots + x_n^2) \cdot (y_1^2+\cdots +y_n^2) = z_1(\vec{x},\vec{y})^2 + \cdots + z_n(\vec{x},\vec{y})^2.
 	$$
 \end{enumerate}
+\vspace{5mm}
 
-These 
-
+The numbers $n$ having each of these equivalent properties are exactly $1,2,4,8$, as is clear from the formula for $\rho$ developed in this section. The equivalence of (i),(ii),(v) is not hard to show, but the fact that (iii) and (iv) are equivalent to the rest is quite difficult indeed. (iii) was shown to hold for $1,2,4,8$ by Kervaire and Bott-Milnor in independent papers, and (iv) was shown equivalent to the rest by Adams.
 	
+%\section*{Bibliography}
+
+\printbibliography
+
+
 \end{document}

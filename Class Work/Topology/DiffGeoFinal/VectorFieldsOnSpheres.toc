@@ -1,7 +1,8 @@
 \contentsline {section}{\tocsection {}{1}{Vector Fields}}{2}{section.1}%
-\contentsline {section}{\tocsection {}{2}{Frames}}{4}{section.2}%
-\contentsline {subsection}{\tocsubsection {}{2.1}{Small Cases}}{4}{subsection.2.1}%
-\contentsline {subsection}{\tocsubsection {}{2.2}{Clifford Algebras}}{5}{subsection.2.2}%
-\contentsline {subsection}{\tocsubsection {}{2.3}{Computing $\Cl _k(\pm 1)$}}{6}{subsection.2.3}%
-\contentsline {subsection}{\tocsubsection {}{2.4}{Computing $m(k)$}}{8}{subsection.2.4}%
-\contentsline {subsection}{\tocsubsection {}{2.5}{The Radon-Hurwitz Numbers}}{9}{subsection.2.5}%
+\contentsline {section}{\tocsection {}{2}{Frames}}{3}{section.2}%
+\contentsline {subsection}{\tocsubsection {}{2.1}{Small Cases}}{3}{subsection.2.1}%
+\contentsline {subsection}{\tocsubsection {}{2.2}{Clifford Algebras}}{4}{subsection.2.2}%
+\contentsline {subsection}{\tocsubsection {}{2.3}{Computing $\Cl _k(\pm 1)$}}{5}{subsection.2.3}%
+\contentsline {subsection}{\tocsubsection {}{2.4}{Computing $m(k)$}}{7}{subsection.2.4}%
+\contentsline {subsection}{\tocsubsection {}{2.5}{The Radon-Hurwitz Numbers}}{8}{subsection.2.5}%
+\contentsline {section}{\tocsection {}{}{References}}{9}{section*.7}%
