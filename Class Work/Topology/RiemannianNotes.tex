@@ -1,0 +1,243 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\renewcommand{\X}{\mathfrak{X}}
+
+\title{Riemannian Geometry (Math 319)}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+	\maketitle
+	
+	These are my notes for Topology III taught by Andre Neves at UChicago in Spring 2026. Textbook: \textit{Riemannian Geometry} by Manfredo do Carmo.
+	
+	\tableofcontents
+	
+	\newpage 
+	\section{Introduction}
+	A \textit{Riemannian Manifold} is a manifold $M$ that is also a metric space with some metric $g$ (with some additional properties). We will see that such a manifold has a ``curvature'' $K(g)$. The basic questions in this subject are:
+	\begin{enumerate}[(1)]
+		\item What does $K(g)$ tell us about $M$?
+		\item Given $M$ and varying $g$, what can $K(g)$ be?
+	\end{enumerate}
+	
+	An example of the first type of question comes from physics: the Einstein Equation.
+	
+	The second question is solved in dimensions $2$ and $3$, which are the results of Riemann Uniformization and the Poincar\'e Geometrization Conjecture respectively.
+	
+	\subsection{Riemannian Metrics} More precisely, a Riemannian Manifold must have the following two properties of its metric $g$:
+	\begin{enumerate}[(i)]
+		\item $g$ comes from a dot product on $TM$, i.e. we have bilinear maps $g_p:T_pM\times T_pM\to \R$ at each $p\in M$.
+		\item For any chart $\ph:M\to \R^n$, $g_x(\partial_i \ph,\partial_j \ph)$ is smooth in $x$.
+	\end{enumerate}
+	
+	Given such a $g$, one can define the \textit{length} of curves on $M$ by integrating the length-form over the curve, and similarly we can define the volume of a subset of $M$.\\
+	
+	The important equivalence class for such manifolds is \textit{isometry}. A \textit{local isometry} is a map $F:(M,g)\to (N,h)$ such that $F^*h=g$. It is a \textit{global isometry} if $F$ is a diffeomorphism. ``Almost all'' metrics have no nontrivial isometries, but they are common in examples we care about.\\
+	
+	\underline{Examples:}
+	\begin{itemize}
+		\item \textit{Flat}: $M=\R^n$, standard inner product.
+		\item \textit{Spherical}: $M=S^n$, standard inner product induced by inclusion in $\R^{n+1}$.
+		\item \textit{Hyperbolic}: $M=B^n$, 
+		$$h_p(\vec{x},\vec{y}) = \frac{4}{(1-|p|^2)^2} \<\vec{x},\vec{y}\>.$$
+	\end{itemize}
+	
+	The isometries of $\R^n$ and $S^n$ are $\OO_n(\R)$ + affine transformations and $\OO_n(\R)$ respectively. For hyperbolic space, the isometries are conformal maps.\\
+	
+	If $G$ is a discrete subgroup of the group of isometries of $(M,g)$ which acts on $M$ freely and properly discontinuously, then we have a \textit{quotient manifold}
+	$$
+	M/G := \frac{M}{\{x\sim \ph (x) \;\; \ph\in G\}}.
+	$$
+	
+	\underline{Examples of Quotients:}
+	\begin{itemize}
+		\item Take some $\Z^n$ as a subgroup of affine transformations on $\R^n$, for which $\R^n/\Z^n=T^n$, the $n$-torus.
+		\item Let $M=S^3$ treated as a subspace of $\C^2$. Let $\ph$ be a rotation in each complex component with periods $p,q$ that are \textit{coprime}, and we have
+		$$
+		L_{p,q} := S^3/\<\ph\> 
+		$$
+		called the ``Lens Space'' or sometimes ``Poincar\'e Sphere.''\\
+	\end{itemize}
+	
+	\subsection{Connections} Let $\X(M)$ be the space of smooth vector fields on $M$. $\X(M)$ has the structure of a vector space with coefficients in $C^{\infty}(M)$. Moreover, there is also an action of $\X(M)$ on $C^{\infty}(M)$, given by $Vf := \partial_V f$. The Riemannian metric on $M$ gives us an inner product $\<\bullet,\bullet\>:\X(M)^2\to C^{\infty}(M)$.\\
+	
+	A \textit{connection} is a map $\nabla:\X(M)\times \X(M)\to \X(M)$ satisfying 
+	\begin{itemize}
+		\item Linearity in the first argument: $\nabla_{f\cdot X}Y = f\cdot \nabla_XY$.
+		\item $\nabla_X (f\cdot Y) = \partial_Xf \cdot Y + f \cdot \nabla_X Y$ (Leibniz rule)
+	\end{itemize}
+	One should think of $\nabla_X Y$ as the ``derivative of $Y$ as it flows along $X$.'' Connections allow us to assign a derivative for vector fields along curves: if $V$ is a vector field defined on the curve $c:I\to M$, the ``covariant derivative'' is another vector field on $c$ denoted $D V/\d t$ and defined
+	$$
+	\frac{DV}{\d t}(t_0) = (\nabla_{(\d c/\d t)^{ext}}V^{ext})(c(t_0))
+	$$
+	where $(\d c/\d t)^{ext}$ and $V^{ext}$ are extensions of $\d c/\d t,V$ to a neighborhood of $c(t_0)$.\\
+	
+	\textbf{Lemma (Properties of covariant derivative)}: $DV/\d t$ is the unique vector field satisfying the following:
+	\begin{enumerate}[(a)]
+		\item Linearity in $V$: $D/\d t(V+W) = DV/\d t + DW/\d t$.
+		\item Leibniz rule: $D/\d t (f\cdot V) = \d f/\d t \cdot V + f \cdot DV/\d t$.
+		\item If $V$ is defined on all of $M$, then $DV/\d t = \nabla_{\d c/\d t} V$.
+	\end{enumerate}
+	\begin{proof}
+		\textit{do later}
+	\end{proof}\\
+	
+	Given a connection $\nabla$, one can define the \textit{torsion} and \textit{curvature}
+	\begin{itemize}
+		\item $T(X,Y) := \nabla_X Y - \nabla_Y X - [X,Y]$
+		\item $R(X,Y)Z := (\nabla_X \nabla_Y- \nabla_Y\nabla_X - \nabla_{[X,Y]})(Z)$
+	\end{itemize}
+	both of which are $C^{\infty}(M)$-linear in all arguments (unlike $\nabla_X Y$ itself). For example, 
+	\begin{align*}
+	T(fX,Y) &= \nabla_{fX} Y - \nabla_Y (fX) - [fX,Y]\\
+	&= f\cdot \nabla_X Y - (\partial_Y f \cdot X + f\cdot \nabla_Y X) - (\partial_Y f\cdot X + f\cdot [X,Y])\\
+	&= f\cdot \nabla_X Y - f\cdot \nabla_Y X - f\cdot [X,Y]\\
+	&= f\cdot T(X,Y).
+	\end{align*}
+	In general there are many connections $\nabla$ on any given Riemannian manifold, so it would be nice to have some canonical choice. And there is one $\nabla$ that is especially good:\\
+	
+	\textbf{Theorem (Levi-Civita)}: Given $(M,g)$, there is a unique connection $\nabla$ which is
+	\begin{itemize}
+		\item \textit{Symmetric}, meaning $\nabla_X Y - \nabla_Y X = [X,Y]$ (equivalently $T(X,Y)=0$ for all $X,Y$).
+		\item \textit{Compatible} with $g$, meaning $X\<Y,Z\>= \<\nabla_X Y,Z\> + \<Y,\nabla_X Z\>$ (the product rule).
+	\end{itemize}
+	Such a $\nabla$ is called a \textit{Levi-Civita} or \textit{Riemannian} connection.
+	\begin{proof}
+		We can show with some algebra that the two conditions are equivalent to
+		$$
+		\<Z,\nabla_YX\> = \frac12 \Big(X\<Y,Z\> + Y\<Z,X\> - Z\<X,Y\> - \<[X,Z],Y\> - \<[Y,Z],X\> - \<[X,Y],Z\>\Big)
+		$$
+		so the unique connection is both given and determined by this equation, called the \textit{Koszul formula}.
+	\end{proof}\\
+	
+	From now on we'll assume that $\nabla$ is the Levi-Civita connection.\\
+	
+	To actually compute $\nabla_A B$ at $p\in M$ for two given vector fields $A,B\in \X(M)$, we may want to choose local coordinates in a neighborhood $U$ of $p$. If the local coordinates are $x^1,\dots,x^n$ and the vector fields at $p$ are given the basis $\partial_1,\dots,\partial_n$, then we can compute $(\nabla_AB)_p$ by writing $A = \sum_i a_i \partial_i$ and $B=\sum_i b_i\partial_i$ ($a_i,b_i\in C^{\infty}(U)$) and using the properties of $\nabla$:
+	\begin{align*}
+		\nabla_AB &= \sum_i a_i \nabla_{\partial_i} B\\
+		&= \sum_i a_i \sum_j b_j\nabla_{\partial_i}\partial_j + \partial_i b_j \cdot \partial_j\\
+		&= \bigg(\sum_{ij} a_ib_j \nabla_{\partial_i}\partial_j\bigg) + \bigg(\sum_{ij} a_i \partial_ib_j\cdot \partial_j \bigg).
+	\end{align*}
+	These functions $\nabla_{\partial_i}\partial_j$ are important, so we abbreviate
+	$$
+	\nabla_{\partial_i}\partial_j =: \sum_k \Gamma^k_{ij} \partial_k.
+	$$
+	The coefficient function $\Gamma^k_{ij}\in C^{\infty}(U)$ is called the \textit{Christoffel Symbol}, and it depends only on $g$. Note that if $\nabla$ is the Levi-Civita connection, then $\Gamma^k_{ij}=\Gamma^k_{ji}$, as $[\partial_i,\partial_j]=0$. In terms of $\Gamma^k_{ij}$ we have 
+	$$
+	\nabla_{A}B = \sum_k \bigg(\sum_{ij} a_ib_j \Gamma^k_{ij} + \partial_A b_k\bigg)\cdot \partial_k.
+	$$
+	This shows that $(\nabla_A B)_p$ depends only on $A(p),B(p)$, and $\partial_{A(p)} b_k$. In particular, $\nabla_A B$ depends on $A(p)$ but not any other values of $A$, whereas for $B$ the local behavior near $p$ matters too.\\
+	
+	In the specific case of $\R^n$ with the Euclidean metric, $\Gamma^k_{ij}=0$, so this becomes
+	$$
+	\nabla^{\R^n}_AB = \sum_k \partial_A b_k \partial_k.
+	$$
+	Another notable example is on $S^n$, where the Levi-Civita connection is 
+	$$
+	\nabla^{S^n}_AB = (\nabla^{\R^{n+1}}_{A^{ext}}B^{ext})^T
+	$$
+	where $A^{ext},B^{ext}$ are $A,B$ extended to $\R^{n+1}$ and $X^T$ is the orthogonal projection of $X(p)$ onto $T_pS^n$.\\
+	
+	To compute the Christoffel symbols themselves, we have (following from the Levi-Civita theorem)
+	$$
+	\Gamma_{ij}^k = \frac12 \sum_{\ell} \Big(\partial_i g_{j\ell} + \partial_j g_{\ell i} - \partial_{\ell} g_{ij}\Big)g^{\ell k}
+	$$
+	where $g_{ij} := \<\partial_i,\partial_j\>$, a smooth function on $U$ for each $i,j$, and $g^{ij}$ is defined as the $i,j$ entry in the inverse matrix $(g^{ij})=(g_{ij})^{-1}$.\\
+	
+	\subsection{Geodesics and the Exponential Map} In a Riemannian manifold, given a curve $\gamma:I\to M$ we have a $\gamma'$ and $\gamma''=\nabla_{\gamma'}\gamma'$ given by the Levi-Civita connection. $\gamma$ is called a \textit{geodesic} when $\gamma''=0$. This implies that $\gamma$ can be parameterized by arc length, as $|\gamma'|$ is constant. \\
+	
+	Another slightly broader definition of geodesic is a curve $\gamma:I\to M$ for which
+	$$
+	\gamma''(t) = \lambda(t) \gamma'(y)
+	$$
+	which means, equivalently, that $\gamma$ can be re-parameterized such that $\gamma''(t)=0$.\\
+	
+	\underline{Examples:}
+	\begin{itemize}
+		\item Let $M=S^n$. The geodesics are curves contained in the great circles. For these curves $\gamma'' = -\gamma$. There is an acceleration but it is ``invisible to the sphere'' because it is orthogonal to the tangent space.
+		\item Let $M=B^n$ with the hyperbolic metric. A straight line away from the origin can be re-parameterized to be a geodesic, by taking the distance to be $\tanh(t)$. Away from the origin, the geodesics are parts of circles meeting the boundary orthogonally.\\
+	\end{itemize}
+	
+	\textbf{Proposition}: In general if $\gamma$ is a curve on $M$ and there is an isometry $P:M\to M$ for which $P(\gamma(t))=\gamma(t)$ but $P$ reverses orientation of normal vectors to $\gamma$ at each point, then $\gamma$ is a geodesic.\\
+	
+	On hyperbolic space, the isometry corresponding to each geodesic is like an involution.\\
+	
+	\textbf{Theorem (Existence and Uniqueness of Geodesics)}: For each $p\in M$ and $v\in T_pM$, locally there is a unique curve $\gamma:(-\ep,\ep)\to M$ which is a geodesic, $\gamma(0)=p$, and $\gamma'(0)=v$. We call this $\gamma(t)=: \exp_x(tv)$.
+	\begin{proof}
+		If $\ph:U\to \R^n$ is a chart near $p$ with local coordinates $x_1,\dots,x_n$, then the condition $D\gamma'/\d t=0$ just becomes a second-order ODE involving $\Gamma^k_{ij}$:
+		$$
+		x_k'' + \sum_{ij}x_i'x_j' \Gamma^k_{ij} = 0 \;\;\; \forall 1\leq k \leq n
+		$$
+		with initial conditions on $\gamma(0)$ and $\gamma'(0)$, so there is a unique solution.
+	\end{proof}\\
+	
+	The map $\exp_x$ is very nice. We'll now show some of its properties.\\
+	
+	\noindent \textbf{Gauss's Lemma}: Fixing $p\in M$, for all $v,w\in T_pM$ with $|v|<\ep$, 
+	$$
+	\<(\d \exp)_p(v), (\d \exp)_p(w)\> = \<v,w\>
+	$$
+	In other words, $\exp_p$ is locally a conformal map.
+	\begin{proof}
+		By linearity we can break into cases of orthogonal and parallel. If $w=\lambda v$ then letting $\gamma(t)=\exp(tv)$,
+		$$
+		\d \exp(\lambda v) = \lambda \gamma'(1),
+		$$
+		so we have
+		$$
+		\<\d\exp(v),\d\exp(w)\> = \lambda \<\gamma'(1),\gamma'(1)\>= \lambda |v|^2 = \<v,w\>
+		$$
+		On the other hand, if $w\bot v$, and wlog $|w|=|v|$, then let $w:(-\ep,\ep)\to T_pM$ be the circular curve with $v(0)=v$, $v'(0)=w$, and $|v(t)|=|v|$ for all $t$. Now let $F:(\ep,\ep)\times (0,1)\to M$ be defined
+		$$
+		F(s,t) := \exp_p(t\cdot v(s)).
+		$$
+		For each fixed $s$, $F(s,\bullet)$ is a geodesic curve in $M$, so $F(s,t)$ is sort of a ``geodesic fan'' spreading out from $p$. We want to show $\<\d\exp(v),\d\exp(w)\>=0$, and $F$ is relevant to this because 
+		$$
+		\partial_t F(0,1) = \d\exp(v), \;\; \partial_s F(0,1) = \d\exp(w)
+		$$
+		so we need to show $\<\partial_t(0,1),\partial_s(0,1)\>=0$. This can be done with some slightly onerous computation which I will omit.
+	\end{proof}\\
+	
+	As geodesics sprout from $x$ in all directions, it may be that some of them intersect, and it may be that they don't. As it turns out, they always go a non-zero distance before intersecting.\\
+	
+	\noindent \textbf{Proposition (Normal Neighborhood)}: For $p\in M$, there is a neighborhood $U$ and $\ep<r$ (for some $r$ called the \textit{injectivity radius} at $x$) for which:
+	\begin{enumerate}[(i)]
+		\item $\exp_q:B_{\ep}(U)\to M$ is a diffeomorphism onto its image.
+		\item For all $q_1,q_2\in U$, there is a geodesic connecting $q_1$ and $q_2$ (not necessarily contained in $U$).
+	\end{enumerate}
+	\begin{proof}
+		Fix a local chart $\ph:\tilde{U}\to M$ near $p$ so that $\ph(0)=p$. By the previous theorem, for some $V-1\subset \tilde{U}$ and $\ep_1>0$ we have a well-defined map $F:V_1\times B_{\ep_1}\to M\times M$ where 
+		$$
+		F(x,v) = (\ph(x),\exp_{\ph(x)}(v)).
+		$$
+		Now we just need to choose $V_1$ so that $F$ is a diffeomorphism onto its image, for which we can use the implicit function theorem. It suffices to show that $\d F$ is bijective at $0$. And we can compute, using the definition of geodesics, that at $(0,0)$,
+		$$
+		\d F = \begin{pmatrix}
+			\d \ph & \d \ph\\
+			0 & \d \ph
+		\end{pmatrix}
+		$$
+		which is invertible.
+	\end{proof}\\
+	
+	The shortest path between any two points on a closed manifold is always a geodesic, though there are many geodesics of different lengths.\\
+	
+	\textbf{Proposition (Normal Neighborhood fact)}: Let $U_x$ be a normal neighborhood containing point $x$ with corresponding value $\ep_x$, and let $q\in U_x$. Then
+	\begin{enumerate}[(i)]
+		\item There is a unique geodesic passing through $x,q$ with length less than $\ep_x$.
+		\item This geodesic minimizes distance among all smooth curves from $x$ to $q$.
+	\end{enumerate}
+	\begin{proof}
+		(i): Let $\exp(tw)$ and $\exp(tv)$ be two different geodesics going to $q$. The lengths of these geodesics are $|w|$ and $|v|$, as
+		$$
+		\int_0^1 |\partial_t \exp(tw)|\; \d t = \int_0^1 |w| = |w| 
+		$$ 
+		because geodesics have constant velocity. If both $|v|$ and $|w|$ are less than $\ep_x$, then $\exp$ is not injective, contradicting the normal neighborhood. And if neither are, then $\exp$ is not surjective.\\
+		
+		(ii): Suppose we have a curve $\sigma:I\to M$. We can pull this back through $\exp$. Then we use Gauss Lemma \textit{revisit and complete this computation!!!!}
+	\end{proof}\\
+	
+	
+\end{document}

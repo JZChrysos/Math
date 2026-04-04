@@ -1,0 +1,184 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ZFC}{\sf{ZFC}}
+
+\title{Kolmogorov Complexity}
+\author{Jalen Chrysos}
+
+\begin{document}
+	
+	\maketitle
+	
+	These are notes for Topics in Logic Spring 2026, taught by Denis Hirschfeldt.
+	
+	\tableofcontents
+
+	\newpage 
+	
+	\section{Introduction}
+	
+	Complexity is always relative to a system of description (or in reverse, compression). Let $2^{<\omega}$ be the set of finite binary strings. If $f:2^{<\omega}\to 2^{<\omega}$ is a map taking ``descriptions'' to the strings they describe, then one can define the complexity of a string $\sigma$ (relative to $f$) as 
+	$$C_f(\sigma) := \min\{|\tau| \; : \; f(\tau) = \sigma\}.$$
+	This is \textit{Kolmogorov Complexity} relative to $f$.\\
+	
+	Better yet we can take a universal function $U:2^{<\omega}\to 2^{<\omega}$, i.e. so that for each $f$ there is a string $\mu$ such that
+	$$
+	U(\mu \tau) = f(\tau).
+	$$
+	Then 
+	$$
+	C_U(\sigma) \leq C_f(\sigma) + O(1)
+	$$
+	so the choice of $f$ does not matter up to $O(1)$. $C_U(\sigma)$ is the (plain) Kolmogorov Complexity of $\sigma$, and we usually omit $U$.\\
+	
+	\underline{Properties of $C(\sigma)$:}
+	\begin{enumerate}
+		\item $C(\sigma) \leq |\sigma| + O(1)$.
+		\item $C(\sigma \sigma) \leq C(\sigma) + O(1)$.
+		\item For computable $h:2^{<\omega}\to 2^{<\omega}$, $C(h(\sigma))\leq C(\sigma) + O(1)$.
+		\item If $C(\sigma) = k$, let $\sigma_c^*$ be a ``minimal witness'' for $U(\sigma_c^*)\downarrow =k$. Then $C(\sigma,k)=C(\sigma_c^*)+O(1)$.
+		\item For all $n$ there is a $\sigma \in 2^n$ with $C(\sigma)\geq n$.
+		\item $C(\sigma \tau) \leq C(\sigma) + C(\tau) + 2\log(C(\sigma)) + O(1)$.\\
+	\end{enumerate}
+	
+	This last fact cannot be sharpened to $C(\sigma) + C(\tau) + O(1)$, essentially because $\sigma \tau$ does not carry information about the length of $\sigma$; one needs to communicate this information so that the decoder knows where $\sigma$ ends and $\tau$ begins.\\
+	
+	\textbf{Proposition (No Sustained Complexity)}: For any $k$, a sufficiently long string $\mu$ has an initial segment $\sigma$ such that $C(\sigma) < |\sigma| - k$.
+	\begin{proof}
+		For a given initial segment $\nu$ of $\mu$, if $\nu$ represents the binary number $n$, then we can extend $\nu$ by $n$ more characters to get an initial segment $\sigma := \nu \rho$. Then knowing $\rho$ one can determine $\sigma$, so $C(\sigma)\leq C(\rho) + O(1)$. Taking sufficiently large segment $|\nu|>k$ will yield $C(\sigma)\leq |\sigma| - k$.
+	\end{proof}\\
+	
+	To avoid the weirdness of delimiters, we can define the \textit{prefix-free} Kolmogorov Complexity to be relative to a machine $U$ which is universal for prefix-free functions $f$, i.e. those for which if $f(\sigma)\downarrow$ then $f$ halts on no extension of $\sigma$. This prefix-free complexity is denoted $K(\sigma)$. \\
+	
+	\underline{Properties of $K(\sigma)$:}
+	\begin{enumerate}
+		\item $K(\sigma \tau) = K(\sigma) + K(\tau) + O(1)$.
+		\item $K(\sigma) \leq |\sigma| + K(|\sigma|) + O(1)$.
+		\item For computable $h:2^{<\omega}\to 2^{<\omega}$, $K(h(\sigma)) \leq K(\sigma) + O(1)$.
+		\item $K(\sigma) \leq C(\sigma) + O(\log(C(\sigma)))$.\\
+	\end{enumerate}
+	
+	Neither $C$ nor $K$ is computable, and this is an example of incompleteness:\\
+	
+	\textbf{Lemma (Chaitin's Incompleteness Theorem)}: There is some $N$ for which $\ZFC$ does not prove $C(\sigma)>N$ for any $\sigma$, likewise for $K(\sigma)$.
+	\begin{proof}
+		If such proofs existed for some $\sigma$ at every $N$, then one could write an algorithm which generates an arbitrarily complex number while not growing in length very much, leading to a contradiction. (flesh out later).
+	\end{proof}\\
+	
+	On the other hand, both $C$ and $K$ are computably approximable from above, i.e. the set of numbers above $C(\sigma)$ is c.e. for each $\sigma$ and likewise for $K$.\\
+	
+	At many points the following trick will come up:\\
+	
+	\textbf{Enumeration Trick}: Suppose that one knows $\sigma \in A$ for some c.e. set $A$. Then 
+	$$
+	C(\sigma) \leq C(A) + \log|A| + O(1)
+	$$ 
+	where $C(A)$ is the least length of an algorithm enumerating $A$.
+	\begin{proof}
+		One can compute $\sigma$ by enumerating $A$ and knowing when to stop, i.e. knowing which of the $|A|$ elements is $\sigma$. This requires exactly $C(A) + \log|A|$ bits (the $\log|A|$ is used to encode the order of $\sigma$ in the enumeration of $|A|$).
+	\end{proof}\\
+	
+	\subsection{Relative Complexity} Now we want to define the complexity of $\sigma$ given another string $\tau$ to start with. To be precise, given a universal oracle machine $U$, we have
+	$$
+	C(\sigma |\tau) := \min\{ |\rho| \; : \; U^{\bar{\tau}}(\rho) \downarrow = \sigma \}
+	$$
+	where $\bar{\tau}$ is a self-delimiting encoding of $\tau$ (e.g. $\bar{0110} = 0011110001$). Define $K(\sigma|\tau)$ similarly.\\
+	
+	\textbf{Proposition (Kraft's Inequality + KC theorem)}: If $f$ is prefix-free, then 
+	$$
+	\sum_{\sigma \in \dom(f)} 2^{-|\sigma|} \leq 1.
+	$$
+	It follows that 
+	$$
+	\sum_{\sigma \in 2^{<\omega}} 2^{-K(\sigma)} \leq 1.
+	$$
+	Conversely, if $d_i$ is a sequence such that 
+	$$
+	\sum 2^{-d_i} \leq 1
+	$$
+	then given any strings $\tau_i$, there is a prefix-free \textit{and partial-computable} $f$ such that $C_f(\tau_i) \leq d_i$.
+	\begin{proof}
+		The converse part follows from doing the ``obvious'' greedy algorithm approach.
+	\end{proof}\\
+	
+	Building on the concept of relative complexity, we have the ``information content of $\sigma$ in $\tau$'' defined by
+	$$
+	I_C(\tau : \sigma) := C(\sigma) - C(\sigma | \tau), \;\; \text{or} \;\; I_K(\tau : \sigma) := K(\sigma) - K(\sigma | \tau)
+	$$
+	We can think of this as the amount of complexity that $\tau$ provides when determining $\sigma$. We have the following fact:\\
+	
+	\textbf{Theorem (Symmetry of Information)}: Given $\sigma$ and $\tau$, we have
+	$$
+	I_C(\sigma: \tau) - I_C(\tau:\sigma) = O(\log C(\sigma,\tau)) \;\; \text{and} \;\; I_K(\sigma: \tau) - I_K(\tau:\sigma) = O(\log K(\sigma,\tau))
+	$$
+	and furthermore for $K$ we have an additional fact. Letting $\sigma^*$ be the least witness for $K(\sigma)$,
+	$$
+	I_K(\sigma^*:\tau) - I_K(\tau^*:\sigma) = O(1)
+	$$
+	\begin{proof}
+		The first part will follow from showing that 
+		$$
+		C(\sigma,\tau) = C(\tau | \sigma) + C(\sigma) + O(\log C(\sigma,\tau)).
+		$$
+		It is fairly clear that this is an upper bound. To show that it is the lower bound, let $A$ be the set of all pairs $(\mu,\nu)$ with complexity at most $C(\sigma,\tau)$, and let $A_{\mu} := \{\nu : (\mu,\nu)\in A\}$. So for example, $\tau \in A_{\sigma}$. Then $\tau$ can be computed from $\sigma$, $C(\sigma,\tau)$, and the position of $\tau$ in $A_{\sigma}$, giving
+		$$
+		C(\tau | \sigma) \leq \log|A_{\sigma}| + 2\log C(\sigma,\tau) + O(1).
+		$$
+		And on the other hand, $\sigma$ can be computed from knowing how many sets $|A_{\mu}|$ \textit{finish later}
+	\end{proof}\\
+	
+	\subsection{Complexity of Infinite Sequences} What should be the reasonable way to define $C$ or $K$ for infinite sequences? First let's consider computable sequences. If $A$ is computable then 
+	$$
+	C(A|_n) = C(n) \pm O(1),\;\;\; K(A|_n) = K(n) \pm O(1)
+	$$
+	For $C$, the converse is also true: if these hold for $A$ then $A$ is computable. For $K$, it is not; there are non-computable $A$ with $K(A|_n) = K(n)\pm O(1)$, which are called $K$-\textit{trivial}, and such sequences are all $\Delta_2$ and also low. These $K$-trivial sequences turn out to be important in many areas of complexity theory.\\
+	
+	Now suppose on the other hand that we want a sequence $A$ whose initial segments $A|_n$ are in some sense ``as complex as possible.'' We saw before that $C(A|_n) \leq C(n)-c$ for infinitely many $n$, for every $c$, and in fact $C(A|_n)\leq n-\log(n)$ also occurs for infinitely many $n$. But this was not true of $K$, so we can have strings $A$ for which
+	$$
+	\forall n: \; K(A|_n) \geq n - O(1).
+	$$
+	Such $A$ are called ``1-random.'' Note that this is not necessarily the natural definition, as $n$ is not the maximum possible value of $K(A|_n)$ (in contrast with $C$); $n + K(n)$ is. But this turns out to be a good definition, as we will now see.\\
+	
+	A very natural attempted definition of randomness for infinite strings: $A$ is infinite if for every infinite computable $F\subseteq \N$, $A$ is 0 and 1 with equal probability on $F$. This is ``Van Mises-Church randomness.'' One unsatisfying aspect of this definition, pointed out by Ville, is that one can have a VMC random $A$ for which there are more 1 than 0 in every initial segment, though the ratio goes to $\tfrac12$ in the limit. So what to do?
+	
+	Martin-L\"of answered this by introducing \textit{Martin-L\"of randomness}. A sequence $A$ is ML random if it is not contained in any intersection $\cap_n U_n$ where $U_n$ are $\Sigma_1$ sets with $\mu(U_n)\leq 2^{-n}$ (such a sequence is called a ``Martin-L\"of test''). This turns out to be the same as 1-randomness.\\
+	
+	\textbf{Proposition (ML-random $\iff$ 1-random)}: 
+	\begin{proof}
+		In one direction, we can show that 1-randomness is a Martin-L\"of test; specifically, it corresponds to the test
+		$$
+		U_m := \{X : \exists n K(X|_n) \leq n-m\}.
+		$$
+		What we need to show now is that $\mu(U_m)\leq 2^{-m}$. \textit{omitted}.\\
+		
+		Conversely, if $A$ is not ML-random then let $U_m$ be a ML-test that $A$ fails, i.e. $A\in \cap_m U_m$. \textit{omitted}.
+	\end{proof}\\
+	
+	\section{Complexity in $\R$} 
+	
+	Let $x\in \R^n$. We define the Kolmogorov complexity of $x$ at precision $r\in \N$ to be 
+	$$
+	C_r(x) := \min\{C(q): q\in \Q^n \cap B(x,2^{-r})\}
+	$$
+	That is, the least complexity of any rational that is near enough to $x$. Similarly for $p\in \Q$,
+	$$
+	\hat{C_r}(x,p) := \min\{C(q|p) : q\in \Q^n\cap B(x,2^{-r})\}
+	$$
+	More generally, we define the complexity of $x$ at precision $r$ relative to $y\in \R^m$ at precision $s$ as
+	$$
+	C_{r,s}(x|y) := \max\{\hat{C_r}(x|p) : p\in \Q^m\cap B(y,2^{-s})\}
+	$$
+	This can be thought of like a game: $C_{r,s}(x|y)$ reflects the complexity of $x$ in the worst-case of $s$-close information about $y$. These values are approximated by
+	$$
+	|C_{r,s}(x|y) - C(x|_r | y|_s)| \leq O(\log(r+s)).
+	$$
+	This requires a proof, which involves splitting up $\R^n$ into $n$-cubes of side $2^{-r}$, but I will omit it. With this bound, we can see that symmetry of information holds:\\
+	
+	\textbf{Proposition (Symmetry of Information)}:
+	$$
+	C_{r,s}(x,y) = C_r(x) + C_{s,r}(y|x) + O(\log(r+s))
+	$$
+	and note that this bound is symmetric in $x,y$.
+\end{document}
