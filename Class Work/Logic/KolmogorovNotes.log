@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  2 APR 2026 15:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.28)  7 APR 2026 15:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -964,6 +964,44 @@ Underfull \hbox (badness 10000) in paragraph at lines 176--178
 
 
 [4]
+Underfull \hbox (badness 10000) in paragraph at lines 182--184
+
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 186.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 186.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 189--191
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 192--193
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 204--206
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--225
+
+ []
+
+
 
 [5] (./KolmogorovNotes.aux)
  ***********
@@ -971,13 +1009,13 @@ LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
 Package rerunfilecheck Info: File `KolmogorovNotes.out' has not changed.
-(rerunfilecheck)             Checksum: F935379BCDBEF89DCB818EF736263182;700.
+(rerunfilecheck)             Checksum: 5122653BE4685F71D842EFAC3CE7F649;861.
  ) 
 Here is how much of TeX's memory you used:
- 25666 strings out of 467748
- 499737 string characters out of 5431138
- 877467 words of memory out of 5000000
- 53742 multiletter control sequences out of 15000+600000
+ 25670 strings out of 467748
+ 499825 string characters out of 5431138
+ 877475 words of memory out of 5000000
+ 53745 multiletter control sequences out of 15000+600000
  635400 words of font info for 71 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  103i,7n,108p,604b,466s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -995,10 +1033,10 @@ ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/pub
 lic/amsfonts/symbols/msam10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/
 amsfonts/symbols/msbm10.pfb>
-Output written on KolmogorovNotes.pdf (5 pages, 191464 bytes).
+Output written on KolmogorovNotes.pdf (5 pages, 201130 bytes).
 PDF statistics:
- 144 PDF objects out of 1000 (max. 8388607)
- 105 compressed objects within 2 object streams
- 21 named destinations out of 1000 (max. 500000)
- 45 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 149 PDF objects out of 1000 (max. 8388607)
+ 110 compressed objects within 2 object streams
+ 22 named destinations out of 1000 (max. 500000)
+ 53 words of extra memory for PDF output out of 10000 (max. 10000000)
 

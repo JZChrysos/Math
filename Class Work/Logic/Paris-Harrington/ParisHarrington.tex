@@ -5,6 +5,7 @@
 
 \DeclareMathOperator{\PA}{\mathsf{PA}}
 \DeclareMathOperator{\ACA}{\mathsf{ACA}}
+\DeclareMathOperator{\ZFC}{\mathsf{ZFC}}
 
 \title{The Paris-Harrington Theorem}
 \author{Jalen Chrysos}
@@ -33,43 +34,58 @@
 	
 	\noindent \textbf{Paris-Harrington Equivalent (PH$\ast$)}: For all $m,n$, there exists some $d$ for which $[d]\to (m)^n_{\text{reg}}$.\\
 	
-	The Finite Ramsey Statement is provable in Peano Arithmetic ($\PA$), but Paris and Harrington showed that the Paris-Harrington Statement is not, though it \textit{is} provable in a modestly strong theory of second-order arithmetic (in particular, $\ACA_0$), so it is still considered true. 
+	The Finite Ramsey Statement is provable in Peano Arithmetic ($\PA$), but Paris and Harrington showed that the Paris-Harrington Statement is not, though it \textit{is} provable in stronger theories ($\ZFC$, for example), so it is still considered true. 
 	
 	Their proof showed that in $\PA$, PH implied the consistency of $\PA$, violating G\"odel's Second Incompleteness Theorem. So either $\PA$ itself was inconsistent, or it could not prove PH. 
 	
 	Later, Kanamori and McAloon gave another proof using model theory. They constructed a model of $\PA$ in which PH was false, thereby showing that $\PA$ could not prove PH. This short write-up will follow their approach.
 	
+	\newpage 
+	
 	\section{Outline of the Argument}
 	
 	Kanamori and McAloon's approach constructs a model of $\PA$ by using \textit{diagonal indiscernibles}:\\
 	
-	\noindent \textbf{Definition (Diagonal Indiscernibles)}: In a structure $\M$, given a set of sentences $\Delta$, a sequence $I\subset \M$ is \textit{diagonal-indiscernible} relative to $\Delta$ if for any $\phi(\bar{a};\bar{x})\in \Delta$ (where $\bar{a}$ are fixed parameters from $\M$) and subsequences $\bar{y},\bar{z}\in I$ such that $\bar{a}<\bar{y},\bar{z}$, we have $\M\models \phi(\bar{a};\bar{y}) \iff \phi(\bar{a};\bar{z}).$\\
+	\noindent \textbf{Definition (Diagonal Indiscernibles)}: In a structure $\M$, given a set of sentences $\Delta$, a sequence $I\subset \M$ is \textit{diagonal-indiscernible} relative to $\Delta$ if for any $\phi(a;\bar{x})\in \Delta$ (where $a$ is a parameter in $\M$) and elements $b<\bar{y},\bar{z}\in I$, we have $\M\models \phi(a;\bar{y}) \iff \phi(a;\bar{z})$ for all $a<b$.\\
 	
-	The proof requires two lemmas. The first shows the existence of certain diagonal indiscernible sequences, and the second shows how such sequences can be used to create models of $\PA$:\\
+	The proof requires two lemmas. The first shows the existence of certain diagonal indiscernible sequences, and the second shows how such sequences can be used to create models of $\PA$.\\
 	
-	\noindent \textbf{Lemma 1}: Given a sequence of sentences $\{\phi_{\a}\}_{\a<\ell}$, there is a set $I$ that is diagonal-indiscernible relative to $\{\phi_{\a}\}$. In particular, if $[c,d]\to (2c)^{c}_{\text{reg}}$, then $I$ can be chosen from within $(c,d)$.\\
+	\noindent \textbf{Lemma 1}: For any $m,n,\ell$, for any sequence of formulas $\Delta=\{\phi_{\a}(a;\bar{x})\}_{\a<\ell}$ where $|\bar{x}|\leq n$, there is a set $|I|\geq m$ that is diagonal-indiscernible relative to $\Delta$. In particular, such a sequence exists within $[c,d]$ when $[c,d]\to (h)_{\text{reg}}^{2n+1}$, where $h\to (m+n)^{2n+1}_{\ell+1}$.\\
 	
-	\noindent \textbf{Lemma 2}: Given a model $\M\models \PA$ with a set $I$ that is diagonal-indiscernible relative to all $\Delta_0$ sentences, the substructure
+	\noindent \textbf{Lemma 2}: Given a model $\M\models \PA$ with an infinite set $I$ that is diagonal-indiscernible relative to all $\Delta_0$ sentences, the substructure
 	$$
 	\NN(I) := \bigcup_{i\in I} \{x\in \MM : x<i\}
 	$$
 	is also a model of $\PA$.\\
 	
-	With these two Lemmas, the theorem can be proven simply:\\
+	With these two Lemmas, we have:\\
+	
+	\noindent \textbf{Lemma 3}: Let $\M\models \PA$ and $c\in \M$ be non-standard. If $d\in \M$ is such that $[c,d]\to (2c)^c_{\text{reg}}$, then there is an initial segment of $d$ including $c$ which models $\PA$.
+	\begin{proof}
+		Let $F(c,d;r)$ represent the following statement: setting $m=n=\ell=r$ as in Lemma 1, diagonal indiscernibles $I$ can always be found in $[c,d]$. $F(c,d;r)$ holds for any standard $r$ as follows: first, the minimum $h$ for which $h\to (m+n)^{2n+1}_{\ell+1}$ is standard by FR. Next, for any standard $p,q$,
+		$$\Big(A\to (2c)^c_{\text{reg}}\Big) \implies \Big(A\to (p)^{q}_{\text{reg}}\Big).$$
+		To prove this, consider a regressive function $f:A^q\to \N$, one can extend it to a function $\bar{f}:A^{c}\to \N$ via $\bar{f}(\bar{x})=f(\bar{x}|_q)$. $A$ has a $\bar{f}$-min-homogeneous set of size $2c$ which we can call $Y$, so let its first $c$ elements be $Y'$. Then $Y'$ is $f$-min-homogeneous. Thus, setting $A=[c,d]$, $p=h$, and $q=2n+1$, we see that the condition in Lemma 1 is fulfilled.
+		
+		Moreover, $F(c,d;r^*)$ must also hold for some non-standard $r^*$; if not, then $F(c,d;r)$ exactly defines the standard numbers, so by internal induction in $\PA$, all of $\M$ is standard, a contradiction\footnote{This type of argument is sometimes called Robinson's ``overspill'' principle.}.
+		
+		Indexing the formulas of $\Delta_0$ by $r^*$ (a countable initial segment of $r^*$ will do), we have an infinite diagonal-indiscernible sequence $I\subset [c,d]$ relative to $\Delta_0$. By Lemma 2, this determines a model $\NN(I)\models \PA$, and $\NN(I)$ contains $c$ but not $d$.
+	\end{proof}\\
+	
+	From Lemma 3, the theorem follows:\\
 	
 	\noindent \textbf{Theorem (Paris-Harrington)}: PH is not provable in $\PA$.
 	\begin{proof}
-		Let $\M\models \PA$ be a nonstandard model, and choose some non-standard element $c$. Assuming PH holds in $\M$, let $d$ be minimal such that $[c,d]\to (2c)^c_{\text{reg}}$. By Lemma 1, there is a sequence $I\subset (c,d)$ that is diagonal-indiscernible for $\Delta_0$ (this can be indexed by $c$ because $c$ is infinite), and by Lemma 2 this determines a model $\NN(I)\models \PA$. I claim that PH does not hold in $\NN(I)$.\\
+		Let $\M\models \PA$ be a nonstandard model, and choose some non-standard element $c$. Assuming PH holds in $\M$, let $d$ be minimal such that $[c,d]\to (2c)^c_{\text{reg}}$, so $d$ is also non-standard. Let $\NN$ be the model of $\PA$ given by Lemma 3, so that $c\in\NN$ but $d\not\in \NN$. I claim PH does not hold in $\NN$.
 		
-		Indeed, $\NN(I)$ does not contain $d$, so for all $d'\in \NN(I)$, $\M$ believes $[c,d']\not\to (2c)^c_{\text{reg}}$; that is, there is a regressive function $f:[c,d']^c\to \M$ with no $f$-min-homogeneous set $|Y|\geq 2c$ in $\M$, and hence none in $\NN(I)$ either. A priori, it may be that such an obstruction exists only in $\M$ and not in $\NN(I)$, but because $f$ is \textit{regressive}\footnote{This seems to be a place where working with PH$\ast$ rather than PH is necessary.}, the codomain of $f$ lies in $\NN(I)$, so $\NN(I)\models [c,d']\not\to (2c)^c_{\text{reg}}$. Thus, PH$\ast$ and hence PH both fail in $\NN(I)$.
+		Indeed, $\NN$ does not contain $d$, so for all $d'\in \NN$, $\M$ believes $[c,d']\not\to (2c)^c_{\text{reg}}$; that is, there is a regressive function $f:[c,d']^c\to \M$ with no $f$-min-homogeneous set $|Y|\geq 2c$ in $\M$, and hence none in $\NN$ either. A priori, it may be that such an obstruction exists only in $\M$ and not in $\NN$, but because $f$ is \textit{regressive}\footnote{This seems to be a place where working with PH$\ast$ rather than PH is necessary.}, the codomain of $f$ lies in $\NN$, so $\NN\models [c,d']\not\to (2c)^c_{\text{reg}}$. Thus, PH$\ast$ and hence PH both fail in $\NN$.
 	\end{proof}\\
 	
-	Next we'll prove Lemmas 1 and 2, and see how the particularities of PH and $\PA$ come into play.
+	\newpage 
 	
-	\section{Proving the Lemmas}
+	\section{Proving Lemmas 1 \& 2}
 	
-	\noindent \textbf{Lemma 1}: For any $m,n$, given a sequence of sentences $\{\phi_{\a}(a;\bar{x})\}_{\a<\ell}$ where $|\bar{x}|=n$, there is a set $|I|\geq m$ that is diagonal-indiscernible relative to $\{\phi_{\a}\}$. In particular, if $[c,d]\to (2c)^{c}_{\text{reg}}$, then $I$ can be chosen from within $(c,d)$.
-	\begin{proof}
+	\noindent \textbf{Lemma 1}: For any $m,n,\ell$, for any sequence of formulas $\Delta=\{\phi_{\a}(a;\bar{x})\}_{\a<\ell}$ where $|\bar{x}|\leq n$, there is a set $|I|\geq m$ that is diagonal-indiscernible relative to $\Delta$. In particular, such a sequence exists within $[c,d]$ when $[c,d]\to (h)_{\text{reg}}^{2n+1}$, where $h\to (m+n)^{2n+1}_{\ell+1}$.\\
+	\begin{proof} 
 		First, let's see how Ramsey's theorem enables us to find indiscernible sequences in general, and then we'll make a slightly stronger argument to get sequences of diagonal indiscernibles.
 		
 		Suppose the formulas $\phi_{\a}$ take no parameters, i.e. $k=0$. We define a function $g:[\N]^{2n}\to [\ell+1]$. For a $2n$-tuple $\{x_1<\cdots<x_n<y_1<\cdots<y_n\}$, $g$ is defined
@@ -81,7 +97,7 @@
 		$$
 		That is, $g$ detects the first failure of indiscernibility. If $X$ is $g$-homogeneous and $g(X)=\ell + 1$, this is not quite enough to guarantee indiscernibility because $g$ only compares tuples where $\bar{x}$ is entirely below $\bar{y}$, and for indiscernibility one must consider tuples that are interleaved together. However, if we take such an $X$ and remove the largest $n$ elements $\bar{t}$, the resulting $I$ \textit{is} indiscernible as $\phi_{\a}(\bar{x})=\phi_{\a}(\bar{t})=\phi_{\a}(\bar{y})$ for any $\bar{x},\bar{y}$. Thus, it suffices to find such an $X$ with $|X|\geq m+n$.
 		
-		Using Ramsey's Theorem, it's possible to find $g$-homogeneous sets of any size, and if $X$ is $g$-homogeneous with $|I|\geq 3n$ then $g(X)=\ell+1$ is forced: if $g(X)=i\leq \ell$, then there are disjoint $\bar{x},\bar{y},\bar{z}\in X$ so that $\phi_i(\bar{x}),\phi_i(\bar{y}),\phi_i(\bar{z})$ are all mutually unequal, but this is impossible as there are only 2 truth values.\\
+		Using Ramsey's Theorem, it's possible to find $g$-homogeneous sets of any size, and if $X$ is $g$-homogeneous with $|X|\geq 3n$ then $g(X)=\ell+1$ is forced: if $g(X)=i\leq \ell$, then there are disjoint $\bar{x},\bar{y},\bar{z}\in X$ so that $\phi_i(\bar{x}),\phi_i(\bar{y}),\phi_i(\bar{z})$ are all mutually unequal, but this is impossible as there are only 2 truth values.\\
 		
 		Now to extend this to diagonal indiscernibles. The previous argument now faces an issue: it may be that the truth values of $\phi_{i}(a;\bar{x}),\phi_i(a;\bar{y}),\phi_i(a;\bar{z})$ \textit{are} all mutually unequal, but for different choices of the parameter $a$. So we must take the additional step of finding a sufficiently large $H\subset \N$ on which a single $a$ witnesses discernibility. 
 		
@@ -96,7 +112,13 @@
 		
 		Now we proceed as in the first case, choosing a $g$-homogeneous $|X|\geq m+n,3n+1$ from within $H$ so that we have some disjoint $b < \bar{x} < \bar{y}< \bar{z}$. Let $a=f(b,\bar{x},\bar{y})=f(b,\bar{x},\bar{z})=f(b,\bar{y},\bar{z})$ (they are equal by min-homogeneity of $H\supset X$), and $i=g(b,\bar{x},\bar{y})$. Then $\phi_i(a;\bar{x}),\phi_i(a;\bar{y}),\phi_i(a;\bar{z})$ are all pairwise distinct, but again this is impossible.\\
 		
-		Now there's a question which will be important later: how small can we keep $\max(I)$? Suppose we want to choose $I$ from within an initial segment $[d]$. To find a $g$-homogeneous $|X|\geq m+n$ within $H$ requires $H\to (m+n)^{2n+1}_{\ell+1}$, so let $h$ be the minimum size of $H$ for which this holds. To guarantee that an $f$-min-homogeneous set of this size exists, we require $d\to (h)_{\text{reg}}^{2n+1}$.
+		Finally, in which intervals $[c,d]$ is such an $I$ guaranteed to exist? To find a $g$-homogeneous $|X|\geq m+n$ within $H$ requires $H\to (m+n)^{2n+1}_{\ell+1}$, so let $h$ be the minimum size of $H$ for which this holds. To guarantee that an $f$-min-homogeneous set of this size exists in $[c,d]$, we require $[c,d]\to (h)_{\text{reg}}^{2n+1}$. 
+%		
+%		Note that $\big(d\to (2c)^c_{\text{reg}}\big)\implies \big(d\to c^p_{\text{reg}}\big)$ for $p<c$, as follows: for any regressive $f:[d]^p\to [d]$, we can extend it to a regressive function $\bar{f}:[d]^c\to [d]$ by
+%		$$
+%		\bar{f}(x_1,\dots,x_c) := f(x_1,\dots,x_p).
+%		$$
+%		Because $d\to (2c)^c_{\text{reg}}$, there is some $X\subset [d]$ with $|X|=2c$ that is $\bar{f}$-min-homogeneous. Let $Y$ be the first $c$ elements of $X$. Then $Y$ is $f$-min-homogeneous: any two $p$-tuples in $Y$ with the same minimum can be completed to $c$-tuples in $X$, which therefore have the same $\bar{f}$ value, and hence the same $f$ value as well.
 	\end{proof}\\
 	
 %	\noindent \textbf{Lemma 1}: For any $m,n,k$, given a sequence of sentences $\{\phi_{\a}(\bar{a};\bar{x})\}_{\a<\ell}$ where $|\bar{a}|=k,|\bar{x}|=n$, there is a set $|I|\geq m$ that is diagonal-indiscernible relative to $\{\phi_{\a}\}$. In particular, if $[c,d]\to (2c)^{c}_{\text{reg}}$, then $I$ can be chosen from within $(c,d)$.
@@ -135,7 +157,34 @@
 %		
 %		Now there's a question which will be important later: how small can we keep $\max(I)$? Suppose we want to choose $I$ from within an initial segment $[d]$. To find a $g$-homogeneous $|X|\geq m+n$ within $H$ requires $H\to (m+n)^{2n+1}_{\ell+1}$, so let $h$ be the minimum size of $H$ for which this holds. To guarantee that an $f_j$-min-homogeneous set of this size exists, we require $d\to (h)_{\text{reg}}^{2n+1}$.
 %	\end{proof}\\
+	\newpage 
 	
-	\noindent \textbf{Lemma 2}: 
+	\noindent \textbf{Lemma 2}: Given a model $\M\models \PA$ with an infinite set $I$ that is diagonal-indiscernible relative to all $\Delta_0$ sentences, the substructure
+	$$
+	\NN(I) := \bigcup_{i\in I} \{x\in \MM : x<i\}
+	$$
+	is also a model of $\PA$.
+	\begin{proof}
+		Let $I=\{x_1<x_2<\cdots\}$. Being diagonal-indiscernible over all of $\Delta_0$ means roughly that from the ``viewpoint'' of $x_i$, there is no bounded-quantifier way to distinguish $x_{i+1}$ from $x_{i+2}$, and so on. In particular, $\NN(I)$ is closed under addition and multiplication as follows:\\
+		
+		Suppose $i<j<k$ and $x_i+x_j>x_k$. Then let $a:=x_k-x_j$, and note $a<x_i$, so diagonal indiscernibility forces any two members of $I$ to have difference $a$, but this is impossible. This shows that $\NN(I)$ is closed under addition.
+		
+		Similarly, if $x_i\cdot x_j > x_k$ then letting $a=\lfloor x_k/x_j\rfloor$ so that $a\cdot x_j < x_k \leq (a+1)x_j$, we have $a<x_i$. Diagonal indiscernibility forces any two members of $I$ to have ratio in $[a,a+1)$, which is impossible (using the fact that $a\geq 2$). This shows that $\NN(I)$ is closed under multiplication.\\
+		
+		It remains to show that $\NN(I)$ satisfies induction. To do this, we first show that formulas in $\NN(I)$ have corresponding equivalent formulas in $\M$. Consider an arbitrary sentence 
+		$$\phi(a) = (\exists v_1)(\forall v_2) \cdots (\exists v_n): \psi(a,\bar{v})$$
+		where $\psi\in \Delta_0$. For any $a\in \NN(I)$ with say $a<x_i$, the sentence
+		$$
+		\phi_0(a;\bar{y}):= \; (\exists v_1 < y_1)(\forall v_2 < y_2)\cdots (\exists v_n<y_n): \psi(a,\bar{v})
+		$$
+		is $\Delta_0$, so for all $\bar{y}>a$ its truth value in $\NN(I)$ is constant, by diagonal indiscernibility of $I$. And the truth value of $\phi_0(a;\bar{y})$ for sufficiently large $\bar{y}$ is equal to that of $\phi(a)$ in $\NN(I)$, as $I$ is unbounded in $\NN(I)$; the bound $\bar{y}$ will eventually be large enough to see any given witness $\bar{v}$. Thus, 
+		$$
+		\NN(I)\models \phi(a) \iff \NN(I) \models \phi_0(a;\bar{y}) \;\, \text{for }\bar{y}>a.
+		$$ Moreover, because $\NN(I)$ is an initial segment of $\M$, they agree on $\Delta_0$ formulas, so in fact
+		$$
+		\NN(I)\models \phi(a) \iff \M \models \phi_0(a;\bar{y}) \;\, \text{for }\bar{y}>a.
+		$$
+		Induction is equivalent to the statement that for any $\phi(a)$, there is a least $a$ where $\phi(a)$ holds. Because $\MM\models \PA$ and thus has induction, there is a least $a$ such that $\phi_0(a;\bar{y})$ holds, so the same is true for $\NN(I)$.
+	\end{proof}
 	
 \end{document}

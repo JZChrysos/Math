@@ -1,0 +1,69 @@
+\documentclass{amsart}
+\input{C:/Users/jzchr/MathDocuments/preamble_general.tex}
+
+\title{Math 319 HW 2}
+\author{Jalen Chrysos}
+\begin{document}
+	\maketitle 
+	
+	\textbf{Problem 3}: Given $x,y,z\in M$, $v\in T_xM$, $y=\exp_x(v)$, $w\in T_yM$, and $z=\exp_y(w)$, consider the curve $\gamma:[0,2]\to M$, where
+	$$
+	\gamma(t) := \begin{cases}
+		\exp_x(tv) & t\in [0,1]\\
+		\exp_y((t-1)v) & t\in [1,2].
+	\end{cases}
+	$$
+	The curve $\gamma$ connects $x$ to $z$. Show that if $\gamma$ is of minimal length connecting $x$ to $z$, then $w$ is a positive multiple of $d(\exp_x)_y(v)$.
+	\begin{proof}
+		The minimal length curve connecting $x$ to $z$ is always a geodesic, so if $\gamma$ is the minimal length curve connecting $x$ to $z$ then it must be a geodesic. And there is only one geodesic which begins with velocity $v$ at $x$, so in fact $\gamma$ must be $\exp_x(tv)$ (though perhaps parameterized differently). This implies that at $t=1$, 
+	\end{proof}
+	
+	
+	\newpage
+	
+	\textbf{Problem 4}: Let $V$ be an $n$-dimensional vector space with an inner product $\<u,v\>$.
+	\begin{enumerate}[(i)]
+		\item Show how the inner product induces a natural metric $\bar{g}$ on $V$.
+		\item Find a linear map $F:\R^n\to V$ so that $F^*(\bar{g})=g_0$, where $g_0$ is the Euclidean metric on $\R^n$.
+		\item Consider the map $\Phi:(0,\infty)\times S^{n-1}\to \R^n$ given by $\Phi(r,\theta )=r\theta$. Compute $\Phi^*(g_0)|_{(r,\theta)}$.
+		\item Five a unit vector $e\in V$. Consider the metric $g$ on $V-\{0\}$ given by 
+		$$
+		g_v(u,w) := \exp(\<e,v\>)\<u,v\> + \frac{\<u,v\>\<w,v\>}{||v||^2}(1-\exp(\<e,v\>))
+		$$
+		Compute $(F\circ \Phi)^*(g)|_{(r,\theta)}$.
+	\end{enumerate}
+	\begin{proof}
+		(i): One can set $\bar{g}(u,v)=\<u,v\>$ at all points.\\
+		
+		(ii): Let $F$ send $e_1,\dots,e_n$ to an orthonormal basis of $V$, with respect to $\<\bullet,\bullet\>$.\\
+		
+		(iii): 
+	\end{proof}
+	\newpage
+	\textbf{Problem 5}: Let $(M,g)$ be a Riemannian manifold. Given $p\in M$ consider the exponential map $\exp_p:B_{\ep}(0)\subset T_pM\to M$. Show that with respect to these coordinates, the metric $g$ is such that $g_{ij}(0)=\de_{ij}$ and $\partial_kg_{ij}(0)=0$.
+	\begin{proof}
+		Let $e_1,\dots,e_n$ be an orthonormal basis inside $B_{\ep}(0)$. Let $\gamma_{ij}(t):= \exp_p(t(e_i+e_j))$. Because $\gamma_{ij}$ is a geodesic, its acceleration is 0, so
+		$$
+		0 = \nabla_{\gamma_{ij}'} \gamma_{ij}' = \nabla_{\partial_i + \partial_j} \Big(\partial_i + \partial_j\Big)(\gamma_{ij}(t)) = \nabla_{i}\partial_i + \nabla_i\partial_j + \nabla_j\partial_i + \nabla_j\partial_j.
+		$$ 
+		
+	\end{proof}
+	
+	\newpage
+	\textbf{Problem 7}: Let $(M,g)$ be a closed Riemannian manifold and assume $\gamma:[0,\infty)\to M$ is a geodesic (that is not constant). The accumulation set of $\gamma$, denoted $\Lambda$, is defined to be the set of all points $p\in M$ for which there is a sequence $t_n$ of times with $\lim t_n=\infty$, $\lim \gamma(t_n)=p$.
+	\begin{enumerate}[(i)]
+		\item Show that $\Lambda$ contains a non-constant geodesic.
+		\item Describe an example of $(M,g)$ where $\Lambda\cap \gamma([0,\infty))=\emptyset$.
+	\end{enumerate}
+	\begin{proof}
+		(i): We know $\Lambda$ is nonempty because $M$ is compact. I claim that $\Lambda$ does not have any isolated points. Suppose on the contrary that $p\in \Lambda$ is isolated. Let $U_{p}$ be a normal neighborhood of $p$ with injectivity radius $\ep$, and let $B_{\ep}=\exp_p^{-1}(U_p)$. By the normal neighborhood theorem, the length of a geodesic inside of $U_p$ is bounded above by $\ep$, so $\gamma$ must enter and leave $U_p$ infinitely often and get arbitrarily close to $p$. But then $\exp_p^{-1}\gamma$ must intersect the surface of $\partial B_r = \{x\in T_pM: |x|\leq r\}$ for any $r<\ep$ infinitely often, and $\partial B_r$ is compact as well, so it certainly contains at least one accumulation point. This shows that no accumulation point is isolated.
+		
+		Let $C_{\theta,r} := \{x\in B_r : |r\cdot x/|x| - \theta|\leq 2^{-r}\}$ for each $\theta\in B_r$. By compactness, finitely many of these cones cover $B_r$ for each $r$. At least one contains infinitely many accumulation points of $\exp_p^{-1}\gamma$; let the corresponding $\theta$ and $C_{\theta,r}$ be $\theta_r$ and $C_r$ respectively. Then choose $C_{r/2}$ from within $C_r$ similarly, and finally let
+		$$
+		\theta^* = \lim_{r\to 0} \theta_r
+		$$
+		The geodesic $\exp_p(t\theta^*)$ lies inside $\Lambda$, at least for some time interval.\\
+		
+		(ii): We want $\gamma$ to spiral in toward a circle but never actually reach the circle. This is possible on a cylinder with a certain metric. 
+	\end{proof}
+\end{document}

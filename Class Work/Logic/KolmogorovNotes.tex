@@ -180,5 +180,56 @@
 	$$
 	C_{r,s}(x,y) = C_r(x) + C_{s,r}(y|x) + O(\log(r+s))
 	$$
-	and note that this bound is symmetric in $x,y$.
+	and note that this bound is symmetric in $x,y$.\\
+	
+	
+	\subsection{Dimension in $\R$} We define the ``box counting dimension'' of a bounded set $X\subset \R^n$ as follows: let $N_{\ep}(X)$ be the least number of ``boxes`` ($n$-cubes) of side length $\ep$ which can cover $X$. The upper and lower box dimensions of $X$ are
+	$$
+	\limsup_{\ep\to 0} \frac{\log(N_{\ep}(X))}{\log(1/\ep)}, \;\;\; \liminf_{\ep\to 0} \frac{\log(N_{\ep}(X))}{\log(1/\ep)}
+	$$
+	and if they agree then their value is called the box counting dimension.\\
+	
+	This box dimension has some strange and undesirable properties: for example, $\Q\cap [0,1]$ has dimension 1, even though it is a countable union of points, which have dimension 0.\\
+	
+	We define \textit{Hausdorff dimension} as follows: for each $X$ let the diameter of $X$, denoted $|X|$, be 
+	$$
+	|X| := \sup_{x,y\in X} |x-y|.
+	$$
+	An $\ep$-cover of $X$ is a countable cover $X_i$ for which $|X_i|\leq \ep$. Let the set of all $\ep$-covers of $A$ be $\CC_{\ep}(A)$, and define
+	$$
+	H^{s}_{\ep}(A) = \inf_{(X_i)\in \CC_{\ep}(A)} \sum_i |X_i|^s,
+	$$
+	$$
+	H^s(A) := \lim_{\ep\to 0} H^s_{\ep}(A).
+	$$
+	This $H^s(A)$ is the $s$-dimensional Hausdorff measure of $A$.\\
+	
+	\underline{Hausdorff Measure Facts:}
+	\begin{itemize}
+		\item $H^s$ is a measure for $s\geq 0$.
+		\item When $s$ matches the ``actual'' dimension of $A$, $H^s(A)$ agrees with the Lebesgue measure (up to multiplication by a constant).
+		\item As $s$ goes from 0 to $\infty$, $H^s(A)$ is a step function that drops from $\infty$ to $0$ at some $s$. This $s$ is called the Hausdorff dimension of $A$, which we denote $\dim_H(A)$.
+		\item $\dim_H(A)$ is bounded above by the lower box-counting dimension.
+		\item $\dim_H(\Q\cap [0,1])=0$, whereas for box dimension it was 1. In general, $\dim_H(\cup_k U_k)=\sup \dim_H(U_k)$.\\
+	\end{itemize}
+	
+	A third notion of measure/dimension: let $P^s_{\ep}(A)$ be defined
+	$$
+	P^s_{\ep}(A) := \sup_{B_i} |B_i|^s, \;\;\; P_0^s(A) := \lim_{\ep\to 0} P_{\ep}^s(A)
+	$$
+	where the sum is over ``packings'' of balls $B_i$ into $A$. Packing means that the balls are disjoint and their centers lie inside $A$. We define the \textit{packing measure} $P^s(A)$ as
+	$$
+	P^s(A) := \inf_{A_i} \sum_iP^s_0(A)
+	$$
+	where the infimum is over all countable covers $A_i$ of $A$.\\
+	
+	\underline{Packing Measure Facts:}
+	\begin{itemize}
+		\item $P^s$ is a measure.
+		\item $P^s$ is only nontrivial for one $s$, called the \textit{packing dimension} $\dim_P(A)$.
+		\item $\dim_H(A)\leq \dim_P(A)$.\\
+	\end{itemize}
+	
+	\subsection{Martingales} A function $d:2^{<\omega}\to \R^{\geq 0}$ is a \textit{martingale} if 
+	
 \end{document}

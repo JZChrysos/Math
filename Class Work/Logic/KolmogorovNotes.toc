@@ -2,3 +2,4 @@
 \contentsline {subsection}{\tocsubsection {}{1.1}{Relative Complexity}}{3}{subsection.1.1}%
 \contentsline {subsection}{\tocsubsection {}{1.2}{Complexity of Infinite Sequences}}{4}{subsection.1.2}%
 \contentsline {section}{\tocsection {}{2}{Complexity in $\mathbb {R}$}}{4}{section.2}%
+\contentsline {subsection}{\tocsubsection {}{2.1}{Dimension in $\mathbb {R}$}}{5}{subsection.2.1}%

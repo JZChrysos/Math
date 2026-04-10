@@ -224,10 +224,10 @@
 	
 	The shortest path between any two points on a closed manifold is always a geodesic, though there are many geodesics of different lengths.\\
 	
-	\textbf{Proposition (Normal Neighborhood fact)}: Let $U_x$ be a normal neighborhood containing point $x$ with corresponding value $\ep_x$, and let $q\in U_x$. Then
+	\textbf{Proposition (Normal Neighborhood fact)}: Let $U_x$ be a normal neighborhood containing point $x$ with corresponding value $\ep_x$, and let $p,q\in U_x$. Then
 	\begin{enumerate}[(i)]
-		\item There is a unique geodesic passing through $x,q$ with length less than $\ep_x$.
-		\item This geodesic minimizes distance among all smooth curves from $x$ to $q$.
+		\item There is a unique geodesic passing through $p,q$ with length less than $\ep_x$.
+		\item This geodesic uniquely minimizes distance among all $C^1$ (and piecewise $C^1$) curves from $p$ to $q$.
 	\end{enumerate}
 	\begin{proof}
 		(i): Let $\exp(tw)$ and $\exp(tv)$ be two different geodesics going to $q$. The lengths of these geodesics are $|w|$ and $|v|$, as
@@ -239,5 +239,49 @@
 		(ii): Suppose we have a curve $\sigma:I\to M$. We can pull this back through $\exp$. Then we use Gauss Lemma \textit{revisit and complete this computation!!!!}
 	\end{proof}\\
 	
+	Of course, if $M$ is compact, then we can find a single $\ep$ for which this holds globally. In this case, we can reasonably define a metric on $M$ by saying that $d(p,q)$ is the shortest length of geodesics connecting $p$ and $q$. One can check using the previous proposition that $d$ satisfies the triangle inequality and is therefore a metric. The unit ball at $x$ in this metric is $\exp_x(B_1(0))$.\\
 	
+	\boxed{\text{
+	Question (Poincar\'e): For which closed Riemannian manifolds do closed\footnote{Closed means $\gamma(0)=\gamma(1)$ and $\gamma'(0)=\gamma'(1)$.} geodesics exist?}}\\
+
+	\textbf{Theorem (Hadamard)}: If $\pi_1(M)\neq 0$, then there is a closed geodesic. WOW!!!!
+	\begin{proof}
+		Start with a non-contractible loop $\gamma$ in some homotopy class $[\gamma]$. Among $[\gamma]$ there is a loop with least length (this is nontrivial, but you can get it from a limit of curves with length going to the minimum. This is the ``direct method'' in Calculus of Variations. Actually, because of the normal neighborhood theorem, we can reduce the search space to piecewise geodesics, which makes things easier). This is a geodesic because any perturbation makes $\gamma$ longer.
+	\end{proof}\\
+	
+	\underline{Geodesic Results:}
+	\begin{itemize}
+		\item (Birkhoff): Any $(S^2,g)$ has a closed geodesic.
+		\item (Lusternic-Fet): Any $M$ has a closed geodesic.
+		\item (Morse): ``Most'' manifolds have infinitely-many geodesics connecting two distinct points.
+		\item (Senei): All manifolds have infinitely-many geodesics connecting two distinct points.
+		\item (Gromov-Meyer): Most manifolds have infinitely-many closed geodesics.
+		\item (Frances-Bengert,Hingston): Any $(S^2,g)$ has infinitely-many closed geodesics.
+		\item \textit{OPEN}: Do all manifolds have infinitely-many closed geodesics?
+	\end{itemize}
+	
+	
+	\section{Curvature}
+	
+	An $r$-tensor is a map $T:\X(M)^r\to C^{\infty}(M)$ which is $C^{\infty}(M)$-linear. This implies that $T$ is defined locally, i.e. $T(X_1,\dots,X_r)(p)$ only depends on $X_1(p),\dots,X_r(p)$.\\
+	
+	One example of a 4-tensor is the Riemannian Curvature tensor. Let 
+	$$
+	R(X,Y)(Z) := \nabla_X(\nabla_Y Z) - \nabla_Y(\nabla_X Z) - \nabla_{[X,Y]}Z
+	$$
+	then the Riemann curvature tensor $\RR$ is defined
+	$$
+	\RR(X,Y,Z,W) := (R(X,Y)(Z),W)
+	$$
+	There are a few identities about $\RR$:\\
+	
+	\underline{Curvature Identities:}
+	\begin{itemize}
+		\item $R(X,Y)Z + R(Y,Z)X + R(Z,X)Y=0$
+		\item $\RR(X,Y,Z,W) = - \RR(Y,X,Z,W)$
+		\item $\RR(X,Y,Z,W) = -\RR(X,Y,W,Z)$
+		\item $\RR(X,Y,Z,W) = \RR(Z,W,X,Y)$
+	\end{itemize}
+	
+%	Elena phone # +12676249220
 \end{document}
